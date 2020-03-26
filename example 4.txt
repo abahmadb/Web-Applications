@@ -1,0 +1,9 @@
+hello
+
+hello again
+
+hello for the third time
+
+add -A
+
+1
