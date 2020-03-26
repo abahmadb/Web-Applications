@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>NOMESITO</title>
+
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+
+    <button onclick="toggle_modal();">Apri</button>
+
+    <div class="modal">
+
+        <div onclick="toggle_modal()" class="close_modal">X</div>
+
+        <div class="sign_up_in">
+
+            <div class="sign_up">
+
+                <div>
+
+                    <p><img src="images/signup-image.png"><br><br><a href="#" onclick="flip_registration()">I am already a member</a></p>
+                    
+
+                </div>
+
+                <div>
+                    
+                    <h2>Sign up</h2>
+
+                    <span><img src="images/account.png"><input type="text" placeholder="Full name"></span>
+
+                    <span><img src="images/email.png"><input type="text" placeholder="E-mail address"></span>
+
+                    <span><img src="images/password.png"><input type="password" placeholder="Password"></span>
+
+                    <span><img src="images/password.png"><input type="password" placeholder="Repeat password"></span>
+
+                    <span><label class="container">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                      </label> I agree to terms and conditions and the privacy policy</span>
+
+                    <br><input type="submit" value="Register" class="pulsante">
+
+                </div>
+
+            </div>
+
+            <div class="sign_in">
+
+                <div>
+
+                    <p><img src="images/signin-image.jpg"><br><br><a href="#" onclick="flip_registration()">Create an account</a></p>
+
+                </div>
+
+                <div>
+                    
+                    <h2>Sign in</h2>
+
+                    <span><img src="images/account.png"><input type="text" placeholder="E-mail address"></span>
+
+                    <span><img src="images/password.png"><input type="password" placeholder="Password"></span>
+
+                    <span><label class="container">
+                        <input type="checkbox" checked="checked">
+                        <span class="checkmark"></span>
+                      </label> Remember me</span>
+
+                    <br><input type="submit" value="Log in" class="pulsante">
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <!-- JS -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
