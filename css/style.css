@@ -78,7 +78,7 @@ html, body{
 	flex-direction: row;
 	flex-wrap: nowrap;
 	backface-visibility: hidden;
-	-moz-backface-visibility: hidden;
+	transform:rotateY(0deg);
 	background-color: #FFF;
 	border-radius: 15px;
 }
@@ -144,7 +144,7 @@ html, body{
 
 .flipped{
 	transform: rotateY(180deg);
-	
+	backface-visibility: hidden;
 }
 
 .flipped div:last-child{
