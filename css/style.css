@@ -32,7 +32,7 @@ html, body{
 	bottom: 0;
 	right: 0;
 	background-color: rgba(0,0,0,0.8);
-	display: none;
+	transform: translateY(-99.99999999%);
 }
 
 .modal .close_modal{
@@ -55,7 +55,18 @@ html, body{
 	transition: transform 1s;
 	transform-style: preserve-3d;
 	border-radius: 15px;
+	animation: flashflip 0.00001s;
 }
+
+
+@keyframes flashflip {
+	0% {
+		transform: rotateY(-180deg);
+	  }
+	100% {
+		transform: rotateY(+180deg); 
+	  }
+  }
 
 .modal .sign_up_in .sign_up, .modal .sign_up_in .sign_in{
 	position: absolute;
@@ -67,6 +78,7 @@ html, body{
 	flex-direction: row;
 	flex-wrap: nowrap;
 	backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
 	background-color: #FFF;
 	border-radius: 15px;
 }
@@ -132,6 +144,7 @@ html, body{
 
 .flipped{
 	transform: rotateY(180deg);
+	
 }
 
 .flipped div:last-child{

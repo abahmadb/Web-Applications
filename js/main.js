@@ -7,11 +7,11 @@ registration_ctrl = false;
 function toggle_modal(){
 
         if(modal_ctrl){
-            modal.style.display = "none";
+            modal.style.transform = "translateY(-99.99999999%)";
             modal_ctrl = false;
         }
         else{
-            modal.style.display = "block";
+            modal.style.transform = "translateY(0%)";
             modal_ctrl = true;
         }
 
@@ -31,3 +31,4 @@ function flip_registration(){
     event.preventDefault();
 
 }
+
