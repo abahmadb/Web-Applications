@@ -32,8 +32,6 @@ This directory contains the source code of the project developed for EDUCATION
 
 
 
-
-
 ## Contributors:
 Students who made this Project possible
 
@@ -45,17 +43,17 @@ Students who made this Project possible
 * [@Ahmad Bashir Usman](https://bitbucket.org/%7Bd6a6bf8a-962e-4161-ab75-07c273cb7b16%7D/) - ICT for Internet & Multimedia
 
 
- ## License:
+ 
+## License:
 
  * [ ] Copyright and license information can be found in the file LICENSE.  *(DRAFT)*
  
-  ## Notice:
+## Notice:
 
  * [ ] Additional information can be found in the file NOTICE. *(DRAFT)*
 
 
-
- ## Acknowledgments:
+## Acknowledgments:
 
 We extend our appreciation to Professor Nicola Ferro for his invaluable insight throughout our project.
 
