@@ -1,0 +1,14 @@
+package it.unipd.dei.webapp;
+/**
+* Sample class to say "Hello, world". *
+* @author Nicola Ferro (ferro@dei.unipd.it)
+* @version 1.0
+* @since 1.0 */
+public class HelloWorld {
+/**
+* Main method of the class. *
+* Just prints "Hello, world!". *
+* @param args input arguments from the command line, if any. */
+public static void main(String[] args) { System.out.printf("Hello, world!%n");
+ }
+}
