@@ -1,1 +1,10 @@
 The project workflow
+The project steps:
+The project consists on three steps:
+1. User Interface (UI) 
+    Build by HTML, CSS ,..
+2. Database
+    MySQL
+3. Object Model 
+    The programming code (JavaScript,...)
+    
