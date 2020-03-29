@@ -39,7 +39,7 @@ Students who made this Project possible
 * [@Marco Dalla Mutta](https://bitbucket.org/%7Bf5e243b3-d5ce-4baf-aa57-1f6a7bd87650%7D/) - Computer Engineering
 * [@Jin Xianwen](https://bitbucket.org/%7Bdd398f8c-f491-4e3f-ba61-0ebed3bb2845%7D/) - Computer Engineering
 * [@Semenscenco Victor](https://bitbucket.org/%7Bdd4c42d8-0e76-4c93-adda-11149e82ee40%7D/) Computer Engineering
-* [@Memen Hamza](ll) - ICT for Internet & Multimedia
+* [@Memen Salihi](ll) - ICT for Internet & Multimedia
 * [@Ahmad Bashir Usman](https://bitbucket.org/%7Bd6a6bf8a-962e-4161-ab75-07c273cb7b16%7D/) - ICT for Internet & Multimedia
 
 
