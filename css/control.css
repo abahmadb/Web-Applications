@@ -1,0 +1,165 @@
+/* ======== RESET STYLES ======== */
+
+*{
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI Light", Arial, Helvetica, sans-serif;
+}
+
+a,a:hover,a:active,a:visited{
+    color: #222;
+}
+
+html, body{
+    height: 100%;
+    position: relative;
+}
+
+
+
+
+/* GENERIC BUTTON */
+
+
+/* ============ HEADER ============ */
+
+header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10%;
+    background: #DFE5E8;
+
+}
+
+header #menu_wrap a{
+    display: inline-block;
+    text-decoration: none;
+    padding: 39px 19px;
+    color: #264247;
+    font-weight: 500;
+    font-size: 16px;
+    -webkit-transition: border-bottom-width .3s;
+    -moz-transition: border-bottom-width .3s;
+    -o-transition: border-bottom-width .3s;
+    transition: border-bottom-width .3s;
+
+}
+
+header #menu_wrap a:hover{
+    border-bottom: 5px solid rgb(29, 127, 208);
+    color: #007bff;
+}
+
+header #menu_wrap .current_page{
+    border-bottom: 5px solid rgb(29, 127, 208);
+}
+
+
+header #logo_wrap img{
+    width: 134px;
+    height: auto;
+}
+
+
+
+.logout_btn:hover{
+    background: #0B87A6;
+}
+
+.sidebar {
+    background: #2f323a;
+    margin-top: 0px;
+    padding-top: 40px;
+    position: fixed;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    transition: 0.5s;
+    transition-property: left;
+}
+
+.sidebar .profile_image{
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    margin-bottom: 10px;
+}
+
+.sidebar h4{
+    color: #ccc;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.sidebar a{
+    color: #fff;
+    display: block;
+    width: 100%;
+    line-height: 60px;
+    text-decoration: none;
+    padding-left: 40px;
+    box-sizing: border-box;
+    transition: 0.5s;
+    transition-property: background;
+}
+
+.sidebar a:hover{
+    background: #19B3D3;
+}
+
+.sidebar i{
+    padding-right: 10px;
+}
+
+label #sidebar_btn{
+    z-index: 1;
+    color: #fff;
+    position: fixed;
+    cursor: pointer;
+    left: 300px;
+    font-size: 20px;
+    margin: 5px 0;
+    transition: 0.5s;
+    transition-property: color;
+}
+
+label #sidebar_btn:hover{
+    color: #19B3D3;
+}
+
+#check:checked ~ .sidebar{
+    left: -190px;
+}
+
+#check:checked ~ .sidebar a span{
+    display: none;
+}
+
+#check:checked ~ .sidebar a{
+    font-size: 20px;
+    margin-left: 170px;
+    width: 80px;
+}
+
+.bground{
+    margin-left: 250px;
+    background: url(4.jpg) no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    transition: 0.5s;
+}
+
+
+#check:checked ~ .bground{
+    margin-left: 60px;
+}
+
+#check{
+    display: none;
+}
+
