@@ -53,6 +53,12 @@ body {
     height: 60px;
     background: rgb(128, 128, 128);
     border-radius: 50%;
+    overflow: hidden;
+
+}
+
+.chat .user-photo img {
+    width: 100%;
 }
 
 .chat .chat-message {
