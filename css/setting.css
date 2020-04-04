@@ -24,7 +24,7 @@
     color: #ccc;
 }
 
-.setting .box input[type=text], select {
+.setting .box input[type=text], select{
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -34,7 +34,7 @@
   box-sizing: border-box;
 }
 
-.setting .box input[type=submit] {
+.setting .box input[type=submit]{
   width: 100%;
   background-color: #4CAF50;
   color: white;
@@ -45,6 +45,10 @@
   cursor: pointer;
 }
 
-.setting .box input[type=submit]:hover {
+.setting .box input[type=submit]:hover{
   background-color: #45a049;
+}
+
+.setting .box label{ 
+    color: #ccc;
 }
