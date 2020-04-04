@@ -1,70 +1,3 @@
-/* ======== RESET STYLES ======== */
-
-*{
-
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Segoe UI Light", Arial, Helvetica, sans-serif;
-}
-
-a,a:hover,a:active,a:visited{
-    color: #222;
-}
-
-html, body{
-    height: 100%;
-    position: relative;
-}
-
-
-
-
-/* GENERIC BUTTON */
-
-
-/* ============ HEADER ============ */
-
-header{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 10%;
-    background: #DFE5E8;
-
-}
-
-header #menu_wrap a{
-    display: inline-block;
-    text-decoration: none;
-    padding: 39px 19px;
-    color: #264247;
-    font-weight: 500;
-    font-size: 16px;
-    -webkit-transition: border-bottom-width .3s;
-    -moz-transition: border-bottom-width .3s;
-    -o-transition: border-bottom-width .3s;
-    transition: border-bottom-width .3s;
-
-}
-
-header #menu_wrap a:hover{
-    border-bottom: 5px solid rgb(29, 127, 208);
-    color: #007bff;
-}
-
-header #menu_wrap .current_page{
-    border-bottom: 5px solid rgb(29, 127, 208);
-}
-
-
-header #logo_wrap img{
-    width: 134px;
-    height: auto;
-}
-
-
 
 .logout_btn:hover{
     background: #0B87A6;
@@ -147,7 +80,7 @@ label #sidebar_btn:hover{
 
 .bground{
     margin-left: 250px;
-    background: url(4.jpg) no-repeat;
+    background: url('../images/imageset/4.jpg') no-repeat;
     background-position: center;
     background-size: cover;
     height: 100vh;
