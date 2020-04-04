@@ -1,12 +1,77 @@
+/* ======== RESET STYLES ======== */
 
-.logout_btn:hover{
-    background: #0B87A6;
+*{
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI Light", Arial, Helvetica, sans-serif;
 }
+
+a,a:hover,a:active,a:visited{
+    color: #222;
+}
+
+html, body{
+    height: 100%;
+    position: relative;
+}
+
+
+
+
+/* GENERIC BUTTON */
+
+
+/* ============ HEADER ============ */
+
+header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10%;
+    background: #DFE5E8;
+    width:100%;
+    float: right;
+
+}
+
+
+
+header #logo_wrap img{
+    width: 110px;
+    height: auto;
+}
+
+header #menu_wrap a{
+    display: inline-block;
+    text-decoration: none;
+    padding: 39px 19px;
+    color: #264247;
+    font-weight: 500;
+    font-size: 16px;
+    -webkit-transition: border-bottom-width .3s;
+    -moz-transition: border-bottom-width .3s;
+    -o-transition: border-bottom-width .3s;
+    transition: border-bottom-width .3s;
+
+}
+
+header #menu_wrap a:hover{
+    border-bottom: 5px solid rgb(29, 127, 208);
+    color: #007bff;
+}
+
+header #menu_wrap .current_page{
+    border-bottom: 5px solid rgb(29, 127, 208);
+}
+
 
 .sidebar {
     background: #2f323a;
     margin-top: 0px;
-    padding-top: 40px;
+    padding-top: 30px;
     position: fixed;
     left: 0;
     width: 250px;
@@ -16,10 +81,12 @@
 }
 
 .sidebar .profile_image{
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     border-radius: 100px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    margin-top: -20px;
+
 }
 
 .sidebar h4{
@@ -53,7 +120,7 @@ label #sidebar_btn{
     color: #fff;
     position: fixed;
     cursor: pointer;
-    left: 300px;
+    left: 13px;
     font-size: 20px;
     margin: 5px 0;
     transition: 0.5s;
@@ -65,7 +132,7 @@ label #sidebar_btn:hover{
 }
 
 #check:checked ~ .sidebar{
-    left: -190px;
+    left: -200px;
 }
 
 #check:checked ~ .sidebar a span{
@@ -79,17 +146,18 @@ label #sidebar_btn:hover{
 }
 
 .bground{
-    margin-left: 250px;
-    background: url('../images/imageset/4.jpg') no-repeat;
+    margin-left: 100px;
+    background: url('../images/bg2.png') no-repeat ;
     background-position: center;
     background-size: cover;
-    height: 100vh;
+    height: 100%;
     transition: 0.5s;
+
 }
 
 
 #check:checked ~ .bground{
-    margin-left: 60px;
+    margin-left: 50px;
 }
 
 #check{
