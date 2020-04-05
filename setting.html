@@ -96,6 +96,11 @@
                     <h4>
                          Photo 
                     </h4>
+                    <img src="images/logo.png" class="profile_img" alt="profile image">
+                    <form>
+                        <label for="file-upload">Upload</label>
+                        <input type="file" name="photo" id="file-upload"><br/>
+                    </form>
                 </center>
             </div>
             <div class="box">
@@ -106,8 +111,14 @@
                     <br/>
                     <form>
                         <label for="oldpsw">Old Password</label><br/>
-                        <input type="password" id="oldpsw" name="oldpsw" placeholder="Old Password.."><br/>
-                        
+                        <input type="password" id="oldpsw" name="oldpsw" placeholder="enter old password.."
+                               pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"><br/>
+                        <label for="newpsw">New Password</label><br/>
+                        <input type="password" id="newpsw" name="newpsw" placeholder="enter new password.."
+                                pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"><br/>
+                        <label for="re_newsw">Old Password</label><br/>
+                        <input type="password" id="re_newpsw" name="re_newpsw" placeholder="re-enter new password.."
+                                pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"><br/>
                         <input type="submit" value="Convalidate">
                     </form>
                 </center>
@@ -115,7 +126,7 @@
             <div class="box">
                 <center>
                     <h4>
-                       Notification 
+                       Tell about yourself 
                     </h4>
                 </center>
             </div>
