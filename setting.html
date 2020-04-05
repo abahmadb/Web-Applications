@@ -63,69 +63,66 @@
 
         <!--setting body start-->
         <div class="setting bground">
+            <div class="box">
+                <h4>
+                    General information 
+                </h4>
+                <br/>
+                <form>
+                    <label for="fname">First Name</label><br/>
+                    <input type="text" id="fname" name="firstname" placeholder="Your name.."><br/>
+
+                    <label for="lname">Last Name</label><br/>
+                    <input type="text" id="lname" name="lastname" placeholder="Your last name.."><br/>
+
+                    <label for="gender">Gender</label><br/>
+                    <select id="gender" name="gender">
+                        <option value="male">male</option>
+                        <option value="female">female</option>
+                        <option value="other">other</option>
+                    </select><br/>
+                        
+                    <label for="birthday">Birthday</label><br/>
+                    <input type="date" id="birthday" name="birthday"><br/>
+                    
+                    <input type="submit" value="Convalidate">
+                </form>
+                
+            </div>
+            <div class="box">
+                
+                <h4>Photo</h4>
+                <img src="images/logo.png" class="profile_img" alt="profile image">
+                <form>
+                    <input type="submit" value="Upload">
+                </form>
+                
+            </div>
+            
+            <div class="box">        
+                <h4>Password setting</h4>
+                <br/>
+                <form method="post">
+                    <label for="oldpsw">Old Password</label><br/>
+                    <input type="password" id="oldpsw" name="oldpsw" placeholder="enter old password.."><br/>
+                    <label for="newpsw">New Password</label><br/>
+                    <input type="password" id="newpsw" name="newpsw" placeholder="enter new password.."
+                            pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"><br/>
+                    <label for="re_newsw"></label>
+                    <input type="password" id="re_newpsw" name="re_newpsw" placeholder="re-enter new password.."><br/>
+                    <input type="submit" value="Convalidate">
+                </form>
+               
+            </div>
             
             <div class="box">
-                <center>
-                    <h4>
-                       General information 
-                    </h4>
-                    <br/>
-                    <form>
-                        <label for="fname">First Name</label><br/>
-                        <input type="text" id="fname" name="firstname" placeholder="Your name.."><br/>
-
-                        <label for="lname">Last Name</label><br/>
-                        <input type="text" id="lname" name="lastname" placeholder="Your last name.."><br/>
-
-                        <label for="gender">Gender</label><br/>
-                        <select id="gender" name="gender">
-                            <option value="male">male</option>
-                            <option value="female">female</option>
-                            <option value="other">other</option>
-                        </select><br/>
-                        
-                        <label for="birthday">Birthday</label><br/>
-                        <input type="date" id="birthday" name="birthday"><br/>
-                        
-                        <input type="submit" value="Convalidate">
-                    </form>
-                </center>
-            </div>
-            <div class="box">
-                <center>
-                    <h4>
-                         Photo 
-                    </h4>
-                    <img src="images/logo.png" class="profile_img" alt="profile image">
-                    <form>
-                        <input type="submit" value="Upload">
-                    </form>
-                </center>
-            </div>
-            <div class="box">
-                <center>
-                    <h4>
-                         Password setting
-                    </h4>
-                    <br/>
-                    <form method="post">
-                        <label for="oldpsw">Old Password</label><br/>
-                        <input type="password" id="oldpsw" name="oldpsw" placeholder="enter old password.."><br/>
-                        <label for="newpsw">New Password</label><br/>
-                        <input type="password" id="newpsw" name="newpsw" placeholder="enter new password.."
-                                pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"><br/>
-                        <label for="re_newsw">New Password</label><br/>
-                        <input type="password" id="re_newpsw" name="re_newpsw" placeholder="re-enter new password.."><br/>
-                        <input type="submit" value="Convalidate">
-                    </form>
-                </center>
-            </div>
-            <div class="box">
-                <center>
-                    <h4>
-                       Tell about yourself 
-                    </h4>
-                </center>
+                
+                <h4>Tell about yourself</h4>
+                <form method="post">
+                    <label for="tarea"></label>
+                    <textarea id="tarea" rows="20">say something</textarea>
+                    <input type="submit" value="Convalidate">
+                </form>
             </div>
         </div>
         <!--setting body end-->

@@ -18,6 +18,7 @@
     padding: 5px;
     margin: 15px 10px 5px;
     background-color: #2f323a;
+    text-align: center;
 }
 
 .setting .box h4{
@@ -26,6 +27,18 @@
 
 .setting .box input[type=text], select, input[type=date], input[type=password]{
     width: 70%;
+    padding: 8px 16px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.setting .box textarea{
+    width: 200px;
+    height: 200px;
     padding: 8px 16px;
     margin: 8px 0;
     display: inline-block;
