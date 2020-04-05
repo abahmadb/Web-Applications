@@ -85,7 +85,7 @@
                         </select><br/>
                         
                         <label for="birthday">Birthday</label><br/>
-                        <input type="date" id="birth" name="birth" placeholder="dd/mm/year"><br/>
+                        <input type="date" id="birthday" name="birthday"><br/>
                         
                         <input type="submit" value="Convalidate">
                     </form>
@@ -98,8 +98,7 @@
                     </h4>
                     <img src="images/logo.png" class="profile_img" alt="profile image">
                     <form>
-                        <label for="file-upload">Upload</label>
-                        <input type="file" name="photo" id="file-upload"><br/>
+                        <input type="submit" value="Upload">
                     </form>
                 </center>
             </div>
@@ -109,16 +108,14 @@
                          Password setting
                     </h4>
                     <br/>
-                    <form>
+                    <form method="post">
                         <label for="oldpsw">Old Password</label><br/>
-                        <input type="password" id="oldpsw" name="oldpsw" placeholder="enter old password.."
-                               pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"><br/>
+                        <input type="password" id="oldpsw" name="oldpsw" placeholder="enter old password.."><br/>
                         <label for="newpsw">New Password</label><br/>
                         <input type="password" id="newpsw" name="newpsw" placeholder="enter new password.."
                                 pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"><br/>
-                        <label for="re_newsw">Old Password</label><br/>
-                        <input type="password" id="re_newpsw" name="re_newpsw" placeholder="re-enter new password.."
-                                pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"><br/>
+                        <label for="re_newsw">New Password</label><br/>
+                        <input type="password" id="re_newpsw" name="re_newpsw" placeholder="re-enter new password.."><br/>
                         <input type="submit" value="Convalidate">
                     </form>
                 </center>

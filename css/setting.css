@@ -7,7 +7,6 @@
     width: 100%;
     height: 100%;
     position: scroll;
-    text-align: top;
 }
 
 .setting .box{
@@ -33,6 +32,7 @@
     border: 1px solid #ccc;
     border-radius: 15px;
     box-sizing: border-box;
+    outline: none;
 }
 
 .setting .box input[type=submit]{
@@ -44,25 +44,12 @@
     border: none;
     border-radius: 30px;
     cursor: pointer;
+    outline: none;
 }
 
 .setting .box input[type=submit]:hover{
     background-color: #45a049;
-}
-
-.setting .box input[type=file]{
-    visibility: hidden;
-}
-
-#file-upload {
-    width: 50%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
+    outline: none;
 }
 
 .setting .box label{ 
