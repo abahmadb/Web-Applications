@@ -40,7 +40,9 @@ header{
 
 
 header #logo_wrap img{
-    width: 110px;
+    width: 134px;
+    margin-left: -80px;
+    margin-bottom: -3px;
     height: auto;
 }
 
@@ -113,6 +115,7 @@ header #menu_wrap .current_page{
 
 .sidebar i{
     padding-right: 10px;
+
 }
 
 label #sidebar_btn{
