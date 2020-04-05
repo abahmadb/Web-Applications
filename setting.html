@@ -9,7 +9,6 @@
         <link rel="shortcut icon" href="images/logo.ico" type="image/x-icon" />
         <title>RemyTutor</title>
 
-
         <!-- MAIN CSS -->
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/control.css">
@@ -17,62 +16,77 @@
         <link rel="stylesheet" href="css/setting.css">
     </head>
 
+    <input type="checkbox" id="check">
+
     <body>
 
-        <!-- WEBSITE HEADER -->
+
+    <!-- WEBSITE HEADER start -->
         <header>
+
+
             <div id="logo_wrap">
                 <img src="images/logo.png">
             </div>
+
+            <label for="check">
+                <i class="fas fa-bars" id="sidebar_btn"></i>
+            </label>
 
             <div id="menu_wrap">
                 <nav>
                     <a href="index.html" class=>Home</a>
                     <a href="index.html">Sign Out</a>
 
-
                 </nav>
             </div>
         </header>
+        <!-- WEBSITE HEADER end -->
+
 
         <!--sidebar start-->
         <div class="sidebar">
             <center>
-                <img src="sample.png" class="profile_image" alt="">
-                <h4>AHMAD</h4>
+                <img src="images/logo.png" class="profile_image" alt="">
+                <h4>WELCOME</h4>
             </center>
 
             <a href="#"><i class="fas fa-desktop"></i><span>Control Panel</span></a>
             <a href="#"><i class="fas fa-envelope"></i><span>Email</span></a>
             <a href="#"><i class="fas fa-tty"></i><span>Phone</span></a>
-            <a class="active" href="#"><i class="fas fa-sliders-h" ></i><span>Settings</span></a>
+            <a class="active" href="setting.html"><i class="fas fa-sliders-h"></i><span>Settings</span></a>
             <a href="#"><i class="fas fa-info-circle"></i><span>About</span></a>
 
         </div>
         <!--sidebar end-->
 
+
         <!--setting body start-->
-        <div class="setting">
+        <div class="setting bground">
             
             <div class="box">
                 <center>
                     <h4>
                        General information 
                     </h4>
+                    <br/>
                     <form>
-                        <label for="fname">First Name</label>
-                        <input type="text" id="fname" name="firstname" placeholder="Your name..">
+                        <label for="fname">First Name</label><br/>
+                        <input type="text" id="fname" name="firstname" placeholder="Your name.."><br/>
 
-                        <label for="lname">Last Name</label>
-                        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+                        <label for="lname">Last Name</label><br/>
+                        <input type="text" id="lname" name="lastname" placeholder="Your last name.."><br/>
 
-                        <label for="gender">Gender</label>
+                        <label for="gender">Gender</label><br/>
                         <select id="gender" name="gender">
                             <option value="male">male</option>
                             <option value="female">female</option>
                             <option value="other">other</option>
-                        </select>
-  
+                        </select><br/>
+                        
+                        <label for="birthday">Birthday</label><br/>
+                        <input type="date" id="birth" name="birth" placeholder="dd/mm/year"><br/>
+                        
                         <input type="submit" value="Convalidate">
                     </form>
                 </center>
@@ -89,6 +103,13 @@
                     <h4>
                          Password setting
                     </h4>
+                    <br/>
+                    <form>
+                        <label for="oldpsw">Old Password</label><br/>
+                        <input type="password" id="oldpsw" name="oldpsw" placeholder="Old Password.."><br/>
+                        
+                        <input type="submit" value="Convalidate">
+                    </form>
                 </center>
             </div>
             <div class="box">

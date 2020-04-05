@@ -3,20 +3,21 @@
 }
 
 .setting{
-    margin-left: 270px;
+    margin-left: 250px;
     width: 100%;
     height: 100%;
     position: scroll;
+    text-align: top;
 }
 
 .setting .box{
     display: inline-block;
-    width: 330px;
+    width: 250px;
     height: auto;
-    border: solid;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
+    border: outside;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 15px 10px 5px;
     background-color: #2f323a;
 }
 
@@ -24,9 +25,9 @@
     color: #ccc;
 }
 
-.setting .box input[type=text], select{
-  width: 100%;
-  padding: 12px 20px;
+.setting .box input[type=text], select, input[type=date], input[type=password]{
+  width: 70%;
+  padding: 10px 16px;
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
@@ -35,7 +36,7 @@
 }
 
 .setting .box input[type=submit]{
-  width: 100%;
+  width: 50%;
   background-color: #4CAF50;
   color: white;
   padding: 14px 20px;
