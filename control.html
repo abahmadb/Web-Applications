@@ -10,57 +10,47 @@
         <title>RemyTutor</title>
 
         <!-- MAIN CSS -->
+        <link rel="stylesheet" href="css/style.css">
+
+        <!-- CONTROL PANEL HOME CSS -->
         <link rel="stylesheet" href="css/control.css">
+
+        <!-- FONTAWESOME CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
     </head>
 
-    <input type="checkbox" id="check">
+    
 
     <body>
 
-
-    <!-- WEBSITE HEADER start -->
-        <header>
-
-
-            <div id="logo_wrap">
-                <img src="images/logo.png">
-            </div>
-
-            <label for="check">
-                <i class="fas fa-bars" id="sidebar_btn"></i>
-            </label>
-
-            <div id="menu_wrap">
-                <nav>
-                    <a href="index.html" class=>Home</a>
-                    <a href="index.html">Sign Out</a>
-
-                </nav>
-            </div>
-        </header>
-        <!-- WEBSITE HEADER end -->
-
-
-        <!--sidebar start-->
-        <div class="sidebar">
+        <input type="checkbox" id="toggle_menu">
+        
+        <!-- SIDEBAR FOR THE DASHBOARD -->
+        <aside>
             <center>
-                <img src="images/logo.png" class="profile_image" alt="">
-                <h4>WELCOME</h4>
+                <img src="images/logo_transparent.png" alt="">
             </center>
 
-            <a href="#"><i class="fas fa-desktop"></i><span>Control Panel</span></a>
-            <a href="#"><i class="fas fa-envelope"></i><span>Email</span></a>
-            <a href="#"><i class="fas fa-tty"></i><span>Phone</span></a>
-            <a href="setting.html"><i class="fas fa-sliders-h"></i><span>Settings</span></a>
-            <a href="#"><i class="fas fa-info-circle"></i><span>About</span></a>
+            <p><label for="toggle_menu"><i class="fas fa-bars"></i></label></p>
+            <a href="control.html" class="current_section"><i class="fas fa-desktop"></i><span>Control Panel</span></a>
+            <a href="chat.html"><i class="fas fa-comment-dots"></i><span>Chat</span></a>
+            <a href="feedbacks.html"><i class="far fa-thumbs-up"></i><span>Feedbacks</span></a>
+            <a href="#"><i class="fas fa-money-check-alt"></i><span>Payments</span></a>
+            <a href="profile.html"><i class="fas fa-user-alt"></i><span>Profile</span></a>
+            <a href="#"><i class="fas fa-info-circle"></i><span>Sign out</span></a>
 
-        </div>
-        <!--sidebar end-->
+        </aside>
+        
 
-        <!--background start-->
-        <div class="bground"></div>
-        <!--background end-->
+        <!-- CONTENT OF THE PAGE -->
+        <main>
+            <div>
+                
+            </div>
+
+        </main>
+        
 
     </body>
 

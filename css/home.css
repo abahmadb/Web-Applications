@@ -1,3 +1,42 @@
+/* ============ HEADER ============ */
+
+header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10%;
+}
+
+header #menu_wrap a{
+    display: inline-block;
+    text-decoration: none;
+    padding: 39px 19px;
+    color: #264247;
+    font-weight: 500;
+    font-size: 16px;
+    -webkit-transition: border-bottom-width .3s;
+    -moz-transition: border-bottom-width .3s;
+    -o-transition: border-bottom-width .3s;
+    transition: border-bottom-width .3s;
+
+}
+
+header #menu_wrap a:hover{
+    border-bottom: 5px solid rgb(29, 127, 208);
+    color: #007bff;
+}
+
+header #menu_wrap .current_page{
+    border-bottom: 5px solid rgb(29, 127, 208);
+}
+
+
+header #logo_wrap img{
+    width: 134px;
+    height: auto;
+}
+
 /* ============ MAIN ============ */
 
 main section{
