@@ -1,25 +1,24 @@
-/* ----------BODY SECTION----------------------- */
-*{
 
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Segoe UI Light", Arial, Helvetica, sans-serif;
-}
 
 body {
     background: cyan;
 }
 
+.header  {
+   background-color: darksalmon; 
+}
+
 /*-------------------CHAT BOX SECTION---------------*/
 
 .chatbox {
-    width: 500px;
+    width: 60%;
     min-width: 390px;
     height: 600px;
     background: wheat;
     padding: 20px;
     margin: 25px auto ;
+    float: right ;
+    
     
 }
 
@@ -116,13 +115,13 @@ body {
 .chat-form button {
     padding: 5px 15px;
     background: rgb(77, 197, 187);
-    font-size: 30px;
+    font-size: 25px;
     color: black ;
     border: none;
     margin: 0 10px;
     box-shadow: 0 3px 0  rgb(46, 116, 110) ;
     cursor: pointer;
-
+    
     -webkit-transition: background .2s ease;
     -moz-transition: background .2s ease;
     -o-transition: background .2s ease;
@@ -130,4 +129,137 @@ body {
 
 chat-form button:hover {
     background: red;
+}
+
+/*********THE CONTACTS LIST CSS****************************************/
+
+.contacts_body{
+    width: 500px;
+    min-width: 390px;
+    height: 600px;
+    background:wheat;
+    padding: 20px;
+    margin: 25px auto ;
+    float:left;
+}
+/*****HEADER OF THE CONTACTS BODY********/
+form {
+    width: 100%;
+    height: 30px;
+    padding: 0px;
+    font-size: 18px;
+    position: relative;
+    
+}
+.search {
+    width: 75%;
+    padding: 10px;
+    font-size: 18px;
+    
+    
+}
+.submit{
+    width: 22%;
+    padding: 10px;
+    font-size: 18px;
+    background-color:rgb(77, 197, 187);
+    text-align: center;
+    box-shadow: 0 3px 0  rgb(46, 116, 110) ;
+    cursor: pointer;
+    
+
+    -webkit-transition: background .2s ease;
+    -moz-transition: background .2s ease;
+    -o-transition: background .2s ease;
+}
+
+
+/*****END OF HEADER OF THE CONTACTS BODY********/
+
+
+.chatlogs2 {
+    padding : 5px;
+    padding-top: 20px;
+    width: 100%;
+    height:550px ;
+    background:wheat;  ;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.chatlogs2::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+
+.contacts{
+    list-style: none;
+    padding: 0;
+}
+.contacts li{
+    width: 100% !important;
+    padding: 5px 10px;
+    margin-bottom: 15px !important;
+}    
+
+.active{
+    background-color: rgba(0,0,0,0.3);
+}
+
+.user_img{
+    height: 70px;
+    width: 70px;
+    border:1.5px solid #f5f6fa;
+    border-radius: 50%;
+}
+.user_img_msg{
+    height: 40px;
+    width: 40px;
+    border:1.5px solid #f5f6fa;
+
+}
+.img_cont{
+    position: relative;
+    height: 70px;
+    width: 70px;
+   
+}    
+.img_cont_msg{
+    height: 40px;
+    width: 40px;   
+}
+.online_icon{
+    position: absolute;
+    height: 15px;
+    width:15px;
+    background-color: #4cd137;
+    border-radius: 50%;
+    bottom: 0.2em;
+    right: 0.4em;
+    border:1.5px solid white;
+}
+.offline{
+    background-color: #c23616 !important;
+}
+.user_info{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 15px;
+    
+}
+.user_info span{
+    font-size: 20px;
+    color: black;
+    
+.user_info p{
+font-size: 10px;
+color: rgba(158, 158, 158, 0.6);
+
+}
+
+/*******FOOTER OF THE PAGE******/
+
+.footer {
+  clear: both;  
 }

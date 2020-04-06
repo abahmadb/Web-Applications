@@ -4,78 +4,171 @@
         <meta charset="UTF">
         <title>Chat</title> 
 
-        <!--THE MAIN CSS-->
-         
+        
+        <!------------------------ THE MAIN CSS --------->
 
-        <!--CHAT CSS-->
+        <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet"   href="css/chat.css" />
+        
 
     </head>
+
     <body>
-        <!--this is the main chat box -->
-        <div class= "chatbox">
 
-            <!-- this stucture of the chat logs-->
-            <div class= "chatlogs">
-
-                <!-- this is for the each chat-->
-                <div class= "chat friend">
-                    <div class= "user-photo"> <img src="images/user-photo1.png"> </div>
-                    <p class= "chat-message">hi, whats up there!</p>
-                </div>
-                <div class= "chat self">
-                    <div class= "user-photo"> <img scr="images/user-photo2.png"> </div>
-                    <p class= "chat-message">hello !!!</p>
-                </div>
-                <div class= "chat friend">
-                    <div class= "user-photo"></div>
-                    <p class= "chat-message">i would like to offer you a JavaScript lesson</p>
-                </div>
-                <div class= "chat self">
-                    <div class= "user-photo"></div>
-                    <p class= "chat-message">waw, it sounds great!</p>
-                </div>
-                <div class= "chat friend">
-                    <div class= "user-photo"></div>
-                    <p class= "chat-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                         Etiam lacinia scelerisque euismod. Quisque rhoncus feugiat nisl. Pellentesque finibus feugiat tellus.
-                          Praesent in sodales lorem, et aliquam elit. Vivamus bibendum 
-                        in mauris sodales lacinia. Donec et elementum justo. Praesent eget mauris consectetur</p>
-                </div>
-                <div class= "chat friend">
-                    <div class= "user-photo"></div>
-                    <p class= "chat-message">hi, whats up there!</p>
-                </div>
-                <div class= "chat self">
-                    <div class= "user-photo"></div>
-                    <p class= "chat-message">hello !!!</p>
-                </div>
-                <div class= "chat friend">
-                    <div class= "user-photo"></div>
-                    <p class= "chat-message">i would like to offer you a JavaScript lesson</p>
-                </div>
-                <div class= "chat self">
-                    <div class= "user-photo"></div>
-                    <p class= "chat-message">waw, it sounds great!</p>
-                </div>
-                <div class= "chat friend">
-                    <div class= "user-photo"></div>
-                    <p class= "chat-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                         Etiam lacinia scelerisque euismod. Quisque rhoncus feugiat nisl. Pellentesque finibus feugiat tellus.
-                          Praesent in sodales lorem, et aliquam elit. Vivamus bibendum 
-                        in mauris sodales lacinia. Donec et elementum justo. Praesent eget mauris consectetur</p>
-                </div>
-            </div>
-
-            <!--this is the chat form-->
-            <div class= "chat-form">
-                <textarea></textarea>
-                <button>Send</button>
-
-            </div>
-
+        <!-- WEBSITE HEADER -->
+        <div class="header">
+            <h1>This is the chat page</h1>
         </div>
 
+        
+            <div class= "chatbox">
+
+                <!-- this stucture of the chat logs-->
+                <div class= "chatlogs">
+    
+    
+                    <!-- STUCTURE OF EACH CHAT-->
+                    <div class= "chat friend">
+                        <div class= "user-photo"> <img src="images/user-photo1.png"> </div>
+                        <p class= "chat-message">hi, whats up there!</p>
+                    </div>
+                    <div class= "chat self">
+                        <div class= "user-photo"> <img src="images/user-photo2.png"> </div>
+                        <p class= "chat-message">hello !!!</p>
+                    </div>
+                    <div class= "chat friend">
+                        <div class= "user-photo"> <img src="images/user-photo1.png"> </div>
+                        <p class= "chat-message">hi, whats up there!</p>
+                    </div>
+                    <div class= "chat self">
+                        <div class= "user-photo"> <img src="images/user-photo2.png"> </div>
+                        <p class= "chat-message">hello !!!</p>
+                    </div>
+                    <div class= "chat friend">
+                        <div class= "user-photo"> <img src="images/user-photo1.png"> </div>
+                        <p class= "chat-message">hi, whats up there!</p>
+                    </div>
+                    <div class= "chat self">
+                        <div class= "user-photo"> <img src="images/user-photo2.png"> </div>
+                        <p class= "chat-message">hello !!!</p>
+                    </div>
+                    <div class= "chat friend">
+                        <div class= "user-photo"> <img src="images/user-photo1.png"> </div>
+                        <p class= "chat-message">hi, whats up there!</p>
+                    </div>
+                    <div class= "chat self">
+                        <div class= "user-photo"> <img src="images/user-photo2.png"> </div>
+                        <p class= "chat-message">hello !!!</p>
+                    </div>
+                        
+                </div>
+    
+    
+                <!--this is the chat form-->
+                <div class= "chat-form">
+                    <textarea></textarea>
+                    <button>Send</button>
+                </div>   
+    
+           
+            </div>
+    
+            <!---------------THE CHAT LIST---------------------------------->
+            <div class= "contacts_body">
+                <!--this is the search form-->
+                <form>
+                    <input type="text" name="text" class="search" placeholder="Search here">
+                    <input type="submit" name="submit" class="submit" value="Search">
+                </form>
+    
+                <div class="chatlogs2">
+                    
+                    <ui class="contacts">
+                        <li class="active">
+                            <div class="d-flex bd-highlight">
+                                <div class="img_cont">
+                                    <img src="images/user-photo1.png" class="rounded-circle user_img">
+                                    <span class="online_icon"></span>
+                                </div>
+                                <div class="user_info">
+                                    <span>Memen</span>
+                                    <p>Memen is online</p>
+                                </div>
+                            </div>
+                        </li>
+    
+                        <li>
+                            <div class="d-flex bd-highlight">
+                                <div class="img_cont">
+                                    <img src="images/user-photo2.png" class="rounded-circle user_img">
+                                    <span class="online_icon offline"></span>
+                                </div>
+                                <div class="user_info">
+                                    <span>Marco G</span>
+                                    <p>Marco G is offline</p>
+                                </div>
+                            </div>
+                        </li>
+    
+                        <li class="active">
+                            <div class="d-flex bd-highlight">
+                                <div class="img_cont">
+                                    <img src="images/user-photo2.png" class="rounded-circle user_img">
+                                    <span class="online_icon"></span>
+                                </div>
+                                <div class="user_info">
+                                    <span>Marco p</span>
+                                    <p>Marco p is online</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="d-flex bd-highlight">
+                                <div class="img_cont">
+                                    <img src="images/user-photo2.png" class="rounded-circle user_img">
+                                    <span class="online_icon offline"></span>
+                                </div>
+                                <div class="user_info">
+                                    <span>Victor</span>
+                                    <p>Victor is offline</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="d-flex bd-highlight">
+                                <div class="img_cont">
+                                    <img src="images/user-photo2.png" class="rounded-circle user_img">
+                                    <span class="online_icon offline"></span>
+                                </div>
+                                <div class="user_info">
+                                    <span>Ahmad</span>
+                                    <p>Ahmad is offline</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ui>
+    
+                </div>
+    
+    
+            </div>
+
+
+        
+        
+
+        
+        <!---------------THE FOOTER---------------------------------->
+        
+
+        
+            
+
+
+        
+
     </body>
+
+
 </html>
         
