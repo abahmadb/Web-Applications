@@ -1,11 +1,12 @@
 main > div {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    height: 100%;
 }
 
-
 main .box{
-    width: 250px;
+    width: 237px;
     border-radius: 4px;
     padding: 20px;
     background-color: rgb(237, 235, 230);
@@ -33,14 +34,15 @@ main .box input[type="submit"]{
     background-color: #4CAF50;
     color: #FFF;
     padding: 14px 20px;
-    margin: 8px 0;
+    margin: 20px 0px 0px;
     border: none;
     border-radius: 30px;
     cursor: pointer;
     transition: background-color 0.2s;
+    outline: none;
 }
 
-main .box input[type="submit"]:hover{
+main .box input[type="submit"]:hover, main > div .box > form > p > label:hover{
     background-color: #45a049;
 }
 
@@ -57,6 +59,45 @@ main > div .box .profile_img{
     height: 150px;
     border-radius: 100px;
     margin-bottom: 5px;
-    margin-top: 8px;
+    margin-top: 10px;
+}
 
+main > div .box .id_img{
+    width: 190px;
+    height: 133px;
+    border-radius: 20px;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+main > div .box .qualification_img{
+    width: 180px;
+    height: 200px;
+    border-radius: 15px;
+    margin-bottom: 5px;
+    margin-top: 10px;
+} 
+
+main .box .file-label{
+    display: inline-block;
+    background-color: #4CAF50;
+    color: #FFF;
+    padding: 14px 20px;
+    margin: 12px 0px 0px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    outline: none;
+    font-size: 13px;
+}
+
+.main .box .text-area{
+    text-align: center;
+    width: 200px;
+    padding: 8px 16px;
+    margin: 20px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-sizing: border-box;
+    outline: none;
 }

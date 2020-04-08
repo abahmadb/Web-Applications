@@ -36,11 +36,11 @@
             </center>
 
             <p><label for="toggle_menu"><i class="fas fa-bars"></i></label></p>
-            <a href="control.html" class="current_section"><i class="fas fa-desktop"></i><span>Control Panel</span></a>
+            <a href="control.html"><i class="fas fa-desktop"></i><span>Control Panel</span></a>
             <a href="chat.html"><i class="fas fa-comment-dots"></i><span>Chat</span></a>
             <a href="feedbacks.html"><i class="far fa-thumbs-up"></i><span>Feedbacks</span></a>
             <a href="#"><i class="fas fa-money-check-alt"></i><span>Payments</span></a>
-            <a href="profile.html"><i class="fas fa-user-alt"></i><span>Profile</span></a>
+            <a href="profile.html"  class="current_section"><i class="fas fa-user-alt"></i><span>Profile</span></a>
             <a href="#"><i class="fas fa-info-circle"></i><span>Sign out</span></a>
 
         </aside>
@@ -52,6 +52,8 @@
 
 
                 <!-- EACH OF THE FOLLOWING DIVS REPRESENT A COLUMN IN THE LAYOUT -->
+                
+                <!-- COLUMN ONE -->
                 <div>
 
                     <!-- PERSONAL INFORMATION -->
@@ -93,7 +95,7 @@
                 </div>
 
 
-
+                <!-- COLUMN TWO -->
                 <div>
 
                     <!-- PROFILE PICTURE -->
@@ -106,9 +108,9 @@
                             <img src="images/logo.png" class="profile_img" alt="profile image">
                         </p>
                         <form>
-                            <input type="file" name="photo">
+                            <input type="file" name="photo" id="photo">
                             <p>
-                                <input type="submit" value="Upload a photo">
+                                <label class="file-label" for="photo">Upload a photo</label>
                             </p>
                         </form>
 
@@ -124,30 +126,78 @@
                         <form>
 
                             <input type="text" id="old_pw" name="old_pw" placeholder="Old password.."><br>
-
-
                             <input type="text" id="new_pw" name="new_pw" placeholder="New password.."><br>
-
-
                             <input type="text" id="new_pw_repeat" name="new_pw_repeat" placeholder="New password.."><br>
-
                             <p>
                                 <input type="submit" value="Change password">
+                            </p>
+                        </form>
+                    </div>
+
+                </div>
+
+                
+                <!-- COLUMN THREE -->
+                <div>
+
+                    <!-- IDENTITY -->
+                    <div class="box">
+
+                        <h4>
+                            Identity card
+                        </h4>
+                        <p>
+                            <img src="images/id.png" class="id_img" alt="id image">
+                        </p>
+                        <form>
+                            <input type="file" name="document_card" id="document_card">
+                            <p>
+                                <label class="file-label" for="document_card">Upload ID</label>
+                            </p>
+                        </form>
+                    </div>
+                    
+                    <!-- QUALIFICATION -->
+                    <div class="box">
+
+                        <h4>
+                            Qualification 
+                        </h4>
+                        <p>
+                            <img src="images/qualification.png" class="qualification_img" alt="qualification image">
+                        </p>
+                        <form>
+                            <input type="file" name="qualification" id="qualification">
+                            <p>
+                                <label class="file-label" for="qualification">Upload qualification</label>
                             </p>
                         </form>
 
                     </div>
 
+
                 </div>
-
-
+                
+                <!-- COLUMN FOUR -->
                 <div>
+                    <!-- TELL ABOUT YOURSELF -->
                     <div class="box">
-                        <center>
-                            <h4>
-                                Tell about yourself 
-                            </h4>
-                        </center>
+
+                        <h4>
+                            Tell about yourself 
+                        </h4>
+                        <br/>
+                        <form method="post">
+                                
+                            <label for="text-area"></label>
+                            <p>
+                                <textarea class="text-area" rows="20" cols="28">say something</textarea>
+                            </p>
+                            <p>
+                                <input type="submit" value="Submit">
+                            </p>
+                                
+                        </form>
                     </div>
                 </div>
 
