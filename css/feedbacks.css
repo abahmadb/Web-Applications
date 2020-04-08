@@ -73,15 +73,12 @@
     }
 }
 
-main > div{
-    background-color: #1d7fd0;
-    background-image: url("../images/debut-dark.png");
-}
-
 
 .flex-container {
     display: flex;
-
+    background-color: #007bff;
+    background-image: url("../images/debut-dark.png");
+    border-radius: 8px;
 }
 
 .break {
@@ -95,15 +92,13 @@ main > div{
     width:500px;
     height:300px;
     margin: 1% auto;
+    border: solid #007bff 3px;
+    border-radius: 8px;
 
  }
 
 .flex-container:nth-child(1) > div{
-
-    border: solid #007bff 2px;
-    border-radius: 8px;
-    padding-top: 20px;
-
+    padding-top: 7%;
 }
 
 .flex-container:nth-child(1) > div > p{
@@ -113,10 +108,12 @@ main > div{
 .flex-container:nth-child(2){
 
     position: relative;
+    border: solid #007bff 1px;
+    border-radius: 8px;
     left:0;
     padding: inherit;
-    margin: 400px 2% 3% 2%;
-    overflow: auto;
+    margin: 2.5% 2% 0 2%;
+    overflow:auto;
 
 }
 
