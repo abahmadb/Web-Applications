@@ -1,15 +1,7 @@
-main > div {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    height: 100%;
-}
-
 main .box{
     width: 237px;
     border-radius: 4px;
     padding: 20px;
-    background-color: rgb(237, 235, 230);
     margin: 10px;
 }
 
