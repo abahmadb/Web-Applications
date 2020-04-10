@@ -1,3 +1,42 @@
+.main_image {
+    width: 100%; 
+    height:auto;
+  -webkit-filter: brightness(.72);
+  filter: brightness(.72);
+}
+
+.main_image_container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.quote_container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+}
+
+.quotation {
+    font-family: Garamond, Courier, Helvetica, sans-serif;
+    font-size: 190%;
+    color: white;
+}
+
+.author_quote {
+    text-align: right;
+    font-size: 102%;
+    font-family: Helvetica, sans-serif;
+    font-weight: lighter;
+}
+
+.horizontal_line_quote {
+    position:absolute;
+    width: 50%;
+    left: 25%;
+}
+
 .website_info_row {
     border: 2px solid black;
     background-color: blue;
