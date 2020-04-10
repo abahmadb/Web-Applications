@@ -1,0 +1,13 @@
+# IntelliJ Idea
+*.iml
+.idea/
+
+# Java
+*.class
+target/
+javadoc/
+log/
+
+# Package Files
+*.jar
+*.war
