@@ -1,5 +1,6 @@
 .heading {
     font-size: 25px;
+    font-weight: bold;
     margin-right: 3%;
     margin-left: 20%;
     margin-top: 2%;
@@ -64,19 +65,15 @@
 .bar-1 {width: 15%; height: 18px; background-color: #f44336;}
 
 .flex-container {
-    display: flex;
     background-color: #deebf7;
     box-shadow: 6px 6px 5px #999;
     border-radius: 8px;
 }
 
 .break {
+    display: flex;
     flex-basis: 100%;
     height: 0;
-}
-
-.flex-container:nth-child(1){
-    margin: 1% auto;
 }
 
 .flex-container:nth-child(1) > div{
@@ -89,6 +86,7 @@
 
 .flex-container:nth-child(2){
 
+    display: flex;
     position: relative;
     border-radius: 8px;
     left:0;
@@ -138,7 +136,36 @@
     flex: 0 0 0.1%;
 }
 
+div:nth-child(3) >.flex-container{
 
+    width:700px;
+    height:400px;
+    margin: 20px;
+    padding: 2%;
+
+}
+
+#commentinput{
+
+    width: 100%;
+    height: 100px;
+    resize:none;
+
+}
+
+input[type="submit"] {
+
+    background-color: #4CAF50;
+    color: #FFF;
+    padding: 14px 20px;
+    margin: 20px 0px 0px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    outline: none;
+
+}
 
 
 
