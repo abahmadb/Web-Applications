@@ -10,16 +10,28 @@ main .box h4, main .box p{
 }
 
 
-main .box input[type="text"], main .box input[type="date"], main .box input[type="password"]{
-    width: 100%;
-    font-size: 15px;
-    font-weight: 600;
-    text-align: left;
-    color: #444;
-    padding: 18px 10.4px 18px 20px;
-    border: 1px solid #e0e0e0;
-    border-radius: 5px;
-    outline: none;
+main .box input[type="text"], main .box input[type="date"], main .box input[type="password"],
+    main .box select{
+        width: 100%;
+        font-size: 15px;
+        font-weight: 600;
+        text-align: left;
+        color: #444;
+        padding: 18px 10.4px 18px 20px;
+        border: 2px solid #e0e0e0;
+        border-radius: 5px;
+        outline: none;
+}
+
+main .box input[type="text"]:focus, main .box input[type="date"]:focus, main .box input[type="password"]:focus,
+    main .box select:focus{
+        border: 2px solid aqua;
+        background-color: azure;
+}
+
+main .box input[type="text"]:hover, main .box input[type="date"]:hover, main .box input[type="password"]:hover,
+    main .box select:hover{
+        border: 2px solid aqua;
 }
 
 main .box input[type="submit"]{
@@ -63,8 +75,8 @@ main > div .box .id_img{
 }
 
 main > div .box .qualification_img{
-    width: 180px;
-    height: 200px;
+    width: 160px;
+    height: 180px;
     border-radius: 15px;
     margin-bottom: 5px;
     margin-top: 10px;
@@ -75,7 +87,7 @@ main .box .file-label{
     background-color: #4CAF50;
     color: #FFF;
     padding: 14px 20px;
-    margin: 12px 0px 0px;
+    margin: 0px;
     border: none;
     border-radius: 30px;
     cursor: pointer;
