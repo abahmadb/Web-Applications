@@ -84,13 +84,10 @@ main .box .file-label{
     font-size: 13px;
 }
 
-.main .box .text-area{
-    text-align: center;
-    width: 200px;
-    padding: 8px 16px;
-    margin: 20px;
-    border: 1px solid #ccc;
-    border-radius: 15px;
-    box-sizing: border-box;
-    outline: none;
+main .box #personal_presentation{
+    max-width: 600px;
+}
+
+main .box #personal_presentation p{
+    text-align: left;
 }

@@ -112,15 +112,15 @@ main .box h2{
     padding: 20px;
 }
 
-main .box p{
+main .box > p{
     text-align: center;
-    font-weight: bold;
     font-size: 20px;
     padding: 10px;
 }
 
-main .box p span{
+main .box > p span{
     cursor: pointer;
+    font-weight: bold;
 }
 
 main .box .profile_img{

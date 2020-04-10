@@ -21,6 +21,9 @@
         <!-- FONTAWESOME CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
 
+        <!-- Quill.js script for creating the personal presentation -->
+        <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     </head>
 
 
@@ -52,7 +55,7 @@
 
 
                 <!-- EACH OF THE FOLLOWING DIVS REPRESENT A COLUMN IN THE LAYOUT -->
-                
+
                 <!-- COLUMN ONE -->
                 <div>
 
@@ -117,7 +120,7 @@
                     </div>
 
                     <br>
-                    
+
                     <!-- CHANGE PASSWORD -->
                     <div class="box">
 
@@ -138,7 +141,7 @@
 
                 </div>
 
-                
+
                 <!-- COLUMN THREE -->
                 <div>
 
@@ -158,9 +161,9 @@
                             </p>
                         </form>
                     </div>
-                    
+
                     <br>
-                    
+
                     <!-- QUALIFICATION -->
                     <div class="box">
 
@@ -181,26 +184,28 @@
 
 
                 </div>
-                
+
                 <!-- COLUMN FOUR -->
                 <div>
                     <!-- TELL ABOUT YOURSELF -->
-                    <div class="box">
+                    <div class="box" style="width: auto">
 
                         <h4>
                             Tell about yourself 
                         </h4>
-                        <br/>
+                        <br>
                         <form method="post">
-                                
+
                             <label for="text-area"></label>
-                            <p>
-                                <textarea class="text-area" rows="20" cols="28">say something</textarea>
-                            </p>
+
+                            <div style="background-color: #FFF">
+                                <div id="personal_presentation"></div>
+                            </div>
+
                             <p>
                                 <input type="submit" value="Submit">
                             </p>
-                                
+
                         </form>
                     </div>
                 </div>
@@ -210,6 +215,26 @@
             </div>
 
         </main>
+
+        <script>
+            var quill = new Quill('#personal_presentation', {
+                theme: 'snow',
+                placeholder: 'Introduce yourself to students!',
+                modules: {
+                    toolbar: [
+                        ['bold', 'italic', 'underline'], 
+
+                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                        
+                        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+                        [{ 'color': [] }],
+                        
+                        [{ 'align': [] }]
+                    ]
+                } 
+            });
+        </script>
     </body>
 
 </html>
