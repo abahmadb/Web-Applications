@@ -1,15 +1,10 @@
 
 
-body {
-    background: cyan;
-}
 
-.header  {
-   background-color: darksalmon; 
-}
+
+
 
 /*-------------------CHAT BOX SECTION---------------*/
-
 .chatbox {
     width: 60%;
     min-width: 390px;
@@ -17,9 +12,18 @@ body {
     background: wheat;
     padding: 20px;
     margin: 25px auto ;
-    float: right ;
+    float:right ;
     
     
+}
+.tabcontent {
+    padding : 10px;
+    width: 100%;
+    height:450px ;
+    background: wheat ;
+    overflow-x: hidden;
+    overflow-y: scroll;  
+    display: none;
 }
 
 .chatlogs {
@@ -86,7 +90,7 @@ body {
 }
 
 .chat-form textarea {
-    background: wheat;
+    background: white;
     width: 75%;
     height:50px ;
     border:1px solid cadetblue ;
@@ -98,7 +102,7 @@ body {
 }
 
 .chat-form textarea:focus {
-    background: wheat;
+    background: white;
 }
 
 /*ADDING SCROLLBAR FOR THE TEXTAREA*/
@@ -126,16 +130,18 @@ body {
     -webkit-transition: background .2s ease;
     -moz-transition: background .2s ease;
     -o-transition: background .2s ease;
+    
+    
 } 
 
-chat-form button:hover {
-    background: red;
+.chat-form button:hover {
+    background: cyan;
 }
 
 /*********THE CONTACTS LIST CSS****************************************/
 
 .contacts_body{
-    width: 500px;
+    width: 400px;
     min-width: 390px;
     height: 600px;
     background:wheat;
@@ -186,6 +192,7 @@ form {
     overflow-x: hidden;
     overflow-y: scroll;
     margin-top: 25px;
+    
 }
 
 .chatlogs2::-webkit-scrollbar {
@@ -198,19 +205,27 @@ form {
 }
 
 
-.contacts{
+.tab{
     list-style: none;
     padding: 0;
 }
-.contacts li{
-    width: 100% !important;
-    padding: 5px 10px;
-    margin-bottom: 15px !important;
-}    
+.tab button  {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    outline: none;
+}  
 
-.active{
-    background-color: rgba(0,0,0,0.3);
-}
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #19B3D3;
+  }
+/* Create an active/current "tab button" class */
+.tab button.active {
+    background-color: #19B3D3;
+  }
 
 .user_img{
     height: 70px;
@@ -236,17 +251,18 @@ form {
 }
 
 .user_info{
-    margin-top: -20px;
+    margin-top: -30px;
     margin-bottom: auto;
-    margin-left: 90px;
-    background-color: teal;
+    margin-left: 20px;
+    
 
     
 }
 .user_info span{
     font-size: 20px;
-    color: black;    
+    color: black;
+    margin-left: -80px;    
 }
 
-/*******FOOTER OF THE PAGE******/
+
 
