@@ -35,9 +35,9 @@
             </center>
 
             <p><label for="toggle_menu"><i class="fas fa-bars"></i></label></p>
-            <a href="control.html" class="current_section"><i class="fas fa-desktop"></i><span>Control Panel</span></a>
+            <a href="control.html"><i class="fas fa-desktop"></i><span>Control Panel</span></a>
             <a href="chat.html"><i class="fas fa-comment-dots"></i><span>Chat</span></a>
-            <a href="feedbacks.html"><i class="far fa-thumbs-up"></i><span>Feedbacks</span></a>
+            <a href="feedbacks.html" class="current_section"><i class="far fa-thumbs-up"></i><span>Feedbacks</span></a>
             <a href="#"><i class="fas fa-money-check-alt"></i><span>Payments</span></a>
             <a href="profile.html"><i class="fas fa-user-alt"></i><span>Profile</span></a>
             <a href="#"><i class="fas fa-info-circle"></i><span>Sign out</span></a>
@@ -56,16 +56,27 @@
                     <div>
 
                         <span class="heading">User Rating</span>
-                        <span class="front-stars">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        </span>
-                        <div class="break"></div>
-                        <p id="avg">4.1 average based on 254 reviews.</p>
-                        <div class="break"></div>
+
+                        <div class="rating">
+                            <div class="rating-upper">
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                            </div>
+                            <div class="rating-lower">
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                            </div>
+                        </div>
+
+                        <center>
+                        <p id="avg">No reviews found</p>
+                        </center>
 
                         <div class="row">
                             <div class="side">
@@ -77,7 +88,7 @@
                                 </div>
                             </div>
                             <div class="side right">
-                                <div>150</div>
+                                <div>0</div>
                             </div>
                             <div class="side">
                                 <div>4 star</div>
@@ -88,7 +99,7 @@
                                 </div>
                             </div>
                             <div class="side right">
-                                <div>63</div>
+                                <div>0</div>
                             </div>
                             <div class="side">
                                 <div>3 star</div>
@@ -99,7 +110,7 @@
                                 </div>
                             </div>
                             <div class="side right">
-                                <div>15</div>
+                                <div>0</div>
                             </div>
                             <div class="side">
                                 <div>2 star</div>
@@ -110,7 +121,7 @@
                                 </div>
                             </div>
                             <div class="side right">
-                                <div>6</div>
+                                <div>0</div>
                             </div>
                             <div class="side">
                                 <div>1 star</div>
@@ -121,7 +132,7 @@
                                 </div>
                             </div>
                             <div class="side right">
-                                <div>20</div>
+                                <div>0</div>
                             </div>
 
                         </div>
@@ -130,25 +141,7 @@
 
                 </div>
 
-                <div class="flex-container">
-
-                    <div class="rev">
-                        <img src="images/user-photo2.png" alt="">
-                        <span>Marco Dalla Mutta</span>
-                        <div>Score: 4.1</div>
-                        <br>
-                        <div>"Excellent!"</div>
-                    </div>
-
-                    <div class="rev">review</div>
-                    <div class="rev">review</div>
-                    <div class="rev">review</div>
-                    <div class="rev">review</div>
-                    <div class="rev">review</div>
-                    <div class="rev">review</div>
-                    <div class="rev">review</div>
-
-                </div>
+                <div class="flex-container" id="rev-container"></div>
 
                 <div>
                     <div class="flex-container">
@@ -179,6 +172,8 @@
             </div>
 
         </main>
+
+        <script src="js/feedbacks.js"></script>
 
     </body>
 
