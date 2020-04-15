@@ -1,17 +1,13 @@
 
 
-body {
-    background: cyan;
-}
 
-.header  {
-   background-color: darksalmon; 
-}
+
+
 
 /*-------------------CHAT BOX SECTION---------------*/
 
 .chatbox {
-    width: 60%;
+    width: 50%;
     min-width: 390px;
     height: 600px;
     background: wheat;
@@ -86,7 +82,7 @@ body {
 }
 
 .chat-form textarea {
-    background: wheat;
+    background: white;
     width: 75%;
     height:50px ;
     border:1px solid cadetblue ;
@@ -98,7 +94,7 @@ body {
 }
 
 .chat-form textarea:focus {
-    background: wheat;
+    background: white;
 }
 
 /*ADDING SCROLLBAR FOR THE TEXTAREA*/
@@ -126,10 +122,12 @@ body {
     -webkit-transition: background .2s ease;
     -moz-transition: background .2s ease;
     -o-transition: background .2s ease;
+    
+    
 } 
 
-chat-form button:hover {
-    background: red;
+.chat-form button:hover {
+    background: cyan;
 }
 
 /*********THE CONTACTS LIST CSS****************************************/
@@ -203,14 +201,12 @@ form {
     padding: 0;
 }
 .contacts li{
-    width: 100% !important;
+    width: 100% 
     padding: 5px 10px;
-    margin-bottom: 15px !important;
+    margin-bottom: 15px 
 }    
 
-.active{
-    background-color: rgba(0,0,0,0.3);
-}
+
 
 .user_img{
     height: 70px;
@@ -236,10 +232,10 @@ form {
 }
 
 .user_info{
-    margin-top: -20px;
+    margin-top: -30px;
     margin-bottom: auto;
-    margin-left: 90px;
-    background-color: teal;
+    margin-left: 100px;
+    
 
     
 }
@@ -248,5 +244,5 @@ form {
     color: black;    
 }
 
-/*******FOOTER OF THE PAGE******/
+
 
