@@ -13,7 +13,7 @@
 
         <link rel="stylesheet" href="css/style.css">
 
-        <!------------------------ THE MAIN CSS --------->
+        <!-- THE CHAT CSS -->
 
         <link rel="stylesheet"   href="css/chat.css" />
 
@@ -24,12 +24,10 @@
         <!-- FONTAWESOME CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
 
+        <!-- BOOTSTRAP CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
-
         
-
     </head>
 
     <body>
@@ -67,9 +65,10 @@
     
                 <div class="chatlogs2">
                     
-                    <ui class="contacts">
-                        <li>
-                            <div class="d-flex bd-highlight">
+                    <ui class="tab">
+                        
+                        <button class="tablinks" onclick="openChat(event, 'Memen')" id="defaultOpen">
+                            <div class = "Memen">
                                 <div class="img_cont">
                                     <img src="images/user-photo1.png" class="rounded-circle user_img">
                                     
@@ -79,10 +78,10 @@
                                     
                                 </div>
                             </div>
-                        </li>
+                        </button>
     
-                        <li>
-                            <div class="d-flex bd-highlight">
+                        <button class="tablinks" onclick="openChat(event, 'Marco G')" >
+                            <div class="Marco G">
                                 <div class="img_cont">
                                     <img src="images/user-photo2.png" class="rounded-circle user_img">
                                     
@@ -92,72 +91,9 @@
                                     
                                 </div>
                             </div>
-                        </li>
+                        </button>
     
-                        <li>
-                            <div class="d-flex bd-highlight">
-                                <div class="img_cont">
-                                    <img src="images/user-photo2.png" class="rounded-circle user_img">
-                                    
-                                </div>
-                                <div class="user_info">
-                                    <span>Marco p</span>
-                                    
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="d-flex bd-highlight">
-                                <div class="img_cont">
-                                    <img src="images/user-photo2.png" class="rounded-circle user_img">
-                                    
-                                </div>
-                                <div class="user_info">
-                                    <span>Victor</span>
-                                    
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="d-flex bd-highlight">
-                                <div class="img_cont">
-                                    <img src="images/user-photo2.png" class="rounded-circle user_img">
-                                    
-                                </div>
-                                <div class="user_info">
-                                    <span>Ahmad</span>
-                                    
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="d-flex bd-highlight">
-                                <div class="img_cont">
-                                    <img src="images/user-photo2.png" class="rounded-circle user_img">
-                                    
-                                </div>
-                                <div class="user_info">
-                                    <span>Victor</span>
-                                    
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="d-flex bd-highlight">
-                                <div class="img_cont">
-                                    <img src="images/user-photo2.png" class="rounded-circle user_img">
-                                    
-                                </div>
-                                <div class="user_info">
-                                    <span>Ahmad</span>
-                                    
-                                </div>
-                            </div>
-                        </li>
-    
-    
-    
-    
+                        
                         
                     </ui>
     
@@ -165,60 +101,110 @@
                 
     
             </div> 
-            <div class= "chatbox">
+            <div  class= "chatbox">
 
-                <!-- this stucture of the chat logs-->
-                <div class= "chatlogs">
+                <div id = "Memen" class ="tabcontent">
+
+                    <!-- this stucture of the chat logs-->
+                    <div class= "chatlogs">
     
     
-                    <!-- STUCTURE OF EACH CHAT-->
-                    <div class= "chat friend">
-                        <div class= "user-photo"> <img src="images/user-photo1.png"> </div>
-                        <p class= "chat-message">hi, whats up there!</p>
+                        <!-- STUCTURE OF EACH CHAT-->
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/user-photo1.png"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/user-photo2.png"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/user-photo1.png"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/user-photo2.png"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/user-photo1.png"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/user-photo2.png"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/user-photo1.png"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/user-photo2.png"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                            
                     </div>
-                    <div class= "chat self">
-                        <div class= "user-photo"> <img src="images/user-photo2.png"> </div>
-                        <p class= "chat-message">hello !!!</p>
+
+                    <!--this is the chat form-->
+                    <div class= "chat-form">
+                        <textarea></textarea>
+                        <button>Send</button>
                     </div>
-                    <div class= "chat friend">
-                        <div class= "user-photo"> <img src="images/user-photo1.png"> </div>
-                        <p class= "chat-message">hi, whats up there!</p>
-                    </div>
-                    <div class= "chat self">
-                        <div class= "user-photo"> <img src="images/user-photo2.png"> </div>
-                        <p class= "chat-message">hello !!!</p>
-                    </div>
-                    <div class= "chat friend">
-                        <div class= "user-photo"> <img src="images/user-photo1.png"> </div>
-                        <p class= "chat-message">hi, whats up there!</p>
-                    </div>
-                    <div class= "chat self">
-                        <div class= "user-photo"> <img src="images/user-photo2.png"> </div>
-                        <p class= "chat-message">hello !!!</p>
-                    </div>
-                    <div class= "chat friend">
-                        <div class= "user-photo"> <img src="images/user-photo1.png"> </div>
-                        <p class= "chat-message">hi, whats up there!</p>
-                    </div>
-                    <div class= "chat self">
-                        <div class= "user-photo"> <img src="images/user-photo2.png"> </div>
-                        <p class= "chat-message">hello !!!</p>
-                    </div>
-                        
+                    
                 </div>
+
+                <div id = "Marco G" class ="tabcontent">
+
+                    <!-- this stucture of the chat logs-->
+                    <div class= "chatlogs">
     
     
-                <!--this is the chat form-->
-                <div class= "chat-form">
-                    <textarea></textarea>
-                    <button>Send</button>
-                </div>   
-    
+                        <!-- STUCTURE OF EACH CHAT-->
+                        
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/user-photo2.png"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/user-photo1.png"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/user-photo2.png"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/user-photo1.png"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                            
+                    </div>
+
+                    <!--this is the chat form-->
+                    <div class= "chat-form">
+                        <textarea></textarea>
+                        <button>Send</button>
+                    </div>
+                    
+                </div>
+
            
             </div>
+
+            
             </div>
 
         </main>
+
+        <!-- MAIN JQUERY, POPPER.JS AND BOOTSTRAP LIBRARIES-->
+        
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        
+        <!-- CHAT JS -->
+
+        <script src="js/chat.js"></script>
          
     </body>
 
