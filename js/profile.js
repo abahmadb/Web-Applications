@@ -1,10 +1,16 @@
 /* ========== SCRIPT OF PROFILE PAGE ========== */
 
-/* personal data default values */
+/* ID image change */
 
-function defaultValues() {
-    document.getElementById("lname").defaultValue = "Xianwen";
-} 
+function readFile(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+        document.getElementById("id_img").src = e.target.result;
+        };
+        reader.readAsDataURL( input.files[0] );
+    }
+}
 
 /* password check */
 
@@ -43,7 +49,7 @@ var quill = new Quill('#personal_presentation', {
                 } 
             });
 
-// prevent from resubmittion on refrash
+// prevent from re-submission on reflash
 
 if ( window.history.replaceState ) {
   window.history.replaceState( null, null, window.location.href );

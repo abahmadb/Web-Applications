@@ -60,7 +60,7 @@ main .box input[type="submit"]{
     outline: none;
 }
 
-main .box input[type="submit"]:hover, main > div .box > form > p > label:hover{
+main .box input[type="submit"]:hover, main .box .file-label:hover{
     background-color: #45a049;
 }
 
@@ -76,8 +76,8 @@ main > div .box .profile_img{
     width: 150px;
     height: 150px;
     border-radius: 100px;
-    margin-bottom: 5px;
-    margin-top: 10px;
+    margin-bottom: 0px;
+    margin-top: 20px;
 }
 
 main > div .box .id_img{
