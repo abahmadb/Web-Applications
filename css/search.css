@@ -135,3 +135,25 @@ main .result .cost_feedback i{
     color: orange;
     margin-right: 10px;
 }
+
+footer{
+    background-color: rgba(235,235,235);
+}
+
+footer p{
+    text-align: center;
+    padding: 20px;
+}
+
+footer p img{
+    width: 50px;
+    height: auto;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+footer p i{
+    vertical-align: middle;
+    margin-left: 20px;
+    cursor: pointer;
+}
