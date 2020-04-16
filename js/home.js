@@ -1,7 +1,3 @@
-var main_img = document.querySelector("main > section:first-child > img");
-main_img.setAttribute("src", `images/imageset/${Math.floor(Math.random()*17+1)}.jpg`);
-
-
 
 /* ========== SCRIPT OF SIGN-UP/SIGN-IN MODAL ========== */
 

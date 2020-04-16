@@ -29,12 +29,12 @@
                 riquadro.appendChild(immagini.item(cursore));
 
                 riquadro.style.transition = "margin-left 1s";
-                riquadro.style.marginLeft = '-2000px';
+                riquadro.style.marginLeft = '-200%';
 
                 setTimeout(function(){
                     riquadro.removeChild(riquadro.firstElementChild);
                     riquadro.style.transition = "";
-                    riquadro.style.marginLeft = '-1000px';
+                    riquadro.style.marginLeft = '-100%';
                     on_going = false;
                 }, 1000);
             }
@@ -53,7 +53,7 @@
                     if(app < 0) app = immagini.length - 1;
 
                     riquadro.style.transition = "";
-                    riquadro.style.marginLeft = '-1000px';
+                    riquadro.style.marginLeft = '-100%';
 
                     riquadro.prepend(immagini.item(app));
                     riquadro.removeChild(riquadro.lastElementChild);

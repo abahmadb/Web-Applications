@@ -63,8 +63,8 @@ main section:nth-child(1) > div{
 main section:nth-child(1) > div > div{
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+    right: 0;
+    transform: translate(-30%,-50%);
 
 }
 
@@ -102,9 +102,44 @@ main section:nth-child(1) #search_box input{
 /* ============ SECOND SECTION ============ */
 
 main section:nth-child(2){
-    padding: 20px 0;
-    background-color: #FFF;
+    padding: 40px 0;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f2f5f6+0,e3eaed+37,c8d7dc+100;Grey+3D+%234 */
+    background: #f2f5f6; /* Old browsers */
+    background: -moz-linear-gradient(-45deg,  #f2f5f6 0%, #e3eaed 37%, #c8d7dc 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg,  #f2f5f6 0%,#e3eaed 37%,#c8d7dc 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg,  #f2f5f6 0%,#e3eaed 37%,#c8d7dc 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', endColorstr='#c8d7dc',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
 }
+
+main section:nth-child(2) h1{
+    font-size: 3em;
+    text-align: center;
+    padding: 10px;
+}
+
+/* ============ THIRD SECTION ============ */
+
+main section:nth-child(3){
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f2f5f6+0,e3eaed+37,c8d7dc+100;Grey+3D+%234 */
+    background: #f2f5f6; /* Old browsers */
+    background: -moz-linear-gradient(45deg, #f2f5f6 0%, #e3eaed 37%, #c8d7dc 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, #f2f5f6 0%,#e3eaed 37%,#c8d7dc 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, #f2f5f6 0%,#e3eaed 37%,#c8d7dc 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', endColorstr='#c8d7dc',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    text-align: center;
+}
+
+main section:nth-child(3) *{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+main section:nth-child(3) p{
+    font-size: 18px; 
+}
+
+/* ============= FOOTER ==================*/
 
 footer{
     background-color: rgba(235,235,235);
