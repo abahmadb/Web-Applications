@@ -1,0 +1,8 @@
+main .flex container{
+    
+    display: flex;
+    flex-direction: coloum;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: flex-start;
+}
