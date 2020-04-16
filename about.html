@@ -16,6 +16,9 @@
 
         <!-- ABOUT US CSS -->
         <link rel="stylesheet" href="css/about.css">
+        
+        <!-- SIGN-UP/SIGN-IN POP-UP CSS -->
+        <link rel="stylesheet" href="css/sign_up_in.css">
 
         <!-- FONTAWESOME CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
@@ -199,6 +202,83 @@
         <br>
 
         <!-- MEMBER ROWS end -->
+        
+        <!-- SIGN IN PAGE start -->
+
+        <div class="modal">
+
+            <div class="sign_up_in">
+
+                <div class="sign_up">
+
+                    <div>
+
+                        <p><img src="images/signup-image.png"><br><br><a href="" onclick="flip_registration(event)">I am already a member</a></p>
+
+
+                    </div>
+
+                    <div>
+
+                        <h2>Sign up</h2>
+
+                        <span><img src="images/account.png"><input type="text" placeholder="Full name"></span>
+
+                        <span><img src="images/email.png"><input type="text" placeholder="E-mail address"></span>
+
+                        <span><img src="images/password.png"><input type="password" placeholder="Password"></span>
+
+                        <span><img src="images/password.png"><input type="password" placeholder="Repeat password"></span>
+
+                        <span><label class="custom_checkbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            </label> I agree to terms and conditions and the privacy policy</span>
+
+                        <br><input type="submit" value="Register" class="button">
+
+                    </div>
+
+                </div>
+
+                <div class="sign_in">
+
+                    <div>
+
+                        <p><img src="images/signin-image.jpg"><br><br><a href="" onclick="flip_registration(event)">Create an account</a></p>
+
+                    </div>
+
+                    <div>
+
+                        <h2>Sign in</h2>
+
+                        <span><img src="images/account.png"><input type="text" placeholder="E-mail address"></span>
+
+                        <span><img src="images/password.png"><input type="password" placeholder="Password"></span>
+
+                        <span><label class="custom_checkbox">
+                            <input type="checkbox" checked="checked">
+                            <span class="checkmark"></span>
+                            </label> Remember me</span>
+
+                        <br><input type="submit" value="Log in" class="button" onclick="location.href='control.html'">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div onclick="toggle_modal(event)" class="close_modal">X</div>
+
+        </div>
+
+        <!-- MAIN JS -->
+
+        <script src="js/home.js"></script>
+        
+        <!-- SIGN IN PAGE end -->
 
         <!-- ABOUT US MAIN BODY end -->
 
@@ -217,9 +297,7 @@
         </footer>
 
         <!-- WEBSITE FOOTER end -->
-
-
-
+        
     </body>
 
 </html>
