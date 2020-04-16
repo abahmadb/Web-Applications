@@ -23,6 +23,37 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
 
 
+        <!-- jQuery/jQuery UI -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+        <script>
+            $( function() {
+                var topics = [
+                    "Math",
+                    "Calculus",
+                    "C++",
+                    "Java",
+                    "JavaScript",
+                    "HTML",
+                    "CSS",
+                    "Yoga",
+                    "Guitar",
+                    "English",
+                    "Photoshop",
+                    "Dancing",
+                    "Singing",
+                    "French",
+                    "Spanish"
+                ];
+
+                $("#search_box input").autocomplete({
+                    source: topics
+                });
+            });
+        </script>
+
     </head>
 
     <body>
@@ -456,6 +487,12 @@
         <!-- MAIN JS -->
 
         <script src="js/home.js"></script>
+        
+        <script>
+
+            document.querySelector("#search_box").firstElementChild.value = new URLSearchParams(window.location.search).get("topic");
+
+        </script>
     </body>
 
 </html>
