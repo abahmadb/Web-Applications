@@ -40,13 +40,12 @@ main .box input[type="password"]{
 
 main .box input[type="text"]:focus, main .box input[type="date"]:focus, main .box input[type="password"]:focus,
     main .box select:focus, main .box input[type="tel"]:focus, main .box input[type="email"]:focus{
-        box-shadow: 0 0 2pt 1pt dodgerblue;
-        background-color: azure;
+        border: 2px solid rgb(69, 215, 255);
 }
 
 main .box input[type="text"]:hover, main .box input[type="date"]:hover, main .box input[type="password"]:hover,
     main .box select:hover, main .box input[type="tel"]:hover, main .box input[type="email"]:hover{
-        box-shadow: 0 0 2pt 1pt dodgerblue;
+        border: 2px solid rgb(69, 215, 255);
 }
 
 main .box input[type="submit"]{
