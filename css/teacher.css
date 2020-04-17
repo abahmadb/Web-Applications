@@ -1,8 +1,53 @@
-main .flex container{
-    
+main .flex_container {
     display: flex;
-    flex-direction: coloum;
-    flex-wrap: nowrap;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-around;
+    align-content: flex-start;
     align-items: flex-start;
+    border: 1px solid black;
+}
+
+main .flex_item:nth-child(1) {
+    flex: 0 1 100%;
+    align-self: auto;
+    border: 1px solid black;
+    padding: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+main .flex_item:nth-child(2) {
+    flex: 0 1 30%;
+    align-self: auto;
+    border: 1px solid black;
+    margin: 20px;
+    padding: 20px;
+}
+
+main .flex_item:nth-child(3) {
+    flex: 0 1 60%;
+    padding: 20px;
+    margin: 20px;
+    align-self: auto;
+    border: 1px solid black;
+    background-color: green;
+}
+
+main .flex_item:nth-child(3) .box{
+    
+    display: block;
+    width: 100%;
+    border-radius: 10px;
+    padding: 20px;
+    margin: auto;
+    background-color: aqua;
+}
+
+main .flex_item:nth-child(4) {
+    flex: 0 1 100%;
+    align-self: auto;
+    border: 1px solid black;
+    padding: 20px;
+    margin: 20px;
 }

@@ -135,8 +135,8 @@
 
                             <input type="password" id="old_pw" name="old_pw" placeholder="Old password.." required><br>
                             <input type="password" id="new_pw" name="new_pw" placeholder="New password.." required
-                                title="Password must contain at least 6 characters, including UPPER/lowercase and numbers."
-                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" onkeyup='validatePassword();'><br>
+                                   title="Password must contain at least 6 characters, including UPPER/lowercase and numbers."
+                                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" onkeyup='validatePassword();'><br>
                             <input type="password" required id="confirm_pw" name="confirm_pw" placeholder="Confirm password.."
                                    onkeyup='validatePassword();'><br>
                             <p>
@@ -162,9 +162,9 @@
                         </p>
                         <form action="" method="post">
                             <p>
-                                <label class="file-label" for="document_card">Upload ID</label>
+                                <label class="file_label" for="document_card">Upload ID</label>
                             </p>
-                            <input type="file" name="document_card" id="document_card">
+                            <input type="file" name="document_card" id="document_card" onchange="this.form.submit()">
                         </form>
                     </div>
 
@@ -181,7 +181,7 @@
                         </p>
                         <form action="" method="post">
                             <p>
-                                <label class="file-label" for="qualification">Upload qualification</label>
+                                <label class="file_label" for="qualification">Upload qualification</label>
                             </p>
                             <input type="file" name="qualification" id="qualification" onchange="this.form.submit()">
                         </form>
