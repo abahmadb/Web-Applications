@@ -8,18 +8,121 @@ main .flex_container {
     box-sizing: border-box;
 }
 
+
+/*----------TEACHER HEADER start---------- */
+
 main .flex_item:nth-child(1) {
-    flex: 0 1 100%;
+    background-color: green;
+    border: 1px solid purple;
+    display: flex;
+    flex-direction: row;   
     border: 1px solid black;
     padding: 30px;
     text-align: center;
     margin-bottom: 20px;
 }
 
+main .flex_item .header_left_box {
+    background-color: violet;
+    border: 1px solid orange;
+    flex: 0, 1, 35%;
+    
+    padding-right: 11.5%;
+    padding-top: 5%;
+    padding-bottom: 2%;
+    text-align: center;
+}
 
-main .flex_item:nth-child(2) {
+main .photo_container {
+    border: 4px solid green;
+    vertical-align: middle;
+    max-width: 370px;
+    max-height: 320px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #999999;
+    padding: 4px;
+}
+
+main .flex_item .header_middle_box{
+    background-color: indianred;
+    border: 1px solid blue;
+    display: flex;
+    flex-direction: column;
+    flex: 0, 1, 25%;
+    margin: 10px 0px;
+    text-align: left;
+}
+
+main .flex_item .header_middle_box .header_name_box{
+    background-color: fuchsia;
+    border: 1px solid blue;
+    flex: 0, 1, 100%;
+    margin: 5px 0px;
+    text-align: left;
+}
+
+main .flex_item .header_middle_box .header_rating_box{
+    background-color: fuchsia;
+    border: 1px solid blue;
+    flex: 0, 1, 100%;
+    margin: 5px 0px;
+    text-align: left;
+}
+
+main .flex_item .header_middle_box .header_city_box{
+    background-color: fuchsia;
+    border: 1px solid blue;
+    flex: 0, 1, 100%;
+    margin: 5px 0px;
+    text-align: left;
+}
+
+main .flex_item .header_right_box{
+    background-color: yellow;
+    border: 1px solid blue;
+    display: flex;
+    flex-direction: column;
+    flex: 0, 1, 25%;
+    margin: 10px 0px;
+    text-align: left;
+}
+
+main .flex_item .header_right_box .header_bookLesson_box{
+    background-color: brown;
+    border: 1px solid blue;
+    flex: 0, 1, 100%;
+    margin: 5px 0px;
+    text-align: left;
+}
+
+main .flex_item .header_right_box .header_price_box{
+    background-color: brown;
+    border: 1px solid blue;
+    flex: 0, 1, 100%;
+    margin: 5px 0px;
+    text-align: left;
+}
+
+main .flex_item .header_right_box .header_responseTime_box{
+    background-color: brown;
+    border: 1px solid blue;
+    flex: 0, 1, 100%;
+    margin: 5px 0px;
+    text-align: left;
+}
+
+/*----------TEACHER HEADER end---------- */
+
+main .break_flexbox:nth-child(2) {
+    flex-basis: 100%;
+    height: 0;
+}
+
+/*----------TEACHER BODY START---------- */
+
+main .flex_item:nth-child(3) {
     flex: 0 1 25%;
-    border: 1px solid black;
+    border: 1px solid purple;
     margin: 20px 15px 20px 40px;
     padding: 30px;
     background-color: whitesmoke;
@@ -28,7 +131,7 @@ main .flex_item:nth-child(2) {
     text-align: center;
 }
 
-main .flex_item:nth-child(3) {
+main .flex_item:nth-child(4) {
     flex: 0 1 50%;
     padding: 50px;
     margin: 20px 60px 20px 15px;
@@ -40,7 +143,7 @@ main .flex_item:nth-child(3) {
     line-height: 1.6;
 }
 
-main .flex_item:nth-child(4) {
+main .flex_item:nth-child(5) {
     flex: 0 1 100%;
     border: 1px solid black;
     padding: 20px;
@@ -54,17 +157,17 @@ main .flex_item .box{
     text-align: left;
 }
 
-main .flex_item:nth-child(2) h4, main .flex_item:nth-child(3) h4{     
+main .flex_item:nth-child(3) h4, main .flex_item:nth-child(4) h4{     
     font-size: 20px;
     text-align: left;
 }
 
-main .flex_item:nth-child(2) p, main .flex_item:nth-child(3) p{
+main .flex_item:nth-child(3) p, main .flex_item:nth-child(4) p{
     margin: 10px;
     
 }
 
-main .flex_item:nth-child(2) span{ 
+main .flex_item:nth-child(3) span{ 
     display: inline-block;
     border: 1px solid black;
     padding: 10px;
@@ -75,6 +178,6 @@ main .flex_item:nth-child(2) span{
     text-transform: capitalize;
 }
 
-main .flex_item:nth-child(3) h3{   
+main .flex_item:nth-child(4) h3{   
     font-size: 40px;
 }
