@@ -54,7 +54,7 @@ aside p label{
     cursor: pointer;
 }
 
-aside a{
+aside > a{
     color: #FFF;
     display: block;
     width: 100%;
@@ -64,11 +64,11 @@ aside a{
     transition: background-color 0.3s;
 }
 
-aside a span{
+aside > a span{
     color: #FFF;
 }
 
-aside a:hover, aside a.current_section{
+aside a:hover, aside > a.current_section{
     background-color: #19B3D3;
 }
 
@@ -86,6 +86,10 @@ aside i{
 
 #toggle_menu:checked + aside{
     margin-left: -200px;
+}
+
+#toggle_menu:checked + aside img{
+    visibility: hidden;
 }
 
 

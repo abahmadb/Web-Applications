@@ -103,7 +103,7 @@
 	position: relative;
 }
 
-.sign_in input[type="text"], .sign_up input[type="text"],
+.sign_in input[type="text"], .sign_up input[type="text"],.sign_in input[type="email"], .sign_up input[type="email"],
 .sign_in input[type="password"], .sign_up input[type="password"]{
 	width: 100%;
     display: block;
