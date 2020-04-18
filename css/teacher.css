@@ -203,13 +203,6 @@ main table{
     border-collapse: collapse;
 }
 
-main .hoverable_rows table tr{
-    cursor: pointer;
-}
-
-main .hoverable_rows table tr:hover{
-    background-color: #9ecae1;
-}
 
 main table tr td{
     border-top: 2px solid white;
