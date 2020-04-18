@@ -12,103 +12,144 @@ main .flex_container {
 /*----------TEACHER HEADER start---------- */
 
 main .flex_item:nth-child(1) {
-    background-color: green;
-    border: 1px solid purple;
+    background-color: whitesmoke;
+    box-shadow: 0px 15px 15px -20px rgba(0,0,0,0.75);
     display: flex;
-    flex-direction: row;   
-    border: 1px solid black;
-    padding: 30px;
+    flex-direction: row; 
+    flex: 0, 1, 100%;
+    width: 100%;
     text-align: center;
-    margin-bottom: 20px;
+    justify-content: left;
+    padding-left: 160px;
 }
 
 main .flex_item .header_left_box {
-    background-color: violet;
-    border: 1px solid orange;
+    /*background-color: violet;
+    border: 1px solid orange;*/
     flex: 0, 1, 35%;
-    
-    padding-right: 11.5%;
-    padding-top: 5%;
-    padding-bottom: 2%;
     text-align: center;
 }
 
 main .photo_container {
-    border: 4px solid green;
-    vertical-align: middle;
-    max-width: 370px;
-    max-height: 320px;
+    /*border: 4px solid green;
+    vertical-align: middle;*/
+    width: 270px;
+    height: 270px;
+    object-fit: cover;
     border-radius: 50%;
     box-shadow: 0 0 10px #999999;
-    padding: 4px;
+    margin-top: 5px;
+    margin-bottom: -20px;
 }
 
 main .flex_item .header_middle_box{
-    background-color: indianred;
-    border: 1px solid blue;
+    /*background-color: indianred;
+    border: 1px solid blue;*/
     display: flex;
     flex-direction: column;
     flex: 0, 1, 25%;
-    margin: 10px 0px;
+    margin: 35px 200px 40px 17px;;
     text-align: left;
 }
 
 main .flex_item .header_middle_box .header_name_box{
-    background-color: fuchsia;
-    border: 1px solid blue;
+    /*background-color: fuchsia;
+    border: 1px solid blue;*/
     flex: 0, 1, 100%;
     margin: 5px 0px;
     text-align: left;
+}
+
+main #teacher_name_style {
+    font-family: 'Montserrat Light', Helvetica, sans-serif;
+    font-size: 60px;
+    color: black;
+    opacity: 0.9;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px #797979;
 }
 
 main .flex_item .header_middle_box .header_rating_box{
-    background-color: fuchsia;
-    border: 1px solid blue;
+    /*background-color: fuchsia;
+    border: 1px solid blue;*/
     flex: 0, 1, 100%;
     margin: 5px 0px;
     text-align: left;
+    padding-top: 4px;
+    padding-left: 16px;
+}
+
+main #teacher_rating_style {
+    font-family: Helvetica, sans-serif;
+    font-size: 18px;
 }
 
 main .flex_item .header_middle_box .header_city_box{
-    background-color: fuchsia;
-    border: 1px solid blue;
+    /*background-color: fuchsia;
+    border: 1px solid blue;*/
     flex: 0, 1, 100%;
     margin: 5px 0px;
     text-align: left;
+    padding-left: 16px;
+}
+
+main #teacher_city_style {
+    font-family: Helvetica, sans-serif;
+    font-size: 18px;
 }
 
 main .flex_item .header_right_box{
-    background-color: yellow;
-    border: 1px solid blue;
+    /*background-color: yellow;
+    border: 1px solid blue;*/
     display: flex;
     flex-direction: column;
     flex: 0, 1, 25%;
-    margin: 10px 0px;
+    margin: 34px 0px 40px 20px;
     text-align: left;
 }
 
 main .flex_item .header_right_box .header_bookLesson_box{
-    background-color: brown;
-    border: 1px solid blue;
+    /*background-color: brown;
+    border: 1px solid blue;*/
     flex: 0, 1, 100%;
     margin: 5px 0px;
+    padding-top: 16px;
     text-align: left;
+}
+
+main #teacher_bookLesson_style {
+    font-family: 'Montserrat Light', Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
 }
 
 main .flex_item .header_right_box .header_price_box{
-    background-color: brown;
-    border: 1px solid blue;
+    /*background-color: brown;
+    border: 1px solid blue;*/
     flex: 0, 1, 100%;
+    padding-top: 13px;
     margin: 5px 0px;
     text-align: left;
 }
 
+main #teacher_price_style {
+    font-family: 'Montserrat Light', Helvetica, sans-serif;
+    font-size: 18px;
+    text-align: center;
+}
+
 main .flex_item .header_right_box .header_responseTime_box{
-    background-color: brown;
-    border: 1px solid blue;
+    /*background-color: brown;
+    border: 1px solid blue;*/
     flex: 0, 1, 100%;
-    margin: 5px 0px;
+    margin: 2px 0px;
     text-align: left;
+}
+
+main #teacher_responseTime_style {
+    font-family: 'Montserrat Light', Helvetica, sans-serif;
+    font-size: 18px;
+    text-align: center;
 }
 
 /*----------TEACHER HEADER end---------- */
