@@ -68,7 +68,7 @@ aside > a span{
     color: #FFF;
 }
 
-aside a:hover, aside > a.current_section{
+aside > a:hover, aside > a.current_section{
     background-color: #19B3D3;
 }
 
