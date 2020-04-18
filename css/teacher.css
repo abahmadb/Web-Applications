@@ -146,8 +146,12 @@ main .flex_item:nth-child(4) {
 main .flex_item:nth-child(5) {
     flex: 0 1 100%;
     border: 1px solid black;
-    padding: 20px;
-    margin: 20px 30px;
+    padding: 40px;
+    margin: 20px 50px 40px 50px;
+    background-color: whitesmoke;
+    border-radius: 4px;
+    box-shadow: 5px 10px 8px #888888;
+    text-align: left;
 }
 
 main .flex_item .box{
@@ -157,7 +161,7 @@ main .flex_item .box{
     text-align: left;
 }
 
-main .flex_item:nth-child(3) h4, main .flex_item:nth-child(4) h4{     
+main .flex_item:nth-child(3) h3, main .flex_item:nth-child(4) h3{     
     font-size: 20px;
     text-align: left;
 }
@@ -178,6 +182,55 @@ main .flex_item:nth-child(3) span{
     text-transform: capitalize;
 }
 
-main .flex_item:nth-child(4) h3{   
-    font-size: 40px;
+main .flex_item:nth-child(4) h2, main .flex_item:nth-child(5) h2{   
+    font-size: 35px;
+    margin-bottom: 20px;
 }
+
+main table .profile_img{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+}
+
+main table p{
+    text-align: center;
+}
+
+main table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+main .hoverable_rows table tr{
+    cursor: pointer;
+}
+
+main .hoverable_rows table tr:hover{
+    background-color: #9ecae1;
+}
+
+main table tr td{
+    border-top: 2px solid white;
+    border-right: 2px dotted white;
+    padding: 20px;
+}
+
+main table tr td:last-child{
+    text-align: right;
+    white-space: nowrap;
+    border-right: none
+}
+
+main table tr:last-child td{
+    border-bottom: 2px solid white;
+}
+
+main tr:nth-child(odd) {
+    background-color: mintcream;
+}
+main .checked{
+    color: orange;
+}
+
