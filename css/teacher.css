@@ -9,7 +9,7 @@ main .flex_container {
 }
 
 
-/*----------TEACHER HEADER start---------- */
+/*----------TEACHER HEADER start----------*/
 
 main .flex_item:nth-child(1) {
     background-color: whitesmoke;
@@ -20,7 +20,7 @@ main .flex_item:nth-child(1) {
     width: 100%;
     text-align: center;
     justify-content: left;
-    padding-left: 160px;
+    padding-left: 130px;
 }
 
 main .flex_item .header_left_box {
@@ -33,8 +33,8 @@ main .flex_item .header_left_box {
 main .photo_container {
     /*border: 4px solid green;
     vertical-align: middle;*/
-    width: 270px;
-    height: 270px;
+    width: 265px;
+    height: 265px;
     object-fit: cover;
     border-radius: 50%;
     box-shadow: 0 0 10px #999999;
@@ -48,7 +48,7 @@ main .flex_item .header_middle_box{
     display: flex;
     flex-direction: column;
     flex: 0, 1, 25%;
-    margin: 35px 200px 40px 17px;;
+    margin: 35px 240px 40px 17px;;
     text-align: left;
 }
 
