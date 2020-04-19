@@ -146,7 +146,7 @@ $( function() {
         });*/
         
         var result = {
-            response: 1,
+            response: 0,
             user_pic: "MarcoG.jpg"
         }
         
