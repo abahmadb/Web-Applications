@@ -1,54 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Payments</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payments</title>
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="css/payments.css">
+    <link rel="stylesheet" href="bootstrap/bootstrap.css">
+    <!-- FONTAWESOME CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <link href="fonts/font-awesome.css" rel="stylesheet">
 
-        <!-- MAIN CSS -->
-        <link rel="stylesheet" href="css/payments.css">
+</head>
 
-        <!-- CONTROL PANEL HOME CSS -->
-        <link rel="stylesheet" href="css/control.css">
+<body>
 
-
-        <!-- FONTAWESOME CSS -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
-        <link href="fonts/font-awesome.css" rel="stylesheet">
-
-
-    </head>
-
-
-    <body>
-
-        <input type="checkbox" id="toggle_menu">
-        
-        <!-- SIDEBAR FOR THE DASHBOARD -->
-        <aside>
-            <center>
-                <img src="images/logo_transparent.png" alt="">
-            </center>
-
-            <p><label for="toggle_menu"><i class="fas fa-bars"></i></label></p>
-            <a href="control.html" ><i class="fas fa-desktop"></i><span>Control Panel</span></a>
-            <a href="chat.html"><i class="fas fa-comment-dots"></i><span>Chat</span></a>
-            <a href="feedbacks.html"><i class="far fa-thumbs-up"></i><span>Feedbacks</span></a>
-            <a href="payment.html" class="current_section"> <i class="fas fa-money-check-alt"></i><span>Payments</span></a>
-            <a href="profile.html"><i class="fas fa-user-alt"></i><span>Profile</span></a>
-            <a href="#"><i class="fas fa-info-circle"></i><span>Sign out</span></a>
-
-        </aside>
-        
-
-        <!-- CONTENT OF THE PAGE -->
+<input type="checkbox" id="toggle_menu">
+<!-- SIDEBAR FOR THE DASHBOARD -->
+<aside>
+    <center>
+        <img src="images/logo_transparent.png" alt="">
+    </center>
+    <p><label for="toggle_menu"><i class="fas fa-bars"></i></label></p>
+    <a href="control.html" ><i class="fas fa-desktop"></i><span>Control Panel</span></a>
+    <a href="chat.html"><i class="fas fa-comment-dots"></i><span>Chat</span></a>
+    <a href="feedbacks.html"><i class="far fa-thumbs-up"></i><span>Feedbacks</span></a>
+    <a href="payment.html" class="current_section"> <i class="fas fa-money-check-alt"></i><span>Payments</span></a>
+    <a href="profile.html"><i class="fas fa-user-alt"></i><span>Profile</span></a>
+    <a href="#"><i class="fas fa-info-circle"></i><span>Sign out</span></a>
+</aside>
 
 
 
 
 
-
+<!-- CONTENT OF THE PAGE -->
+<main>
+    <div>
         <!-- /features -->
         <section class="about py-md-5 py-5" id="intro">
             <div class="container py-md-5">
@@ -57,22 +46,22 @@
                         <img src="images/ab.jpg" alt="" class="img-fluid image1">
                     </div>
                     <div class="col-lg-6 ab-content-inf pl-lg-5">
-                        <h3 class="title-w3ls my-3">Secure payment Transaction</h3>
-                        <p>Integer sit amet mattis quam, sit amet ultricies velit. Praesent ullamcorper dui turpis.Donec malesuada ex sit amet pretium sid ornare. Nulla congue scelerisque tellus, utpretium nulla malesuada sedint. Suspendisse venenatis</p>
+                        <h3 class="title-w3ls my-3">Secure payment</h3>
+                        <p>
+                            Welcome to the payment page, here you will be able to make a payment transaction based on the chosen courses. bare in mind that there are some agreement rules.
+                        </p>
                         <ul class="tic-info list-unstyled mt-5">
-                            <li><span class="fa fa-check-square-o mr-2"></span>Personal Satisfaction @ 99.75%</li>
-                            <li><span class="fa fa-check-square-o mr-2"></span>Refund in 1 to 2  days</li>
-                            <li><span class="fa fa-check-square-o mr-2"></span>Flexible Schedule @ 89.65%</li>
+                            <li><span class="fa fa-check-square-o mr-2"></span>Self-Paced Learning</li>
+                            <li><span class="fa fa-check-square-o mr-2"></span>Flexible Schedule</li>
                             <li> <span class="fa fa-check-square-o mr-2"></span>More Courses Available</li>
-                            <li><span class="fa fa-check-square-o mr-2"></span>Credit & Debit Card @ 90%</li>
-
+                            <li><span class="fa fa-check-square-o mr-2"></span>Credit & Debit Cards </li>
+                            <li><span class="fa fa-check-square-o mr-2"></span>Refund in 1 to 2  days</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
         <!-- //features -->
-
 
 
         <!-- banner bottom -->
@@ -104,8 +93,6 @@
         <!-- //banner bottom -->
 
 
-
-
         <!-- products -->
         <section class="products py-5" id="stats">
             <div class="container py-lg-5 py-3">
@@ -114,8 +101,8 @@
                     <div class="col-lg-3 col-6 grid4">
                         <div class="prodct1">
                             <a href="#">
-                                <div class="icon-w3ls f1"><span class="fa fa fa-users"></span></div>
-                                <h4 class="mt-2">Courses </h4> <h4 class="mt-2"> <strong>55</strong></h4>
+                                <div class="icon-w3ls f1"><span class="fab fa-audible"></span></div>
+                                <h4 class="mt-2">Courses </h4> <h4 class="mt-2"> <strong>20</strong></h4>
                             </a>
                         </div>
                     </div>
@@ -123,11 +110,10 @@
                         <div class="prodct1">
                             <a href="#">
                                 <div class="icon-w3ls f2"><span class="fa fa-handshake-o"></span></div>
-                                <h4 class="mt-2"> Completed</h4> <h4 class="mt-2"><strong> 30</strong></h4>
+                                <h4 class="mt-2"> Completed</h4> <h4 class="mt-2"><strong> 5</strong></h4>
                             </a>
                         </div>
                     </div>
-
                     <div class="col-lg-3 col-6 grid7 mt-md-0 mt-3">
                         <div class="prodct1">
                             <a href="#">
@@ -139,18 +125,20 @@
                     <div class="col-lg-3 col-6 grid6 mt-md-0 mt-3">
                         <div class="prodct1">
                             <a href="#">
-                                <div class="icon-w3ls f3"><span class="fa fa-podcast"></span></div>
-                                <h4 class="mt-2">History</h4> <h4 class="mt-2"> <strong>40</strong></h4>
+                                <div class="icon-w3ls f3"><span class="fa fa-history"></span></div>
+                                <h4 class="mt-2">History</h4> <h4 class="mt-2"> <strong>7</strong></h4>
                             </a>
                         </div>
                     </div>
 
                 </div>
             </div>
+
         </section>
         <!-- //products -->
 
+    </div>
 
-    </body>
-
+</main>
+</body>
 </html>
