@@ -20,7 +20,8 @@ main .flex_item:nth-child(1) {
     width: 100%;
     text-align: center;
     justify-content: left;
-    padding-left: 160px;
+    padding: 10px 0px 10px 160px;
+    margin-bottom: 20px;
 }
 
 main .flex_item .header_left_box {
@@ -202,7 +203,8 @@ main .flex_item .box{
     text-align: left;
 }
 
-main .flex_item:nth-child(3) h3, main .flex_item:nth-child(4) h3{     
+main .flex_item:nth-child(3) h3, main .flex_item:nth-child(4) h3{
+    font-family: Helvetica, sans-serif;
     font-size: 20px;
     text-align: left;
 }
@@ -224,6 +226,7 @@ main .flex_item:nth-child(3) span{
 }
 
 main .flex_item:nth-child(4) h2, main .flex_item:nth-child(5) h2{   
+    font-family: Helvetica, sans-serif;
     font-size: 35px;
     margin-bottom: 20px;
 }
@@ -244,7 +247,6 @@ main table{
     border-collapse: collapse;
 }
 
-
 main table tr td{
     border-top: 2px solid white;
     border-right: 2px dotted white;
@@ -264,6 +266,7 @@ main table tr:last-child td{
 main tr:nth-child(odd) {
     background-color: mintcream;
 }
+
 main .checked{
     color: orange;
 }
