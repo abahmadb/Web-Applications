@@ -12,7 +12,7 @@ let global = JSON.parse('{ '+
 						'{"user":"Xianwen Jin","rate":4.7,"comment":"Excellent"},' +
 						'{"user":"Victor Semencenco","rate":5.0,"comment":"Excellent"}]}');
 
-//select only a group of feedbacks, relevant to the current user
+//we can select only a group of feedbacks, relevant to the current user
 let obj = global["Marco Dell'Anna"];
 
 for (let i = 0; i < obj.length; i++) {
@@ -42,7 +42,6 @@ for (let i = 0; i < obj.length; i++) {
 //insert all feedbacks into DOM
 let rev = document.getElementById("rev-container");
 rev.innerHTML = data;
-rev.prepend(rev.childNodes[0]);
 //graphical fix, it's placed here because it's applied only if there are reviews to load
 rev.style.paddingRight = "1px";
 rev.style.height = "auto";
@@ -57,7 +56,7 @@ stars[0].style.width = ((avg / 5) * 100) + "%";
 //insert first box inner paragraph into DOM
 let p = document.getElementById("avg");
 p.innerText = avg + ' average based on ' + obj.length + ' reviews.';
-p.prepend(p.childNodes[0]);
+
 
 //fill correctly all first box bars using counters array
 for (let i = 0; i < counters.length; i++) {
@@ -69,5 +68,95 @@ for (let i = 0; i < counters.length; i++) {
     //write the bar counter on the right of the bar
     let side = document.getElementsByClassName("side right");
     side[counters.length - i - 1].innerText = counters[i].toString();
+
+}
+
+//let's say we have a list of users from who we have already had lectures
+let userfeedlist = ["Matteo", "Francesco", "Lucia"];
+let feeddata = "<h2>" +
+                    "Evaluate your teachers!" +
+                "</h2>";
+
+//we can list them and have an option to give a feedback to each of them
+for (let i = 0; i < userfeedlist.length; i++) {
+
+   feeddata += "<div>" +
+                    "<table>" +
+                        "<tr>" +
+                            "<td>" +
+                                userfeedlist[i] +
+                            "</td>" +
+                            "<td></td>" +
+                            "<td>" +
+                                "<a class= \"feedreq\" onclick=\"toggle_modalfeed(event);\">Give feedback</a>\n" +
+                            "</td>" +
+                        "</tr>" +
+                    "</table>" +
+                "</div>";
+
+}
+
+//insert the data into DOM
+let feeddiv = document.getElementById("give-feed");
+feeddiv.innerHTML = feeddata;
+
+//reuse variables from home.js to toggle the modal
+modal = document.getElementById("modalfeed");
+modal_ctrl = false;
+
+function toggle_modalfeed(event){
+
+    //execute only if we are showing the modal, not when hiding it
+    if (!modal_ctrl){
+
+        //using linear search to find the name of the user related to the button we pressed
+        //there are other ways to do it, like binary search or using indexOf()
+        //i decided to keep it simple
+
+        let user = "";
+        //take the closest div ancestor of the pressed button
+        let closest = event.currentTarget.closest("div");
+
+        //find its relative position wrt all the divs in #give-feed
+        for(let i = 0; i < userfeedlist.length; i++){
+
+            let possibleclosest = feeddiv.querySelectorAll("div")[i];
+            if(possibleclosest === closest){
+
+                //the relative position is used to retrieve the user related to the button
+                //that is the user we want to give the feedback to
+                user = userfeedlist[i];
+                break;
+
+            }
+
+        }
+
+        //set the h2 text using the retrieved info
+        let placeholder = document.getElementById("feedform").querySelectorAll("div")[0];
+        placeholder.innerHTML = "Give a feedback to " + user +"!";
+
+    }
+
+    //use the toggle_modal from home.js to show or hide the modal
+    toggle_modal(event);
+
+}
+
+//function for updating stars inside the form modal whenever the user changes the score input
+function update_local_stars(event){
+
+    //get the stars
+    let stars = document.getElementById("feedform").getElementsByClassName("rating-upper");
+    //get the user input
+    let input = parseFloat(parseFloat(document.getElementById("localstars").value).toFixed(1));
+
+    //check the validity of the give score and apply changes
+    if(isNaN(input) || input > 5.0 || input < 0.0)
+        input = 0;
+
+    stars[0].style.width = ((input / 5) * 100) + "%";
+
+    event.preventDefault();
 
 }

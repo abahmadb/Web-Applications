@@ -12,10 +12,14 @@
         <!-- MAIN CSS -->
         <link rel="stylesheet" href="css/style.css">
         
-        <!-- CONTROL PANEL HOME CSS -->
+        <!-- CONTROL PANEL CSS -->
         <link rel="stylesheet" href="css/control.css">
+        <link rel="stylesheet" href="css/control_main.css">
+
+        <!-- SIGN UP IN HOME CSS FOR MODAL STYLE -->
+        <link rel="stylesheet" href="css/sign_up_in.css">
         
-        <!-- CONTROL PANEL FEEDBACKS CSS -->
+        <!-- FEEDBACKS CSS -->
         <link rel="stylesheet" href="css/feedbacks.css">
         
         <!-- FONTAWESOME CSS -->
@@ -38,9 +42,9 @@
             <a href="control.html"><i class="fas fa-desktop"></i><span>Control Panel</span></a>
             <a href="chat.html"><i class="fas fa-comment-dots"></i><span>Chat</span></a>
             <a href="feedbacks.html" class="current_section"><i class="far fa-thumbs-up"></i><span>Feedbacks</span></a>
-            <a href="#"><i class="fas fa-money-check-alt"></i><span>Payments</span></a>
+            <a href="payments.html"><i class="fas fa-money-check-alt"></i><span>Payments</span></a>
             <a href="profile.html"><i class="fas fa-user-alt"></i><span>Profile</span></a>
-            <a href="#"><i class="fas fa-info-circle"></i><span>Sign out</span></a>
+            <a href="index.html"><i class="fas fa-info-circle"></i><span>Sign out</span></a>
 
         </aside>
 
@@ -144,36 +148,74 @@
                 <div class="flex-container" id="rev-container"></div>
 
                 <div>
-                    <div class="flex-container">
 
-                    <div>
-                        Wanna give a feedback to another user? Insert here the username, the score and a brief comment
-                    </div>
+                    <div class="box hoverable_rows" id="give-feed">
 
-                    <form method="post">
-
-                        <label for="userinput">Username</label><br>
-                        <input type="text" id="userinput" name="username" placeholder="Username..."><br>
-
-                        <label for="scoreinput">Score</label><br>
-                        <input type="text" id="scoreinput" name="score" placeholder="Score..."><br>
-
-                        <label for="commentinput">Comment:</label>
-                        <textarea id="commentinput" rows="4" cols="70">
-                        </textarea>
-                    </form>
-
-                     <input type="submit" value="Submit">
+                        <h2>Here you can give feedbacks, have a lecture with someone to start giving feedbacks!</h2>
 
                     </div>
 
                 </div>
 
+                </div>
+
+            </main>
+
+        <div class="modal" id="modalfeed">
+
+            <div class="sign_up_in" id="feedform">
+
+                <form action="" method="post">
+
+                    <center>
+
+                        <div></div>
+                        <br>
+                        <label for="localstars">Score:</label>
+                        <input type="text" autocomplete="off" maxlength=3 size=1
+                               onkeyup="update_local_stars(event)" id="localstars">
+
+                        <div class="rating">
+                            <div class="rating-upper">
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                            </div>
+                            <div class="rating-lower">
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                            </div>
+                        </div>
+
+                        <br>
+                        <br>
+
+                        <label for="comment">Comment:</label>
+                        <br>
+                        <br>
+                        <textarea id="comment" rows="5" cols="33"></textarea>
+                        <br>
+                        <input class="feedreq" type="submit" value="Submit feedback">
+
+                    </center>
+
+                </form>
+
             </div>
 
-        </main>
+            <div onclick="toggle_modalfeed(event)" class="close_modal">X</div>
 
+        </div>
+
+        <!-- FEEDBACKS JS -->
         <script src="js/feedbacks.js"></script>
+        <!-- HOME JS FOR REUSING TOGGLE MODAL FUNCTION -->
+        <script src="js/home.js"></script>
 
     </body>
 
