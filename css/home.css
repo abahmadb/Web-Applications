@@ -80,6 +80,15 @@ main section:nth-child(1) > div > div{
 
 }
 
+@media screen and (max-width: 1000px){
+    main section:nth-child(1) > div > div{
+        right: auto;
+        left: 50%;
+        transform: translate(-50%,-50%);
+
+    }
+}
+
 main section:nth-child(1) div h1{
     color: #FFF;
     margin-bottom: 20px;

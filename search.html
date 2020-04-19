@@ -68,6 +68,7 @@
 
             <div id="menu_wrap">
                 <nav>
+                    <a href="" class="current_page" style="visibility: hidden">&nbsp;</a>
                     <a href="index.html">Home</a>
                     <a href="about.html">About us</a>
                     <a href="" onclick="toggle_modal(event);">Sign in</a>
@@ -449,7 +450,7 @@
 
         <!-- SIGN-UP/SIGN-IN POP-UP -->
 
-        <div class="modal">
+       <div class="modal">
 
             <div class="sign_up_in">
 
@@ -457,7 +458,7 @@
 
                     <div>
 
-                        <p><img src="images/signup-image.png"><br><br><a href="#" onclick="flip_registration()">I am already a member</a></p>
+                        <p><img src="images/signup-image.png"><br><br><a href="" onclick="flip_registration(event)">I am already a member</a></p>
 
 
                     </div>
@@ -489,7 +490,7 @@
 
                     <div>
 
-                        <p><img src="images/signin-image.jpg"><br><br><a href="#" onclick="flip_registration()">Create an account</a></p>
+                        <p><img src="images/signin-image.jpg"><br><br><a href="" onclick="flip_registration(event)">Create an account</a></p>
 
                     </div>
 
@@ -497,16 +498,18 @@
 
                         <h2>Sign in</h2>
 
-                        <span><img src="images/account.png"><input type="text" placeholder="E-mail address"></span>
+                        <span><img src="images/account.png"><input type="email" placeholder="E-mail address"></span>
 
                         <span><img src="images/password.png"><input type="password" placeholder="Password"></span>
 
                         <span><label class="custom_checkbox">
-                            <input type="checkbox" checked="checked">
+                            <input type="checkbox" checked>
                             <span class="checkmark"></span>
                             </label> Remember me</span>
 
-                        <br><input type="submit" value="Log in" class="button" onclick="location.href='control.html'">
+                        <br><input type="submit" value="Log in" class="button">
+                        
+                        <span id="login_error"></span>
 
                     </div>
 
