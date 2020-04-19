@@ -34,12 +34,11 @@
     left: 42%;
     font-size: 1vw;
     color: white !important;
-    font-family: Helvetica, sans-serif;
     font-weight: lighter;
 }
 
 .author_quote:hover {
-    color:royalblue !important;
+    color: #AAA !important;
 }
 
 .horizontal_line {
