@@ -16,20 +16,29 @@ main .flex_item:nth-child(1) {
     box-shadow: 0px 15px 15px -20px rgba(0,0,0,0.75);
     display: flex;
     flex-direction: row; 
-    flex: 0, 1, 100%;
     width: 100%;
     text-align: center;
-    justify-content: left;
-    padding: 10px 0px 10px 160px;
+    justify-content: space-between;
+    padding: 20px 100px;
     margin-bottom: 20px;
 }
 
 main .flex_item .header_left_box {
-    /*background-color: violet;
-    border: 1px solid orange;*/
-    flex: 0, 1, 35%;
     text-align: center;
+    white-space: nowrap;
 }
+
+@media screen and (max-width: 1010px){
+    main .flex_item .header_left_box {
+        white-space: normal;
+    }
+    
+    main .flex_item:nth-child(1) {
+        padding: 20px 0;
+    }
+}
+
+
 
 main .photo_container {
     /*border: 4px solid green;
@@ -38,30 +47,22 @@ main .photo_container {
     height: 270px;
     object-fit: cover;
     border-radius: 50%;
-    box-shadow: 0 0 10px #999999;
-    margin-top: 5px;
-    margin-bottom: -20px;
+    box-shadow: 0 0 10px #999999;    
 }
 
-main .flex_item .header_middle_box{
-    /*background-color: indianred;
-    border: 1px solid blue;*/
-    display: flex;
-    flex-direction: column;
-    flex: 0, 1, 25%;
-    margin: 35px 433px 40px 17px;;
+main .flex_item .header_left_box{
     text-align: left;
 }
 
-main .flex_item .header_middle_box .header_name_box{
-    /*background-color: fuchsia;
-    border: 1px solid blue;*/
+main .flex_item .header_left_box div{
+    display: inline-block;
+    vertical-align: top;
+}
+
+main .flex_item .header_left_box .header_name_box{
     flex: 0, 1, 100%;
     margin: 5px 0px;
     text-align: left;
-}
-
-main #teacher_name_style {
     font-family: 'Montserrat Light', Helvetica, sans-serif;
     font-size: 60px;
     color: black;
@@ -70,7 +71,7 @@ main #teacher_name_style {
     text-shadow: 1px 1px 2px #797979;
 }
 
-main .flex_item .header_middle_box .header_rating_box{
+main .flex_item .header_left_box .header_rating_box{
     /*background-color: fuchsia;
     border: 1px solid blue;*/
     flex: 0, 1, 100%;
@@ -85,37 +86,28 @@ main #teacher_rating_style {
     font-size: 18px;
 }
 
-main .flex_item .header_middle_box .header_city_box{
+main .flex_item .header_left_box .header_city_box{
     /*background-color: fuchsia;
     border: 1px solid blue;*/
     flex: 0, 1, 100%;
     margin: 5px 0px;
     text-align: left;
     padding-left: 16px;
-}
-
-main #teacher_city_style {
     font-family: Helvetica, sans-serif;
     font-size: 18px;
 }
 
+
 main .flex_item .header_right_box{
-    /*background-color: yellow;
-    border: 1px solid blue;*/
     display: flex;
     flex-direction: column;
-    flex: 0, 1, 25%;
     margin: 34px 0px 40px 20px;
-    text-align: left;
+    text-align: right;
 }
 
 main .flex_item .header_right_box .header_bookLesson_box{
-    /*background-color: brown;
-    border: 1px solid blue;*/
-    flex: 0, 1, 100%;
     margin: 5px 0px;
     padding-top: 16px;
-    text-align: left;
 }
 
 main #teacher_bookLesson_style {
@@ -130,19 +122,14 @@ main .flex_item .header_right_box .header_price_box{
     flex: 0, 1, 100%;
     padding-top: 13px;
     margin: 5px 0px;
-    text-align: left;
 }
 
 main #teacher_price_style {
     font-family: 'Montserrat Light', Helvetica, sans-serif;
     font-size: 18px;
-    text-align: center;
 }
 
 main .flex_item .header_right_box .header_responseTime_box{
-    /*background-color: brown;
-    border: 1px solid blue;*/
-    flex: 0, 1, 100%;
     margin: 2px 0px;
     text-align: left;
 }
@@ -211,7 +198,7 @@ main .flex_item:nth-child(3) h3, main .flex_item:nth-child(4) h3{
 
 main .flex_item:nth-child(3) p, main .flex_item:nth-child(4) p{
     margin: 10px;
-    
+
 }
 
 main .flex_item:nth-child(3) span{ 
