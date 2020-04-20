@@ -5,12 +5,12 @@ let counters = [0, 0, 0, 0, 0];
 //parse json data
 //as of now, the structure of the json is an array of objects assigned to every user with keys 'user', 'rate' and 'comment'
 let global = JSON.parse('{ '+
-	'"Marco Dell\'Anna":[{"user":"Marco Dalla Mutta","rate":4.3,"comment":"Very good"},' +
-						'{"user":"Xianwen Jin","rate":4.7,"comment":"Excellent"},' +
-						'{"user":"Victor Semencenco","rate":5.0,"comment":"Excellent"}], ' +
-    '"Marco Dalla Mutta":[{"user":"Marco Dell\'Anna","rate":4.3,"comment":"Very good"},' +
-						'{"user":"Xianwen Jin","rate":4.7,"comment":"Excellent"},' +
-						'{"user":"Victor Semencenco","rate":5.0,"comment":"Excellent"}]}');
+	'"Marco Dell\'Anna":[{"user":"Marco Dalla Mutta","rate":4,"comment":"Very good"},' +
+						'{"user":"Xianwen Jin","rate":4,"comment":"Excellent"},' +
+						'{"user":"Victor Semencenco","rate":5,"comment":"Excellent"}], ' +
+    '"Marco Dalla Mutta":[{"user":"Marco Dell\'Anna","rate":4,"comment":"Very good"},' +
+						'{"user":"Xianwen Jin","rate":4,"comment":"Excellent"},' +
+						'{"user":"Victor Semencenco","rate":5,"comment":"Excellent"}]}');
 
 //we can select only a group of feedbacks, relevant to the current user
 let obj = global["Marco Dell'Anna"];
@@ -23,18 +23,15 @@ for (let i = 0; i < obj.length; i++) {
     //split the feedbacks count
     //every feedback can be 5,4,3,2 or 1 star
     //this will be used to fill the bars
-    if (obj[i].rate < 1)
-        counters[Math.ceil(obj[i].rate) - 1]++;
-    else
-        counters[Math.floor(obj[i].rate) - 1]++;
+    counters[Math.ceil(obj[i].rate) - 1]++;
 
     //single feedback structure
     data += '<div class="rev">' +
                 '<img src="images/user-photo2.png" alt=""> ' +
                 '<span>' + obj[i].user + '</span>' +
-                '<div>' + obj[i].rate.toFixed(1) + '</div>' +
+                '<div>Score: ' + obj[i].rate + '</div>' +
                 '<br>' +
-                '<div>' + obj[i].comment + '</div>' +
+                '<div>\"' + obj[i].comment + '\"</div>' +
             '</div>';
     //data will contain all the concatenated reviews
 }
@@ -73,9 +70,7 @@ for (let i = 0; i < counters.length; i++) {
 
 //let's say we have a list of users from who we have already had lectures
 let userfeedlist = ["Matteo", "Francesco", "Lucia"];
-let feeddata = "<h2>" +
-                    "Evaluate your teachers!" +
-                "</h2>";
+let feeddata = "<h2>" + "Evaluate your teachers!" + "</h2>";
 
 //we can list them and have an option to give a feedback to each of them
 for (let i = 0; i < userfeedlist.length; i++) {
@@ -115,7 +110,7 @@ function toggle_modalfeed(event){
 
         let user = "";
         //take the closest div ancestor of the pressed button
-        let closest = event.currentTarget.closest("div");
+        let closest = event.target.closest("div");
 
         //find its relative position wrt all the divs in #give-feed
         for(let i = 0; i < userfeedlist.length; i++){
@@ -144,18 +139,18 @@ function toggle_modalfeed(event){
 }
 
 //function for updating stars inside the form modal whenever the user changes the score input
-function update_local_stars(event){
+function update_local_stars(event, num){
 
-    //get the stars
-    let stars = document.getElementById("feedform").getElementsByClassName("rating-upper");
-    //get the user input
-    let input = parseFloat(parseFloat(document.getElementById("localstars").value).toFixed(1));
+    //stars in the html have two layers, they both work like buttons, but the upper one is the only one that is modified
+    //get the stars to modify
+    let stars = event.target.closest(".rating").children[0];
 
-    //check the validity of the give score and apply changes
-    if(isNaN(input) || input > 5.0 || input < 0.0)
-        input = 0;
+    //simply fill the stars
+    stars.style.width = ((num / 5) * 100) + "%";
 
-    stars[0].style.width = ((input / 5) * 100) + "%";
+    //update the score description text
+    let scoretag = document.getElementById("localstars");
+    scoretag.innerText = "Score: "+ num;
 
     event.preventDefault();
 

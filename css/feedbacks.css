@@ -20,6 +20,10 @@
     margin: 0;
     position: relative;
     padding: 0;
+	-webkit-user-select: none;     
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .rating-upper {
@@ -176,6 +180,10 @@
 
 .box{
     margin-bottom: 30px !important;
+}
+
+.modal{
+    z-index: 999;
 }
 
 #feedform{

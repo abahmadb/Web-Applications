@@ -171,24 +171,22 @@
 
                         <div></div>
                         <br>
-                        <label for="localstars">Score:</label>
-                        <input type="text" autocomplete="off" maxlength=3 size=1
-                               onkeyup="update_local_stars(event)" id="localstars">
+                        <div id="localstars">Score: 0</div>
 
                         <div class="rating">
                             <div class="rating-upper">
-                                <span>★</span>
-                                <span>★</span>
-                                <span>★</span>
-                                <span>★</span>
-                                <span>★</span>
+                                <span onclick="update_local_stars(event, 1)">★</span>
+                                <span onclick="update_local_stars(event, 2)">★</span>
+                                <span onclick="update_local_stars(event, 3)">★</span>
+                                <span onclick="update_local_stars(event, 4)">★</span>
+                                <span onclick="update_local_stars(event, 5)">★</span>
                             </div>
                             <div class="rating-lower">
-                                <span>★</span>
-                                <span>★</span>
-                                <span>★</span>
-                                <span>★</span>
-                                <span>★</span>
+                                <span onclick="update_local_stars(event, 1)">★</span>
+                                <span onclick="update_local_stars(event, 2)">★</span>
+                                <span onclick="update_local_stars(event, 3)">★</span>
+                                <span onclick="update_local_stars(event, 4)">★</span>
+                                <span onclick="update_local_stars(event, 5)">★</span>
                             </div>
                         </div>
 
