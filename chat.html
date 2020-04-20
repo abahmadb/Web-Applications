@@ -24,8 +24,6 @@
         <!-- FONTAWESOME CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
 
-        
-        
         <!-- jQuery/jQuery UI -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
@@ -62,13 +60,13 @@
             <div class= "contacts_body">
                 <!--this is the search form-->
                 <form>
-                    <input type="text" name="text" class="search" placeholder="Search here">
+                    <input type="text" name="text" class="search" onkeyup="myFunction()" placeholder="Search here">
                     <input type="submit" name="submit" class="submit" value="Search">
                 </form>
     
                 <div class="chatlogs2">
                     
-                    <ui class="tab">
+                    <ul class="tab">
                         
                         <button class="tablinks" onclick="openChat(event, 'Memen')" id="defaultOpen">
                             <div class = "Memen">
@@ -98,7 +96,7 @@
     
                         
                         
-                    </ui>
+                    </ul>
     
                 </div>
                 
