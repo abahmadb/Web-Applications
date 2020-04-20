@@ -120,6 +120,8 @@
     margin: 0 10px;
     box-shadow: 0 3px 0  rgb(46, 116, 110) ;
     cursor: pointer;
+    border-radius: 10px;
+}
     
     -webkit-transition: background .2s ease;
     -moz-transition: background .2s ease;
@@ -136,7 +138,6 @@
 
 .contacts_body{
     width: 30%;
-    
     height: 600px;
     background:white;
     padding: 20px;
@@ -152,21 +153,28 @@ form {
     position: relative;
     
 }
+
 .search {
     width: 75%;
     padding: 10px;
     font-size: 16px;
     background-color: white;
-    
+    border-radius: 10px;
+}
+.search:focus {
+    background: wheat;
 }
 .submit{
     width: 22%;
     padding: 10px;
-    font-size: 16px;
+    font-size: 14px;
     background-color:rgb(77, 197, 187);
     text-align: center;
     box-shadow: 0 3px 0  rgb(46, 116, 110) ;
     cursor: pointer;
+    border-radius: 10px;
+
+
     
 
     -webkit-transition: background .2s ease;
@@ -202,6 +210,7 @@ form {
 .tab{
     list-style: none;
     padding: 0;
+    
 }
 .tab button  {
     width: 100%;
@@ -210,6 +219,7 @@ form {
     cursor: pointer;
     transition: 0.3s;
     outline: none;
+    border-radius: 10px;
 }  
 
 /* Change background color of buttons on hover */
@@ -245,17 +255,17 @@ form {
 }
 
 .user_info{
-    margin-top: -30px;
+    margin-top: -35px;
     margin-bottom: auto;
     margin-left: 20px;
     
-
+    
     
 }
 .user_info span{
     font-size: 20px;
     color: black;
-    margin-left: -80px;    
+       
 }
 
 
