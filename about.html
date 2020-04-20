@@ -16,12 +16,17 @@
 
         <!-- ABOUT US CSS -->
         <link rel="stylesheet" href="css/about.css">
-        
+
         <!-- SIGN-UP/SIGN-IN POP-UP CSS -->
         <link rel="stylesheet" href="css/sign_up_in.css">
 
         <!-- FONTAWESOME CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+        <!-- jQuery/jQuery UI -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
     </head>
     <body>
@@ -31,7 +36,7 @@
         <header>
 
             <div id="logo_wrap">
-                <img src="images/logo.png">
+                <a href="index.html"><img src="images/logo.png"></a>
             </div>
 
             <div id="menu_wrap">
@@ -202,7 +207,7 @@
         <br>
 
         <!-- MEMBER ROWS end -->
-        
+
         <!-- SIGN IN PAGE start -->
 
         <div class="modal">
@@ -253,16 +258,18 @@
 
                         <h2>Sign in</h2>
 
-                        <span><img src="images/account.png"><input type="text" placeholder="E-mail address"></span>
+                        <span><img src="images/account.png"><input type="email" placeholder="E-mail address"></span>
 
                         <span><img src="images/password.png"><input type="password" placeholder="Password"></span>
 
                         <span><label class="custom_checkbox">
-                            <input type="checkbox" checked="checked">
+                            <input type="checkbox" checked>
                             <span class="checkmark"></span>
                             </label> Remember me</span>
 
-                        <br><input type="submit" value="Log in" class="button" onclick="location.href='control.html'">
+                        <br><input type="submit" value="Log in" class="button">
+
+                        <span id="login_error"></span>
 
                     </div>
 
@@ -277,7 +284,7 @@
         <!-- MAIN JS -->
 
         <script src="js/home.js"></script>
-        
+
         <!-- SIGN IN PAGE end -->
 
         <!-- ABOUT US MAIN BODY end -->
@@ -297,7 +304,11 @@
         </footer>
 
         <!-- WEBSITE FOOTER end -->
-        
+
+        <!-- MAIN JS -->
+
+        <script src="js/home.js"></script>
+
     </body>
 
 </html>
