@@ -15,9 +15,14 @@ function readFile(input) {
 /* password check */
 
 function validatePassword(){
+    var old_password = document.getElementById("old_pw");
     var password = document.getElementById("new_pw");
     var confirm_password = document.getElementById("confirm_pw");
-    if(password.value != confirm_password.value) {
+    /*if (password.value == old_password.value){
+        password.setCustomValidity("New password can't be equal to previous one");
+        return false;
+    }*/
+    if (password.value != confirm_password.value) {
         confirm_password.setCustomValidity("Passwords Don't Match");
         return false;
     }
@@ -26,8 +31,6 @@ function validatePassword(){
         return true;
     }
 }
-
-
 
 /* text area for the Tell about yourself box */
 
