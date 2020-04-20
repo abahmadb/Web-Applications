@@ -122,12 +122,6 @@
     cursor: pointer;
     border-radius: 10px;
 
-    
-    -webkit-transition: background .2s ease;
-    -moz-transition: background .2s ease;
-    -o-transition: background .2s ease;
-    
-    
 } 
 
 .chat-form button:hover {
@@ -174,12 +168,6 @@ form {
     cursor: pointer;
     border-radius: 10px;
 
-
-    
-
-    -webkit-transition: background .2s ease;
-    -moz-transition: background .2s ease;
-    -o-transition: background .2s ease;
 }
 
 
