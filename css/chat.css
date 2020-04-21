@@ -203,15 +203,14 @@ form {
     padding: 0;
     
 }
-/*this added for filtering the contacts in the search*/
 .tab li {
-    list-style: none;
-}
-/*end here*/
-
-.tab button  {
-
     width: 100%;
+    padding: 0%;
+}
+
+.tab li button  {
+
+    width: 95%;
     padding: 5px;
     margin-bottom: 15px;
     cursor: pointer;
@@ -221,11 +220,11 @@ form {
 }  
 
 /* Change background color of buttons on hover */
-.tab button:hover {
+.tab li button:hover {
     background-color: #19B3D3;
   }
 /* Create an active/current "tab button" class */
-.tab button.active {
+.tab li button.active {
     background-color: #19B3D3;
   }
 
@@ -235,33 +234,22 @@ form {
     border:1.5px solid #f5f6fa;
     border-radius: 50%;
 }
-.user_img_msg{
-    height: 40px;
-    width: 40px;
-    border:1.5px solid #f5f6fa;
 
-}
 .img_cont{
     position: relative;
-    height: 70px;
+    height: 80px;
     width: 70px;
    
 }    
-.img_cont_msg{
-    height: 40px;
-    width: 40px;   
-}
 
 .user_info{
     margin-top: -35px;
     margin-bottom: auto;
     margin-left: 20px;
     
-    
-    
 }
 .user_info span{
-    font-size: 20px;
+    font-size: 100%;
     color: black;
        
 }
