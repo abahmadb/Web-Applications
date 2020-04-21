@@ -28,9 +28,8 @@ for (let i = 0; i < obj.length; i++) {
     //single feedback structure
     data += '<div class="rev">' +
                 '<img src="images/user-photo2.png" alt=""> ' +
-                '<span>' + obj[i].user + '</span>' +
+                '<div>' + obj[i].user + '</div>' +
                 '<div>Score: ' + obj[i].rate + '</div>' +
-                '<br>' +
                 '<div>\"' + obj[i].comment + '\"</div>' +
             '</div>';
     //data will contain all the concatenated reviews
@@ -96,7 +95,7 @@ let feeddiv = document.getElementById("give-feed");
 feeddiv.innerHTML = feeddata;
 
 //reuse variables from home.js to toggle the modal
-modal = document.getElementById("modalfeed");
+modal = document.querySelectorAll("div")[0];
 modal_ctrl = false;
 
 function toggle_modalfeed(event){
@@ -127,9 +126,9 @@ function toggle_modalfeed(event){
 
         }
 
-        //set the h2 text using the retrieved info
-        let placeholder = document.getElementById("feedform").querySelectorAll("div")[0];
-        placeholder.innerHTML = "Give a feedback to " + user +"!";
+        //set the heading text using the retrieved info
+        let heading = document.getElementById("feedform").querySelectorAll("div")[0];
+        heading.innerHTML = "Give a feedback to " + user +"!";
 
     }
 

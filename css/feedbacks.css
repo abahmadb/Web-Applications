@@ -10,6 +10,7 @@
     margin-top: 2%;
 }
 
+/*stars container*/
 .rating {
     display: inline-block;
     unicode-bidi: bidi-override;
@@ -26,6 +27,7 @@
 	user-select: none;
 }
 
+/*stars upper layer - dynamic*/
 .rating-upper {
     color: #ffdd25;
     padding: 0;
@@ -38,6 +40,7 @@
     width: 0;
 }
 
+/*stars lower layer - static*/
 .rating-lower {
     padding: 0;
     display: flex;
@@ -45,13 +48,14 @@
     text-shadow: 0 0 0.2em darkslategrey;
 }
 
+/*bars container*/
 .row{
     margin-left: 15%;
     margin-right: 15%;
     margin-bottom: 10%;
 }
 
-/* Three column layout */
+/*three column layout*/
 .side{
     float: left;
     width: 15%;
@@ -66,20 +70,19 @@
     margin-top: 10px;
 }
 
-/* Place text to the right */
 .right {
     text-align: right;
     margin-left: 5px;
 }
 
-/* Clear floats after the columns */
+/*clear floats after the columns*/
 .row:after {
     content: "";
     display: table;
     clear: both;
 }
 
-/* The bar container */
+/*single bar container */
 .bar-container {
     width: 100%;
     background-color: #f1f1f1;
@@ -87,13 +90,14 @@
     color: white;
 }
 
-/* Individual bars */
+/*individual bars*/
 .bar-5 {width: 0; height: 18px; background-color: #4CAF50;}
 .bar-4 {width: 0; height: 18px; background-color: #2196F3;}
 .bar-3 {width: 0; height: 18px; background-color: #00bcd4;}
 .bar-2 {width: 0; height: 18px; background-color: #ff9800;}
 .bar-1 {width: 0; height: 18px; background-color: #f44336;}
 
+/*first two direct children of main > div*/
 .flex-container {
     background-color: #deebf7;
     box-shadow: 6px 6px 5px #999;
@@ -101,12 +105,13 @@
     height: 300px;
 }
 
+/*the first child is the score description container, with bars and stars*/
 .flex-container:nth-child(1) > div{
     padding: 7% 1% 3% 1%;
 }
 
+/*the second child contains all the reviews as a scrollable list of boxes*/
 .flex-container:nth-child(2){
-
     display: flex;
     position: relative;
     border-radius: 8px;
@@ -114,11 +119,9 @@
     margin: 5% 2% 3% 2%;
     overflow: auto;
     height: 0;
-
 }
 
 .flex-container:nth-child(2) > .rev{
-
     background: white;
     box-shadow: 6px 6px 5px #999;
     border-radius: 8px;
@@ -127,65 +130,42 @@
     padding: 20px;
     min-width: 300px;
     min-height: 200px;
-
 }
 
-.rev > span{
-
-    position:absolute;
-    margin: 15px 40px;
+.rev > div:nth-child(2){
+    position:relative;
+    padding: 5% 0 1% 30%;
 
 }
 
 .rev > img{
-
+    position:absolute;
     width:50px;
     border: solid gray 1px;
     border-radius: 50%;
-
 }
 
 .rev > div:nth-child(3){
-
-    margin: 2% 37%;
+    margin: 7% 37%;
     font-weight: bold;
-
 }
 
+/*adds some background margin after the last review*/
 .flex-container:nth-child(2)::after {
     content: "";
     flex: 0 0 0.1%;
-}
-
-.feedreq {
-    padding: 10px 20px;
-    margin: 15px 0px 0px;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    outline: none;
-    box-shadow: 0px 0px 1px 1px #3dc21b;
-    background: linear-gradient(to bottom, #44c767 5%, #5cbf2a 100%);
-    background-color: #44c767;
-    color: #ffffff;
-    text-decoration: none;
-    text-shadow:0px 1px 19px #2f6627;
-}
-
-.feedreq:hover{
-    background: linear-gradient(to bottom, #5cbf2a 5%, #44c767 100%);
-    background-color: #5cbf2a;
 }
 
 .box{
     margin-bottom: 30px !important;
 }
 
+/*fixes visibility of elements under the modal view*/
 .modal{
     z-index: 999;
 }
 
+/*box containing the feedback form*/
 #feedform{
     width: 600px;
     height: 400px;
@@ -193,18 +173,42 @@
     padding: 30px;
 }
 
-#feedform input{
-    margin-right: 15px;
+/*stars inside the feedback form*/
+#feedform .rating{
+    margin-bottom: 25px;
+    cursor: pointer;
 }
 
-
+/*form heading*/
 #feedform center > div:first-child{
     font-size: 26px;
     font-weight: bold;
 }
 
+/*comment of the feedback form*/
 #comment{
+    margin: 10px 0 15px 0;
+    padding: 3px;
     resize:none;
+}
+
+/*button style for the entire page, modal included*/
+.feedreq {
+    padding: 10px 10px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    outline: none;
+    box-shadow: 0 0 1px 1px #3dc21b;
+    background: #44c767 linear-gradient(to bottom, #44c767 5%, #5cbf2a 100%);
+    color: #ffffff;
+    text-decoration: none;
+    text-shadow: 0 1px 19px #2f6627;
+}
+
+.feedreq:hover{
+    background: #5cbf2a linear-gradient(to bottom, #5cbf2a 5%, #44c767 100%);
 }
 
 
