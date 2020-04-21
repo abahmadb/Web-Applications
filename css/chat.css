@@ -149,7 +149,7 @@ form {
 }
 
 .search {
-    list-style-type: none;
+    
     width: 75%;
     padding: 10px;
     font-size: 16px;
@@ -203,7 +203,14 @@ form {
     padding: 0;
     
 }
+/*this added for filtering the contacts in the search*/
+.tab li {
+    list-style: none;
+}
+/*end here*/
+
 .tab button  {
+
     width: 100%;
     padding: 5px;
     margin-bottom: 15px;

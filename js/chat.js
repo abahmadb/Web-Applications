@@ -1,25 +1,3 @@
-//This function to filter the tab
-
-function myFunction() {
-  // Declare variables
-  var input, filter, ul, button, tablinks, i, txtValue;
-  input = document.getElementsByClassName('search');
-  filter = input.value.toUpperCase();
-  ul = document.getElementByClassName("tab");
-  button = ul.getElementsByTagName('button'); 
-  
-  
-  // Loop through all list items, and hide those who don't match the search query
-  for (i = 0; i < button.length; i++) {
-    tablinks = button[i].getElementsByClassName("tablinks")[0];
-    txtValue = tablinks.textContent || tablinks.innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      button[i].style.display = "";
-    } else {
-      button[i].style.display = "none";
-    }
-  }
-} 
 
 //This function to link the tab with the tab content
 function openChat(evt, chatName) {
