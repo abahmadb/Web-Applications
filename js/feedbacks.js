@@ -53,7 +53,6 @@ stars[0].style.width = ((avg / 5) * 100) + "%";
 let p = document.getElementById("avg");
 p.innerText = avg + ' average based on ' + obj.length + ' reviews.';
 
-
 //fill correctly all first box bars using counters array
 for (let i = 0; i < counters.length; i++) {
 
@@ -82,7 +81,7 @@ for (let i = 0; i < userfeedlist.length; i++) {
                             "</td>" +
                             "<td></td>" +
                             "<td>" +
-                                "<a class= \"feedreq\" onclick=\"toggle_modalfeed(event);\">Give feedback</a>\n" +
+                                "<a class= \"feedreq\">Give feedback</a>\n" +
                             "</td>" +
                         "</tr>" +
                     "</table>" +
@@ -94,10 +93,30 @@ for (let i = 0; i < userfeedlist.length; i++) {
 let feeddiv = document.getElementById("give-feed");
 feeddiv.innerHTML = feeddata;
 
+//get buttons used for giving feedbacks
+let buttons = document.getElementsByClassName("feedreq");
+for(let i = 0; i < buttons.length; i++){
+
+    //exclude the button inside the modal
+    //i want only the ones outside, that are basically an "a" html element, while the one inside is an "input" element
+    if(buttons[i].nodeName === "A") {
+
+        //attach toggle event to selected buttons
+        buttons[i].addEventListener("click", function () {
+
+            toggle_modalfeed(event);
+
+        });
+
+    }
+
+}
+
 //reuse variables from home.js to toggle the modal
 modal = document.querySelectorAll("div")[0];
 modal_ctrl = false;
 
+//toggle modal function
 function toggle_modalfeed(event){
 
     //execute only if we are showing the modal, not when hiding it
@@ -128,7 +147,7 @@ function toggle_modalfeed(event){
 
         //set the heading text using the retrieved info
         let heading = document.getElementById("feedform").querySelectorAll("div")[0];
-        heading.innerHTML = "Give a feedback to " + user +"!";
+        heading.innerHTML = "Give a feedback to " + user + "!";
 
     }
 
@@ -137,20 +156,38 @@ function toggle_modalfeed(event){
 
 }
 
-//function for updating stars inside the form modal whenever the user changes the score input
-function update_local_stars(event, num){
+
+//get the stars container in the modal
+let modalstars = document.getElementsByClassName("modal")[0].getElementsByClassName("rating")[0];
+//we need to modify the star filling in the modal every time we click on them
+//so starting from the container we visit every grandchildren
+for(let i = 0; i < modalstars.children.length; i++){
+
+    for(let j = 0; j < modalstars.children[i].children.length; j++){
+
+        //attach to every star the update event
+        modalstars.children[i].children[j].addEventListener("click", function(){
+
+            update_local_stars(j+1);
+
+        });
+
+    }
+
+}
+
+//function for updating stars inside the form modal whenever the user clicks on them
+function update_local_stars(num){
 
     //stars in the html have two layers, they both work like buttons, but the upper one is the only one that is modified
     //get the stars to modify
-    let stars = event.target.closest(".rating").children[0];
+    let stars = modalstars.children[0];
 
     //simply fill the stars
     stars.style.width = ((num / 5) * 100) + "%";
 
     //update the score description text
-    let scoretag = document.getElementById("localstars");
+    let scoretag = document.getElementById("scoretag");
     scoretag.innerText = "Score: "+ num;
-
-    event.preventDefault();
 
 }
