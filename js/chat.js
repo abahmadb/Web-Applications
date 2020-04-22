@@ -22,5 +22,24 @@ function openChat(evt, chatName) {
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
 
+var chatlist = document.querySelectorAll(".user_info");
+
+function filter_chatlist(ev, elem){
+    //alert(chatlist.length);
+    
+    let val = elem.previousElementSibling.value.toLowerCase();
+    
+    let contact_name;
+    
+    for(let i = 0; i < chatlist.length; i++){
+        
+        contact_name = chatlist.item(i).firstElementChild.innerHTML;
+        
+        if(contact_name.toLowerCase().indexOf(val) < 0)
+            chatlist.item(i).parentElement.parentElement.parentElement.style.display = "none";        
+    }
+    
+    ev.preventDefault();
+}
 
 
