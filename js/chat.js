@@ -25,21 +25,29 @@ document.getElementById("defaultOpen").click();
 var chatlist = document.querySelectorAll(".user_info");
 
 function filter_chatlist(ev, elem){
-    //alert(chatlist.length);
     
+    // EXTRACT VALUE FROM TEXTBOX
     let val = elem.previousElementSibling.value.toLowerCase();
     
-    let contact_name;
+    let li_element;
+    
+    // LOOP THROUGH ALL THE CONTACTS
     
     for(let i = 0; i < chatlist.length; i++){
         
-        contact_name = chatlist.item(i).firstElementChild.innerHTML;
+        li_element = chatlist.item(i).parentElement.parentElement.parentElement;
         
-        if(contact_name.toLowerCase().indexOf(val) < 0)
-            chatlist.item(i).parentElement.parentElement.parentElement.style.display = "none";        
-    }
+        // IF THE ELEMENT DOESN'T MATCH THE SEARCH VALUE
+        if(chatlist.item(i).firstElementChild.innerHTML.toLowerCase().indexOf(val) < 0)
+            // HIDE IT
+            li_element.style.display = "none";
+        else
+            // OTHERWISE, SHOW IT
+            li_element.style.display = "";
+        
+    }//for
     
     ev.preventDefault();
-}
+}//filter_chatlist
 
 
