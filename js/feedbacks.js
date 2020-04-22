@@ -3,14 +3,14 @@ let data = "";
 let counters = [0, 0, 0, 0, 0];
 
 //parse json data
-//as of now, the structure of the json is an array of objects assigned to every user with keys 'user', 'rate' and 'comment'
+//as of now, the structure of the json is an array of objects assigned to every user with keys 'user', 'rating' and 'comment'
 let global = JSON.parse('{ '+
-	'"Marco Dell\'Anna":[{"user":"Marco Dalla Mutta","rate":4,"comment":"Very good"},' +
-						'{"user":"Xianwen Jin","rate":4,"comment":"Excellent"},' +
-						'{"user":"Victor Semencenco","rate":5,"comment":"Excellent"}], ' +
-    '"Marco Dalla Mutta":[{"user":"Marco Dell\'Anna","rate":4,"comment":"Very good"},' +
-						'{"user":"Xianwen Jin","rate":4,"comment":"Excellent"},' +
-						'{"user":"Victor Semencenco","rate":5,"comment":"Excellent"}]}');
+	'"Marco Dell\'Anna":[{"user":"Marco Dalla Mutta","rating":4,"comment":"Very good"},' +
+						'{"user":"Xianwen Jin","rating":4,"comment":"Excellent"},' +
+						'{"user":"Victor Semencenco","rating":5,"comment":"Excellent"}], ' +
+    '"Marco Dalla Mutta":[{"user":"Marco Dell\'Anna","rating":4,"comment":"Very good"},' +
+						'{"user":"Xianwen Jin","rating":4,"comment":"Excellent"},' +
+						'{"user":"Victor Semencenco","rating":5,"comment":"Excellent"}]}');
 
 //we can select only a group of feedbacks, relevant to the current user
 let obj = global["Marco Dell'Anna"];
@@ -18,19 +18,19 @@ let obj = global["Marco Dell'Anna"];
 for (let i = 0; i < obj.length; i++) {
 
     //sum of the scores
-    sum += obj[i].rate;
+    sum += obj[i].rating;
 
     //split the feedbacks count
     //every feedback can be 5,4,3,2 or 1 star
     //this will be used to fill the bars
-    counters[Math.ceil(obj[i].rate) - 1]++;
+    counters[obj[i].rating - 1]++;
 
     //single feedback structure
     data += '<div class="rev">' +
                 '<img src="images/user-photo2.png" alt=""> ' +
                 '<div>' + obj[i].user + '</div>' +
-                '<div>Score: ' + obj[i].rate + '</div>' +
-                '<div>\"' + obj[i].comment + '\"</div>' +
+                '<div>Score: ' + obj[i].rating + '</div>' +
+                '<br><div>\"' + obj[i].comment + '\"</div>' +
             '</div>';
     //data will contain all the concatenated reviews
 }

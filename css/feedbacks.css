@@ -97,12 +97,14 @@
 .bar-2 {width: 0; height: 18px; background-color: #ff9800;}
 .bar-1 {width: 0; height: 18px; background-color: #f44336;}
 
+
 /*first two direct children of main > div*/
 .flex-container {
     background-color: #deebf7;
     box-shadow: 6px 6px 5px #999;
     border-radius: 8px;
     height: 300px;
+    margin-top: 10px;
 }
 
 /*the first child is the score description container, with bars and stars*/
@@ -116,12 +118,13 @@
     position: relative;
     border-radius: 8px;
     left:0;
-    margin: 5% 2% 3% 2%;
+    margin: 50px 2% 2% 2%;
     overflow: auto;
     height: 0;
+    max-height: 350px;
 }
 
-.flex-container:nth-child(2) > .rev{
+.rev{
     background: white;
     box-shadow: 6px 6px 5px #999;
     border-radius: 8px;
@@ -130,30 +133,42 @@
     padding: 20px;
     min-width: 300px;
     min-height: 200px;
+    max-width: 550px;
+    overflow: auto;
+}
+
+.rev > div:nth-child(2), .rev > img{
+    float:left;
 }
 
 .rev > div:nth-child(2){
-    position:relative;
-    padding: 5% 0 1% 30%;
-
+    margin:15px;
 }
 
 .rev > img{
-    position:absolute;
     width:50px;
     border: solid gray 1px;
     border-radius: 50%;
 }
 
 .rev > div:nth-child(3){
-    margin: 7% 37%;
+    margin-top:70px;
     font-weight: bold;
+}
+
+.rev > div:nth-child(5){
+    margin-bottom:10px;
 }
 
 /*adds some background margin after the last review*/
 .flex-container:nth-child(2)::after {
     content: "";
     flex: 0 0 0.1%;
+}
+
+/*graphical fix, applies better disposition of last box in bigger screens*/
+main >div >div:nth-child(3){
+    margin:30px;
 }
 
 .box{
