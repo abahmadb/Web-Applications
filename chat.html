@@ -13,13 +13,13 @@
 
         <link rel="stylesheet" href="css/style.css">
 
-        <!-- THE CHAT CSS -->
-
-        <link rel="stylesheet"   href="css/chat.css" />
-
         <!-- CONTROL PANEL HOME CSS -->
 
         <link rel="stylesheet" href="css/control.css">
+        
+        <!-- THE CHAT CSS -->
+
+        <link rel="stylesheet"   href="css/chat.css" />
 
         <!-- FONTAWESOME CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
@@ -43,12 +43,12 @@
             </center>
 
             <p><label for="toggle_menu"><i class="fas fa-bars"></i></label></p>
-            <a href="control.html" class="current_section"><i class="fas fa-desktop"></i><span>Control Panel</span></a>
-            <a href="chat.html"><i class="fas fa-comment-dots"></i><span>Chat</span></a>
+            <a href="control.html"><i class="fas fa-desktop"></i><span>Control Panel</span></a>
+            <a href="chat.html" class="current_section"><i class="fas fa-comment-dots"></i><span>Chat</span></a>
             <a href="feedbacks.html"><i class="far fa-thumbs-up"></i><span>Feedbacks</span></a>
-            <a href="#"><i class="fas fa-money-check-alt"></i><span>Payments</span></a>
+            <a href="payments.html"><i class="fas fa-money-check-alt"></i><span>Payments</span></a>
             <a href="profile.html"><i class="fas fa-user-alt"></i><span>Profile</span></a>
-            <a href="#"><i class="fas fa-info-circle"></i><span>Sign out</span></a>
+            <a href="index.html"><i class="fas fa-info-circle"></i><span>Sign out</span></a>
 
         </aside>
 
@@ -57,11 +57,12 @@
             
     
             <!---------------THE CHAT LIST---------------------------------->
-            <div class= "contacts_body">
+            <div class="contacts_body">
                 <!--this is the search form-->
+
                 <form>
-                    <input type="text" name="text" class="search"  placeholder="Search here">
-                    <input type="submit" name="submit" class="submit" value="Search">
+                    <input type="text" name="text" class="search"  placeholder="Search here" autocomplete="off">
+                    <button class="button">Search</button>
                 </form>
     
                 <div class="chatlogs2">
@@ -71,7 +72,7 @@
                         <button class="tablinks" onclick="openChat(event, 'Memen')" id="defaultOpen">
                             <div class = "Memen">
                                 <div class="img_cont">
-                                    <img src="images/user-photo1.png" class="rounded-circle user_img">
+                                    <img src="images/users_profile/1.jpg" class="rounded-circle user_img">
                                     
                                 </div>
                                 <div class="user_info">
@@ -86,7 +87,7 @@
                         <button class="tablinks" onclick="openChat(event, 'Marco Dell Anna')" >
                             <div class="Marco Dell Anna">
                                 <div class="img_cont">
-                                    <img src="images/user-photo2.png" class="rounded-circle user_img">
+                                    <img src="images/users_profile/15.jpg" class="rounded-circle user_img">
                                     
                                 </div>
                                 <div class="user_info">
@@ -101,7 +102,7 @@
                         <button class="tablinks" onclick="openChat(event, 'Xianwen Jin')" >
                             <div class="Xianwen Jin">
                                 <div class="img_cont">
-                                    <img src="images/user-photo2.png" class="rounded-circle user_img">
+                                    <img src="images/users_profile/10.jpg" class="rounded-circle user_img">
                                     
                                 </div>
                                 <div class="user_info">
@@ -116,7 +117,7 @@
                         <button class="tablinks" onclick="openChat(event, 'Marco Dalla Mutta')" >
                             <div class="Marco Dalla Mutta">
                                 <div class="img_cont">
-                                    <img src="images/user-photo2.png" class="rounded-circle user_img">
+                                    <img src="images/users_profile/11.jpg" class="rounded-circle user_img">
                                     
                                 </div>
                                 <div class="user_info">
@@ -131,7 +132,7 @@
                         <button class="tablinks" onclick="openChat(event, 'Victor Semencenco')" >
                             <div class="Victor Semencenco">
                                 <div class="img_cont">
-                                    <img src="images/user-photo2.png" class="rounded-circle user_img">
+                                    <img src="images/users_profile/8.jpg" class="rounded-circle user_img">
                                     
                                 </div>
                                 <div class="user_info">
@@ -146,7 +147,7 @@
                         <button class="tablinks" onclick="openChat(event, 'Ahmad Bashir')" >
                             <div class="Ahmad Bashir">
                                 <div class="img_cont">
-                                    <img src="images/user-photo2.png" class="rounded-circle user_img">
+                                    <img src="images/users_profile/5.jpg" class="rounded-circle user_img">
                                     
                                 </div>
                                 <div class="user_info">
@@ -157,6 +158,1155 @@
                         </button> 
                         </li>
 
+                        
+                        
+                        
+                        
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Memen')" id="defaultOpen">
+                            <div class = "Memen">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/1.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Memen</span>
+                                    
+                                </div>
+                            </div>
+                        </button>
+                        </li>
+                        
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Marco Dell Anna')" >
+                            <div class="Marco Dell Anna">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/15.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Marco Dell Anna</span>
+                                    
+                                </div>
+                            </div>
+                        </button>
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Xianwen Jin')" >
+                            <div class="Xianwen Jin">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/10.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Xianwen Jin</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Marco Dalla Mutta')" >
+                            <div class="Marco Dalla Mutta">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/11.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Marco Dalla Mutta</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Victor Semencenco')" >
+                            <div class="Victor Semencenco">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/8.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Victor Semencenco</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>        
+                        
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Ahmad Bashir')" >
+                            <div class="Ahmad Bashir">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/5.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Ahmad Bashir</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li><li>
+                        <button class="tablinks" onclick="openChat(event, 'Memen')" id="defaultOpen">
+                            <div class = "Memen">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/1.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Memen</span>
+                                    
+                                </div>
+                            </div>
+                        </button>
+                        </li>
+                        
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Marco Dell Anna')" >
+                            <div class="Marco Dell Anna">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/15.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Marco Dell Anna</span>
+                                    
+                                </div>
+                            </div>
+                        </button>
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Xianwen Jin')" >
+                            <div class="Xianwen Jin">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/10.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Xianwen Jin</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Marco Dalla Mutta')" >
+                            <div class="Marco Dalla Mutta">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/11.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Marco Dalla Mutta</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Victor Semencenco')" >
+                            <div class="Victor Semencenco">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/8.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Victor Semencenco</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>        
+                        
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Ahmad Bashir')" >
+                            <div class="Ahmad Bashir">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/5.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Ahmad Bashir</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li><li>
+                        <button class="tablinks" onclick="openChat(event, 'Memen')" id="defaultOpen">
+                            <div class = "Memen">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/1.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Memen</span>
+                                    
+                                </div>
+                            </div>
+                        </button>
+                        </li>
+                        
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Marco Dell Anna')" >
+                            <div class="Marco Dell Anna">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/15.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Marco Dell Anna</span>
+                                    
+                                </div>
+                            </div>
+                        </button>
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Xianwen Jin')" >
+                            <div class="Xianwen Jin">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/10.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Xianwen Jin</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Marco Dalla Mutta')" >
+                            <div class="Marco Dalla Mutta">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/11.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Marco Dalla Mutta</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Victor Semencenco')" >
+                            <div class="Victor Semencenco">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/8.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Victor Semencenco</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>        
+                        
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Ahmad Bashir')" >
+                            <div class="Ahmad Bashir">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/5.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Ahmad Bashir</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li><li>
+                        <button class="tablinks" onclick="openChat(event, 'Memen')" id="defaultOpen">
+                            <div class = "Memen">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/1.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Memen</span>
+                                    
+                                </div>
+                            </div>
+                        </button>
+                        </li>
+                        
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Marco Dell Anna')" >
+                            <div class="Marco Dell Anna">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/15.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Marco Dell Anna</span>
+                                    
+                                </div>
+                            </div>
+                        </button>
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Xianwen Jin')" >
+                            <div class="Xianwen Jin">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/10.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Xianwen Jin</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Marco Dalla Mutta')" >
+                            <div class="Marco Dalla Mutta">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/11.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Marco Dalla Mutta</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Victor Semencenco')" >
+                            <div class="Victor Semencenco">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/8.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Victor Semencenco</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>        
+                        
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Ahmad Bashir')" >
+                            <div class="Ahmad Bashir">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/5.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Ahmad Bashir</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li><li>
+                        <button class="tablinks" onclick="openChat(event, 'Memen')" id="defaultOpen">
+                            <div class = "Memen">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/1.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Memen</span>
+                                    
+                                </div>
+                            </div>
+                        </button>
+                        </li>
+                        
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Marco Dell Anna')" >
+                            <div class="Marco Dell Anna">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/15.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Marco Dell Anna</span>
+                                    
+                                </div>
+                            </div>
+                        </button>
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Xianwen Jin')" >
+                            <div class="Xianwen Jin">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/10.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Xianwen Jin</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Marco Dalla Mutta')" >
+                            <div class="Marco Dalla Mutta">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/11.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Marco Dalla Mutta</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Victor Semencenco')" >
+                            <div class="Victor Semencenco">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/8.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Victor Semencenco</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>        
+                        
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Ahmad Bashir')" >
+                            <div class="Ahmad Bashir">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/5.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Ahmad Bashir</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li><li>
+                        <button class="tablinks" onclick="openChat(event, 'Memen')" id="defaultOpen">
+                            <div class = "Memen">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/1.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Memen</span>
+                                    
+                                </div>
+                            </div>
+                        </button>
+                        </li>
+                        
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Marco Dell Anna')" >
+                            <div class="Marco Dell Anna">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/15.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Marco Dell Anna</span>
+                                    
+                                </div>
+                            </div>
+                        </button>
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Xianwen Jin')" >
+                            <div class="Xianwen Jin">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/10.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Xianwen Jin</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Marco Dalla Mutta')" >
+                            <div class="Marco Dalla Mutta">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/11.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Marco Dalla Mutta</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Victor Semencenco')" >
+                            <div class="Victor Semencenco">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/8.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Victor Semencenco</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>        
+                        
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Ahmad Bashir')" >
+                            <div class="Ahmad Bashir">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/5.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Ahmad Bashir</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li><li>
+                        <button class="tablinks" onclick="openChat(event, 'Memen')" id="defaultOpen">
+                            <div class = "Memen">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/1.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Memen</span>
+                                    
+                                </div>
+                            </div>
+                        </button>
+                        </li>
+                        
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Marco Dell Anna')" >
+                            <div class="Marco Dell Anna">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/15.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Marco Dell Anna</span>
+                                    
+                                </div>
+                            </div>
+                        </button>
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Xianwen Jin')" >
+                            <div class="Xianwen Jin">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/10.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Xianwen Jin</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Marco Dalla Mutta')" >
+                            <div class="Marco Dalla Mutta">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/11.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Marco Dalla Mutta</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Victor Semencenco')" >
+                            <div class="Victor Semencenco">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/8.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Victor Semencenco</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>        
+                        
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Ahmad Bashir')" >
+                            <div class="Ahmad Bashir">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/5.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Ahmad Bashir</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li><li>
+                        <button class="tablinks" onclick="openChat(event, 'Memen')" id="defaultOpen">
+                            <div class = "Memen">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/1.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Memen</span>
+                                    
+                                </div>
+                            </div>
+                        </button>
+                        </li>
+                        
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Marco Dell Anna')" >
+                            <div class="Marco Dell Anna">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/15.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Marco Dell Anna</span>
+                                    
+                                </div>
+                            </div>
+                        </button>
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Xianwen Jin')" >
+                            <div class="Xianwen Jin">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/10.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Xianwen Jin</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Marco Dalla Mutta')" >
+                            <div class="Marco Dalla Mutta">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/11.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Marco Dalla Mutta</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Victor Semencenco')" >
+                            <div class="Victor Semencenco">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/8.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Victor Semencenco</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>        
+                        
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Ahmad Bashir')" >
+                            <div class="Ahmad Bashir">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/5.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Ahmad Bashir</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li><li>
+                        <button class="tablinks" onclick="openChat(event, 'Memen')" id="defaultOpen">
+                            <div class = "Memen">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/1.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Memen</span>
+                                    
+                                </div>
+                            </div>
+                        </button>
+                        </li>
+                        
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Marco Dell Anna')" >
+                            <div class="Marco Dell Anna">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/15.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Marco Dell Anna</span>
+                                    
+                                </div>
+                            </div>
+                        </button>
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Xianwen Jin')" >
+                            <div class="Xianwen Jin">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/10.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Xianwen Jin</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Marco Dalla Mutta')" >
+                            <div class="Marco Dalla Mutta">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/11.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Marco Dalla Mutta</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Victor Semencenco')" >
+                            <div class="Victor Semencenco">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/8.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Victor Semencenco</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>        
+                        
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Ahmad Bashir')" >
+                            <div class="Ahmad Bashir">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/5.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Ahmad Bashir</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li><li>
+                        <button class="tablinks" onclick="openChat(event, 'Memen')" id="defaultOpen">
+                            <div class = "Memen">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/1.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Memen</span>
+                                    
+                                </div>
+                            </div>
+                        </button>
+                        </li>
+                        
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Marco Dell Anna')" >
+                            <div class="Marco Dell Anna">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/15.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Marco Dell Anna</span>
+                                    
+                                </div>
+                            </div>
+                        </button>
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Xianwen Jin')" >
+                            <div class="Xianwen Jin">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/10.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Xianwen Jin</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Marco Dalla Mutta')" >
+                            <div class="Marco Dalla Mutta">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/11.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Marco Dalla Mutta</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Victor Semencenco')" >
+                            <div class="Victor Semencenco">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/8.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Victor Semencenco</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>        
+                        
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Ahmad Bashir')" >
+                            <div class="Ahmad Bashir">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/5.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Ahmad Bashir</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li><li>
+                        <button class="tablinks" onclick="openChat(event, 'Memen')" id="defaultOpen">
+                            <div class = "Memen">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/1.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Memen</span>
+                                    
+                                </div>
+                            </div>
+                        </button>
+                        </li>
+                        
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Marco Dell Anna')" >
+                            <div class="Marco Dell Anna">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/15.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Marco Dell Anna</span>
+                                    
+                                </div>
+                            </div>
+                        </button>
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Xianwen Jin')" >
+                            <div class="Xianwen Jin">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/10.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Xianwen Jin</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Marco Dalla Mutta')" >
+                            <div class="Marco Dalla Mutta">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/11.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Marco Dalla Mutta</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Victor Semencenco')" >
+                            <div class="Victor Semencenco">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/8.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Victor Semencenco</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>        
+                        
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Ahmad Bashir')" >
+                            <div class="Ahmad Bashir">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/5.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Ahmad Bashir</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li><li>
+                        <button class="tablinks" onclick="openChat(event, 'Memen')" id="defaultOpen">
+                            <div class = "Memen">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/1.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Memen</span>
+                                    
+                                </div>
+                            </div>
+                        </button>
+                        </li>
+                        
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Marco Dell Anna')" >
+                            <div class="Marco Dell Anna">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/15.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Marco Dell Anna</span>
+                                    
+                                </div>
+                            </div>
+                        </button>
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Xianwen Jin')" >
+                            <div class="Xianwen Jin">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/10.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Xianwen Jin</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Marco Dalla Mutta')" >
+                            <div class="Marco Dalla Mutta">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/11.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Marco Dalla Mutta</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Victor Semencenco')" >
+                            <div class="Victor Semencenco">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/8.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Victor Semencenco</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>        
+                        
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Ahmad Bashir')" >
+                            <div class="Ahmad Bashir">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/5.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Ahmad Bashir</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li><li>
+                        <button class="tablinks" onclick="openChat(event, 'Memen')" id="defaultOpen">
+                            <div class = "Memen">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/1.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Memen</span>
+                                    
+                                </div>
+                            </div>
+                        </button>
+                        </li>
+                        
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Marco Dell Anna')" >
+                            <div class="Marco Dell Anna">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/15.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Marco Dell Anna</span>
+                                    
+                                </div>
+                            </div>
+                        </button>
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Xianwen Jin')" >
+                            <div class="Xianwen Jin">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/10.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Xianwen Jin</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Marco Dalla Mutta')" >
+                            <div class="Marco Dalla Mutta">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/11.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Marco Dalla Mutta</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>
+
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Victor Semencenco')" >
+                            <div class="Victor Semencenco">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/8.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Victor Semencenco</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>        
+                        
+                        <li>
+                        <button class="tablinks" onclick="openChat(event, 'Ahmad Bashir')" >
+                            <div class="Ahmad Bashir">
+                                <div class="img_cont">
+                                    <img src="images/users_profile/5.jpg" class="rounded-circle user_img">
+                                    
+                                </div>
+                                <div class="user_info">
+                                    <span>Ahmad Bashir</span>
+                                    
+                                </div>
+                            </div>
+                        </button> 
+                        </li>
                     </ul>
     
                 </div>
@@ -174,35 +1324,299 @@
     
                         <!-- STUCTURE OF EACH CHAT-->
                         <div class= "chat friend">
-                            <div class= "user-photo"> <img src="images/user-photo1.png"> </div>
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
                             <p class= "chat-message">hi, whats up there!</p>
                         </div>
                         <div class= "chat self">
-                            <div class= "user-photo"> <img src="images/user-photo2.png"> </div>
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
                             <p class= "chat-message">hello !!!</p>
                         </div>
                         <div class= "chat friend">
-                            <div class= "user-photo"> <img src="images/user-photo1.png"> </div>
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
                             <p class= "chat-message">hi, whats up there!</p>
                         </div>
                         <div class= "chat self">
-                            <div class= "user-photo"> <img src="images/user-photo2.png"> </div>
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
                             <p class= "chat-message">hello !!!</p>
                         </div>
                         <div class= "chat friend">
-                            <div class= "user-photo"> <img src="images/user-photo1.png"> </div>
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
                             <p class= "chat-message">hi, whats up there!</p>
                         </div>
                         <div class= "chat self">
-                            <div class= "user-photo"> <img src="images/user-photo2.png"> </div>
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
                             <p class= "chat-message">hello !!!</p>
                         </div>
                         <div class= "chat friend">
-                            <div class= "user-photo"> <img src="images/user-photo1.png"> </div>
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
                             <p class= "chat-message">hi, whats up there!</p>
                         </div>
                         <div class= "chat self">
-                            <div class= "user-photo"> <img src="images/user-photo2.png"> </div>
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
+                            <p class= "chat-message">hello !!!</p>
+                        </div>
+                        <div class= "chat friend">
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
+                            <p class= "chat-message">hi, whats up there!</p>
+                        </div>
+                        <div class= "chat self">
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
                             <p class= "chat-message">hello !!!</p>
                         </div>
                             
@@ -211,7 +1625,7 @@
                     <!--this is the chat form-->
                     <div class= "chat-form">
                         <textarea></textarea>
-                        <button>Send</button>
+                        <button class="button">Send</button>
                     </div>
                     
                 </div>
@@ -225,19 +1639,19 @@
                         <!-- STUCTURE OF EACH CHAT-->
                         
                         <div class= "chat self">
-                            <div class= "user-photo"> <img src="images/user-photo2.png"> </div>
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
                             <p class= "chat-message"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet !!!</p>
                         </div>
                         <div class= "chat friend">
-                            <div class= "user-photo"> <img src="images/user-photo1.png"> </div>
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
                             <p class= "chat-message">hi, whats up there!</p>
                         </div>
                         <div class= "chat self">
-                            <div class= "user-photo"> <img src="images/user-photo2.png"> </div>
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
                             <p class= "chat-message">hello !!!</p>
                         </div>
                         <div class= "chat friend">
-                            <div class= "user-photo"> <img src="images/user-photo1.png"> </div>
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
                             <p class= "chat-message">hi, whats up there!</p>
                         </div>
                             
@@ -246,7 +1660,7 @@
                     <!--this is the chat form-->
                     <div class= "chat-form">
                         <textarea></textarea>
-                        <button>Send</button>
+                        <button class="button">Send</button>
                     </div>
                     
                 </div>
@@ -260,19 +1674,19 @@
                         <!-- STUCTURE OF EACH CHAT-->
                         
                         <div class= "chat self">
-                            <div class= "user-photo"> <img src="images/user-photo2.png"> </div>
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
                             <p class= "chat-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristirci in velit. Praesent scelerisque tortor sed accumsan convallis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristique. Quisque vehicula, risus eget aliquam placerat, purus leo tincidunt eros, eget luct</p>
                         </div>
                         <div class= "chat friend">
-                            <div class= "user-photo"> <img src="images/user-photo1.png"> </div>
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
                             <p class= "chat-message">hi, whats up there!</p>
                         </div>
                         <div class= "chat self">
-                            <div class= "user-photo"> <img src="images/user-photo2.png"> </div>
+                            <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
                             <p class= "chat-message">hello !!!</p>
                         </div>
                         <div class= "chat friend">
-                            <div class= "user-photo"> <img src="images/user-photo1.png"> </div>
+                            <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
                             <p class= "chat-message">hi, whats up there!</p>
                         </div>
                             
@@ -281,7 +1695,7 @@
                     <!--this is the chat form-->
                     <div class= "chat-form">
                         <textarea></textarea>
-                        <button>Send</button>
+                        <button class="button">Send</button>
                     </div>
                     
                 </div>
