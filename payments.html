@@ -1,144 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payments</title>
-    <!-- MAIN CSS -->
-    <link rel="stylesheet" href="css/payments.css">
-    <link rel="stylesheet" href="bootstrap/bootstrap.css">
-    <!-- FONTAWESOME CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
-    <link href="fonts/font-awesome.css" rel="stylesheet">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="icon" href="images/logo.ico" type="image/x-icon" /> 
+        <link rel="shortcut icon" href="images/logo.ico" type="image/x-icon" />
+        <title>RemyTutor</title>
 
-</head>
+        <!-- MAIN CSS -->
+        <link rel="stylesheet" href="css/style.css">
 
-<body>
+        <!-- CONTROL PANEL HOME CSS -->
+        <link rel="stylesheet" href="css/control.css">
 
-<input type="checkbox" id="toggle_menu">
-<!-- SIDEBAR FOR THE DASHBOARD -->
-<aside>
-    <center>
-        <img src="images/logo_transparent.png" alt="">
-    </center>
-    <p><label for="toggle_menu"><i class="fas fa-bars"></i></label></p>
-    <a href="control.html" ><i class="fas fa-desktop"></i><span>Control Panel</span></a>
-    <a href="chat.html"><i class="fas fa-comment-dots"></i><span>Chat</span></a>
-    <a href="feedbacks.html"><i class="far fa-thumbs-up"></i><span>Feedbacks</span></a>
-    <a href="payment.html" class="current_section"> <i class="fas fa-money-check-alt"></i><span>Payments</span></a>
-    <a href="profile.html"><i class="fas fa-user-alt"></i><span>Profile</span></a>
-    <a href="#"><i class="fas fa-info-circle"></i><span>Sign out</span></a>
-</aside>
+        <link rel="stylesheet" href="css/payments.css">
+
+
+        <!-- FONTAWESOME CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+    </head>
 
 
 
+    <body>
+
+        <input type="checkbox" id="toggle_menu">
+
+        <!-- SIDEBAR FOR THE DASHBOARD -->
+        <aside>
+            <center>
+                <img src="images/logo_transparent.png" alt="">
+            </center>
+
+            <p><label for="toggle_menu"><i class="fas fa-bars"></i></label></p>
+            <a href="control.html"><i class="fas fa-desktop"></i><span>Control Panel</span></a>
+            <a href="chat.html"><i class="fas fa-comment-dots"></i><span>Chat</span></a>
+            <a href="feedbacks.html"><i class="far fa-thumbs-up"></i><span>Feedbacks</span></a>
+            <a href="payments.html" class="current_section"><i class="fas fa-money-check-alt"></i><span>Payments</span></a>
+            <a href="profile.html"><i class="fas fa-user-alt"></i><span>Profile</span></a>
+            <a href="index.html"><i class="fas fa-info-circle"></i><span>Sign out</span></a>
+
+        </aside>
 
 
-<!-- CONTENT OF THE PAGE -->
-<main>
-    <div>
-        <!-- /features -->
-        <section class="about py-md-5 py-5" id="intro">
-            <div class="container py-md-5">
-                <div class="feature-grids row mt-3">
-                    <div class="col-lg-6 ab-content-img">
-                        <img src="images/ab.jpg" alt="" class="img-fluid image1">
-                    </div>
-                    <div class="col-lg-6 ab-content-inf pl-lg-5">
-                        <h3 class="title-w3ls my-3">Secure payment</h3>
-                        <p>
-                            Welcome to the payment page, here you will be able to make a payment transaction based on the chosen courses. bare in mind that there are some agreement rules.
-                        </p>
-                        <ul class="tic-info list-unstyled mt-5">
-                            <li><span class="fa fa-check-square-o mr-2"></span>Self-Paced Learning</li>
-                            <li><span class="fa fa-check-square-o mr-2"></span>Flexible Schedule</li>
-                            <li> <span class="fa fa-check-square-o mr-2"></span>More Courses Available</li>
-                            <li><span class="fa fa-check-square-o mr-2"></span>Credit & Debit Cards </li>
-                            <li><span class="fa fa-check-square-o mr-2"></span>Refund in 1 to 2  days</li>
-                        </ul>
-                    </div>
+        <!-- CONTENT OF THE PAGE -->
+        <main>
+            <div>
+
+                <div class="box">
+
+                    <h1>Payments history</h1>
+
+
+                    <table>
+
+                        <tr>
+
+                            <th>
+                                Date
+                            </th>
+                            
+                            <th>
+                                Time
+                            </th>
+
+                            <th>
+                                Description
+                            </th>
+
+                            <th>
+                                Amount
+                            </th>
+                            
+                            <th>
+                                
+                            </th>
+
+                        </tr>
+                        
+                        <tr>
+
+                            <td>
+                                23/04/2020
+                            </td>
+                            
+                            <td>
+                                19:23
+                            </td>
+
+                            <td>
+                                Outgoing deposit to Luca
+                            </td>
+
+                            <td>
+                                24€
+                            </td>
+                            
+                            <td>
+                                <i class="fas fa-arrow-circle-up outgoing"></i>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                23/04/2020
+                            </td>
+                            
+                            <td>
+                                19:23
+                            </td>
+
+                            <td>
+                                Outgoing deposit to Luca
+                            </td>
+
+                            <td>
+                                24€
+                            </td>
+                            
+                            <td>
+                                <i class="fas fa-arrow-circle-up incoming"></i>
+                            </td>
+
+                        </tr>
+                        
+                        <tr>
+
+                            <td>
+                                23/04/2020
+                            </td>
+                            
+                            <td>
+                                19:23
+                            </td>
+
+                            <td>
+                                Outgoing deposit to Luca
+                            </td>
+
+                            <td>
+                                24€
+                            </td>
+                            
+                            <td>
+                                <i class="fas fa-arrow-circle-up outgoing"></i>
+                            </td>
+
+                        </tr>
+                        
+                        <tr>
+
+                            <td>
+                                23/04/2020
+                            </td>
+                            
+                            <td>
+                                19:23
+                            </td>
+
+                            <td>
+                                Outgoing deposit to Luca
+                            </td>
+
+                            <td>
+                                24€
+                            </td>
+                            
+                            <td>
+                                <i class="fas fa-arrow-circle-up incoming"></i>
+                            </td>
+
+                        </tr>
+                        
+                        <tr>
+
+                            <td>
+                                23/04/2020
+                            </td>
+                            
+                            <td>
+                                19:23
+                            </td>
+
+                            <td>
+                                Outgoing deposit to Luca
+                            </td>
+
+                            <td>
+                                24€
+                            </td>
+                            
+                            <td>
+                                <i class="fas fa-arrow-circle-up outgoing"></i>
+                            </td>
+
+                        </tr>
+                        
+                        <tr>
+
+                            <td>
+                                23/04/2020
+                            </td>
+                            
+                            <td>
+                                19:23
+                            </td>
+
+                            <td>
+                                Outgoing deposit to Luca
+                            </td>
+
+                            <td>
+                                24€
+                            </td>
+                            
+                            <td>
+                                <i class="fas fa-arrow-circle-up incoming"></i>
+                            </td>
+
+                        </tr>
+                        
+                        <tr>
+
+                            <td>
+                                23/04/2020
+                            </td>
+                            
+                            <td>
+                                19:23
+                            </td>
+
+                            <td>
+                                Outgoing deposit to Luca
+                            </td>
+
+                            <td>
+                                24€
+                            </td>
+                            
+                            <td>
+                                <i class="fas fa-arrow-circle-up outgoing"></i>
+                            </td>
+
+                        </tr>
+                        
+                        <tr>
+
+                            <td>
+                                23/04/2020
+                            </td>
+                            
+                            <td>
+                                19:23
+                            </td>
+
+                            <td>
+                                Outgoing deposit to Luca
+                            </td>
+
+                            <td>
+                                24€
+                            </td>
+                            
+                            <td>
+                                <i class="fas fa-arrow-circle-up incoming"></i>
+                            </td>
+
+                        </tr>
+                        
+                        <tr>
+
+                            <td>
+                                23/04/2020
+                            </td>
+                            
+                            <td>
+                                19:23
+                            </td>
+
+                            <td>
+                                Outgoing deposit to Luca
+                            </td>
+
+                            <td>
+                                24€
+                            </td>
+                            
+                            <td>
+                                <i class="fas fa-arrow-circle-up outgoing"></i>
+                            </td>
+
+                        </tr>
+                        
+                        <tr>
+
+                            <td>
+                                23/04/2020
+                            </td>
+                            
+                            <td>
+                                19:23
+                            </td>
+
+                            <td>
+                                Outgoing deposit to Luca
+                            </td>
+
+                            <td>
+                                24€
+                            </td>
+                            
+                            <td>
+                                <i class="fas fa-arrow-circle-up incoming"></i>
+                            </td>
+
+                        </tr>
+                    </table>
+
                 </div>
-            </div>
-        </section>
-        <!-- //features -->
 
-
-        <!-- banner bottom -->
-        <section class="banner-bottom py-5" id="process">
-            <div class="container py-md-5">
-                <div class="row bottom-grids text-center">
-                    <div class="col-md-4 bottom-grid">
-                        <span class="fa clr1 fa-star-half-o"></span>
-                        <p class="number">1</p><h4>Choose your Course</h4>
-                        <p class="mt-4">Donec malesuada ex sit amet pretium sid ornare. Nulla congue scelerisque tellus, utpretium nulla malesuada sedint.
-                            Suspendisse venenatis</p>
+                <div class="box totals">
+                    
+                    <div>
+                        Total earned <br>43567€
                     </div>
-                    <div class="col-md-4 mt-md-0 mt-5 bottom-grid">
-                        <span class="fa clr2 fa fa-money"></span>
-                        <p class="number">2</p><h4>Policy & Agreement</h4>
-                        <p class="mt-4">Donec malesuada ex sit amet pretium sid ornare. Nulla congue scelerisque tellus, utpretium nulla malesuada sedint.
-                            Suspendisse venenatis</p>
+                    
+                    <div>
+                        Total spent <br>8645676€
                     </div>
-                    <div class="col-md-4 mt-md-0 mt-5 bottom-grid">
-                        <span class="fa clr3 fa-credit-card"></span>
-                        <p class="number">3</p><h4>Select Payment Method</h4>
-                        <p class="mt-4">Donec malesuada ex sit amet pretium sid ornare. Nulla congue scelerisque tellus, utpretium nulla malesuada sedint.
-                            Suspendisse venenatis</p>
-                    </div>
-                    <span class="border-lines"></span>
+                    
                 </div>
-            </div>
-        </section>
-        <!-- //banner bottom -->
-
-
-        <!-- products -->
-        <section class="products py-5" id="stats">
-            <div class="container py-lg-5 py-3">
-                <h3 class="title-w3ls mb-sm-5 mb-4 text-center"> Get Started</h3>
-                <div class="row products_grids text-center mt-5">
-                    <div class="col-lg-3 col-6 grid4">
-                        <div class="prodct1">
-                            <a href="#">
-                                <div class="icon-w3ls f1"><span class="fab fa-audible"></span></div>
-                                <h4 class="mt-2">Courses </h4> <h4 class="mt-2"> <strong>20</strong></h4>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-6 grid5">
-                        <div class="prodct1">
-                            <a href="#">
-                                <div class="icon-w3ls f2"><span class="fa fa-handshake-o"></span></div>
-                                <h4 class="mt-2"> Completed</h4> <h4 class="mt-2"><strong> 5</strong></h4>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-6 grid7 mt-md-0 mt-3">
-                        <div class="prodct1">
-                            <a href="checkout.html">
-                                <div class="icon-w3ls f4"><span class="fa fa-credit-card"></span></div>
-                                <h4  class="mt-2">Checkout</h4> <h4 class="mt-2"><strong> 3</strong></h4>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-6 grid6 mt-md-0 mt-3">
-                        <div class="prodct1">
-                            <a href="#">
-                                <div class="icon-w3ls f3"><span class="fa fa-history"></span></div>
-                                <h4 class="mt-2">History</h4> <h4 class="mt-2"> <strong>7</strong></h4>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
+                
             </div>
 
-        </section>
-        <!-- //products -->
+        </main>
 
-    </div>
 
-</main>
-</body>
+    </body>
+
 </html>

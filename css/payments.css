@@ -1,318 +1,34 @@
-
-
-/* ======== Payment Section ======== */
-
-main{
-    background: url('../images/binding_light.png') repeat;
-    height: 100%;
-    position: relative;
-    overflow: auto;
+main > div{
+    align-content: flex-start;
 }
 
-main > div {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    bottom: 20px;
-    left: 20px;
-    background-color: #FFF;
-    border-radius: 8px;
-    padding: 15px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    overflow: auto;
-    justify-content: center;
+.box{
+    align-self: flex-start;
 }
 
-main .box{
+.totals div{
     display: inline-block;
-    border-radius: 4px;
-    background-color: #deebf7;
-    margin: 10px;
-    max-width: 600px;
-    box-shadow: 6px 6px 5px #999;
 }
 
-aside {
-    background: #2f323a;
-    padding-top: 30px;
-    width: 250px;
-    height: 100%;
-    transition: margin-left 0.5s;
-    float: left;
+.box h1{
+    padding: 20px;
 }
 
-aside center img{
-    width: 150px;
-    height: auto;
-    margin-bottom: 10px;
+.box table{
+    border-collapse: collapse;
 }
 
-aside p{
-    text-align: center;
-    line-height: 60px;
+.box table tr{
+    border-top: 2px solid #FFF;
 }
 
-aside p label{
-    cursor: pointer;
+.box table tr td{
+    padding: 10px;
+}
+.outgoing{
+    color: #F00;
 }
 
-aside > a{
-    color: #FFF;
-    display: block;
-    width: 100%;
-    line-height: 60px;
-    text-decoration: none;
-    padding-left: 40px;
-    transition: background-color 0.3s;
+.incoming{
+    color: #0F0;
 }
-
-aside > a span{
-    color: #FFF;
-}
-
-aside > a:hover, aside > a.current_section{
-    background-color: #19B3D3;
-}
-
-aside i{
-    color: #FFF;
-    margin-right: 10px;
-}
-
-.sidebar i{
-    padding-right: 10px;
-
-}
-
-/* SLIDE THE ENTIRE MENU TO THE LEFT */
-
-#toggle_menu:checked + aside{
-    margin-left: -200px;
-}
-
-#toggle_menu:checked + aside img{
-    visibility: hidden;
-}
-
-
-/* MOVE THE ICONS TO THE RIGHT */
-#toggle_menu:checked + aside a, #toggle_menu:checked + aside p{
-    font-size: 20px;
-    text-align: right;
-    padding-right: 5px;
-}
-
-/* HIDE THE LABELS OF THE MENU ITEMS */
-#toggle_menu:checked + aside a span{
-    display: none;
-}
-
-/* SET CHECKBOX TO BE INVISIBLE */
-#toggle_menu {
-    display: none;
-}
-
-
-
-
-/* Body */
-
-html, body{
-    height: 100%;
-    position: relative;
-
-
-    font-family: sans-serif;
-    line-height: 1.15;
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-    -ms-overflow-style: scrollbar;
-    -webkit-tap-highlight-color: transparent;
-
-
-    margin: 0;
-    font-size: 100%;
-    background: #fff;
-    scroll-behavior: smooth;
-    font-family: 'Catamaran', sans-serif;
-
-
-}
-
-
-body a {
-    text-decoration: none;
-    transition: 0.5s all;
-    -webkit-transition: 0.5s all;
-    -moz-transition: 0.5s all;
-    -o-transition: 0.5s all;
-    -ms-transition: 0.5s all;
-}
-
-
-h1, h2, h3, h4, h5, h6 {
-    margin: 0;
-    letter-spacing: 1px;
-    font-weight: 600;
-    font-family: 'Catamaran', sans-serif;
-}
-
-p {
-    font-size: 0.9em;
-    color: #777;
-    line-height: 1.9em;
-    letter-spacing: 1px;
-}
-
-ul {
-    margin: 0;
-    padding: 0;
-}
-
-
-
-/*-- features --*/
-.about {
-    background: #f7f7f7;
-    width: 100%;
-}
-
-h3.title-w3ls,
-h3.title-w3ls.two {
-    font-size: 3em;
-    color: #444;
-}
-h3.title-w3ls.two {
-    color: #fff;
-}
-
-
-.ab-content h4 {
-    font-size: 1.2em;
-    color: #4c4d4e;
-    margin: 2em 0 1em 0;
-    text-transform: uppercase;
-    font-weight: 600;
-}
-
-ul.tic-info li span {
-    color: #ec1c24;
-    font-size: 1.4em;
-    vertical-align: middle;
-}
-
-ul.tic-info li {
-    color: #566773;
-    font-size: 0.9em;
-    margin-bottom: 1.5em;
-    letter-spacing: 1px;
-
-}
-
-
-/*-- banner bottom --*/
-.bottom-grids h4 {
-    font-size: 1.4em;
-    text-transform: capitalize;
-    letter-spacing: 1px;
-    font-weight: 600;
-    color: #555;
-}
-
-.bottom-grids p {
-    color: #888;
-    padding: 0 1em;
-}
-
-.bottom-grid span.fa {
-    font-size: 50px;
-}
-
-span.border-line {
-    display: block;
-    height: 1px;
-    width: 100%;
-    position: absolute;
-    top: 30%;
-    z-index: -1;
-    border-top: 1px dashed #ddd;
-}
-
-.bottom-grids {
-    position: relative;
-    z-index: 1;
-}
-
-.bottom-grid p.number {
-    background: #333;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    font-weight: bold;
-    color: #fff;
-    border-radius: 50%;
-    margin: 2em auto;
-}
-
-.clr1 {color: #0099e5;}
-.clr2 {color: #ff4c4c;}
-.clr3 {color: #34bf49;}
-
-
-
-/*-- products --*/
-
-.prodct1 span {
-    color: #fff;
-    font-size: 1.5em;
-    line-height: 2.8em;
-}
-.icon-w3ls {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    margin: 0 auto 1em;
-    text-align: center;
-}
-.prodct1 {
-    background: #fff;
-    padding: 3em;
-}
-.prodct1 a {
-    display: block;
-}
-.prodct1 h4 {
-    font-size: 1.2em;
-    text-transform: capitalize;
-    letter-spacing: 1px;
-    font-weight: 600;
-    color: #555;
-}
-.prodct1 a:hover {
-    transform: scale(0.9);
-    -webkit-transform: scale(0.9);
-    -moz-transform: scale(0.9);
-    -ms-transform: scale(0.9);
-    -o-transform: scale(0.9);
-}
-
-.products {
-    background: #e6f2f6;
-    width: 100%;
-}
-
-.prodct1 h4 strong {font-size: 1.4em;}
-.f1 {background: #0066b2;}
-.f2 {background: #fdbd10;}
-.f3 {background: #ff0b00;}
-.f4 {background: #ae63e4;}
-
-
-/*-- //products --*/
-
-
-
-
-
