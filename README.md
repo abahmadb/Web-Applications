@@ -24,7 +24,7 @@ Simply clone this repo with Git and compile with Maven:
 	
 This will generate a 'target' folder with a WAR package named education.X.X.X.war, where X.X.X is the version of the project.
 
-The archive can then be deployed in Tomcat. To sign in on the the website, any combination email-password can be used, as long as the email is sintattically 
+The archive can then be deployed in Tomcat. To sign in on the the website, any combination email-password can be used, as long as the email is syntactically an email (like something​@smthng.com)
 
 ## Contributors:
 Students who made this Project possible
