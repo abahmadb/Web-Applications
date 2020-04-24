@@ -2,33 +2,59 @@ main > div{
     align-content: flex-start;
 }
 
-.box{
+main .box{
     align-self: flex-start;
+    max-width: none;
 }
 
-.totals div{
+main .box p{
+    padding: 20px;
+    position: relative;
+    font-weight: bold;
+    font-size: 1.8em;
+}
+
+main .box p span{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-weight: normal;
+    font-size: 18px;
+}
+
+main .totals div{
     display: inline-block;
-}
-
-.box h1{
+    text-align: center;
+    font-size: 1em;
+    font-weight: 600;
     padding: 20px;
 }
 
-.box table{
+main .totals div p{
+    background-color: #756bb1;
+    padding: 40px;
+    border-radius: 8px;
+    color: #FFF;
+}
+
+
+
+main .box table{
     border-collapse: collapse;
 }
 
-.box table tr{
+main .box table tr{
     border-top: 2px solid #FFF;
 }
 
-.box table tr td{
-    padding: 10px;
+main .box table tr td, main .box table tr th{
+    padding: 15px 30px;
+    white-space: nowrap;
 }
-.outgoing{
+main .outgoing{
     color: #F00;
 }
 
-.incoming{
+main .incoming{
     color: #0F0;
 }
