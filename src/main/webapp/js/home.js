@@ -93,26 +93,15 @@ function flip_registration(ev) {
 }//flip_registration
 
 $( function() {
-    var topics = [
-        "Math",
-        "Calculus",
-        "C++",
-        "Java",
-        "JavaScript",
-        "HTML",
-        "CSS",
-        "Yoga",
-        "Guitar",
-        "English",
-        "Photoshop",
-        "Dancing",
-        "Singing",
-        "French",
-        "Spanish"
-    ];
 
     $("#search_box input").autocomplete({
-        source: topics
+        source: topics,
+		select: function(e, ui,){
+			e.preventDefault() // <--- Prevent the value from being inserted.
+            $("#topic_id").val(ui.item.id);
+
+            $(this).val(ui.item.value);
+		}
     });
 
     $(".sign_in input[type='submit']").click(function(){

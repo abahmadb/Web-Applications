@@ -1,3 +1,4 @@
+<%@ include file="include/db_connect.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -69,7 +70,7 @@
             <div id="menu_wrap">
                 <nav>
                     <a href="" class="current_page">Home</a>
-                    <a href="about.html">About us</a>
+                    <a href="about.jsp">About us</a>
                     <a href="" onclick="toggle_modal(event);">Sign in</a>
                     <!--<a href="control.html"><img src="images/MarcoG.jpg">&nbsp;</a>-->
                 </nav>
@@ -91,12 +92,12 @@
                     <div>
 
                         <div>
-                            <h1>What do you like to learn?</h1>
+                            <h1>What do you want to learn?</h1>
                         </div>
 
                         <div id="search_box">
-                            <input type="text" placeholder="What would you like to learn?" size="30">
-                            <button class="button" onclick="location.href='search.html?topic='+this.previousElementSibling.value">SEARCH</button>
+                            <input type="text" placeholder="What would you like to learn?" size="30"><form action="search.jsp" method="get"><input type="hidden" id="topic_id" name="topic_id" value="">
+                            <input type="submit" class="button" value="SEARCH"></form>
                         </div>
 
                     </div>
@@ -248,6 +249,25 @@
             <div onclick="toggle_modal(event)" class="close_modal">X</div>
 
         </div>
+        
+        <script>
+
+	var topics = [        
+
+        <% 
+        
+           // GENERATION OF TOPICS LIST
+			ResultSet rs = st.executeQuery("SELECT * FROM topic");
+			String list = "";
+			while(rs.next())
+				list += "{id:\"" + rs.getInt("IDTopic") + "\",value:\"" + rs.getString("Label") + "\"},";
+			
+            out.print(list.substring(0, list.length()-1));
+        %>
+
+	];
+
+	</script>
 
         <!-- MAIN JS -->
 
