@@ -67,6 +67,34 @@
                 </configuration>
             </plugin>
 
+            <!-->Tomcat plugin, used for development speed-up
+
+            Usage (two options): 1) mvn clean package tomcat7:run to open a website session through the Tomcat 7
+                                    embedded in the plugin (it means you don't need Tomcat installed, because it will use
+                                    the one inside the plugin) at localhost:8080/remytutor, accessible by browser.
+                                    2) mvn clean package tomcat7:redeploy to interact with an already running
+                                    Tomcat (tested, works also with Tomcat 9) and deploy/redeploy automatically the war,
+                                    that will be visible in the manager-gui, and can be accessed directly through
+                                    localhost:8080/remytutor.
+
+           In your tomcat-users.xml you need at least the following xml code if you want to use option 2) :
+
+           <role rolename="manager-script"/>
+           <user username="admin" password="pass" roles="manager-script"/>
+
+           You can have custom username and password, and in that case you need to modify the below configuration yourself-->
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <url>http://localhost:8080/manager/text</url>
+                    <username>admin</username>
+                    <password>pass</password>
+                    <path>/remytutor</path>
+                </configuration>
+            </plugin>
+
         </plugins>
 
         <resources>
