@@ -10,7 +10,7 @@ CREATE TABLE person (
     Gender      CHAR(1),
     DoB         DATE,
     Email       VARCHAR(50)     UNIQUE NOT NULL,
-    Passwd      CHAR(41)        NOT NULL,
+    Passwd      CHAR(65)        NOT NULL,
     Phone       CHAR(12),
     Description TEXT
 )engine=InnoDB;
