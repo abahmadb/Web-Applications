@@ -41,8 +41,8 @@
 
             <div id="menu_wrap">
                 <nav>
-                    <a href="index.html">Home</a>
-                    <a href="about.html" class="current_page">About us</a>
+                    <a href="index.jsp">Home</a>
+                    <a href="about.jsp" class="current_page">About us</a>
                     <a href="" onclick="toggle_modal(event);">Sign in</a>
                 </nav>
             </div>
