@@ -103,7 +103,7 @@
                 <targetPath>${basedir}/target/${project.artifactId}-${project.version}</targetPath>
                 <directory>.</directory>
                 <includes>
-                    <include>*.html</include>
+                    <include>*.jsp</include>
                 </includes>
             </resource>
 
@@ -130,6 +130,14 @@
                     <include>**/*.*</include>
                 </includes>
             </resource>
+            
+            <!-- <resource>
+                <targetPath>${basedir}/target/${project.artifactId}-${project.version}/java</targetPath>
+                <directory>${basedir}/src/main/webapp/java</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+            </resource> -->
 
         </resources>
 
@@ -140,6 +148,31 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.20</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.2.2</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
         </dependency>
     </dependencies>
 

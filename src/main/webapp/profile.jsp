@@ -1,3 +1,10 @@
+<!-- include jsp files -->
+<%@ include file="include/db_connect.jsp" %>
+<%@ include file="include/menu.jsp" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,6 +31,7 @@
         <!-- Quill.js script for creating the personal presentation -->
         <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
         <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+        
     </head>
 
 
@@ -41,12 +49,12 @@
             </center>
 
             <p><label for="toggle_menu"><i class="fas fa-bars"></i></label></p>
-            <a href="control.html"><i class="fas fa-desktop"></i><span>Control Panel</span></a>
-            <a href="chat.html"><i class="fas fa-comment-dots"></i><span>Chat</span></a>
-            <a href="feedbacks.html"><i class="far fa-thumbs-up"></i><span>Feedbacks</span></a>
-            <a href="payments.html"><i class="fas fa-money-check-alt"></i><span>Payments</span></a>
-            <a href="profile.html"  class="current_section"><i class="fas fa-user-alt"></i><span>Profile</span></a>
-            <a href="index.html"><i class="fas fa-info-circle"></i><span>Sign out</span></a>
+            <a href="control.jsp"><i class="fas fa-desktop"></i><span>Control Panel</span></a>
+            <a href="chat.jsp"><i class="fas fa-comment-dots"></i><span>Chat</span></a>
+            <a href="feedbacks.jsp"><i class="far fa-thumbs-up"></i><span>Feedbacks</span></a>
+            <a href="payments.jsp"><i class="fas fa-money-check-alt"></i><span>Payments</span></a>
+            <a href="profile.jsp"  class="current_section"><i class="fas fa-user-alt"></i><span>Profile</span></a>
+            <a href="index.jsp"><i class="fas fa-info-circle"></i><span>Sign out</span></a>
 
         </aside>
 
@@ -164,7 +172,7 @@
                         <p>
                             <img src="images/id.svg" class="id_img" alt="id image">
                         </p>
-                        <form action="" method="post">
+                        <form action="<c:url value="/uploadFile.jsp"/>" method="post">
                             <p>
                                 <label class="file_label" for="document_card">Upload ID</label>
                             </p>
