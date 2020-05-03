@@ -92,63 +92,98 @@ function flip_registration(ev) {
 
 }//flip_registration
 
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+
 $( function() {
 
+    // SET THE AUTOCOMPLETION FOR TOPICS
     $("#search_box input").autocomplete({
         source: topics,
-		select: function(e, ui,){
-			e.preventDefault() // <--- Prevent the value from being inserted.
+        select: function(e, ui,){
+            e.preventDefault() // <--- Prevent the value from being inserted.
             $("#topic_id").val(ui.item.id);
 
             $(this).val(ui.item.value);
-		}
+        }
     });
 
+    // SIGN-IN REQUEST
     $(".sign_in input[type='submit']").click(function(){
 
-                
         // VALIDATE THE EMAIL
-        
+
         var email = $(".sign_in input[type='email']")[0];
-        
+
         if(!email.checkValidity() || email.value.trim() == ""){
             $("#login_error").html('Please input a correct e-mail address');
             return;
         }
-            
-        
-        // VALIDATE PASSWORD
-        
+
+
+        // DON'T VALIDATE PASSWORD ==> COULD DISCLOSE PASSWORD FORMAT?
+
         var password = $(".sign_in input[type='password']")[0];
-        
+
         // REMEMBER ME
-        
+
         var rm = $(".sign_in input[type='checkbox']").prop("checked");
-        
+
         var credentials = {
             uname: email.value,
             pword: password.value,
-            remember_me: rm
+        }
+
+        $.post("indexpost", credentials, function(data) {
+
+            var res = JSON.parse(data);
+            if(res.response == 1){
+                $("nav a:last-child").replaceWith(`<a href="control.html"><img src="images/imageset/profile/${res.userid}.jpg">&nbsp;</a>`);
+                if(rm) setCookie("userid", res.userid, 5*24*60*60);
+                toggle_modal(null);
+            }
+            else{
+                $("#login_error").html('Incorrect e-mail and/or password.');
+                $(".sign_up_in").effect("shake");
+            }
+        });
+
+    });
+    
+    // SIGN-UP REQUEST
+    $(".sign_up input[type='submit']").click(function(){
+
+        // VALIDATE THE EMAIL
+
+        var email = $(".sign_up input[type='email']")[0];
+
+        if(!email.checkValidity() || email.value.trim() == ""){
+            $("#register_error").html('Please input a correct e-mail address');
+            return;
+        }
+
+    
+        var pwords = $(".sign_up input[type='password']");
+        
+        if(pwords[0].value != pwords[1].value){
+            $("#register_error").html('The password and its confirmation must be equal');
+            return;
         }
         
-        /*$.post("login_mockup.json", function(data) {
-        });*/
-        
-        var result = {
-            response: 1,
-            user_pic: "MarcoG.jpg"
+        // TERMS AND CONDITIONS
+
+        var rm = $(".sign_up input[type='checkbox']").prop("checked");
+
+        if(!rm){
+            $("#register_error").html('You have to accept the terms and conditions');
+            return;
         }
-        
-        if(result.response == 1){
-            $("nav a:last-child").replaceWith(`<a href="control.html"><img src="images/${result.user_pic}">&nbsp;</a>`);
-            toggle_modal(null);
-        }
-        else{
-            $("#login_error").html('Incorrect e-mail and/or password.');
-            $(".sign_up_in").effect("shake");
-        }
-        
-        
+    
     });
 });
 

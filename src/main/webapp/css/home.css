@@ -109,7 +109,7 @@ main section:nth-child(1) #search_box *{
     margin: 0 5px;
 }
 
-main section:nth-child(1) #search_box input{
+main section:nth-child(1) #search_box input[type="text"]{
     outline: none;
     padding: 9px 9px 9px 22px;
     color: #777777;
@@ -184,6 +184,6 @@ footer p i{
     cursor: pointer;
 }
 
-#login_error{
+#login_error, #register_error{
     color: #F00;
 }

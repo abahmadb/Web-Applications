@@ -97,7 +97,7 @@
 	height: auto;
 }
 
-.sign_in div > span, .sign_up div > span{
+.sign_in div > span, .sign_up div > form > span{
 	display: block;
 	margin: 20px 0;
 	position: relative;
@@ -112,12 +112,13 @@
     padding: 6px 30px;
 }
 
-.sign_in div span img, .sign_up div span img{
+.sign_in div span i, .sign_up div span i{
 	position: absolute;
     left: 0;
     top: 50%;
     transform: translateY(-50%);
     color: #222;
+    font-size: 18px;
 }
 
 .flipped{

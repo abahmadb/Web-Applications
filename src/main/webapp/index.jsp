@@ -1,4 +1,6 @@
-<%@ include file="include/db_connect.jsp" %>
+<%@ page contentType="text/html;charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,8 +73,14 @@
                 <nav>
                     <a href="" class="current_page">Home</a>
                     <a href="about.jsp">About us</a>
-                    <a href="" onclick="toggle_modal(event);">Sign in</a>
-                    <!--<a href="control.html"><img src="images/MarcoG.jpg">&nbsp;</a>-->
+                    <c:choose>
+                      <c:when test="${sessionScope.userid != null}">
+                        <a href="control.html"><img src="images/imageset/profile/${sessionScope.userid}.jpg">&nbsp;</a>
+                      </c:when>
+                      <c:otherwise>
+                        <a href="" onclick="toggle_modal(event);">Sign in</a>
+                      </c:otherwise>
+                    </c:choose>
                 </nav>
             </div>
 
@@ -196,21 +204,27 @@
 
                         <h2>Sign up</h2>
 
-                        <span><img src="images/account.png"><input type="text" placeholder="Full name"></span>
+                        <form action="indexpost" method="POST">
+                            
+                        <span><i class="fas fa-user"></i><input type="text" placeholder="First name" name="firstname"></span>
+                            
+                        <span><i class="fas fa-user"></i><input type="text" placeholder="Last name" name="lastname"></span>
 
-                        <span><img src="images/email.png"><input type="text" placeholder="E-mail address"></span>
+                        <span><i class="fas fa-envelope"></i><input type="email" placeholder="E-mail address" name="email"></span>
 
-                        <span><img src="images/password.png"><input type="password" placeholder="Password"></span>
+                        <span><i class="fas fa-lock"></i><input type="password" placeholder="Password" name="passwd"></span>
 
-                        <span><img src="images/password.png"><input type="password" placeholder="Repeat password"></span>
+                        <span><i class="fas fa-unlock"></i><input type="password" placeholder="Repeat password" name="passwd_confirm"></span>
 
                         <span><label class="custom_checkbox">
-                            <input type="checkbox">
+                            <input type="checkbox" required>
                             <span class="checkmark"></span>
                             </label> I agree to terms and conditions and the privacy policy</span>
 
-                        <br><input type="submit" value="Register" class="button">
+                        <br><input type="submit" value="Register" class="button" name="register">
 
+                            <span id="register_error"></span>
+                        </form>
                     </div>
 
                 </div>
@@ -227,9 +241,9 @@
 
                         <h2>Sign in</h2>
 
-                        <span><img src="images/account.png"><input type="email" placeholder="E-mail address"></span>
+                        <span><i class="fas fa-envelope"></i><input type="email" placeholder="E-mail address"></span>
 
-                        <span><img src="images/password.png"><input type="password" placeholder="Password"></span>
+                        <span><i class="fas fa-unlock"></i><input type="password" placeholder="Password"></span>
 
                         <span><label class="custom_checkbox">
                             <input type="checkbox" checked>
@@ -251,20 +265,9 @@
         </div>
         
         <script>
-
-	var topics = [        
-
-        <% 
-        
-           // GENERATION OF TOPICS LIST
-			ResultSet rs = st.executeQuery("SELECT * FROM topic");
-			String list = "";
-			while(rs.next())
-				list += "{id:\"" + rs.getInt("IDTopic") + "\",value:\"" + rs.getString("Label") + "\"},";
-			
-            out.print(list.substring(0, list.length()-1));
-        %>
-
+            
+	var topics = [    
+        ${fn:replace(topics_list, "&#039;", "'")}
 	];
 
 	</script>
