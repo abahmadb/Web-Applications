@@ -1,0 +1,8 @@
+Score: 10
+
+Comments: 
+- Nice use of Quills,js
+- Very nice and clean design
+- Very good implementation of style/design from scratch
+- Pleasant user interaction
+- Clear and well done report
