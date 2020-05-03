@@ -20,5 +20,16 @@
         <param-value>
             ${basedir}/../main/images
         </param-value> 
-</context-param>
+    </context-param>
+
+    <servlet>
+        <servlet-name>feedbacksServlet</servlet-name>
+        <servlet-class>FeedbacksServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>feedbacksServlet</servlet-name>
+        <url-pattern>/feedbacksServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>
