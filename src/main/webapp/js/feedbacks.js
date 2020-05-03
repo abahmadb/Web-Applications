@@ -1,42 +1,19 @@
-let sum = 0;
-let data = "";
-let counters = [0, 0, 0, 0, 0];
+//variables data, counters and avg come directly from jsp + servlet
+//fixing avg
+avg = parseFloat(parseFloat(avg).toFixed(1));
 
-//parse json data
-//as of now, the structure of the json is an array of objects user with keys 'user', 'rating' and 'comment'
-let obj = JSON.parse('[{"user":"Marco Dalla Mutta","rating":4,"comment":"Very good"},' +
-                        '{"user":"Xianwen Jin","rating":4,"comment":"Excellent"},' +
-						'{"user":"Victor Semencenco","rating":5,"comment":"Excellent"}]');
-
-for (let i = 0; i < obj.length; i++) {
-
-    //sum of the scores
-    sum += obj[i].rating;
-
-    //split the feedbacks count
-    //every feedback can be 5,4,3,2 or 1 star
-    //this will be used to fill the bars
-    counters[obj[i].rating - 1]++;
-
-    //single feedback structure
-    data += '<div class="rev">' +
-                '<img src="images/user-photo2.png" alt=""> ' +
-                '<div>' + obj[i].user + '</div>' +
-                '<div>Score: ' + obj[i].rating + '</div>' +
-                '<br><div>\"' + obj[i].comment + '\"</div>' +
-            '</div>';
-    //data will contain all the concatenated reviews
-}
+//count the total number of feedbacks
+let numFeed = counters.reduce((a, b) => a + b, 0);
 
 //insert all feedbacks into DOM
 let rev = document.getElementById("rev-container");
 rev.innerHTML = data;
-//graphical fix, it's placed here because it's applied only if there are reviews to load
-rev.style.paddingRight = "1px";
-rev.style.height = "auto";
 
-//compute the average score
-let avg = parseFloat((sum / obj.length).toFixed(1));
+if (data.length !== 0) {
+    //graphical fix, applied only if there are reviews to load
+    rev.style.paddingRight = "1px";
+    rev.style.height = "auto";
+}
 
 //set stars width using avg
 let stars = document.getElementsByClassName("rating-upper");
@@ -44,7 +21,7 @@ stars[0].style.width = ((avg / 5) * 100) + "%";
 
 //insert first box inner paragraph into DOM
 let p = document.getElementById("avg");
-p.innerText = avg + ' average based on ' + obj.length + ' reviews.';
+p.innerText = avg + ' average based on ' + numFeed + ' reviews.';
 
 //fill correctly all first box bars using counters array
 for (let i = 0; i < counters.length; i++) {
@@ -52,7 +29,7 @@ for (let i = 0; i < counters.length; i++) {
     //get the bar
     let bar = document.getElementsByClassName("bar-" + (i + 1));
     //fill it with the right percentage width
-    bar[0].style.width = Math.round(counters[i] * 100 / obj.length) + "%";
+    bar[0].style.width = Math.round(counters[i] * 100 / numFeed) + "%";
     //write the bar counter on the right of the bar
     let side = document.getElementsByClassName("side right");
     side[counters.length - i - 1].innerText = counters[i].toString();
@@ -142,6 +119,10 @@ function toggle_modalfeed(event){
         let heading = document.getElementById("feedform").querySelectorAll("div")[0];
         heading.innerHTML = "Give a feedback to " + user + "!";
 
+        //also update the input to be sent to the back-end
+        let teacherinput = document.getElementsByName("teacher")[0];
+        teacherinput.value = user;
+
     }
 
     //use the toggle_modal from home.js to show or hide the modal
@@ -182,5 +163,9 @@ function update_local_stars(num){
     //update the score description text
     let scoretag = document.getElementById("scoretag");
     scoretag.innerText = "Score: "+ num;
+
+    //also update the value that will be sent to the back-end
+    let scoreinput = document.getElementsByName("score")[0];
+    scoreinput.value = num;
 
 }

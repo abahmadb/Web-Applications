@@ -201,7 +201,7 @@ main >div >div:nth-child(3){
 }
 
 /*comment of the feedback form*/
-#comment{
+textarea{
     margin: 10px 0 15px 0;
     padding: 3px;
     resize:none;

@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,16 +36,16 @@
         <!-- SIDEBAR FOR THE DASHBOARD -->
         <aside>
             <center>
-                <a href="index.html"><img src="images/logo_transparent.png" alt=""></a>
+                <a href="index.jsp"><img src="images/logo_transparent.png" alt=""></a>
             </center>
 
             <p><label for="toggle_menu"><i class="fas fa-bars"></i></label></p>
-            <a href="control.html"><i class="fas fa-desktop"></i><span>Control Panel</span></a>
-            <a href="chat.html"><i class="fas fa-comment-dots"></i><span>Chat</span></a>
-            <a href="feedbacks.html" class="current_section"><i class="far fa-thumbs-up"></i><span>Feedbacks</span></a>
-            <a href="payments.html"><i class="fas fa-money-check-alt"></i><span>Payments</span></a>
-            <a href="profile.html"><i class="fas fa-user-alt"></i><span>Profile</span></a>
-            <a href="index.html"><i class="fas fa-info-circle"></i><span>Sign out</span></a>
+            <a href="control.jsp"><i class="fas fa-desktop"></i><span>Control Panel</span></a>
+            <a href="chat.jsp"><i class="fas fa-comment-dots"></i><span>Chat</span></a>
+            <a href="feedbacks.jsp" class="current_section"><i class="far fa-thumbs-up"></i><span>Feedbacks</span></a>
+            <a href="payments.jsp"><i class="fas fa-money-check-alt"></i><span>Payments</span></a>
+            <a href="profile.jsp"><i class="fas fa-user-alt"></i><span>Profile</span></a>
+            <a href="index.jsp"><i class="fas fa-info-circle"></i><span>Sign out</span></a>
 
         </aside>
 
@@ -145,7 +146,12 @@
 
                 </div>
 
-                <div class="flex-container" id="rev-container"></div>
+                <div class="flex-container" id="rev-container">
+                    <!-- call the servlet, everything will be passed to js script -->
+                    <script>
+                        <jsp:include page="/feedbacksServlet"/>
+                    </script>
+                </div>
 
                 <div>
 
@@ -165,13 +171,15 @@
 
             <div class="sign_up_in" id="feedform">
 
-                <form action="" method="post">
+                <form method="post" action="feedbacksServlet">
 
                     <center>
 
                         <div></div>
+                        <input type="hidden" name="teacher" value="">
                         <br>
                         <div id="scoretag">Score: 0</div>
+                        <input type="hidden" name="score" value="0">
 
                         <div class="rating">
                             <div class="rating-upper">
@@ -192,7 +200,7 @@
                         <br>
                         <label for="comment">Comment:</label>
                         <br>
-                        <textarea id="comment" rows="5" cols="33"></textarea>
+                        <textarea id="comment" name="comment" rows="5" cols="33"></textarea>
                         <br>
                         <input class="feedreq" type="submit" value="Submit feedback">
 

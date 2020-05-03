@@ -16,7 +16,7 @@ This directory contains the source code of the project developed for **RemyTutor
 - [Maven](https://maven.apache.org/) -  Software project management and comprehension tool
 - [Apache Tomcat](http://tomcat.apache.org/)  -  Java Servlet, JavaServer Pages, Java Expression Language and Java WebSocket technologies
 
-##Usage
+## Usage
 
 Simply clone this repo with Git and compile with Maven:
 
