@@ -1,18 +1,18 @@
 //variables data, counters and avg come directly from jsp + servlet
+
 //fixing avg
 avg = parseFloat(parseFloat(avg).toFixed(1));
 
 //count the total number of feedbacks
 let numFeed = counters.reduce((a, b) => a + b, 0);
 
-//insert all feedbacks into DOM
-let rev = document.getElementById("rev-container");
-rev.innerHTML = data;
+if (numFeed > 0) {
 
-if (data.length !== 0) {
+    let rev = document.getElementById("rev-container");
     //graphical fix, applied only if there are reviews to load
     rev.style.paddingRight = "1px";
     rev.style.height = "auto";
+
 }
 
 //set stars width using avg

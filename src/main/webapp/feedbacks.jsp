@@ -147,10 +147,18 @@
                 </div>
 
                 <div class="flex-container" id="rev-container">
-                    <!-- call the servlet, everything will be passed to js script -->
+                    <!-- call the servlet to define the jsp attributes -->
+                    <jsp:include page="/feedbacksServlet"/>
+
+                    <!-- feedbacks will be placed here -->
+                    ${feedbacks}
+
+                    <!-- and here will be placed some variables needed by js script-->
                     <script>
-                        <jsp:include page="/feedbacksServlet"/>
+                        let counters = ${counters};
+                        let avg = ${avg};
                     </script>
+
                 </div>
 
                 <div>
