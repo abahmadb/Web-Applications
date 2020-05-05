@@ -76,7 +76,7 @@
                             General information 
                         </h4>
                         <br>
-                        <form action="" method="post">
+                        <form action="updatePersonServlet" method="post">
                             <label for="fname">First Name</label><br>
                             <input type="text" id="fname" name="firstname" placeholder="Name.." required autocomplete="off"><br>
 
@@ -84,14 +84,14 @@
                             <input type="text" id="lname" name="lastname" placeholder="Surname.." required autocomplete="off"><br>
 
                             <label for="gender">Gender</label><br>
-                            <select class="select-css">
+                            <select class="select-css" name="gender">
                                 <option>Male</option>
                                 <option>Female</option>
                                 <option>Other</option>
                             </select>
 
                             <label for="birthday">Birthday</label><br>
-                            <input type="date" id="birth" name="birth" placeholder="dd/mm/year"><br>
+                            <input type="date" id="birth" name="birth" placeholder="yyyy-mm-dd"><br>
 
                             <label for="email">E-mail</label><br>
                             <input type="email" id="email" name="email" placeholder="E-mail.." required autocomplete="off"><br>
