@@ -11,7 +11,7 @@ public class Person {
     private final int idUser;
     private final String name;
 	private final String surname;
-	private final char gender;
+	private final String gender;
 	private final java.sql.Date dob;
 	private final String email;
 	private final String passwd;
@@ -19,7 +19,7 @@ public class Person {
 	private final String description;
 
 	// constructor
-	public Person(int idUser, String name, String surname, char gender,
+	public Person(int idUser, String name, String surname, String gender,
 			java.sql.Date dob, String email, String passwd, String phone, String description) {
 			
 		this.idUser = idUser;		
@@ -48,7 +48,7 @@ public class Person {
         return surname;
     }
 	
-	public final char getGender() {
+	public final String getGender() {
         return gender;
     }
 	

@@ -29,11 +29,11 @@ public final class UpdatePersonDAO {
 			pstmt = con.prepareStatement(STATEMENT);
 			pstmt.setString(1, person.getName());
 			pstmt.setString(2, person.getSurname());
-			pstmt.setInt(3, person.getGender());
+			pstmt.setString(3, person.getGender());
 			pstmt.setDate(4, person.getDob());
 			pstmt.setString(5, person.getEmail());
 			pstmt.setString(6,  person.getPhone());
-			pstmt.setInt(7,  person.getID());
+			pstmt.setInt(7, person.getID());
 			
 			pstmt.execute();
 		} finally {
