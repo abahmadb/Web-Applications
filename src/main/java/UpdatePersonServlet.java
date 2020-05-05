@@ -45,15 +45,18 @@ public final class UpdatePersonServlet extends DatabaseServlet{
 			} else if (temp.equals("Female")){
 				gender = "F";
 			}
-			/*temp = req.getParameter("birth").toString();
-			SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+			temp = req.getParameter("birth").toString();
+			/*SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 			dob = new java.sql.Date(format.parse(temp).getTime());*/
+			if (!temp.equals("gg/mm/aaaa")){
+				dob = Date.valueOf(req.getParameter("birth").toString());
+			}
 			email = req.getParameter("email");
 			phone = req.getParameter("phone_nr");	
 				
 			// create person from the request parameters
 			person = new Person(idUser, name, surname, gender, dob, email, passwd, phone, description);
-			//person = new Person(1, "TEST", null,'C',null,null,null,null,null);
+		
 			new UpdatePersonDAO(getConnection(), person).updatePerson();
 			
 		} catch (SQLException e){
@@ -70,7 +73,7 @@ public final class UpdatePersonServlet extends DatabaseServlet{
 			out.printf("<html lang=\"en\">%n");
 			out.printf("<head>%n");
 			out.printf("<meta charset=\"utf-8\">%n");
-			out.printf("<title>HelloWorld Servlet Response</title>%n");
+			out.printf("<title>Error</title>%n");
 			out.printf("</head>%n");
 
 			out.printf("<body>%n");
@@ -82,35 +85,8 @@ public final class UpdatePersonServlet extends DatabaseServlet{
 			out.printf("</body>%n");
 		
 			out.printf("</html>%n");
-		} /*catch (ParseException e){
-				
-			// set the MIME media type of the response
-			res.setContentType("text/html; charset=utf-8");
-
-			// get a stream to write the response
-			PrintWriter out = res.getWriter();
-
-			// write the HTML page
-			out.printf("<!DOCTYPE html>%n");
+		}
 		
-			out.printf("<html lang=\"en\">%n");
-			out.printf("<head>%n");
-			out.printf("<meta charset=\"utf-8\">%n");
-			out.printf("<title>HelloWorld Servlet Response</title>%n");
-			out.printf("</head>%n");
-
-			out.printf("<body>%n");
-			out.printf("<h1>ParseException</h1>%n");
-			out.printf("<hr/>%n");
-			out.printf("<p>%n");
-			out.printf("Hello, world!%n");
-			out.printf("</p>%n");
-			out.printf("</body>%n");
-		
-			out.printf("</html>%n");
-		}*/
-		
-		Person test = new Person(1, "TEST", null,null,null,null,null,null,null);
 		// set the MIME media type of the response
 		res.setContentType("text/html; charset=utf-8");
 
@@ -123,14 +99,14 @@ public final class UpdatePersonServlet extends DatabaseServlet{
 		out.printf("<html lang=\"en\">%n");
 		out.printf("<head>%n");
 		out.printf("<meta charset=\"utf-8\">%n");
-		out.printf("<title>HelloWorld Servlet Response</title>%n");
+		out.printf("<title>Servlet Response</title>%n");
 		out.printf("</head>%n");
 
 		out.printf("<body>%n");
-		out.printf("<h1>HelloWorld %s Servlet Response</h1>%n", test.getName());
+		out.printf("<h1>Servlet Response</h1>%n");
 		out.printf("<hr/>%n");
 		out.printf("<p>%n");
-		out.printf("Hello, world!%n");
+		out.printf("Submitted, check the database%n");
 		out.printf("</p>%n");
 		out.printf("</body>%n");
 		
