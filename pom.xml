@@ -131,13 +131,13 @@
                 </includes>
             </resource>
             
-            <!-- <resource>
+            <!-- resource>
                 <targetPath>${basedir}/target/${project.artifactId}-${project.version}/java</targetPath>
                 <directory>${basedir}/src/main/webapp/java</directory>
                 <includes>
                     <include>**/*.*</include>
                 </includes>
-            </resource> -->
+            </resource --> 
 
         </resources>
 
