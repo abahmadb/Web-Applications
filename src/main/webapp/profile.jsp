@@ -205,7 +205,7 @@
                 <!-- COLUMN FOUR -->
                 <div>
                     <!-- TOPIC OFFER -->
-                    <div class="box" style="width: auto">
+                    <div class="box">
 
                         <h4>
                             Topic offer  
