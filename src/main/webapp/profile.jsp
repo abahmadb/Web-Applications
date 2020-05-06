@@ -119,13 +119,13 @@
                             Profile photo 
                         </h4>
             
-                        <form action="" method="post">
+                        <form action="<c:url value="/uploadFile.jsp"/>" method="post" enctype="multipart/form-data">
                             <p>
                                 <label for="photo"> 
                                     <img src="images/logo.png" class="profile_img" alt="profile image" id="id_img">
                                 </label>
                             </p>
-                            <input type="file" name="photo" id="photo" onchange="readFile(this);">
+                            <input type="file" name="photo" id="photo" accept=".jpg, .png" onchange="readFile(this);">
                             <p>
                                 <input type="submit" value="Upload photo">
                             </p>
@@ -172,7 +172,7 @@
                         <p>
                             <img src="images/id.svg" class="id_img" alt="id image">
                         </p>
-                        <form action="<c:url value="/uploadFile.jsp"/>" method="post">
+                        <form action="<c:url value="/uploadFile.jsp"/>" method="post" enctype="multipart/form-data">
                             <p>
                                 <label class="file_label" for="document_card">Upload ID</label>
                             </p>
@@ -191,7 +191,7 @@
                         <p>
                             <img src="images/diplome.svg" class="qualification_img" alt="qualification image">
                         </p>
-                        <form action="" method="post">
+                        <form action="<c:url value="/uploadFile.jsp"/>" method="post"  enctype="multipart/form-data">
                             <p>
                                 <label class="file_label" for="qualification">Upload qualification</label>
                             </p>
