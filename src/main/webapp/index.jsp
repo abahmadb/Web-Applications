@@ -75,7 +75,7 @@
                     <a href="about.jsp">About us</a>
                     <c:choose>
                       <c:when test="${sessionScope.userid != null}">
-                        <a href="control.html"><img src="images/imageset/profile/${sessionScope.userid}.jpg">&nbsp;</a>
+                        <a href="control.html"><img src="/imageset/profile/${sessionScope.userid}.jpg">&nbsp;</a>
                       </c:when>
                       <c:otherwise>
                         <a href="" onclick="toggle_modal(event);">Sign in</a>
@@ -204,17 +204,18 @@
 
                         <h2>Sign up</h2>
 
-                        <form action="indexpost" method="POST">
+                        <form action="indexpost" method="POST" autocomplete="off">
                             
-                        <span><i class="fas fa-user"></i><input type="text" placeholder="First name" name="firstname"></span>
+                        <span><i class="fas fa-user"></i><input type="text" placeholder="First name" name="firstname" autocomplete="off" required></span>
                             
-                        <span><i class="fas fa-user"></i><input type="text" placeholder="Last name" name="lastname"></span>
+                        <span><i class="fas fa-user"></i><input type="text" placeholder="Last name" name="lastname" autocomplete="off" required></span>
 
-                        <span><i class="fas fa-envelope"></i><input type="email" placeholder="E-mail address" name="email"></span>
+                        <span><i class="fas fa-envelope"></i><input type="email" placeholder="E-mail address" name="email" autocomplete="off"></span>
 
-                        <span><i class="fas fa-lock"></i><input type="password" placeholder="Password" name="passwd"></span>
+                        <span><i class="fas fa-lock"></i><input type="password" placeholder="Password" name="passwd" autocomplete="off" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" required  oninvalid="this.setCustomValidity('The password must contain both upper and lower case characters plus a number')"
+                        oninput="this.setCustomValidity('')"></span>
 
-                        <span><i class="fas fa-unlock"></i><input type="password" placeholder="Repeat password" name="passwd_confirm"></span>
+                        <span><i class="fas fa-unlock"></i><input type="password" placeholder="Repeat password" name="passwd_confirm" autocomplete="off" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" required></span>
 
                         <span><label class="custom_checkbox">
                             <input type="checkbox" required>

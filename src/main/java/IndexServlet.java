@@ -2,6 +2,7 @@ import javax.servlet.http.*;
 import javax.servlet.*;
 import java.sql.*;
 import java.util.*;
+import java.util.regex.*;
 import java.io.*;
 import java.nio.file.*;
 
@@ -47,6 +48,7 @@ public final class IndexServlet extends DatabaseServlet {
             if(lista.length() > 0)
                 lista = lista.substring(0, lista.length()-1);
 
+
             req.setAttribute("topics_list", lista);
 
             req.getRequestDispatcher("index.jsp").forward(req, res);
@@ -55,8 +57,9 @@ public final class IndexServlet extends DatabaseServlet {
         }//try
 
         catch (SQLException ex) {
-
-
+            req.setAttribute("error_message", ex.getMessage());
+            req.setAttribute("appname", req.getContextPath());
+            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}catch(Exception e){}
         }//catch
 
     }//doGet
@@ -81,10 +84,9 @@ public final class IndexServlet extends DatabaseServlet {
 
             pst.setString(1, req.getParameter("uname"));
             pst.setString(2, req.getParameter("pword"));
-            
+
             ResultSet rs = pst.executeQuery();
 
-            
             res.setContentType("application/json; charset=utf-8");
             PrintWriter out = res.getWriter();
 
@@ -100,22 +102,22 @@ public final class IndexServlet extends DatabaseServlet {
 
         }//try
 
-        catch (SQLException ex) {
-
-
+        catch (Exception ex) {
+            req.setAttribute("error_message", ex.getMessage());
+            req.setAttribute("appname", req.getContextPath());
+            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}catch(Exception e){}
         }//catch
-        catch (IOException ex) {
 
-
-        }//catch
-            
     }//doSignIN
 
-    private void doSignUP(HttpServletRequest req, HttpServletResponse res){
+    private void doSignUP(HttpServletRequest req, HttpServletResponse res) throws ServletException{
         try{
-            
-            // VALIDATION MISSING
-            
+
+            if(!isValid(req.getParameter("email"))) throw new IOException("The e-mail is invalid");
+
+
+            // + FURTHER SIMILAR VALIDATIONS ON INPUT DATA
+
             Connection c = getConnection();
 
             PreparedStatement pst = c.prepareStatement("INSERT INTO person VALUES (NULL, ?, ?, NULL, NULL, ?, SHA2(?,256), NULL, NULL)");
@@ -127,37 +129,65 @@ public final class IndexServlet extends DatabaseServlet {
 
             int esito = pst.executeUpdate();
 
-            if(esito == 1){
+            if(esito == 0) throw new IOException("An error occurred in the creation of the new user");
 
-                // GET THE ID OF THE INSERTED USER
-                Statement st = c.createStatement();
-                ResultSet rs = st.executeQuery("SELECT LAST_INSERT_ID() as last_person");
+            // GET THE ID OF THE INSERTED USER
+            Statement st = c.createStatement();
+            ResultSet rs = st.executeQuery("SELECT LAST_INSERT_ID() as last_person");
+            if(rs.next()){
 
-                // SING HIM IN
-                if(rs.next()){
-                    HttpSession session = req.getSession();
-                    session.setAttribute("userid", rs.getInt("last_person"));
-                    res.sendRedirect(req.getContextPath());
-                }
-                
-                // CREATE A PLACEHOLDER USER PICTURE
-                //Files.copy(new File("images/imageset/profile/nopic.jpg").toPath(), new File("images/imageset/profile/" + rs.getInt("last_person") + ".jpg").toPath(), StandardCopyOption.REPLACE_EXISTING);
-            }
-            else{
-                //ERRORPAGE
+                // CREATE PLACEHOLDER PICTURES
+                createPlaceholderImages(rs.getInt("last_person"));
+
+                // SIGN HIM IN
+                HttpSession session = req.getSession();
+                session.setAttribute("userid", rs.getInt("last_person"));
+
+                // REDIRECT HIM TO HOMEPAGE
+                res.sendRedirect(req.getContextPath());
+
             }
 
         }//try
 
-        catch (SQLException ex) {
-
-
+        catch (Exception ex) {
+            req.setAttribute("error_message", ex.getMessage());
+            req.setAttribute("appname", req.getContextPath());
+            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}catch(Exception e){}
         }//catch
-        catch (IOException ex) {
 
-
-        }//catch
     }//doSignUP
 
+    private boolean isValid(String email) { 
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+ 
+            "[a-zA-Z0-9_+&*-]+)*@" + 
+            "(?:[a-zA-Z0-9-]+\\.)+[a-z" + 
+            "A-Z]{2,7}$"; 
+
+        Pattern pat = Pattern.compile(emailRegex); 
+        if (email == null) 
+            return false; 
+        return pat.matcher(email).matches(); 
+    } 
+
+
+    private void createPlaceholderImages(int uid) throws IOException{
+
+        String home = System.getProperty("user.dir");
+
+        File p_dir = new File(home + "./webapps/imageset/profile/profile.jpg");
+        File p_dir_new = new File(home + "./webapps/imageset/profile/" + uid + ".jpg");
+
+        File i_dir = new File(home + "./webapps/imageset/identity/identity.jpg");
+        File i_dir_new = new File(home + "./webapps/imageset/identity/" + uid + ".jpg");
+
+        File c_dir = new File(home + "./webapps/imageset/certificate/certificate.jpg");
+        File c_dir_new = new File(home + "./webapps/imageset/certificate/" + uid + ".jpg");
+
+        Files.copy(p_dir.toPath(), p_dir_new.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        Files.copy(i_dir.toPath(), i_dir_new.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        Files.copy(c_dir.toPath(), c_dir_new.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+    }
 
 }//IndexServlet

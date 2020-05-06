@@ -141,9 +141,9 @@ $( function() {
 
         $.post("indexpost", credentials, function(data) {
 
-            var res = JSON.parse(data);
+            var res = data;
             if(res.response == 1){
-                $("nav a:last-child").replaceWith(`<a href="control.html"><img src="images/imageset/profile/${res.userid}.jpg">&nbsp;</a>`);
+                $("nav a:last-child").replaceWith(`<a href="control.html"><img src="/imageset/profile/${res.userid}.jpg">&nbsp;</a>`);
                 if(rm) setCookie("userid", res.userid, 5*24*60*60);
                 toggle_modal(null);
             }
@@ -156,7 +156,7 @@ $( function() {
     });
     
     // SIGN-UP REQUEST
-    $(".sign_up input[type='submit']").click(function(){
+    $(".sign_up input[type='submit']").click(function(event){
 
         // VALIDATE THE EMAIL
 
@@ -164,7 +164,8 @@ $( function() {
 
         if(!email.checkValidity() || email.value.trim() == ""){
             $("#register_error").html('Please input a correct e-mail address');
-            return;
+            event.preventDefault();
+            return false;
         }
 
     
@@ -172,7 +173,8 @@ $( function() {
         
         if(pwords[0].value != pwords[1].value){
             $("#register_error").html('The password and its confirmation must be equal');
-            return;
+            event.preventDefault();
+            return false;
         }
         
         // TERMS AND CONDITIONS
@@ -181,6 +183,7 @@ $( function() {
 
         if(!rm){
             $("#register_error").html('You have to accept the terms and conditions');
+            event.preventDefault();
             return;
         }
     
