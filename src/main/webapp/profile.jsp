@@ -200,10 +200,33 @@
 
                     </div>
 
-
                 </div>
 
                 <!-- COLUMN FOUR -->
+                <div>
+                    <!-- TOPIC OFFER -->
+                    <div class="box" style="width: auto">
+
+                        <h4>
+                            Topic offer  
+                        </h4>
+                        <br>
+                        <form action="" method="POST">
+                            <label for="topic">Topic</label><br>
+                            <input type="text" id="topic" name="topic" placeholder="Subject.." required autocomplete="off"><br>
+
+                            <label for="tariff">Tariff &euro;/h</label><br>
+                            <input type="text" id="tariff" name="tariff" placeholder="Tariff.." required autocomplete="off"><br>
+
+                            <p>
+                                <input type="submit" value="Submit">
+                            </p>
+                        </form>
+                    </div>
+                </div>
+                
+                
+                <!-- COLUMN FIVE -->
                 <div>
                     <!-- TELL ABOUT YOURSELF -->
                     <div class="box" style="width: auto">
