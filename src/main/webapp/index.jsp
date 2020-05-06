@@ -71,11 +71,11 @@
 
             <div id="menu_wrap">
                 <nav>
-                    <a href="" class="current_page">Home</a>
+                    <a href="/remytutor" class="current_page">Home</a>
                     <a href="about.jsp">About us</a>
                     <c:choose>
                       <c:when test="${sessionScope.userid != null}">
-                        <a href="control.html"><img src="/imageset/profile/${sessionScope.userid}.jpg">&nbsp;</a>
+                        <a href="/remytutor/dashboard"><img src="/imageset/profile/${sessionScope.userid}.jpg">&nbsp;</a>
                       </c:when>
                       <c:otherwise>
                         <a href="" onclick="toggle_modal(event);">Sign in</a>
