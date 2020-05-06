@@ -59,6 +59,24 @@ public final class UpdatePersonServlet extends DatabaseServlet{
 		
 			new UpdatePersonDAO(getConnection(), person).updatePerson();
 			
+			// send back new field values of person
+			Person personUpdated = new SearchPersonByIdDAO(getConnection(), idUser).searchPersonById();
+			req.setAttribute("firstname", personUpdated.getName());
+			req.setAttribute("lastname", personUpdated.getSurname());
+			String newGender = personUpdated.getGender();
+			if (newGender.equals("M")){
+				req.setAttribute("gender", "Male");
+			} else if (newGender.equals("M")){
+				req.setAttribute("gender", "Female");
+			} else {
+				req.setAttribute("gender", "Other");	
+			}
+			//req.setAttribute("birth", personUpdated.getDob());
+			req.setAttribute("email", personUpdated.getEmail());
+			req.setAttribute("phone_nr", personUpdated.getPhone());
+			
+			req.getRequestDispatcher("profile.jsp").forward(req, res);
+			
 		} catch (SQLException e){
 				
 			// set the MIME media type of the response

@@ -6,13 +6,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /*
- * Create person database access object
+ * Upadate person database access object
  * 
  * @author Xianwen Jin
 */
 
 public final class UpdatePersonDAO {
-	private static final String STATEMENT = "UPDATE Person SET Name=?, Surname=?, Gender=?, DoB=?, Email=?, Phone=?  WHERE IDUser=?";
+	private static final String STATEMENT = "UPDATE Remytutor.Person SET Name=?, Surname=?, Gender=?, DoB=?, Email=?, Phone=?  WHERE IDUser=?";
 	
 	private final Connection con;
 	private final Person person;
@@ -40,7 +40,7 @@ public final class UpdatePersonDAO {
 			if (pstmt != null)
 				pstmt.close();
 			
-			con.close();
+			//con.close();
 		}
 	}
 }

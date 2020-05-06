@@ -76,29 +76,29 @@
                             General information 
                         </h4>
                         <br>
-                        <form action="updatePersonServlet" method="post">
+                        <form action="updatePersonServlet" method="POST">
                             <label for="fname">First Name</label><br>
-                            <input type="text" id="fname" name="firstname" placeholder="Name.." required autocomplete="off"><br>
+                            <input type="text" id="fname" name="firstname" placeholder="Name.." required autocomplete="off" value=${firstName}><br>
 
                             <label for="lname">Last Name</label><br>
-                            <input type="text" id="lname" name="lastname" placeholder="Surname.." required autocomplete="off"><br>
+                            <input type="text" id="lname" name="lastname" placeholder="Surname.." required autocomplete="off" value=${lastName}><br>
 
                             <label for="gender">Gender</label><br>
-                            <select class="select-css" name="gender">
+                            <select class="select-css" name="gender" value=${gender}>
                                 <option>Male</option>
                                 <option>Female</option>
                                 <option>Other</option>
                             </select>
 
                             <label for="birthday">Birthday</label><br>
-                            <input type="date" id="birth" name="birth" placeholder="yyyy-mm-dd"><br>
+                            <input type="date" id="birth" name="birth" placeholder="yyyy-mm-dd" value=${birth}><br>
 
                             <label for="email">E-mail</label><br>
-                            <input type="email" id="email" name="email" placeholder="E-mail.." required autocomplete="off"><br>
+                            <input type="email" id="email" name="email" placeholder="E-mail.." required autocomplete="off" value=${email}><br>
 
                             <label for="phone_nr">Phone number</label><br>
                             <input type="tel" id="phone_nr" name="phone_nr" placeholder="Phone number.." pattern="[0-9]{3}[ ]*[0-9]{3}[ ]*[0-9]{4}"
-                                   title="the phone number should have 10 numbers" autocomplete="off"><br>
+                                   title="the phone number should have 10 numbers" autocomplete="off" value=${phone}><br>
 
                             <p>
                                 <input type="submit" value="Update">
