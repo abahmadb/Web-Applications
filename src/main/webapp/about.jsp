@@ -1,3 +1,6 @@
+<%@ page contentType="text/html;charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -36,14 +39,21 @@
         <header>
 
             <div id="logo_wrap">
-                <a href="index.html"><img src="images/logo.png"></a>
+                <a href="/remytutor"><img src="images/logo.png"></a>
             </div>
 
             <div id="menu_wrap">
                 <nav>
-                    <a href="index.jsp">Home</a>
+                    <a href="/remytutor">Home</a>
                     <a href="about.jsp" class="current_page">About us</a>
-                    <a href="" onclick="toggle_modal(event);">Sign in</a>
+                    <c:choose>
+                      <c:when test="${sessionScope.userid != null}">
+                        <a href="/remytutor/dashboard"><img src="/imageset/profile/${sessionScope.userid}.jpg">&nbsp;</a>
+                      </c:when>
+                      <c:otherwise>
+                        <a href="" onclick="toggle_modal(event);">Sign in</a>
+                      </c:otherwise>
+                    </c:choose>
                 </nav>
             </div>
 
@@ -57,7 +67,7 @@
 
         <div class="main_image_container">
             <img src="images/about_us_image.png" class="main_image" alt="Books">
-            >           <div class="quote_container">
+                       <div class="quote_container">
             <blockquote>
                 <hr class="horizontal_line"/>
                 <br>
@@ -210,7 +220,7 @@
 
         <!-- SIGN IN PAGE start -->
 
-        <div class="modal">
+       <div class="modal">
 
             <div class="sign_up_in">
 
@@ -227,21 +237,28 @@
 
                         <h2>Sign up</h2>
 
-                        <span><img src="images/account.png"><input type="text" placeholder="Full name"></span>
+                        <form action="indexpost" method="POST" autocomplete="off">
+                            
+                        <span><i class="fas fa-user"></i><input type="text" placeholder="First name" name="firstname" autocomplete="off" required></span>
+                            
+                        <span><i class="fas fa-user"></i><input type="text" placeholder="Last name" name="lastname" autocomplete="off" required></span>
 
-                        <span><img src="images/email.png"><input type="text" placeholder="E-mail address"></span>
+                        <span><i class="fas fa-envelope"></i><input type="email" placeholder="E-mail address" name="email" autocomplete="off"></span>
 
-                        <span><img src="images/password.png"><input type="password" placeholder="Password"></span>
+                        <span><i class="fas fa-lock"></i><input type="password" placeholder="Password" name="passwd" autocomplete="off" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" required  oninvalid="this.setCustomValidity('The password must contain both upper and lower case characters plus a number')"
+                        oninput="this.setCustomValidity('')"></span>
 
-                        <span><img src="images/password.png"><input type="password" placeholder="Repeat password"></span>
+                        <span><i class="fas fa-unlock"></i><input type="password" placeholder="Repeat password" name="passwd_confirm" autocomplete="off" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" required></span>
 
                         <span><label class="custom_checkbox">
-                            <input type="checkbox">
+                            <input type="checkbox" required>
                             <span class="checkmark"></span>
                             </label> I agree to terms and conditions and the privacy policy</span>
 
-                        <br><input type="submit" value="Register" class="button">
+                        <br><input type="submit" value="Register" class="button" name="register">
 
+                            <span id="register_error"></span>
+                        </form>
                     </div>
 
                 </div>
@@ -258,9 +275,9 @@
 
                         <h2>Sign in</h2>
 
-                        <span><img src="images/account.png"><input type="email" placeholder="E-mail address"></span>
+                        <span><i class="fas fa-envelope"></i><input type="email" placeholder="E-mail address"></span>
 
-                        <span><img src="images/password.png"><input type="password" placeholder="Password"></span>
+                        <span><i class="fas fa-unlock"></i><input type="password" placeholder="Password"></span>
 
                         <span><label class="custom_checkbox">
                             <input type="checkbox" checked>
@@ -268,7 +285,7 @@
                             </label> Remember me</span>
 
                         <br><input type="submit" value="Log in" class="button">
-
+                        
                         <span id="login_error"></span>
 
                     </div>
@@ -281,9 +298,6 @@
 
         </div>
 
-        <!-- MAIN JS -->
-
-        <script src="js/home.js"></script>
 
         <!-- SIGN IN PAGE end -->
 
@@ -306,7 +320,9 @@
         <!-- WEBSITE FOOTER end -->
 
         <!-- MAIN JS -->
-
+        <script>
+            var topics = [];
+        </script>
         <script src="js/home.js"></script>
 
     </body>

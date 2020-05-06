@@ -143,7 +143,7 @@ $( function() {
 
             var res = data;
             if(res.response == 1){
-                $("nav a:last-child").replaceWith(`<a href="control.html"><img src="/imageset/profile/${res.userid}.jpg">&nbsp;</a>`);
+                $("nav a:last-child").replaceWith(`<a href="/remytutor/dashboard"><img src="/imageset/profile/${res.userid}.jpg">&nbsp;</a>`);
                 if(rm) setCookie("userid", res.userid, 5*24*60*60);
                 toggle_modal(null);
             }
