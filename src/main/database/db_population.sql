@@ -16,18 +16,22 @@ INSERT INTO topic VALUES (NULL, "3D animation"), (NULL, "Computer networks"), (N
 INSERT INTO topic VALUES (NULL, "Big Data Computing"), (NULL, "Computer Vision"), (NULL, "Distributed Systems"), (NULL, "Photoshop"), (NULL, "C"), (NULL, "C++"), (NULL, "Java"), (NULL, "JavaScript"), (NULL, "Python"), (NULL, "PHP");
 INSERT INTO topic VALUES (NULL, "JSP"), (NULL, "Ruby"), (NULL, "Perl"), (NULL, "CSS"), (NULL, "HTML"), (NULL, "C#"), (NULL, "Arduino"), (NULL, "WordPress"), (NULL, "MySQL"), (NULL, "PostgreSQL");
 
+-- TEACHER_TOPIC
+-- ALL OF US AS MYSQL TEACHERS
+INSERT INTO teacher_topic VALUES (1, 29, 13),(2, 29, 14),(3, 29, 12),(4, 29, 10),(5, 29, 16),(6, 29, 12);
+
 
 
 -- LESSON
 INSERT INTO
     lesson(TeacherID, StudentID, LessonDate, LessonTime, LessonDuration, LessonTariff, Payment)
 VALUES
-    (202, 1237119, '2020-05-15', '08:30', '2:00', 30, '2020-05-13 23:59:59'),
-    (505, 1210174, '2020-05-30', '12:00', '1:00', 20, '2020-05-28 23:59:59'),
-    (101, 1205721, '2020-05-15', '08:30', '2:00', 40, '2020-05-13 23:59:59'),
-    (303, 1216114, '2020-06-02', '11:00', '0:30', 10, '2020-05-30 23:59:59'),
-    (808, 1190245, '2020-06-12', '08:30', '2:00', 30, '2020-06-10 23:59:59'),
-    (404, 1205378, '2020-06-20', '14:00', '2:30', 50, '2020-06-18 23:59:59');
+    (1, 4, '2020-05-15', '08:30', '2:00', 16, '2020-05-13 23:59:59'),
+    (2, 3, '2020-05-30', '12:00', '1:00', 18, '2020-05-28 23:59:59'),
+    (2, 4, '2020-05-15', '08:30', '2:00', 14, '2020-05-13 23:59:59'),
+    (1, 5, '2020-06-02', '11:00', '0:30', 15, '2020-05-30 23:59:59'),
+    (2, 1, '2020-06-12', '08:30', '2:00', 13, '2020-06-10 23:59:59'),
+    (3, 6, '2020-06-20', '14:00', '2:30', 16, '2020-06-18 23:59:59');
 	
 	
 INSERT INTO
