@@ -103,7 +103,7 @@ function setCookie(cname, cvalue, exdays) {
 $( function() {
 
     // SET THE AUTOCOMPLETION FOR TOPICS
-    $("#search_box input").autocomplete({
+    $("#search_box input[type='text']").autocomplete({
         source: topics,
         select: function(e, ui,){
             e.preventDefault() // <--- Prevent the value from being inserted.

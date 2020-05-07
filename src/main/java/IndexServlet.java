@@ -34,7 +34,7 @@ public final class IndexServlet extends DatabaseServlet {
 
             }//if
 
-            String lista = "";
+            List<Topic> lista = new ArrayList<Topic>();
 
             Connection c = getConnection();
 
@@ -43,11 +43,7 @@ public final class IndexServlet extends DatabaseServlet {
             ResultSet topics = st.executeQuery("SELECT * FROM topic");
 
             while(topics.next())
-                lista += "{id: '" + topics.getInt("IDTopic") + "', value: '" + topics.getString("Label") + "'},";
-
-            if(lista.length() > 0)
-                lista = lista.substring(0, lista.length()-1);
-
+                lista.add(new Topic(topics.getInt("IDTopic"), topics.getString("Label")));
 
             req.setAttribute("topics_list", lista);
 

@@ -59,7 +59,7 @@ CREATE TABLE topic (
 
     IDTopic INT AUTO_INCREMENT PRIMARY KEY,
     Label VARCHAR(50)   NOT NULL
-    
+
 )engine=InnoDB;
 
 -- CREATES CORRESPONDENCE BETWEEN TEACHER AND TOPICS HE WISHES TO TEACH, AKA IN WHICH SEARCHING TOPICS SHOULD HE APPEAR?
@@ -67,7 +67,8 @@ CREATE TABLE topic (
 CREATE TABLE teacher_topic(
     TeacherID           INT,
     TopicID             INT,
+    Tariff              INT NOT NULL,
+    PRIMARY KEY (TeacherID, TopicID),
     FOREIGN KEY (TeacherID) REFERENCES person(IDUser),
     FOREIGN KEY (TopicID) REFERENCES topic(IDTopic)
 )engine=InnoDB;
-

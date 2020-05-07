@@ -104,7 +104,8 @@
                         </div>
 
                         <div id="search_box">
-                            <input type="text" placeholder="What would you like to learn?" size="30"><form action="search.jsp" method="get"><input type="hidden" id="topic_id" name="topic_id" value="">
+                            <input type="text" placeholder="What would you like to learn?" size="30"><form action="search" method="get"><input type="hidden" id="topic_id" name="topic_id" value="">
+                            <input type="hidden" name="sorting_by" value="0">
                             <input type="submit" class="button" value="SEARCH"></form>
                         </div>
 
@@ -268,7 +269,9 @@
         <script>
             
 	var topics = [    
-        ${fn:replace(topics_list, "&#039;", "'")}
+        <c:forEach var="t" items="${topics_list}" varStatus="status">   
+            {id: '${t.topicid}', value: '${t.label}'}${!status.last ? ',' : ''}
+        </c:forEach>
 	];
 
 	</script>

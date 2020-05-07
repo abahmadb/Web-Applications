@@ -83,7 +83,7 @@ main section:nth-child(1) #search_box *{
     margin: 0 5px;
 }
 
-main section:nth-child(1) #search_box input{
+main section:nth-child(1) #search_box input[type="text"]{
     outline: none;
     padding: 9px 9px 9px 22px;
     color: #777777;
@@ -103,8 +103,11 @@ main{
 
 main .result{
     display: inline-block;
-    margin: 20px;
+    margin: 10px;
     text-align: left;
+    background-color: rgb(240, 240,240);
+    border-radius: 8px;
+    padding: 20px;
 }
 
 main .result .photobox:hover{
@@ -112,8 +115,8 @@ main .result .photobox:hover{
 }
 
 main .result .photobox{
-    width: 320px;
-    height: 320px;
+    width: 300px;
+    height: 300px;
     position: relative;
     border-radius: 8px;
     background-size: cover;
@@ -147,6 +150,7 @@ main .result .cost_feedback p{
     padding: 10px;
     border-radius: 8px;
     font-weight: bold;
+    background-color: #FFF;
 }
 
 main .result .cost_feedback i{

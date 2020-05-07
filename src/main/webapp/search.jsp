@@ -1,3 +1,6 @@
+<%@ page contentType="text/html;charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,32 +31,6 @@
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
-        <script>
-            $( function() {
-                var topics = [
-                    "Math",
-                    "Calculus",
-                    "C++",
-                    "Java",
-                    "JavaScript",
-                    "HTML",
-                    "CSS",
-                    "Yoga",
-                    "Guitar",
-                    "English",
-                    "Photoshop",
-                    "Dancing",
-                    "Singing",
-                    "French",
-                    "Spanish"
-                ];
-
-                $("#search_box input").autocomplete({
-                    source: topics
-                });
-            });
-        </script>
-
     </head>
 
     <body>
@@ -63,15 +40,21 @@
         <header>
 
             <div id="logo_wrap">
-                <a href="index.html"><img src="images/logo.png"></a>
+                <img src="images/logo.png">
             </div>
 
             <div id="menu_wrap">
                 <nav>
-                    <a href="" class="current_page" style="visibility: hidden">&nbsp;</a>
-                    <a href="index.html">Home</a>
-                    <a href="about.html">About us</a>
-                    <a href="" onclick="toggle_modal(event);">Sign in</a>
+                    <a href="/remytutor" class="current_page">Home</a>
+                    <a href="about.jsp">About us</a>
+                    <c:choose>
+                      <c:when test="${sessionScope.userid != null}">
+                        <a href="/remytutor/dashboard"><img src="/imageset/profile/${sessionScope.userid}.jpg">&nbsp;</a>
+                      </c:when>
+                      <c:otherwise>
+                        <a href="" onclick="toggle_modal(event);">Sign in</a>
+                      </c:otherwise>
+                    </c:choose>
                 </nav>
             </div>
 
@@ -84,14 +67,18 @@
             <section>
 
                 <div id="search_box">
-                    <input type="text" placeholder="What would you like to learn?" size="30">
-                    <select class="select-css" style="width:auto">
-                        <option>Sort by</option>
-                        <option>Highest feedbacks</option>
-                        <option>Ascending tariff</option>
-                        <option>Descending tariff</option>
-                    </select>
-                    <button class="button">SEARCH</button>
+                    <input type="text" placeholder="What would you like to learn?" size="30" value="${cur_topic}">
+                    <form action="search" method="get" style="white-space: nowrap">
+                        <input type="hidden" name="topic_id" id="topic_id" value="${param.topic_id}">
+                        <select class="select-css" style="width:auto; display: inline-block" name="sorting_by">
+                            <option value="0"${param.sorting_by == '0' ? 'selected' : ''}>Sort by</option>
+                            <option value="1"${param.sorting_by == '1' ? 'selected' : ''}>Highest feedbacks</option>
+                            <option value="2"${param.sorting_by == '2' ? 'selected' : ''}>Ascending tariff</option>
+                            <option value="3"${param.sorting_by == '3' ? 'selected' : ''}>Descending tariff</option>
+                        </select>
+                        <input type="submit" class="button" value="SEARCH">
+                    </form>
+                    
                 </div>
 
             </section>
@@ -99,334 +86,30 @@
 
             <section>
 
-                <div class="result">
+                <c:forEach var="t" items="${search_items}">
                     
-                    <a href="teacher.html">
-                        <div class="photobox" style="background-image: url('images/users_profile/1.jpg')">                        
-                            <p>
-                                Katie
-                            </p>
-                        </div>
-                    </a>
+                    <div class="result">
                     
-                    <div class="cost_feedback">
-                        <p>
-                            15&euro;/h
-                        </p>
-                        <p>
-                            4.1 <i class="fa fa-star"></i>11 feedbacks
-                        </p>
-                    </div>
-                </div>
+                        <a href="/teacher?teacher_id=${t.userid}">
+                            <div class="photobox" style="background-image: url('/imageset/profile/${t.userid}.jpg')">                        
+                                <p>
+                                    ${t.name}
+                                </p>
+                            </div>
+                        </a>
 
-                <div class="result">
-
-                    <a href="teacher.html">
-                        <div class="photobox" style="background-image: url('images/users_profile/2.jpg');">
+                        <div class="cost_feedback">
                             <p>
-                                Jack
+                                ${t.tariff}&euro;/h
+                            </p>
+                            <p>
+                                ${t.avgscore} <i class="fa fa-star"></i>${t.counter} feedbacks
                             </p>
                         </div>
-                    </a>
-
-                    <div class="cost_feedback">
-                        <p>
-                            14&euro;/h
-                        </p>
-                        <p>
-                            4.2 <i class="fa fa-star"></i>17 feedbacks
-                        </p>
                     </div>
-                </div>
-
-                <div class="result">
-
-                    <a href="teacher.html">
-                        <div class="photobox" style="background-image: url('images/users_profile/3.jpg');">
-
-                            <p>
-                                George
-                            </p>
-                        </div>
-                    </a>
-
-                    <div class="cost_feedback">
-                        <p>
-                            16&euro;/h
-                        </p>
-                        <p>
-                            4.3 <i class="fa fa-star"></i>12 feedbacks
-                        </p>
-                    </div>
-                </div>
-
-                <div class="result">
-
-                    <a href="teacher.html">
-                        <div class="photobox" style="background-image: url('images/users_profile/4.jpg');">
-
-                            <p>
-                                Sanders
-                            </p>
-                        </div>
-                    </a>
                     
-                    <div class="cost_feedback">
-                        <p>
-                            13&euro;/h
-                        </p>
-                        <p>
-                            4.4 <i class="fa fa-star"></i>4 feedbacks
-                        </p>
-                    </div>
-                </div>
-
-                <div class="result">
-
-                    <a href="teacher.html">
-                        <div class="photobox" style="background-image: url('images/users_profile/5.jpg')">                        
-                            <p>
-                                Roy
-                            </p>
-                        </div>
-                    </a>
-
-                    <div class="cost_feedback">
-                        <p>
-                            18&euro;/h
-                        </p>
-                        <p>
-                            4.1 <i class="fa fa-star"></i>20 feedbacks
-                        </p>
-                    </div>
-                </div>
-
-                <div class="result">
-
-                    <a href="teacher.html">
-                        <div class="photobox" style="background-image: url('images/users_profile/6.jpg');">
-                            <p>
-                                Steve
-                            </p>
-                        </div>
-                    </a>
-
-                    <div class="cost_feedback">
-                        <p>
-                            17&euro;/h
-                        </p>
-                        <p>
-                            4.2 <i class="fa fa-star"></i>3 feedbacks
-                        </p>
-                    </div>
-                </div>
-
-                <div class="result">
-
-                    <a href="teacher.html">
-                        <div class="photobox" style="background-image: url('images/users_profile/7.jpg');">
-
-                            <p>
-                                Teresa
-                            </p>
-                        </div>
-                    </a>
-
-                    <div class="cost_feedback">
-                        <p>
-                            14&euro;/h
-                        </p>
-                        <p>
-                            4.3 <i class="fa fa-star"></i>9 feedbacks
-                        </p>
-                    </div>
-                </div>
-
-                <div class="result">
-
-                    <a href="teacher.html">
-                        <div class="photobox" style="background-image: url('images/users_profile/8.jpg');">
-
-                            <p>
-                                Logan
-                            </p>
-                        </div>
-                    </a>
-
-                    <div class="cost_feedback">
-                        <p>
-                            15&euro;/h
-                        </p>
-                        <p>
-                            4.4 <i class="fa fa-star"></i>5 feedbacks
-                        </p>
-                    </div>
-                </div>
-
-                <div class="result">
-
-                    <a href="teacher.html">
-                        <div class="photobox" style="background-image: url('images/users_profile/9.jpg')">                        
-                            <p>
-                                Lawrence
-                            </p>
-                        </div>
-                    </a>
-
-                    <div class="cost_feedback">
-                        <p>
-                            15&euro;/h
-                        </p>
-                        <p>
-                            4.1 <i class="fa fa-star"></i>17 feedbacks
-                        </p>
-                    </div>
-                </div>
-
-                <div class="result">
-
-                    <a href="teacher.html">
-                        <div class="photobox" style="background-image: url('images/users_profile/10.jpg');">
-                            <p>
-                                Beatrice
-                            </p>
-                        </div>
-                    </a>
-
-                    <div class="cost_feedback">
-                        <p>
-                            16&euro;/h
-                        </p>
-                        <p>
-                            4.2 <i class="fa fa-star"></i>15 feedbacks
-                        </p>
-                    </div>
-                </div>
-
-                <div class="result">
-
-                    <a href="teacher.html">
-                        <div class="photobox" style="background-image: url('images/users_profile/11.jpg');">
-
-                            <p>
-                                Robbie
-                            </p>
-                        </div>
-                    </a>
-
-                    <div class="cost_feedback">
-                        <p>
-                            13&euro;/h
-                        </p>
-                        <p>
-                            4.3 <i class="fa fa-star"></i>2 feedbacks
-                        </p>
-                    </div>
-                </div>
-
-                <div class="result">
-
-                    <a href="teacher.html">
-                        <div class="photobox" style="background-image: url('images/users_profile/12.jpg');">
-
-                            <p>
-                                Maggie
-                            </p>
-                        </div>
-                    </a>
-
-                    <div class="cost_feedback">
-                        <p>
-                            12&euro;/h
-                        </p>
-                        <p>
-                            4.4 <i class="fa fa-star"></i>1 feedbacks
-                        </p>
-                    </div>
-                </div>
-
-                <div class="result">
-
-                    <a href="teacher.html">
-                        <div class="photobox" style="background-image: url('images/users_profile/13.jpg')">                        
-                            <p>
-                                Ruby
-                            </p>
-                        </div>
-                    </a>
-
-                    <div class="cost_feedback">
-                        <p>
-                            15&euro;/h
-                        </p>
-                        <p>
-                            4.1 <i class="fa fa-star"></i>10 feedbacks
-                        </p>
-                    </div>
-                </div>
-
-                <div class="result">
-
-                    <a href="teacher.html">
-                        <div class="photobox" style="background-image: url('images/users_profile/14.jpg');">
-                            <p>
-                                Nina
-                            </p>
-                        </div>
-                    </a>
-
-                    <div class="cost_feedback">
-                        <p>
-                            19&euro;/h
-                        </p>
-                        <p>
-                            4.2 <i class="fa fa-star"></i>20 feedbacks
-                        </p>
-                    </div>
-                </div>
-
-                <div class="result">
-
-                    <a href="teacher.html">
-                        <div class="photobox" style="background-image: url('images/users_profile/15.jpg');">
-
-                            <p>
-                                Sabrina
-                            </p>
-                        </div>
-                    </a>
-
-                    <div class="cost_feedback">
-                        <p>
-                            15&euro;/h
-                        </p>
-                        <p>
-                            4.3 <i class="fa fa-star"></i>6 feedbacks
-                        </p>
-                    </div>
-                </div>
-
-                <div class="result">
-
-                    <a href="teacher.html">
-                        <div class="photobox" style="background-image: url('images/users_profile/16.jpg');">
-
-                            <p>
-                                Sarah
-                            </p>
-                        </div>
-                    </a>
-
-                    <div class="cost_feedback">
-                        <p>
-                            14&euro;/h
-                        </p>
-                        <p>
-                            4.4 <i class="fa fa-star"></i>4 feedbacks
-                        </p>
-                    </div>
-                </div>
-
+                </c:forEach>
+                
             </section>
 
 
@@ -467,21 +150,28 @@
 
                         <h2>Sign up</h2>
 
-                        <span><img src="images/account.png"><input type="text" placeholder="Full name"></span>
+                        <form action="indexpost" method="POST" autocomplete="off">
+                            
+                        <span><i class="fas fa-user"></i><input type="text" placeholder="First name" name="firstname" autocomplete="off" required></span>
+                            
+                        <span><i class="fas fa-user"></i><input type="text" placeholder="Last name" name="lastname" autocomplete="off" required></span>
 
-                        <span><img src="images/email.png"><input type="text" placeholder="E-mail address"></span>
+                        <span><i class="fas fa-envelope"></i><input type="email" placeholder="E-mail address" name="email" autocomplete="off"></span>
 
-                        <span><img src="images/password.png"><input type="password" placeholder="Password"></span>
+                        <span><i class="fas fa-lock"></i><input type="password" placeholder="Password" name="passwd" autocomplete="off" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" required  oninvalid="this.setCustomValidity('The password must contain both upper and lower case characters plus a number')"
+                        oninput="this.setCustomValidity('')"></span>
 
-                        <span><img src="images/password.png"><input type="password" placeholder="Repeat password"></span>
+                        <span><i class="fas fa-unlock"></i><input type="password" placeholder="Repeat password" name="passwd_confirm" autocomplete="off" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" required></span>
 
                         <span><label class="custom_checkbox">
-                            <input type="checkbox">
+                            <input type="checkbox" required>
                             <span class="checkmark"></span>
                             </label> I agree to terms and conditions and the privacy policy</span>
 
-                        <br><input type="submit" value="Register" class="button">
+                        <br><input type="submit" value="Register" class="button" name="register">
 
+                            <span id="register_error"></span>
+                        </form>
                     </div>
 
                 </div>
@@ -498,9 +188,9 @@
 
                         <h2>Sign in</h2>
 
-                        <span><img src="images/account.png"><input type="email" placeholder="E-mail address"></span>
+                        <span><i class="fas fa-envelope"></i><input type="email" placeholder="E-mail address"></span>
 
-                        <span><img src="images/password.png"><input type="password" placeholder="Password"></span>
+                        <span><i class="fas fa-unlock"></i><input type="password" placeholder="Password"></span>
 
                         <span><label class="custom_checkbox">
                             <input type="checkbox" checked>
@@ -522,14 +212,17 @@
         </div>
 
         <!-- MAIN JS -->
+        <script>
+            
+	var topics = [    
+        <c:forEach var="t" items="${topics_list}" varStatus="status">   
+            {id: '${t.topicid}', value: '${t.label}'}${!status.last ? ',' : ''}
+        </c:forEach>
+	];
 
+	</script>
         <script src="js/home.js"></script>
         
-        <script>
-
-            document.querySelector("#search_box").firstElementChild.value = new URLSearchParams(window.location.search).get("topic");
-
-        </script>
     </body>
 
 </html>
