@@ -14,14 +14,12 @@ public abstract class DatabaseServlet extends HttpServlet {
         try {
             Class.forName("com.mysql.jdbc.Driver");
         }//try
-        catch (ClassNotFoundException e) {e.printStackTrace();}
+        catch (ClassNotFoundException e) {}
         
         try{
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/remytutor", "root", "root");
         }//try
-        catch(SQLException e){
-            
-        }
+        catch(SQLException e){}
         
     }//init
     
