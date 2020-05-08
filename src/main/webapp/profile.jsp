@@ -78,27 +78,28 @@
                         <br>
                         <form action="updatePersonServlet" method="POST">
                             <label for="fname">First Name</label><br>
-                            <input type="text" id="fname" name="firstname" placeholder="Name.." required autocomplete="off" value=${firstName}><br>
+                            <input type="text" id="fname" name="firstname" placeholder="Name.." required autocomplete="off" value="${firstName}"><br>
 
                             <label for="lname">Last Name</label><br>
-                            <input type="text" id="lname" name="lastname" placeholder="Surname.." required autocomplete="off" value=${lastName}><br>
+                            <input type="text" id="lname" name="lastname" placeholder="Surname.." required autocomplete="off" value="${lastName}"><br>
 
                             <label for="gender">Gender</label><br>
-                            <select class="select-css" name="gender" value=${gender}>
-                                <option>Male</option>
-                                <option>Female</option>
-                                <option>Other</option>
+                            <select class="select-css" name="gender" value="${gender}">
+                                <option selected hidden>${gender}</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
                             </select>
 
                             <label for="birthday">Birthday</label><br>
-                            <input type="date" id="birth" name="birth" placeholder="yyyy-mm-dd" value=${birth}><br>
+                            <input type="date" id="birth" name="birth" placeholder="yyyy-mm-dd" value="${birth}"><br>
 
                             <label for="email">E-mail</label><br>
-                            <input type="email" id="email" name="email" placeholder="E-mail.." required autocomplete="off" value=${email}><br>
+                            <input type="email" id="email" name="email" placeholder="E-mail.." required autocomplete="off" value="${email}"><br>
 
                             <label for="phone_nr">Phone number</label><br>
                             <input type="tel" id="phone_nr" name="phone_nr" placeholder="Phone number.." pattern="[0-9]{3}[ ]*[0-9]{3}[ ]*[0-9]{4}"
-                                   title="the phone number should have 10 numbers" autocomplete="off" value=${phone}><br>
+                                   title="the phone number should have 10 numbers" autocomplete="off" value="${phone_nr}"><br>
 
                             <p>
                                 <input type="submit" value="Update">
@@ -191,7 +192,7 @@
                         <p>
                             <img src="images/diplome.svg" class="qualification_img" alt="qualification image">
                         </p>
-                        <form action="<c:url value="/uploadFile.jsp"/>" method="post"  enctype="multipart/form-data">
+                        <form action="<c:url value="/uploadFile.jsp"/>" method="post" enctype="multipart/form-data">
                             <p>
                                 <label class="file_label" for="qualification">Upload qualification</label>
                             </p>

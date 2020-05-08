@@ -1,15 +1,11 @@
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Date;
+import javax.servlet.http.*;
+import javax.servlet.*;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.io.IOException;
-import javax.servlet.ServletException;
 import java.io.*;
 import java.nio.file.*;
-import java.text.ParseException;
+import java.util.regex.*;
 
 /* submit data into database
  *
@@ -19,7 +15,8 @@ public final class UpdatePersonServlet extends DatabaseServlet{
 		
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
-				
+		
+
 		int idUser = 1;
 		String name = null;
 		String surname = null;
@@ -44,13 +41,15 @@ public final class UpdatePersonServlet extends DatabaseServlet{
 				gender = "M";
 			} else if (temp.equals("Female")){
 				gender = "F";
+			} else if (temp.equals("Other")){
+				gender = "O";
 			}
 			temp = req.getParameter("birth").toString();
 			/*SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 			dob = new java.sql.Date(format.parse(temp).getTime());*/
-			if (!temp.equals("gg/mm/aaaa")){
+			try{
 				dob = Date.valueOf(req.getParameter("birth").toString());
-			}
+			} catch (Exception e){}
 			email = req.getParameter("email");
 			phone = req.getParameter("phone_nr");	
 				
@@ -61,79 +60,30 @@ public final class UpdatePersonServlet extends DatabaseServlet{
 			
 			// send back new field values of person
 			Person personUpdated = new SearchPersonByIdDAO(getConnection(), idUser).searchPersonById();
-			req.setAttribute("firstname", personUpdated.getName());
-			req.setAttribute("lastname", personUpdated.getSurname());
+			req.setAttribute("firstName", personUpdated.getName());
+			req.setAttribute("lastName", personUpdated.getSurname());
 			String newGender = personUpdated.getGender();
 			if (newGender.equals("M")){
 				req.setAttribute("gender", "Male");
-			} else if (newGender.equals("M")){
+			} else if (newGender.equals("F")){
 				req.setAttribute("gender", "Female");
-			} else {
+			} else if (newGender.equals("O")){
 				req.setAttribute("gender", "Other");	
 			}
-			//req.setAttribute("birth", personUpdated.getDob());
+			req.setAttribute("birth", personUpdated.getDob());
 			req.setAttribute("email", personUpdated.getEmail());
 			req.setAttribute("phone_nr", personUpdated.getPhone());
 			
 			req.getRequestDispatcher("profile.jsp").forward(req, res);
 			
-		} catch (SQLException e){
+		} catch (SQLException ex){
 				
-			// set the MIME media type of the response
-			res.setContentType("text/html; charset=utf-8");
-
-			// get a stream to write the response
-			PrintWriter out = res.getWriter();
-
-			// write the HTML page
-			out.printf("<!DOCTYPE html>%n");
-		
-			out.printf("<html lang=\"en\">%n");
-			out.printf("<head>%n");
-			out.printf("<meta charset=\"utf-8\">%n");
-			out.printf("<title>Error</title>%n");
-			out.printf("</head>%n");
-
-			out.printf("<body>%n");
-			out.printf("<h1>SQLException</h1>%n");
-			out.printf("<hr/>%n");
-			out.printf("<p>%n");
-			out.printf("Hello, world!%n");
-			out.printf("</p>%n");
-			out.printf("</body>%n");
-		
-			out.printf("</html>%n");
+			req.setAttribute("error_message", ex.getMessage());
+            req.setAttribute("appname", req.getContextPath());
+            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}	catch(Exception e){}
+			
 		}
-		
-		// set the MIME media type of the response
-		res.setContentType("text/html; charset=utf-8");
 
-		// get a stream to write the response
-		PrintWriter out = res.getWriter();
-
-		// write the HTML page
-		out.printf("<!DOCTYPE html>%n");
-		
-		out.printf("<html lang=\"en\">%n");
-		out.printf("<head>%n");
-		out.printf("<meta charset=\"utf-8\">%n");
-		out.printf("<title>Servlet Response</title>%n");
-		out.printf("</head>%n");
-
-		out.printf("<body>%n");
-		out.printf("<h1>Servlet Response</h1>%n");
-		out.printf("<hr/>%n");
-		out.printf("<p>%n");
-		out.printf("Submitted, check the database%n");
-		out.printf("</p>%n");
-		out.printf("</body>%n");
-		
-		out.printf("</html>%n");
-
-		// flush the output stream buffer
-		out.flush();
-
-		// close the output stream
-		out.close();
 	}
+
 }
