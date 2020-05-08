@@ -40,4 +40,14 @@ VALUES
 	(2, 3, 4, "Very good", '2020-05-13 23:59:59'),
 	(2, 1, 4, "Excellent", '2020-05-13 23:59:59'),
 	(2, 4, 5, "Excellent", '2020-05-13 23:59:59');	
+
+--CHAT
+INSERT INTO
+    chat (TeacherID, StudentID, Confirmed, Messages, LastMessage) 
+VALUES
+    (2, 1, TRUE, '[{"SenderID": 2, "ReceiverID": 1, "Message": "hello there!", "TS": "2020-01-01 10:10:10"}]',  '2020-01-01 10:10:10'),
+    (2, 1, TRUE, '[{"SenderID": 1, "ReceiverID": 2, "Message": "whats up!!", "TS": "2020-01-01 10:10:10"}]',  '2020-01-01 10:10:10'),
+    (2, 1, TRUE, '[{"SenderID": 2, "ReceiverID": 1, "Message": "Lorem ipsum dolor sit amet", "TS": "2020-01-01 10:10:10"}]',  '2020-01-01 10:10:10'),
+    (2, 1, TRUE, '[{"SenderID": 1, "ReceiverID": 2, "Message": "consectetur adipiscing elit", "TS": "2020-01-01 10:10:10"}]',  '2020-01-01 10:10:10'),
+    (2, 1, TRUE, '[{"SenderID": 2, "ReceiverID": 1, "Message": "Maecenas sit amet pretium urna", "TS": "2020-01-01 10:10:10"}]',  '2020-01-01 10:10:10');
 	
