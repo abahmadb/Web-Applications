@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +23,6 @@
         <!-- TEACHER CSS -->
         <link rel="stylesheet" href="css/teacher.css">
 
-
         <!-- FONTAWESOME CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
 
@@ -30,24 +30,27 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-
+        
     </head>
 
     <body>
 
+        <!-- CALL THE SERVLET -->
+        <!-- <jsp:include page="/teacherServlet/"> -->
+        
         <!-- WEBSITE HEADER -->
 
         <header>
 
             <div id="logo_wrap">
-                <a href="index.html"><img src="images/logo.png"></a>
+                <a href="index.jsp"><img src="images/logo.png"></a>
             </div>
 
             <div id="menu_wrap">
                 <nav>
                     <a href="" class="current_page" style="visibility: hidden">&nbsp;</a>
-                    <a href="index.html">Home</a>
-                    <a href="about.html">About us</a>
+                    <a href="index.jsp">Home</a>
+                    <a href="about.jsp">About us</a>
                     <a href="" onclick="toggle_modal(event);">Sign in</a>
                 </nav>
             </div>
@@ -74,7 +77,7 @@
 
                         <div>
                             <div class="header_name_box">
-                                Cristiana
+                                ${teacher_name}
                             </div>
                             <br>
                             <div class="header_rating_box">

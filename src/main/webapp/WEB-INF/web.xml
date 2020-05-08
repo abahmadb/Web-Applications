@@ -27,6 +27,18 @@
         <servlet-name>feedbacksServlet</servlet-name>
         <url-pattern>/feedbacksServlet</url-pattern>
     </servlet-mapping>
+    
+    <!-- TEACHER -->
+    
+    <servlet>
+        <servlet-name>teacherServlet</servlet-name>
+        <servlet-class>TeacherServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>teacherServlet</servlet-name>
+        <url-pattern>/teacher</url-pattern>
+    </servlet-mapping>
 
     <!-- INDEX -->
     
