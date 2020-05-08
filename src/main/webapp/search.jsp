@@ -10,7 +10,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="icon" href="images/logo.ico" type="image/x-icon" /> 
         <link rel="shortcut icon" href="images/logo.ico" type="image/x-icon" />
-        <title>RemyTutor</title>
+        <title>Search - RemyTutor</title>
 
 
         <!-- MAIN CSS -->
@@ -40,7 +40,7 @@
         <header>
 
             <div id="logo_wrap">
-                <img src="images/logo.png">
+                <a href="/remytutor"><img src="images/logo.png"></a>
             </div>
 
             <div id="menu_wrap">

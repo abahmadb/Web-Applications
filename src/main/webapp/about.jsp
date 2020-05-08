@@ -9,7 +9,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="icon" href="images/logo.ico" type="image/x-icon" /> 
         <link rel="shortcut icon" href="images/logo.ico" type="image/x-icon" />
-        <title>About Us</title>
+        <title>About Us - RemyTutor</title>
 
         <!-- MAIN CSS -->
         <link rel="stylesheet" href="css/style.css">

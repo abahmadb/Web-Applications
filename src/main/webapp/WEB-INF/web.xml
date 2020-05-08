@@ -57,6 +57,18 @@
         <url-pattern>/search</url-pattern>
     </servlet-mapping>
     
+    <!-- DASHBOARD HOMEPAGE -->
+    
+    <servlet>
+        <servlet-name>ControlServlet</servlet-name>
+        <servlet-class>ControlServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ControlServlet</servlet-name>
+        <url-pattern>/dashboard</url-pattern>
+    </servlet-mapping>
+    
     <!-- Servlet for profile page -->
     
     <servlet>

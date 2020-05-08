@@ -12,33 +12,12 @@ public final class SearchServlet extends DatabaseServlet {
 
         try{
 
-            // CHECK IF THERE IS A COOKIE AND NO LOGIN SESSION, IF SO, SET THE SESSION
-            HttpSession session = req.getSession();
-            Cookie[] cs = req.getCookies();
+            IndexServlet.check_login(req);
 
-            if(cs != null && session.getAttribute("userid") == null){
-
-                // LOOP THROUGH THE COOKIES TO FIND THE LOGIN ONE
-                boolean found_cookie = false;
-                for(int i = 0; i < cs.length && !found_cookie; i++){
-
-                    if(cs[i].getName().equals("userid")){
-
-                        found_cookie = true;
-
-                        session.setAttribute("userid", cs[i].getValue());
-
-                    }//if
-
-                }//for
-
-            }//if
-            
-            
             // ASSEMBLING THE TOPICS LIST FOR FURTHER SEARCHES
             List<Topic> lista = new ArrayList<Topic>();
             String current_topic = "";
-            
+
             Connection c = getConnection();
 
             Statement st = c.createStatement();
