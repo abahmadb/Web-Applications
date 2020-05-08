@@ -1,3 +1,6 @@
+<%@ page contentType="text/html;charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,25 +27,10 @@
 
 
     <body>
-
-        <input type="checkbox" id="toggle_menu">
-
+        
         <!-- SIDEBAR FOR THE DASHBOARD -->
-        <aside>
-            <center>
-                <a href="index.html"><img src="images/logo_transparent.png" alt=""></a>
-            </center>
-
-            <p><label for="toggle_menu"><i class="fas fa-bars"></i></label></p>
-            <a href="control.html" class="current_section"><i class="fas fa-desktop"></i><span>Control Panel</span></a>
-            <a href="chat.html"><i class="fas fa-comment-dots"></i><span>Chat</span></a>
-            <a href="feedbacks.html"><i class="far fa-thumbs-up"></i><span>Feedbacks</span></a>
-            <a href="payments.html"><i class="fas fa-money-check-alt"></i><span>Payments</span></a>
-            <a href="profile.html"><i class="fas fa-user-alt"></i><span>Profile</span></a>
-            <a href="index.html"><i class="fas fa-info-circle"></i><span>Sign out</span></a>
-
-        </aside>
-
+        <input type="checkbox" id="toggle_menu">
+        <%@ include file="include/menu.jsp" %>
 
         <!-- CONTENT OF THE PAGE -->
         <main>
@@ -57,16 +45,12 @@
                         <h2>Personal info</h2>
 
                         <p>
-                            <img src="images/MarcoG.jpg" class="profile_img">
+                            <img src="/imageset/profile/${sessionScope.userid}.jpg" class="profile_img">
                         </p>
 
                         <p>
-                            Marco Dell'Anna
+                            ${user_fullname}
                         </p>
-                        <p>
-                            Via W. Baffin, 37, Padova PD, ITALIA
-                        </p>
-
 
                         <table>
 
@@ -77,13 +61,13 @@
                                 </td>
 
                                 <td>
-                                    marco.dellanna@outlook.it
+                                    ${user_email}
                                 </td>
                             </tr>
 
                             <tr>
                                 <td>
-                                    3342972326
+                                    ${user_phone}
                                 </td>    
                             </tr>
 
@@ -92,7 +76,7 @@
                                     <strong>Average feedback</strong>
                                 </td>
                                 <td>
-                                    4.1
+                                    ${user_feedaverage}
                                 </td>
                             </tr>
 
@@ -101,23 +85,23 @@
                                     <strong>Feedbacks amount</strong>
                                 </td>
                                 <td>
-                                    254
+                                    ${user_feedamount}
                                 </td>
                             </tr>
 
                             <tr>
                                 <td>
-                                    <strong>Lecture hours</strong>
+                                    <strong>Lessons time</strong>
                                 </td>
                                 <td>
-                                    72h
+                                    ${total_time}
                                 </td>
                             </tr>
 
                         </table>
 
                         <p>
-                            <a href="profile.html">Show profile page</a>
+                            <a href="/remytutor/profile">Show profile page</a>
                         </p>
 
                     </div>
@@ -177,7 +161,7 @@
                         </div>
 
                         <p>
-                            <a href="chat.html">Show all chats</a>
+                            <a href="/remytutor/chat">Show all chats</a>
                         </p>
                     </div>
 
@@ -243,7 +227,7 @@
                         </div>
 
                         <p>
-                            <a href="feedbacks.html">Show all feedbacks</a>
+                            <a href="/remytutor/feedbacks">Show all feedbacks</a>
                         </p>
 
                     </div>
@@ -321,7 +305,7 @@
                         </div>
 
                         <p>
-                            <a href="payments.html">Show all payments</a>
+                            <a href="/remytutor/payments">Show all payments</a>
                         </p>
                     </div>
 

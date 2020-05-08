@@ -12,28 +12,8 @@ public final class IndexServlet extends DatabaseServlet {
 
         try{
 
-            // CHECK IF THERE IS A COOKIE AND NO LOGIN SESSION, IF SO, SET THE SESSION
-            HttpSession session = req.getSession();
-            Cookie[] cs = req.getCookies();
-
-            if(cs != null && session.getAttribute("userid") == null){
-
-                // LOOP THROUGH THE COOKIES TO FIND THE LOGIN ONE
-                boolean found_cookie = false;
-                for(int i = 0; i < cs.length && !found_cookie; i++){
-
-                    if(cs[i].getName().equals("userid")){
-
-                        found_cookie = true;
-
-                        session.setAttribute("userid", cs[i].getValue());
-
-                    }//if
-
-                }//for
-
-            }//if
-
+            check_login(req);
+            
             List<Topic> lista = new ArrayList<Topic>();
 
             Connection c = getConnection();
@@ -185,5 +165,45 @@ public final class IndexServlet extends DatabaseServlet {
         Files.copy(c_dir.toPath(), c_dir_new.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
     }
+
+    public static boolean check_login(HttpServletRequest req){
+        
+        // GET THE SESSION OBJECT
+        HttpSession session = req.getSession();
+        
+        // GET THE COOKIES ARRAY
+        Cookie[] cs = req.getCookies();
+
+        // IF THE SESSION LOGIN IS NOT SET
+        if(session.getAttribute("userid") == null){
+
+            if(cs == null) return false;
+            
+            // LOOP THROUGH THE COOKIES TO SEARCH FOR THE LOGIN COOKIE
+            for(int i = 0; i < cs.length; i++){
+
+                // IF YOU CAN FIND IT
+                if(cs[i].getName().equals("userid")){
+
+                    // SET THE SESSION LOGIN
+                    session.setAttribute("userid", cs[i].getValue());
+                    
+                    // AND SIGNAL TO THE CALLER THAT EVERYTHING IS OK
+                    return true;
+
+                }//if
+
+            }//for
+            
+            // YOU GOT HERE, SESSION LOGIN WAS NOT SET AND YOU DID NOT FIND THE COOKIE
+            // SIGNAL TO THE CALLER THIS MIGHT BE AN UNAUTHORIZED REQUEST
+            return false;
+
+        }//if
+        
+        
+        // THE SESSION WAS SET, EVERYTHING IS OK
+        return true;
+    }//check_login
 
 }//IndexServlet
