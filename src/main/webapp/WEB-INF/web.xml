@@ -93,4 +93,16 @@
         <url-pattern>/updatePersonServlet</url-pattern>
     </servlet-mapping>
 
+    <!-- Servlet for chat page-->
+
+    <servlet>
+     <servlet-name>ChatServlet</servlet-name>
+     <servlet-class>ChatServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ChatServlet</servlet-name>
+        <url-pattern>/ChatServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>
