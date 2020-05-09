@@ -40,7 +40,7 @@
 
         <input type="checkbox" id="toggle_menu">
 
-        <!-- SIDEBAR FOR THE DASHBOARD -->
+        <!-- SIDEBAR FOR THE DASHBOARD
         <aside>
             <center>
                 <a href="index.html">
@@ -56,7 +56,7 @@
             <a href="profile.jsp"  class="current_section"><i class="fas fa-user-alt"></i><span>Profile</span></a>
             <a href="index.jsp"><i class="fas fa-info-circle"></i><span>Sign out</span></a>
 
-        </aside>
+        </aside -->
 
 
         <!-- CONTENT OF THE PAGE -->
@@ -76,33 +76,42 @@
                             General information 
                         </h4>
                         <br>
-                        <form action="updatePersonServlet" method="POST">
+                        <form action="profileServlet" method="POST">
                             <label for="fname">First Name</label><br>
-                            <input type="text" id="fname" name="firstname" placeholder="Name.." required autocomplete="off" value="${firstName}"><br>
+                            <input type="text" id="fname" name="firstname" placeholder="Name.." required autocomplete="off" value="${person.name}"><br>
 
                             <label for="lname">Last Name</label><br>
-                            <input type="text" id="lname" name="lastname" placeholder="Surname.." required autocomplete="off" value="${lastName}"><br>
+                            <input type="text" id="lname" name="lastname" placeholder="Surname.." required autocomplete="off" value="${person.surname}"><br>
 
                             <label for="gender">Gender</label><br>
-                            <select class="select-css" name="gender" value="${gender}">
-                                <option selected hidden>${gender}</option>
+                            <select class="select-css" name="gender">
+                                <option selected hidden>
+                                    <c:choose>
+                                        <c:when test="${person.gender == null}">
+                                            Choose Gender
+                                        </c:when>
+                                        <c:otherwise>
+                                            ${person.gender}
+                                        </c:otherwise>
+                                    </c:choose>
+                                </option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                                 <option value="Other">Other</option>
                             </select>
 
                             <label for="birthday">Birthday</label><br>
-                            <input type="date" id="birth" name="birth" placeholder="yyyy-mm-dd" value="${birth}"><br>
+                            <input type="date" id="birth" name="birth" placeholder="yyyy-mm-dd" value="${person.dob}"><br>
 
                             <label for="email">E-mail</label><br>
-                            <input type="email" id="email" name="email" placeholder="E-mail.." required autocomplete="off" value="${email}"><br>
+                            <input type="email" id="email" name="email" placeholder="E-mail.." required autocomplete="off" value="${person.email}"><br>
 
                             <label for="phone_nr">Phone number</label><br>
                             <input type="tel" id="phone_nr" name="phone_nr" placeholder="Phone number.." pattern="[0-9]{3}[ ]*[0-9]{3}[ ]*[0-9]{4}"
-                                   title="the phone number should have 10 numbers" autocomplete="off" value="${phone_nr}"><br>
+                                   title="the phone number should have 10 numbers" autocomplete="off" value="${person.phone}"><br>
 
                             <p>
-                                <input type="submit" value="Update">
+                                <input type="submit" value="Update" name="personForm">
                             </p>
                         </form>
 
@@ -143,7 +152,7 @@
                             Change password
                         </h4>
                         <br>
-                        <form action="" method="post" onsubmit="return validatePassword()">
+                        <form action="profileServlet" method="post" onsubmit="return validatePassword()">
 
                             <input type="password" id="old_pw" name="old_pw" placeholder="Old password.." required><br>
                             <input type="password" id="new_pw" name="new_pw" placeholder="New password.." required
@@ -153,7 +162,7 @@
                             <input type="password" required id="confirm_pw" name="confirm_pw" placeholder="Confirm password.."
                                    onkeyup='validatePassword();' autocomplete="off"><br>
                             <p>
-                                <input type="submit" value="Change password">
+                                <input type="submit" value="Change password" name="passForm">
                             </p>
                         </form>
                     </div>
@@ -236,7 +245,7 @@
                             Tell about yourself 
                         </h4>
                         <br>
-                        <form action="" method="post">
+                        <form action="profileServlet" method="post">
 
                             <label for="text-area"></label>
 
@@ -245,7 +254,7 @@
                             </div>
 
                             <p>
-                                <input type="submit" value="Submit">
+                                <input type="submit" value="Submit" name="descriptionForm">
                             </p>
 
                         </form>
@@ -260,6 +269,10 @@
         <!-- CONTROL PANEL PROFILE CSS JS -->
 
         <script src="js/profile.js"></script>
+        
+        <!-- person object from response -->
+        
+        <script>var person = ${person}</script>
         
     </body>
 

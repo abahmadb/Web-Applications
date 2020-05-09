@@ -84,13 +84,13 @@
     <!-- Servlet for profile page -->
     
     <servlet>
-        <servlet-name>updatePersonServlet</servlet-name>
-        <servlet-class>UpdatePersonServlet</servlet-class>
+        <servlet-name>profileServlet</servlet-name>
+        <servlet-class>ProfileServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>updatePersonServlet</servlet-name>
-        <url-pattern>/updatePersonServlet</url-pattern>
+        <servlet-name>profileServlet</servlet-name>
+        <url-pattern>/profileServlet</url-pattern>
     </servlet-mapping>
 
 </web-app>
