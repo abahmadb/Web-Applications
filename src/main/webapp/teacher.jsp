@@ -81,11 +81,25 @@
                             <br>
                             <div class="header_rating_box">
                                 <span id="teacher_rating_style">Rating: </span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>                       
+                                
+                                <div class="score-wrap">                                  
+                                    <div id="teacher_fullstar_style">                                 
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span> 
+                                    </div>
+                                    
+                                    <div id="teacher_emptystar_style">
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>      
+                                    </div>
+                                </div>
+                                
                             </div>
                             <br>
                             <div class="header_city_box">
@@ -352,9 +366,14 @@
 
         </div>
 
+        <script>
+            let avg = ${teacher_avgscore};
+        </script>>
+        
         <!-- MAIN JS -->
 
         <script src="js/home.js"></script>
+        <script src="js/teacher.js"></script>
 
     </body>
 </html>

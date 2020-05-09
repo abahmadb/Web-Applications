@@ -81,9 +81,30 @@ main .flex_item .header_left_box .header_rating_box{
     padding-left: 16px;
 }
 
-main #teacher_rating_style {
+#teacher_rating_style {
     font-family: Helvetica, sans-serif;
     font-size: 18px;
+}
+
+.score-wrap {
+    display: inline-block;
+    position: relative;
+    height: 0px;
+}
+
+#teacher_fullstar_style {
+    position: relative;
+    z-index: 10;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#teacher_emptystar_style {
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-text-stroke: initial;
 }
 
 main .flex_item .header_left_box .header_city_box{
