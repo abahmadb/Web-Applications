@@ -51,7 +51,9 @@ public final class TeacherServlet extends DatabaseServlet {
             st = con.createStatement();
             rs = st.executeQuery("SELECT Name FROM person WHERE person.IDUser = " + userid);
             
-            teacher_name.append(rs.getString("Name"));
+            while (rs.next()) {
+                teacher_name.append(rs.getString("Name"));
+            }
             
         }
         
@@ -63,7 +65,7 @@ public final class TeacherServlet extends DatabaseServlet {
         finally {
 
             //connection destroy method from DatabaseServlet
-            destroy();
+            //destroy();
 
             if (rs != null) {
 

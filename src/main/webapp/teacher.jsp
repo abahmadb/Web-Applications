@@ -36,7 +36,6 @@
     <body>
 
         <!-- CALL THE SERVLET -->
-        <!-- <jsp:include page="/teacherServlet/"> -->
         
         <!-- WEBSITE HEADER -->
 
