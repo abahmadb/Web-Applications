@@ -90,7 +90,7 @@
                     
                     <div class="result">
                     
-                        <a href="/teacher?teacher_id=${t.userid}">
+                        <a href="${pageContext.request.contextPath}/teacher?teacher_id=${t.userid}">
                             <div class="photobox" style="background-image: url('/imageset/profile/${t.userid}.jpg')">                        
                                 <p>
                                     ${t.name}

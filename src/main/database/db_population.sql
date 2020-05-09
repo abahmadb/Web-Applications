@@ -37,11 +37,11 @@ VALUES
 INSERT INTO
 	feedback
 VALUES
-	(2, 3, 4, "Very good", '2020-05-13 23:59:59'),
-	(2, 1, 4, "Excellent", '2020-05-13 23:59:59'),
-	(2, 4, 5, "Excellent", '2020-05-13 23:59:59');	
+	(2, 3, 4, "Very good", '2020-05-13'),
+	(2, 1, 4, "Excellent", '2020-05-13'),
+	(2, 4, 5, "Excellent", '2020-05-13');	
 
---CHAT
+-- CHAT
 INSERT INTO
     chat (TeacherID, StudentID, Confirmed, Messages, LastMessage) 
 VALUES

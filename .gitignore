@@ -1,6 +1,10 @@
-# IntelliJ Idea
+# IDE and generic config files
 *.iml
+.classpath
+.project
 .idea/
+.settings/
+.vscode/
 
 # Java
 *.class
@@ -11,9 +15,5 @@ log/
 # Package Files
 *.jar
 *.war
-.settings/org.eclipse.m2e.core.prefs
-.classpath
-.project
-.settings/org.eclipse.core.resources.prefs
-.settings/org.eclipse.jdt.apt.core.prefs
-.settings/org.eclipse.jdt.core.prefs
+
+
