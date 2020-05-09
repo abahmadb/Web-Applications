@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,11 +41,11 @@
             </center>
 
             <p><label for="toggle_menu"><i class="fas fa-bars"></i></label></p>
-            <a href="control.jsp"><i class="fas fa-desktop"></i><span>Control Panel</span></a>
-            <a href="chat.jsp"><i class="fas fa-comment-dots"></i><span>Chat</span></a>
-            <a href="feedbacks.jsp" class="current_section"><i class="far fa-thumbs-up"></i><span>Feedbacks</span></a>
-            <a href="payments.jsp"><i class="fas fa-money-check-alt"></i><span>Payments</span></a>
-            <a href="profile.jsp"><i class="fas fa-user-alt"></i><span>Profile</span></a>
+            <a href="${pageContext.request.contextPath}/dashboard"><i class="fas fa-desktop"></i><span>Control Panel</span></a>
+            <a href="${pageContext.request.contextPath}/chat"><i class="fas fa-comment-dots"></i><span>Chat</span></a>
+            <a href="${pageContext.request.contextPath}/feedbacks" class="current_section"><i class="far fa-thumbs-up"></i><span>Feedbacks</span></a>
+            <a href="${pageContext.request.contextPath}/payments"><i class="fas fa-money-check-alt"></i><span>Payments</span></a>
+            <a href="${pageContext.request.contextPath}/profile"><i class="fas fa-user-alt"></i><span>Profile</span></a>
             <a href="index.jsp"><i class="fas fa-info-circle"></i><span>Sign out</span></a>
 
         </aside>
@@ -147,17 +148,24 @@
                 </div>
 
                 <div class="flex-container" id="rev-container">
-                    <!-- call the servlet to define the jsp attributes -->
-                    <jsp:include page="/feedbacksServlet"/>
 
                     <!-- feedbacks will be placed here -->
-                    ${feedbacks}
 
-                    <!-- and here will be placed some variables needed by js script-->
-                    <script>
-                        let counters = ${counters};
-                        let avg = ${avg};
-                    </script>
+                    <c:forEach var="t" items="${feedbacks}">
+                    <div class="rev">
+                        <img src="images/user-photo2.png" alt="">
+                        <div>
+                            ${t.name} ${t.surname}
+                        </div>
+                        <div>
+                            Score: ${t.score}
+                        </div>
+                        <br>
+                        <div>
+                            ${t.description}
+                        </div>
+                    </div>
+                    </c:forEach>
 
                 </div>
 
@@ -221,6 +229,12 @@
             <div onclick="toggle_modalfeed(event)" class="close_modal">X</div>
 
         </div>
+
+        <!-- here will be placed some variables needed by feedbacks js script-->
+        <script>
+            let counters = ${counters};
+            let avg = ${avg};
+        </script>
 
         <!-- FEEDBACKS JS -->
         <script src="js/feedbacks.js"></script>

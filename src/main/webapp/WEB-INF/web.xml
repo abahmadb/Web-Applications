@@ -25,7 +25,7 @@
 
     <servlet-mapping>
         <servlet-name>feedbacksServlet</servlet-name>
-        <url-pattern>/feedbacksServlet</url-pattern>
+        <url-pattern>/feedbacks</url-pattern>
     </servlet-mapping>
     
     <!-- TEACHER -->
