@@ -8,7 +8,7 @@ import java.sql.*;
  
  public final class SearchPersonByIdDAO {
 	 
-		private static final String STATEMENT = "SELECT Name, Surname, Gender, DoB, Email, Passwd, Phone, Description FROM Person WHERE IDUser=?";
+		private static final String STATEMENT = "SELECT Name, Surname, Gender, DoB, Email, Passwd, Phone, City, Description FROM Person WHERE IDUser=?";
 		private final Connection con;
 		private final int idUser;
 		
@@ -34,7 +34,8 @@ import java.sql.*;
 				while (rs.next()) {					
 					person = new Person(idUser, rs.getString("Name"), rs.getString("Surname"),
 							rs.getString("Gender"), rs.getDate("Dob"), rs.getString("Email"),
-							rs.getString("Passwd"), rs.getString("Phone"), rs.getString("Description"));	
+							rs.getString("Passwd"), rs.getString("Phone"), rs.getString("City"), 
+							rs.getString("Description"));	
 				}
 			} finally {
 				if (rs != null){
@@ -45,7 +46,6 @@ import java.sql.*;
 					pstmt.close();
 				}
 				
-				con.close();
 			}
 			return person;
 			

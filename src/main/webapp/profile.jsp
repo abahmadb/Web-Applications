@@ -87,7 +87,7 @@
                             <select class="select-css" name="gender">
                                 <option selected hidden>
                                     <c:choose>
-                                        <c:when test="${person.gender == null}">
+                                        <c:when test="${person.gender == null || person.gender.equals(\"\")}">
                                             Choose Gender
                                         </c:when>
                                         <c:otherwise>
@@ -109,7 +109,11 @@
                             <label for="phone_nr">Phone number</label><br>
                             <input type="tel" id="phone_nr" name="phone_nr" placeholder="Phone number.." pattern="[0-9]{3}[ ]*[0-9]{3}[ ]*[0-9]{4}"
                                    title="the phone number should have 10 numbers" autocomplete="off" value="${person.phone}"><br>
-
+                            
+                            <label for="city">City</label><br>
+                            <input type="text" id="city" name="city" placeholder="City.."
+                                    autocomplete="off" value="${person.city}"><br>
+                            
                             <p>
                                 <input type="submit" value="Update" name="personForm">
                             </p>
@@ -161,6 +165,16 @@
                                    autocomplete="off"><br>
                             <input type="password" required id="confirm_pw" name="confirm_pw" placeholder="Confirm password.."
                                    onkeyup='validatePassword();' autocomplete="off"><br>
+                            <span id="message">
+                                <c:choose>
+                                        <c:when test="${updatedPass == true}">
+                                            Updated Successfully
+                                        </c:when>
+                                        <c:otherwise>
+                                             Wrong Password
+                                        </c:otherwise>
+                                    </c:choose>
+                            </span>
                             <p>
                                 <input type="submit" value="Change password" name="passForm">
                             </p>

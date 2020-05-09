@@ -16,11 +16,12 @@ public class Person {
 	private final String email;
 	private final String passwd;
 	private final String phone;
+	private final String city;
 	private final String description;
 
 	// constructor
 	public Person(int idUser, String name, String surname, String gender,
-			java.sql.Date dob, String email, String passwd, String phone, String description) {
+			java.sql.Date dob, String email, String passwd, String phone, String city, String description) {
 			
 		this.idUser = idUser;		
 		this.name = name;
@@ -31,6 +32,7 @@ public class Person {
 		this.passwd = passwd;
 		this.phone = phone;
 		this.description = description;
+		this.city = city;
 		
     }
 	
@@ -71,5 +73,9 @@ public class Person {
 	public final String getDescription() {
         return description;
     }
+	
+	public final String getCity() {
+		return city;	
+	}
 	
 }

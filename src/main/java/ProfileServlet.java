@@ -29,8 +29,8 @@ public final class ProfileServlet extends DatabaseServlet{
 			//int idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("userid")));		
 			int idUser = 1;
 			// send back new field values of person
-			Person personUpdated = new SearchPersonByIdDAO(getConnection(), idUser).searchPersonById();
-			req.setAttribute("person", personUpdated);
+			Person person = new SearchPersonByIdDAO(getConnection(), idUser).searchPersonById();
+			req.setAttribute("person", person);
 		
 			req.getRequestDispatcher("profile.jsp").forward(req, res);	
 			
@@ -59,6 +59,7 @@ public final class ProfileServlet extends DatabaseServlet{
 
 	public void doUpdatePerson(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException{
+				
         req.getSession().setAttribute("idUser", 1);
 		//int idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("userid")));	
         //idUser = (int) req.getSession().getAttribute("idUser");
@@ -85,10 +86,11 @@ public final class ProfileServlet extends DatabaseServlet{
 				dob = Date.valueOf(req.getParameter("birth").toString());
 			} catch (Exception e){}
 			String email = req.getParameter("email");
-			String phone = req.getParameter("phone_nr");	
+			String phone = req.getParameter("phone_nr");
+			String city = req.getParameter("city");
 			String passwd = null, description = null;
 			// create person from the request parameters
-			Person person = new Person(idUser, name, surname, gender, dob, email, passwd, phone, description);
+			Person person = new Person(idUser, name, surname, gender, dob, email, passwd, phone, city, description);
 		
 			new UpdatePersonDAO(getConnection(), person).updatePerson();
 			req.setAttribute("person", person);
@@ -107,25 +109,32 @@ public final class ProfileServlet extends DatabaseServlet{
 	
 	public void doUpdatePass(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException{
-		// write the HTML page
-		PrintWriter out = res.getWriter();
-		out.printf("<!DOCTYPE html>%n");
 		
-		out.printf("<html lang=\"en\">%n");
-		out.printf("<head>%n");
-		out.printf("<meta charset=\"utf-8\">%n");
-		out.printf("<title>HelloWorld Form Get Servlet Response</title>%n");
-		out.printf("</head>%n");
-
-		out.printf("<body>%n");
-		out.printf("<h1>PasswordForm</h1>%n");
-		out.printf("<hr/>%n");
-		out.printf("<p>%n");
-		out.printf("Hello");
-		out.printf("</p>%n");
-		out.printf("</body>%n");
-		
-		out.printf("</html>%n");
+		req.getSession().setAttribute("idUser", 1);
+		//int idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("userid")));
+		int idUser = 1;			
+		try{
+			
+			String newPassword = req.getParameter("new_pw");
+			Person person = new SearchPersonByIdDAO(getConnection(), idUser).searchPersonById();
+			String oldPass = person.getPassword();
+			new UpdatePersonDAO(getConnection(), person).updatePassword(newPassword);
+			Person personUpdated = new SearchPersonByIdDAO(getConnection(), idUser).searchPersonById();
+			if (newPassword.equals(personUpdated.getPassword())){
+				req.setAttribute("updatedPass", true);	
+			} else {
+				req.setAttribute("updatedPass", false);	
+			}
+			req.getRequestDispatcher("profile.jsp").forward(req, res);
+			
+		} catch (SQLException ex){
+			
+			req.setAttribute("updatedPass", false);			
+			req.setAttribute("error_message", ex.getMessage());
+            req.setAttribute("appname", req.getContextPath());
+            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}	catch(Exception e){}
+			
+		}
 	}
 	
 	public void doUpdateDescription(HttpServletRequest req, HttpServletResponse res)
