@@ -133,7 +133,7 @@
                             Profile photo 
                         </h4>
             
-                        <form action="<c:url value="/uploadFile.jsp"/>" method="post" enctype="multipart/form-data">
+                        <form action="profileServlet" method="post" enctype="multipart/form-data">
                             <p>
                                 <label for="photo"> 
                                     <img src="images/logo.png" class="profile_img" alt="profile image" id="id_img">
@@ -141,7 +141,7 @@
                             </p>
                             <input type="file" name="photo" id="photo" accept=".jpg, .png" onchange="readFile(this);">
                             <p>
-                                <input type="submit" value="Upload photo">
+                                <input type="submit" value="Upload photo" name="profileImgForm">
                             </p>
                         </form>
 
@@ -165,18 +165,13 @@
                                    autocomplete="off"><br>
                             <input type="password" required id="confirm_pw" name="confirm_pw" placeholder="Confirm password.."
                                    onkeyup='validatePassword();' autocomplete="off"><br>
-                            <span id="message">
-                                <c:choose>
-                                        <c:when test="${updatedPass == true}">
-                                            Updated Successfully
-                                        </c:when>
-                                        <c:otherwise>
-                                             Wrong Password
-                                        </c:otherwise>
-                                    </c:choose>
-                            </span>
+                            
                             <p>
                                 <input type="submit" value="Change password" name="passForm">
+                            </p>
+                            <p id="message">
+                                <br>
+                                ${passMessage}
                             </p>
                         </form>
                     </div>
@@ -189,37 +184,43 @@
 
                     <!-- IDENTITY -->
                     <div class="box">
-
+                        
                         <h4>
-                            Identity card
+                            Identity card 
                         </h4>
-                        <p>
-                            <img src="images/id.svg" class="id_img" alt="id image">
-                        </p>
-                        <form action="<c:url value="/uploadFile.jsp"/>" method="post" enctype="multipart/form-data">
+            
+                        <form action="profileServlet" method="post" enctype="multipart/form-data">
                             <p>
-                                <label class="file_label" for="document_card">Upload ID</label>
+                                <label for="photo"> 
+                                    <img src="images/id.svg" class="id_img" alt="id image">
+                                </label>
                             </p>
-                            <input type="file" name="document_card" id="document_card" onchange="this.form.submit()">
-                        </form>
+                            <input type="file" name="document_card" id="document_card" accept=".jpg, .png" onchange="readFile(this);">
+                            <p>
+                                <input type="submit" value="Upload ID" name="idImgForm">
+                            </p>
+                        </form> 
+                        
                     </div>
-
                     <br>
 
                     <!-- QUALIFICATION -->
                     <div class="box">
-
+                        
                         <h4>
-                            Qualification 
+                            Qualification
                         </h4>
-                        <p>
-                            <img src="images/diplome.svg" class="qualification_img" alt="qualification image">
-                        </p>
-                        <form action="<c:url value="/uploadFile.jsp"/>" method="post" enctype="multipart/form-data">
+            
+                        <form action="profileServlet" method="post" enctype="multipart/form-data">
                             <p>
-                                <label class="file_label" for="qualification">Upload qualification</label>
+                                <label for="photo"> 
+                                    <img src="images/diplome.svg" class="qualification_img" alt="qualification image">
+                                </label>
                             </p>
-                            <input type="file" name="qualification" id="qualification" onchange="this.form.submit()">
+                            <input type="file" name="qualification" id="qualification" accept=".jpg, .png" onchange="readFile(this);">
+                            <p>
+                                <input type="submit" value="Upload Qualification" name="qualificationImgForm">
+                            </p>
                         </form>
 
                     </div>
@@ -235,7 +236,7 @@
                             Topic offer  
                         </h4>
                         <br>
-                        <form action="" method="POST">
+                        <form action="profileServlet" method="POST">
                             <label for="topic">Topic</label><br>
                             <input type="text" id="topic" name="topic" placeholder="Subject.." required autocomplete="off"><br>
 
@@ -243,7 +244,7 @@
                             <input type="text" id="tariff" name="tariff" placeholder="Tariff.." required autocomplete="off"><br>
 
                             <p>
-                                <input type="submit" value="Submit">
+                                <input type="submit" value="Submit" name="topicForm">
                             </p>
                         </form>
                     </div>

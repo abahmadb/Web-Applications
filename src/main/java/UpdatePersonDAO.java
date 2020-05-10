@@ -45,14 +45,15 @@ public final class UpdatePersonDAO {
 		}
 	}
 	
-	public void updatePassword(String newPassword) throws SQLException{
+	public void updatePassword(String newPassword, String oldPassword) throws SQLException{
 		
 		PreparedStatement pstmt = null;
+		
 		try {
 			pstmt = con.prepareStatement(STATEMENT1);
 			pstmt.setString(1, newPassword);
 			pstmt.setInt(2, person.getID());
-			pstmt.setString(3, person.getPassword()); 
+			pstmt.setString(3, oldPassword);
 			
 			pstmt.execute();
 		} finally {

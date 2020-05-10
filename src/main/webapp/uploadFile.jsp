@@ -11,7 +11,8 @@
    int maxMemSize = 20000 * 1024;
    ServletContext context = pageContext.getServletContext();
    //String name = fileItem.getFieldName();
-   String filePath = context.getInitParameter("\\");
+   String home = System.getProperty("user.dir");
+   String filePath = context.getInitParameter(home);
 
    // Verify the content type
    String contentType = request.getContentType();

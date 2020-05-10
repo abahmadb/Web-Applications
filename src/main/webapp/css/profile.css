@@ -81,7 +81,7 @@ main > div .box .profile_img{
     width: 150px;
     height: 150px;
     border-radius: 100px;
-    margin-bottom: 0px;
+    margin-bottom: 10px;
     margin-top: 20px;
 }
 
@@ -90,7 +90,7 @@ main > div .box .id_img{
     height: auto;
     border-radius: 20px;
     margin-bottom: 10px;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 main > div .box .qualification_img{
@@ -98,7 +98,7 @@ main > div .box .qualification_img{
     height: auto;
     border-radius: 15px;
     margin-bottom: 10px;
-    margin-top: 10px;
+    margin-top: 20px;
 } 
 
 main .box .file_label{
@@ -123,6 +123,8 @@ main .box #personal_presentation{
     max-width: 600px;
 }
 
-main .box #personal_presentation p{
-    text-align: left;
+main .box #message{
+    text-align: center;
+    font-weight: bold;
+	color: red;
 }

@@ -52,9 +52,16 @@ public final class ProfileServlet extends DatabaseServlet{
             doUpdatePerson(req, res);
         else if(req.getParameter("passForm") != null)
             doUpdatePass(req, res);
+		else if(req.getParameter("profileImgForm") != null)
+            doUpdateProfileImg(req, res);
+		else if(req.getParameter("idImgForm") != null)
+            doUpdateIdImg(req, res);
+		else if(req.getParameter("qualificationImgForm") != null)
+            doUpdateQualificationImg(req, res);
+		else if(req.getParameter("topicForm") != null)
+            doUpdateTopic(req, res);
 		else if(req.getParameter("descriptionForm") != null)
             doUpdateDescription(req, res);
-	
 	}
 
 	public void doUpdatePerson(HttpServletRequest req, HttpServletResponse res)
@@ -116,26 +123,125 @@ public final class ProfileServlet extends DatabaseServlet{
 		try{
 			
 			String newPassword = req.getParameter("new_pw");
+			String oldPassword = req.getParameter("old_pw");
 			Person person = new SearchPersonByIdDAO(getConnection(), idUser).searchPersonById();
-			String oldPass = person.getPassword();
-			new UpdatePersonDAO(getConnection(), person).updatePassword(newPassword);
+			String oldPassSHA = person.getPassword();
+			new UpdatePersonDAO(getConnection(), person).updatePassword(newPassword, oldPassword);
 			Person personUpdated = new SearchPersonByIdDAO(getConnection(), idUser).searchPersonById();
-			if (newPassword.equals(personUpdated.getPassword())){
-				req.setAttribute("updatedPass", true);	
+		
+			// check the password is changed
+			if (!oldPassSHA.equals(personUpdated.getPassword())){
+				req.setAttribute("passMessage", "Updated Successfully");	
 			} else {
-				req.setAttribute("updatedPass", false);	
+				req.setAttribute("passMessage", "Update Failed.");	
 			}
 			req.getRequestDispatcher("profile.jsp").forward(req, res);
 			
 		} catch (SQLException ex){
 			
-			req.setAttribute("updatedPass", false);			
+			req.setAttribute("passMessage", "Failed");			
 			req.setAttribute("error_message", ex.getMessage());
             req.setAttribute("appname", req.getContextPath());
             try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}	catch(Exception e){}
 			
 		}
 	}
+	
+	public void doUpdateProfileImg(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException{
+		// write the HTML page
+		PrintWriter out = res.getWriter();
+		out.printf("<!DOCTYPE html>%n");
+		
+		out.printf("<html lang=\"en\">%n");
+		out.printf("<head>%n");
+		out.printf("<meta charset=\"utf-8\">%n");
+		out.printf("<title>HelloWorld Form Get Servlet Response</title>%n");
+		out.printf("</head>%n");
+
+		out.printf("<body>%n");
+		out.printf("<h1>Profile image Form</h1>%n");
+		out.printf("<hr/>%n");
+		out.printf("<p>%n");
+		out.printf("Hello");
+		out.printf("</p>%n");
+		out.printf("</body>%n");
+		
+		out.printf("</html>%n");
+	}
+	
+	public void doUpdateIdImg(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException{
+		// write the HTML page
+		PrintWriter out = res.getWriter();
+		out.printf("<!DOCTYPE html>%n");
+		
+		out.printf("<html lang=\"en\">%n");
+		out.printf("<head>%n");
+		out.printf("<meta charset=\"utf-8\">%n");
+		out.printf("<title>HelloWorld Form Get Servlet Response</title>%n");
+		out.printf("</head>%n");
+
+		out.printf("<body>%n");
+		out.printf("<h1>ID Form</h1>%n");
+		out.printf("<hr/>%n");
+		out.printf("<p>%n");
+		out.printf("Hello");
+		out.printf("</p>%n");
+		out.printf("</body>%n");
+		
+		out.printf("</html>%n");
+	}
+	
+	public void doUpdateQualificationImg(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException{
+		// write the HTML page
+		PrintWriter out = res.getWriter();
+		out.printf("<!DOCTYPE html>%n");
+		
+		out.printf("<html lang=\"en\">%n");
+		out.printf("<head>%n");
+		out.printf("<meta charset=\"utf-8\">%n");
+		out.printf("<title>HelloWorld Form Get Servlet Response</title>%n");
+		out.printf("</head>%n");
+
+		out.printf("<body>%n");
+		out.printf("<h1>Qualification Form</h1>%n");
+		out.printf("<hr/>%n");
+		out.printf("<p>%n");
+		out.printf("Hello");
+		out.printf("</p>%n");
+		out.printf("</body>%n");
+		
+		out.printf("</html>%n");
+	}
+	
+	public void doUpdateTopic(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException{
+				
+		// write the HTML page
+		PrintWriter out = res.getWriter();
+		out.printf("<!DOCTYPE html>%n");
+		
+		out.printf("<html lang=\"en\">%n");
+		out.printf("<head>%n");
+		out.printf("<meta charset=\"utf-8\">%n");
+		out.printf("<title>HelloWorld Form Get Servlet Response</title>%n");
+		out.printf("</head>%n");
+
+		out.printf("<body>%n");
+		out.printf("<h1>Topic Form</h1>%n");
+		out.printf("<hr/>%n");
+		out.printf("<p>%n");
+		out.printf("Hello");
+		out.printf("</p>%n");
+		out.printf("</body>%n");
+		
+		out.printf("</html>%n");		
+				
+				
+	}
+	
 	
 	public void doUpdateDescription(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException{
