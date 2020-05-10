@@ -1,6 +1,48 @@
 <%@ page contentType="text/html;charset=utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
+<%!
+    public static boolean check_login(HttpServletRequest req){
+        
+        // GET THE SESSION OBJECT
+        HttpSession session = req.getSession();
+        
+        // GET THE COOKIES ARRAY
+        Cookie[] cs = req.getCookies();
+
+        // IF THE SESSION LOGIN IS NOT SET
+        if(session.getAttribute("userid") == null){
+
+            if(cs == null) return false;
+            
+            // LOOP THROUGH THE COOKIES TO SEARCH FOR THE LOGIN COOKIE
+            for(int i = 0; i < cs.length; i++){
+
+                // IF YOU CAN FIND IT
+                if(cs[i].getName().equals("userid")){
+
+                    // SET THE SESSION LOGIN
+                    session.setAttribute("userid", cs[i].getValue());
+                    
+                    // AND SIGNAL TO THE CALLER THAT EVERYTHING IS OK
+                    return true;
+
+                }//if
+
+            }//for
+            
+            // YOU GOT HERE, SESSION LOGIN WAS NOT SET AND YOU DID NOT FIND THE COOKIE
+            // SIGNAL TO THE CALLER THIS MIGHT BE AN UNAUTHORIZED REQUEST
+            return false;
+
+        }//if
+        
+        
+        // THE SESSION WAS SET, EVERYTHING IS OK
+        return true;
+    }//check_login
+%>
+<% check_login(request); %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -107,11 +149,8 @@
             <div class="info_member_container">
                 <p class="member_name">Marco Dell'Anna</p>
                 <br>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristirci in velit. Praesent scelerisque tortor sed accumsan convallis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristique. Quisque vehicula, risus eget aliquam placerat, purus leo tincidunt eros, eget luctu
+                <p>Nullam tellus est, dignissim at nisi nec, pellentesque convallis diam. Pellentesque in nibh non ante pulvinar venenatis accumsan sed metus. Fusce magna magna, ultrices eget dui sed, elementum viverra quam. Maecenas ullamcorper, eros ac porttitor posuere, ligula sem imperdiet justo, sed convallis metus lectus vitae nulla. Fusce pharetra tempor ante eget tempor. Aenean nec mollis neque. Praesent et ligula mauris.
                 </p>  
-                <br>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristirci in velit. Praesent scelerisque tortor sed accumsan convallis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. 
-                </p>
             </div>            
 
             <div class="photoContact_member_container">
@@ -125,11 +164,8 @@
             <div class="info_member_container">
                 <p class="member_name">Xianwen Jin</p>
                 <br>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristirci in velit. Praesent scelerisque tortor sed accumsan convallis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristique. Quisque vehicula, risus eget aliquam placerat, purus leo tincidunt eros, eget luctu
+                <p>Proin volutpat aliquet nisi, eget commodo nulla tristique at. Vestibulum tincidunt ornare nisi, vehicula pulvinar dui tristique non. Etiam quis finibus ex. Nunc eleifend, leo ac sagittis convallis, risus diam tempor dolor, vitae ornare sapien turpis non tortor. Praesent dignissim massa felis, id porttitor odio consectetur ac. Nam vitae rutrum ipsum, sed mattis diam. Vivamus venenatis purus eu sapien ultricies, elementum rutrum nunc sagittis.
                 </p>  
-                <br>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristirci in velit. Praesent scelerisque tortor sed accumsan convallis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. 
-                </p>
             </div>            
 
             <div class="photoContact_member_container">
@@ -143,11 +179,8 @@
             <div class="info_member_container">
                 <p class="member_name">Marco Dalla Mutta</p>
                 <br>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristirci in velit. Praesent scelerisque tortor sed accumsan convallis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristique. Quisque vehicula, risus eget aliquam placerat, purus leo tincidunt eros, eget luctu
+                <p>Pellentesque et mauris ut libero tincidunt fermentum in pellentesque felis. Duis eu urna vitae leo venenatis tincidunt. Ut commodo sed diam sed malesuada. Donec pharetra, purus imperdiet lacinia placerat, odio ipsum vulputate augue, aliquam porttitor erat nisi vitae libero. Aenean ornare aliquet finibus. Donec consequat odio et turpis egestas lobortis facilisis et eros.
                 </p>  
-                <br>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristirci in velit. Praesent scelerisque tortor sed accumsan convallis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. 
-                </p>
             </div>            
 
             <div class="photoContact_member_container">
@@ -161,11 +194,8 @@
             <div class="info_member_container">
                 <p class="member_name">Memen Salihi</p>
                 <br>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristirci in velit. Praesent scelerisque tortor sed accumsan convallis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristique. Quisque vehicula, risus eget aliquam placerat, purus leo tincidunt eros, eget luctu
+                <p>Sed eget tempor enim, id viverra nisi. Curabitur blandit est erat, vel sodales nisl suscipit a. Duis placerat porta erat, at commodo augue finibus quis. Pellentesque ac posuere est. Quisque ut augue maximus mi maximus eleifend. Cras eget ante et est efficitur maximus. Proin hendrerit iaculis lacinia.
                 </p>  
-                <br>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristirci in velit. Praesent scelerisque tortor sed accumsan convallis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. 
-                </p>
             </div>            
 
             <div class="photoContact_member_container">
@@ -179,11 +209,8 @@
             <div class="info_member_container">
                 <p class="member_name">Victor Semencenco</p>
                 <br>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristirci in velit. Praesent scelerisque tortor sed accumsan convallis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristique. Quisque vehicula, risus eget aliquam placerat, purus leo tincidunt eros, eget luctu
+                <p>Nullam tincidunt sit amet eros nec lacinia. Duis ac enim non purus malesuada facilisis id sit amet sem. Pellentesque et viverra lectus. Vivamus a orci in magna dignissim efficitur auctor id eros. Sed et sapien eget odio semper mollis id et libero. In tempor ante quis euismod tristique. Aenean sollicitudin lacus nec turpis varius sollicitudin. Sed at ex non justo hendrerit ultrices nec quis mauris.
                 </p>  
-                <br>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristirci in velit. Praesent scelerisque tortor sed accumsan convallis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. 
-                </p>
             </div>            
 
             <div class="photoContact_member_container">
@@ -197,11 +224,8 @@
             <div class="info_member_container">
                 <p class="member_name">Ahmad Bashir Usman</p>
                 <br>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristirci in velit. Praesent scelerisque tortor sed accumsan convallis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristique. Quisque vehicula, risus eget aliquam placerat, purus leo tincidunt eros, eget luctu
+                <p>Aliquam at justo urna. Aenean posuere egestas maximus. Curabitur non ex cursus, volutpat ligula elementum, porta arcu. Vestibulum interdum ipsum massa, quis pellentesque nulla molestie non. Nulla et augue non massa malesuada consectetur non ac tellus. Donec sodales orci in cursus semper.
                 </p>  
-                <br>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristirci in velit. Praesent scelerisque tortor sed accumsan convallis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. 
-                </p>
             </div>            
 
             <div class="photoContact_member_container">               

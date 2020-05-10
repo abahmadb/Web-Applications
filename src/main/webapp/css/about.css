@@ -146,6 +146,10 @@
     font-family: Helvetica, sans-serif;
 }
 
+a.button:hover{
+    color: #FFF;
+}
+
 @media screen and (max-width: 1000px) {
     .info_member_container {
         /*background-color: orange;*/

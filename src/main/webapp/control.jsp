@@ -121,41 +121,22 @@
                         <div>
 
                             <table>
-                                <tr>
-                                    <td>
-                                        Matteo
-                                    </td>
-                                    <td>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lacinia vehicula auctor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In sollicitudin leo in volutpat cursus.
-                                    </td>
-                                    <td>
-                                        09/04/2020 19:05
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        Francesco
-                                    </td>
-                                    <td>
-                                        Praesent venenatis, risus id ornare interdum, neque quam sollicitudin odio, non convallis neque urna at libero. Donec ac libero malesuada, blandit enim at, ornare orci. Integer et nisi condimentum, aliquam mi in, porta est. Morbi in mollis risus.
-                                    </td>
-                                    <td>
-                                        09/04/2020 19:05
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        Lucia
-                                    </td>
-                                    <td>
-                                        Phasellus congue hendrerit lectus accumsan pulvinar. Phasellus sodales sem non neque pharetra, eget vulputate nulla aliquam. Praesent eu malesuada leo. Nulla nisi nibh,
-                                    </td>
-                                    <td>
-                                        09/04/2020 19:05
-                                    </td>
-                                </tr>
+                                <c:forEach var="chat" items="${recent_chats}">   
+                                    
+                                    <tr>
+                                    
+                                    <c:forEach var="c" items="${chat}">   
+                                    
+                                        <td>
+                                            ${c}
+                                        </td>
+                                    
+                                    </c:forEach>
+                                    
+                                    </tr>
+                                        
+                                </c:forEach>
+ 
                             </table>
 
                         </div>
@@ -175,53 +156,33 @@
                         <div>
 
                             <table>
-                                <tr>
-                                    <td>
-                                        Matteo
-                                    </td>
-                                    <td>
-                                        aliquet sit amet mauris quis, vestibulum ullamcorper mi. Vestibulum in nunc quis neque mollis pellentesque ac id orci. Maecenas bibendum rhoncus mauris,
-                                    </td>
-                                    <td>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star"></span>
-                                    </td>
-                                </tr>
+                                <c:forEach var="feed" items="${recent_feed}">   
+                                    
+                                    <tr>
+                                    
+                                        <td>
+                                            ${feed.name}
+                                        </td>
+                                        
+                                        <td>
+                                            ${feed.description}
+                                        </td>
+                                        
+                                        <td>
+                                            <c:forEach var="i" begin="1" end="${feed.score}">
+                                                <span class="fa fa-star checked"></span>
+                                            </c:forEach>
+                                            <c:forEach var="i" begin="1" end="${5 - feed.score}">
+                                                <span class="fa fa-star"></span>
+                                            </c:forEach>
+                                        </td>
+                                    
+                                    
+                                    </tr>
+                                        
+                                </c:forEach>
 
-                                <tr>
-                                    <td>
-                                        Francesco
-                                    </td>
-                                    <td>
-                                        non viverra est egestas id. Ut imperdiet rutrum urna, ac accumsan nibh cursus non. Ut elementum magna nec leo volutpat dapibus. Fusce sagittis dui sit amet lacus accumsan consectetur. Maecenas laoreet vestibulum lacinia. Cras ultricies turpis velit, eu imperdiet nibh bibendum vitae.
-                                    </td>
-                                    <td>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        Lucia
-                                    </td>
-                                    <td>
-                                        Nulla nec massa diam. Aenean tempor metus in enim ultrices tempor. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    </td>
-                                    <td>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                    </td>
-                                </tr>
+                                
                             </table>
 
                         </div>
@@ -245,61 +206,24 @@
                         <h2>Payments</h2>
 
                         <div>
-
+                            
                             <table>
-
-                                <tr>
-
-                                    <td>
-                                        09/04/2020 19:26
-                                    </td>
-                                    <td>
-                                        Incoming deposit from Matteo
-                                    </td>
-                                    <td>
-                                        +30&euro;
-                                    </td>
-                                </tr>
-
-                                <tr>
-
-                                    <td>
-                                        09/04/2020 19:26
-                                    </td>
-                                    <td>
-                                        Incoming deposit from Lucia
-                                    </td>
-                                    <td>
-                                        +26&euro;
-                                    </td>
-                                </tr>
-
-                                <tr>
-
-                                    <td>
-                                        09/04/2020 19:26
-                                    </td>
-                                    <td>
-                                        Incoming deposit from Luca
-                                    </td>
-                                    <td>
-                                        +28&euro;
-                                    </td>
-                                </tr>
-
-                                <tr>
-
-                                    <td>
-                                        09/04/2020 19:26
-                                    </td>
-                                    <td>
-                                        Outgoing payment to Francesco
-                                    </td>
-                                    <td>
-                                        -20&euro;
-                                    </td>
-                                </tr>
-
+                                <c:forEach var="payment" items="${recent_payment}">   
+                                    
+                                    <tr>
+                                    
+                                    <c:forEach var="p" items="${payment}">   
+                                    
+                                        <td>
+                                            ${p}
+                                        </td>
+                                    
+                                    </c:forEach>
+                                    
+                                    </tr>
+                                        
+                                </c:forEach>
+ 
                             </table>
 
                         </div>

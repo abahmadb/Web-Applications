@@ -164,7 +164,7 @@
 
                 <p>If you have any doubts feel free to</p>
 
-                <a id="contact_us" href="about.html">Contact Us</a>
+                <a id="contact_us" href="about.jsp">Contact Us</a>
 
             </section>
 
