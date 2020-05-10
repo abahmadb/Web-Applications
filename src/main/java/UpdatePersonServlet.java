@@ -25,6 +25,7 @@ public final class UpdatePersonServlet extends DatabaseServlet{
 		String email = null;
 		String passwd = null;
 		String phone = null;
+        String city = null;
 		String description = null;
 		String temp = null;
 		Person person = null;
@@ -51,10 +52,10 @@ public final class UpdatePersonServlet extends DatabaseServlet{
 				dob = Date.valueOf(req.getParameter("birth").toString());
 			} catch (Exception e){}
 			email = req.getParameter("email");
-			phone = req.getParameter("phone_nr");	
+			phone = req.getParameter("phone_nr");
 				
 			// create person from the request parameters
-			person = new Person(idUser, name, surname, gender, dob, email, passwd, phone, description);
+			person = new Person(idUser, name, surname, gender, dob, email, passwd, phone, city, description);
 		
 			new UpdatePersonDAO(getConnection(), person).updatePerson();
 			

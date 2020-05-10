@@ -12,6 +12,7 @@ CREATE TABLE person (
     Email       VARCHAR(50)     UNIQUE NOT NULL,
     Passwd      CHAR(65)        NOT NULL,
     Phone       CHAR(12),
+    City        VARCHAR(50),     
     Description TEXT
 )engine=InnoDB;
 
