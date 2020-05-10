@@ -103,7 +103,7 @@
                             </div>
                             <br>
                             <div class="header_city_box">
-                                City: Montebelluna
+                                City: ${teacher_city}
                             </div>
                         </div>
 

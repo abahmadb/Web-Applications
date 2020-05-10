@@ -17,6 +17,7 @@ public final class TeacherServlet extends DatabaseServlet {
         
         StringBuilder teacher_name = new StringBuilder("");
         StringBuilder teacher_score = new StringBuilder("");
+        StringBuilder teacher_city = new StringBuilder("");
         
         try {
            
@@ -28,7 +29,7 @@ public final class TeacherServlet extends DatabaseServlet {
             int userid = Integer.parseInt(req.getParameter("teacher_id"));
             
             st = con.createStatement();
-            rs = st.executeQuery("SELECT Name FROM person WHERE person.IDUser = " + userid);
+            rs = st.executeQuery("SELECT Name FROM person WHERE IDUser = " + userid);
             
             while (rs.next()) {
                 teacher_name.append(rs.getString("Name"));
@@ -42,6 +43,13 @@ public final class TeacherServlet extends DatabaseServlet {
                 teacher_score.append(rs.getFloat("AVG(Score)"));
             }
             
+            //Retrieve the teacher city
+            st = con.createStatement();
+            rs = st.executeQuery("SELECT City FROM person WHERE IDUser = " + userid);
+            
+            while (rs.next()) {
+                teacher_city.append(rs.getString("City"));
+            }
         }
         
         catch (SQLException e) {
@@ -78,6 +86,7 @@ public final class TeacherServlet extends DatabaseServlet {
         
         req.setAttribute("teacher_name", teacher_name);        
         req.setAttribute("teacher_avgscore", teacher_score);
+        req.setAttribute("teacher_city", teacher_city);
         
         req.getRequestDispatcher("teacher.jsp").forward(req, res);
 

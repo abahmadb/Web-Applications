@@ -93,9 +93,9 @@ main .flex_item .header_left_box .header_rating_box{
 }
 
 #teacher_fullstar_style {
+    display: inline-block;
     position: relative;
     z-index: 10;
-    display: inline-block;
     overflow: hidden;
     white-space: nowrap;
 }
