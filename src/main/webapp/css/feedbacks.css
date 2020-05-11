@@ -15,10 +15,10 @@
     display: inline-block;
     unicode-bidi: bidi-override;
     color: #3b444b;
-    font-size: 28px;
+    font-size: 23px;
     height: 25px;
     width: auto;
-    margin: 0;
+    margin-top: 5px;
     position: relative;
     padding: 0;
 	-webkit-user-select: none;     
@@ -45,8 +45,8 @@
     padding: 0;
     display: flex;
     z-index: 0;
-    text-shadow: 0 0 0.2em darkslategrey;
 }
+
 
 /*bars container*/
 .row{

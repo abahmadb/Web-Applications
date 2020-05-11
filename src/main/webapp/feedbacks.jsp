@@ -32,24 +32,7 @@
     <body>
 
         <input type="checkbox" id="toggle_menu">
-        
-
-        <!-- SIDEBAR FOR THE DASHBOARD -->
-        <aside>
-            <center>
-                <a href="index.jsp"><img src="images/logo_transparent.png" alt=""></a>
-            </center>
-
-            <p><label for="toggle_menu"><i class="fas fa-bars"></i></label></p>
-            <a href="${pageContext.request.contextPath}/dashboard"><i class="fas fa-desktop"></i><span>Control Panel</span></a>
-            <a href="${pageContext.request.contextPath}/chat"><i class="fas fa-comment-dots"></i><span>Chat</span></a>
-            <a href="${pageContext.request.contextPath}/feedbacks" class="current_section"><i class="far fa-thumbs-up"></i><span>Feedbacks</span></a>
-            <a href="${pageContext.request.contextPath}/payments"><i class="fas fa-money-check-alt"></i><span>Payments</span></a>
-            <a href="${pageContext.request.contextPath}/profile"><i class="fas fa-user-alt"></i><span>Profile</span></a>
-            <a href="index.jsp"><i class="fas fa-info-circle"></i><span>Sign out</span></a>
-
-        </aside>
-
+        <jsp:include page="include/menu.jsp"/>
 
         <!-- CONTENT OF THE PAGE -->
         
@@ -65,18 +48,18 @@
 
                         <div class="rating">
                             <div class="rating-upper">
-                                <span>★</span>
-                                <span>★</span>
-                                <span>★</span>
-                                <span>★</span>
-                                <span>★</span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
                             </div>
                             <div class="rating-lower">
-                                <span>★</span>
-                                <span>★</span>
-                                <span>★</span>
-                                <span>★</span>
-                                <span>★</span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
                             </div>
                         </div>
 
@@ -187,7 +170,7 @@
 
             <div class="sign_up_in" id="feedform">
 
-                <form method="post" action="feedbacksServlet">
+                <form method="post" action="${pageContext.request.contextPath}/feedbacks">
 
                     <center>
 
@@ -199,20 +182,21 @@
 
                         <div class="rating">
                             <div class="rating-upper">
-                                <span>★</span>
-                                <span>★</span>
-                                <span>★</span>
-                                <span>★</span>
-                                <span>★</span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
                             </div>
                             <div class="rating-lower">
-                                <span>★</span>
-                                <span>★</span>
-                                <span>★</span>
-                                <span>★</span>
-                                <span>★</span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
                             </div>
                         </div>
+
                         <br>
                         <label for="comment">Comment:</label>
                         <br>
@@ -234,6 +218,7 @@
         <script>
             let counters = ${counters};
             let avg = ${avg};
+            let userfeedlist = ${userfeedlist};
         </script>
 
         <!-- FEEDBACKS JS -->

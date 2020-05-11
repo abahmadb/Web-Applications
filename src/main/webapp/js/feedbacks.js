@@ -36,32 +36,35 @@ for (let i = 0; i < counters.length; i++) {
 
 }
 
-//let's say we have a list of users from who we have already had lectures
-let userfeedlist = ["Matteo", "Francesco", "Lucia"];
-let feeddata = "<h2>" + "Evaluate your teachers!" + "</h2>";
+let feeddiv = document.getElementById("give-feed");
 
-//we can list them and have an option to give a feedback to each of them
-for (let i = 0; i < userfeedlist.length; i++) {
+if(userfeedlist.length !== 0) {
 
-   feeddata += "<div>" +
-                    "<table>" +
-                        "<tr>" +
-                            "<td>" +
-                                userfeedlist[i] +
-                            "</td>" +
-                            "<td></td>" +
-                            "<td>" +
-                                "<a class= \"feedreq\">Give feedback</a>\n" +
-                            "</td>" +
-                        "</tr>" +
-                    "</table>" +
-                "</div>";
+    let feeddata = "<h2>" + "Evaluate your teachers!" + "</h2>";
+
+    //we can list them and have an option to give a feedback to each of them
+    for (let i = 0; i < userfeedlist.length; i++) {
+
+        feeddata += "<div>" +
+            "<table>" +
+            "<tr>" +
+            "<td>" +
+            userfeedlist[i] +
+            "</td>" +
+            "<td></td>" +
+            "<td>" +
+            "<a class= \"feedreq\">Give feedback</a>\n" +
+            "</td>" +
+            "</tr>" +
+            "</table>" +
+            "</div>";
+
+    }
+
+    //insert the data into DOM
+    feeddiv.innerHTML = feeddata;
 
 }
-
-//insert the data into DOM
-let feeddiv = document.getElementById("give-feed");
-feeddiv.innerHTML = feeddata;
 
 //get buttons used for giving feedbacks
 let buttons = document.getElementsByClassName("feedreq");

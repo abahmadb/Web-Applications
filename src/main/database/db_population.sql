@@ -39,7 +39,9 @@ INSERT INTO
 VALUES
 	(2, 3, 4, "Very good", '2020-05-13'),
 	(2, 1, 4, "Excellent", '2020-05-13'),
-	(2, 4, 5, "Excellent", '2020-05-13');	
+	(2, 4, 5, "If you need a prepared, reliable, communicative and helpful person, contact him, you won't be disappointed", '2020-05-13'),
+	(1, 3, 4, "Precise and helpful, recommended :)", '2020-05-13'),
+	(4, 1, 4, "Patient and prepared", '2020-05-13');	
 
 -- CHAT
 INSERT INTO
