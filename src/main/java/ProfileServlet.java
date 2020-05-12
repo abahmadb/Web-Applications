@@ -6,6 +6,15 @@ import java.io.IOException;
 import java.io.*;
 import java.nio.file.*;
 import java.util.regex.*;
+import java.util.*;
+
+// package needed for upload file
+ 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.output.*;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,8 +35,8 @@ public final class ProfileServlet extends DatabaseServlet{
             throw new IOException("You did not sign in before opening the dashboard, sign in and retry");
 
 			//if we are, we can go on and retrieve the userid attribute from the session
-			//int idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("userid")));		
-			int idUser = 1;
+			int idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("userid")));		
+	
 			// send back new field values of person
 			Person person = new SearchPersonByIdDAO(getConnection(), idUser).searchPersonById();
 			req.setAttribute("person", person);
@@ -52,8 +61,12 @@ public final class ProfileServlet extends DatabaseServlet{
             doUpdatePerson(req, res);
         else if(req.getParameter("passForm") != null)
             doUpdatePass(req, res);
-		else if(req.getParameter("profileImgForm") != null)
-            doUpdateProfileImg(req, res);
+		else if(req.getParameter("profileImgForm") != null){
+            
+			
+			doUpdateProfileImg(req, res);
+			
+		}
 		else if(req.getParameter("idImgForm") != null)
             doUpdateIdImg(req, res);
 		else if(req.getParameter("qualificationImgForm") != null)
@@ -67,30 +80,28 @@ public final class ProfileServlet extends DatabaseServlet{
 	public void doUpdatePerson(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException{
 				
-        req.getSession().setAttribute("idUser", 1);
-		//int idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("userid")));	
+        //req.getSession().setAttribute("idUser", 1);
+		int idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("userid")));	
         //idUser = (int) req.getSession().getAttribute("idUser");
-		int idUser = 1;	
+	
 		try{
 			// retrieve the request parameters
 			String name = req.getParameter("firstname");
 			String surname = req.getParameter("lastname");
 			String gender = req.getParameter("gender");
-			if (gender.equals("Male")){
+			if (gender.equals("M")){
 				gender = "M";
-			} else if (gender.equals("Female")){
+			} else if (gender.equals("F")){
 				gender = "F";
-			} else if (gender.equals("Other")){
-				gender = "O";
 			} else {
 				gender = "";
 			}
 			String temp = req.getParameter("birth").toString();
 			/*SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 			dob = new java.sql.Date(format.parse(temp).getTime());*/
-			Date dob = null;
+			java.sql.Date dob = null;
 			try{
-				dob = Date.valueOf(req.getParameter("birth").toString());
+				dob = java.sql.Date.valueOf(req.getParameter("birth").toString());
 			} catch (Exception e){}
 			String email = req.getParameter("email");
 			String phone = req.getParameter("phone_nr");
@@ -117,9 +128,9 @@ public final class ProfileServlet extends DatabaseServlet{
 	public void doUpdatePass(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException{
 		
-		req.getSession().setAttribute("idUser", 1);
-		//int idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("userid")));
-		int idUser = 1;			
+		//req.getSession().setAttribute("idUser", 1);
+		int idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("userid")));
+		//int idUser = 1;			
 		try{
 			
 			String newPassword = req.getParameter("new_pw");
@@ -149,6 +160,72 @@ public final class ProfileServlet extends DatabaseServlet{
 	
 	public void doUpdateProfileImg(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException{
+		
+		
+		//int idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("userid")));
+		
+		// upload settings
+		final int MEMORY_THRESHOLD   = 1024 * 1024 * 3;  // 3MB
+		final int MAX_FILE_SIZE      = 1024 * 1024 * 40; // 40MB
+		final int MAX_REQUEST_SIZE   = 1024 * 1024 * 50; // 50MB
+ 
+ 
+        
+		String upload_dir = "identity";
+		if(req.getParameter("profileImgForm") != null)
+            upload_dir = "profile";
+		else if(req.getParameter("idImgForm") != null)
+            upload_dir = "identity";
+		else if(req.getParameter("qualificationImgForm") != null)
+            upload_dir = "certificate";
+			
+		// check if is a multipart content
+        if (!ServletFileUpload.isMultipartContent(req)) {
+			req.setAttribute("error_message", "Not multipart content");
+            req.setAttribute("appname", req.getContextPath());
+            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}	catch(Exception e){}
+        }
+ 
+        // Initialize settings for upload
+        DiskFileItemFactory factory = new DiskFileItemFactory();
+        factory.setSizeThreshold(MEMORY_THRESHOLD);
+        factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
+        ServletFileUpload upload = new ServletFileUpload(factory);
+        upload.setFileSizeMax(MAX_FILE_SIZE);
+        upload.setSizeMax(MAX_REQUEST_SIZE);
+
+        // relative path
+        //String uploadPath = request.getServletContext().getRealPath("./") + File.separator + UPLOAD_DIRECTORY;
+		String uploadPath = System.getProperty("user.dir") + "\\..\\webapps\\imageset\\" + upload_dir;
+        String filePath = null;
+ 
+        try {
+            // retrieve the file
+            @SuppressWarnings("unchecked")
+            List<FileItem> formItems = upload.parseRequest(req);
+ 
+            if (formItems != null && formItems.size() > 0) {
+               
+                for (FileItem item : formItems) {
+                    
+                    if (!item.isFormField()) {
+                        String fileName = new File(item.getName()).getName();
+                        filePath = uploadPath + File.separator + fileName;
+                        File storeFile = new File(filePath);
+                        
+                        System.out.println(filePath);
+                        item.write(storeFile);
+                        req.setAttribute("fileMessage",
+                            "uploaded");
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            req.setAttribute("fileMessage", "upload failed");
+        }
+        // 跳转到 message.jsp
+        //request.getServletContext().getRequestDispatcher("/message.jsp").forward(
+         //       request, response);
 		// write the HTML page
 		PrintWriter out = res.getWriter();
 		out.printf("<!DOCTYPE html>%n");
@@ -160,14 +237,15 @@ public final class ProfileServlet extends DatabaseServlet{
 		out.printf("</head>%n");
 
 		out.printf("<body>%n");
-		out.printf("<h1>Profile image Form</h1>%n");
+		out.printf("<h1>Profile Form</h1>%n");
 		out.printf("<hr/>%n");
 		out.printf("<p>%n");
-		out.printf("Hello");
+		out.printf("Hello%s", filePath);
 		out.printf("</p>%n");
 		out.printf("</body>%n");
 		
 		out.printf("</html>%n");
+    
 	}
 	
 	public void doUpdateIdImg(HttpServletRequest req, HttpServletResponse res)

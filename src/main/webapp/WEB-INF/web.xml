@@ -14,7 +14,7 @@
         <description>Location to store uploaded file</description> 
         <param-name>file-upload</param-name> 
         <param-value>
-            c:/data/
+            C:\Program Files\Apache Software Foundation\apache-tomcat-9.0.34-windows-x64\apache-tomcat-9.0.34\webapps\imageset\
         </param-value> 
     </context-param>
 
@@ -93,6 +93,21 @@
         <url-pattern>/profileServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet-mapping>
+        <servlet-name>profileServlet</servlet-name>
+        <url-pattern>/profile</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>uploadServlet</servlet-name>
+        <servlet-class>UploadServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>uploadServlet</servlet-name>
+        <url-pattern>/uploadServlet</url-pattern>
+    </servlet-mapping>
+    
     <!-- Servlet for chat page-->
 
     <servlet>

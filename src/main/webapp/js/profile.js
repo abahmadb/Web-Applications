@@ -6,7 +6,27 @@ function readFile(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function(e) {
-            document.getElementById("id_img").src = e.target.result;
+        document.getElementById("profile_img").src = e.target.result;
+        };
+        reader.readAsDataURL( input.files[0] );
+    }
+}
+
+function readFile2(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+        document.getElementById("id_img").src = e.target.result;
+        };
+        reader.readAsDataURL( input.files[0] );
+    }
+}
+
+function readFile3(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+        document.getElementById("qualification_img").src = e.target.result;
         };
         reader.readAsDataURL( input.files[0] );
     }

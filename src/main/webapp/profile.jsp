@@ -1,8 +1,4 @@
-<!-- include jsp files -->
-<%@ include file="include/db_connect.jsp" %>
-<%@ include file="include/menu.jsp" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
 <!DOCTYPE html>
@@ -39,7 +35,7 @@
     <body>
 
         <input type="checkbox" id="toggle_menu">
-
+        <%@ include file="include/menu.jsp" %>
         <!-- SIDEBAR FOR THE DASHBOARD
         <aside>
             <center>
@@ -95,9 +91,8 @@
                                         </c:otherwise>
                                     </c:choose>
                                 </option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Other">Other</option>
+                                <option value="M">M</option>
+                                <option value="F">F</option>
                             </select>
 
                             <label for="birthday">Birthday</label><br>
@@ -132,11 +127,11 @@
                         <h4>
                             Profile photo 
                         </h4>
-            
-                        <form action="profileServlet" method="post" enctype="multipart/form-data">
+
+                         <form action="uploadServlet" method="post" enctype="multipart/form-data">
                             <p>
                                 <label for="photo"> 
-                                    <img src="images/logo.png" class="profile_img" alt="profile image" id="id_img">
+                                    <img src="/imageset/profile/${sessionScope.userid}.jpg" class="profile_img" alt="profile image" id="profile_img">
                                 </label>
                             </p>
                             <input type="file" name="photo" id="photo" accept=".jpg, .png" onchange="readFile(this);">
@@ -144,7 +139,7 @@
                                 <input type="submit" value="Upload photo" name="profileImgForm">
                             </p>
                         </form>
-
+                        
                     </div>
 
                     <br>
@@ -188,18 +183,18 @@
                         <h4>
                             Identity card 
                         </h4>
-            
-                        <form action="profileServlet" method="post" enctype="multipart/form-data">
+             
+                        <form action="uploadServlet" method="post" enctype="multipart/form-data">
                             <p>
-                                <label for="photo"> 
-                                    <img src="images/id.svg" class="id_img" alt="id image">
+                                <label for="document_card"> 
+                                    <img src="/imageset/identity/${sessionScope.userid}.jpg" class="id_img" alt="id image" id="id_img">
                                 </label>
                             </p>
-                            <input type="file" name="document_card" id="document_card" accept=".jpg, .png" onchange="readFile(this);">
+                            <input type="file" name="document_card" id="document_card" accept=".jpg, .png" onchange="readFile2(this);">
                             <p>
                                 <input type="submit" value="Upload ID" name="idImgForm">
                             </p>
-                        </form> 
+                        </form>
                         
                     </div>
                     <br>
@@ -211,13 +206,13 @@
                             Qualification
                         </h4>
             
-                        <form action="profileServlet" method="post" enctype="multipart/form-data">
+                        <form action="uploadServlet" method="post" enctype="multipart/form-data">
                             <p>
-                                <label for="photo"> 
-                                    <img src="images/diplome.svg" class="qualification_img" alt="qualification image">
+                                <label for="qualification"> 
+                                    <img src="/imageset/certificate/${sessionScope.userid}.jpg" class="qualification_img" id="qualification_img" alt="qualification image">
                                 </label>
                             </p>
-                            <input type="file" name="qualification" id="qualification" accept=".jpg, .png" onchange="readFile(this);">
+                            <input type="file" name="qualification" id="qualification" accept=".jpg, .png" onchange="readFile3(this);">
                             <p>
                                 <input type="submit" value="Upload Qualification" name="qualificationImgForm">
                             </p>
