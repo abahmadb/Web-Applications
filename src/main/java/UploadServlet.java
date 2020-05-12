@@ -89,28 +89,6 @@ public class UploadServlet extends HttpServlet {
         } catch (Exception ex) {
             req.setAttribute("fileMessage", "upload failed");
         }
-        // 跳转到 message.jsp
-        //request.getServletContext().getRequestDispatcher("/message.jsp").forward(
-         //       request, response);
-		// write the HTML page
-		PrintWriter out = res.getWriter();
-		out.printf("<!DOCTYPE html>%n");
-		
-		out.printf("<html lang=\"en\">%n");
-		out.printf("<head>%n");
-		out.printf("<meta charset=\"utf-8\">%n");
-		out.printf("<title>HelloWorld Form Get Servlet Response</title>%n");
-		out.printf("</head>%n");
-
-		out.printf("<body>%n");
-		out.printf("<h1>Profile Form</h1>%n");
-		out.printf("<hr/>%n");
-		out.printf("<p>%n");
-		out.printf("Hello%s", filePath);
-		out.printf("Hello%s", fieldName);
-		out.printf("</p>%n");
-		out.printf("</body>%n");
-		
-		out.printf("</html>%n");
+        
     }
 }

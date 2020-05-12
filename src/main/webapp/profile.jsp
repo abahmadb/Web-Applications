@@ -136,7 +136,7 @@
                             </p>
                             <input type="file" name="photo" id="photo" accept=".jpg, .png" onchange="readFile(this);">
                             <p>
-                                <input type="submit" value="Upload photo" name="profileImgForm">
+                                <input type="submit" value="Upload photo">
                             </p>
                         </form>
                         
@@ -192,7 +192,7 @@
                             </p>
                             <input type="file" name="document_card" id="document_card" accept=".jpg, .png" onchange="readFile2(this);">
                             <p>
-                                <input type="submit" value="Upload ID" name="idImgForm">
+                                <input type="submit" value="Upload ID">
                             </p>
                         </form>
                         
@@ -214,7 +214,7 @@
                             </p>
                             <input type="file" name="qualification" id="qualification" accept=".jpg, .png" onchange="readFile3(this);">
                             <p>
-                                <input type="submit" value="Upload Qualification" name="qualificationImgForm">
+                                <input type="submit" value="Upload Qualification">
                             </p>
                         </form>
 
