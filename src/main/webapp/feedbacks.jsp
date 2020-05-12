@@ -44,6 +44,9 @@
 
                     <div>
 
+                        <!-- here there will be box with information about the current user score -->
+                        <!-- everything is dynamically updated by js script -->
+
                         <span class="heading">User Rating</span>
 
                         <div class="rating">
@@ -156,7 +159,41 @@
 
                     <div class="box hoverable_rows" id="give-feed">
 
-                        <h2>Here you can give feedbacks, have a lecture with someone to start giving feedbacks!</h2>
+                        <!-- here there will be a table that lists teachers to whom give feedbacks -->
+                        <!-- and buttons to open a modal form and actually give the feedback -->
+
+                        <c:choose>
+                            <c:when test="${empty userfeedlist}">
+                                <h2>Here you can give feedbacks, have a lecture with someone to start giving feedbacks!</h2>
+                            </c:when>
+                            <c:otherwise>
+                                <h2>Evaluate your teachers!</h2>
+                                <c:forEach var="t" items="${userfeedlist}">
+                                    <c:forTokens items="${t}" delims="," var="item" varStatus ="loop">
+                                        <c:choose>
+                                            <c:when test="${loop.first}">
+                                                <div>
+                                                    <table>
+                                                        <tr>
+                                                            <td>
+                                                                ${item}
+                                                            </td>
+                                                            <td></td>
+                                            </c:when>
+                                            <c:otherwise>
+                                                            <td>
+                                                                <a class= "feedreq" teacherid = ${item}>Give feedback</a>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:forTokens>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
+
 
                     </div>
 
@@ -165,6 +202,8 @@
                 </div>
 
             </main>
+
+        <!-- this is the modal invoked by the table buttons, it will be dynamically updated by js script -->
 
         <div class="modal">
 
@@ -218,7 +257,6 @@
         <script>
             let counters = ${counters};
             let avg = ${avg};
-            let userfeedlist = ${userfeedlist};
         </script>
 
         <!-- FEEDBACKS JS -->

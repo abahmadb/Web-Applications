@@ -1,15 +1,12 @@
 import java.io.IOException;
-import java.sql.*;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import java.sql.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 
 
 public final class FeedbacksServlet extends DatabaseServlet {
@@ -88,49 +85,18 @@ public final class FeedbacksServlet extends DatabaseServlet {
             countersString += Arrays.toString(counters);
             avg += (double)sum/(Arrays.stream(counters).sum());
 
-            //find all teachers associated that have at least a lesson with the user
-            st = con.prepareStatement("SELECT TeacherID from " +
-                    "lesson AS L INNER JOIN person AS P ON L.StudentID = P.IDUser WHERE L.StudentID = ?");
+            //find all teachers associated that have at least a lesson with the current user
+            //and retrieve only the ones that didn't receive a feedback from him
+            st = con.prepareStatement("SELECT L.TeacherID, CONCAT(P.Name, ' ', P.Surname) AS fullname " +
+                    "FROM lesson AS L INNER JOIN person AS P ON L.TeacherID = P.IDUser " +
+                    "WHERE L.StudentID = ? AND L.LessonDate < CURDATE() AND L.TeacherID NOT IN (SELECT TeacherID " +
+                    "FROM feedback WHERE StudentID = ?)");
             st.setInt(1, userid);
+            st.setInt(2, userid);
             rs = st.executeQuery();
 
-            //verify if rs is an empty set
-            if (rs.next()){
-
-                //if it's not, go on, and fill this arraylist
-                ArrayList<Integer> teachers = new ArrayList<>();
-
-                do {
-                    teachers.add(rs.getInt("TeacherID"));
-                } while (rs.next());
-
-                //now we see if the user gave already a feedback to a teacher
-                //we check this for every teacher that has id in the arraylist
-                for(int i: teachers) {
-
-                    st = con.prepareStatement("SELECT CONCAT(Name, ' ', Surname) FROM " +
-                            "feedback AS F INNER JOIN person AS P ON F.TeacherID = P.IDUser " +
-                            "WHERE F.TeacherID = ? AND F.StudentID = ? LIMIT 1");
-                    st.setInt(1, i);
-                    st.setInt(2, userid);
-                    rs = st.executeQuery();
-
-                    //if there isn't a feedback, we allow the user to give one
-                    if (!rs.next()){
-
-                        st = con.prepareStatement("SELECT CONCAT(Name, ' ', Surname) FROM person WHERE IDUser = ? LIMIT 1");
-                        st.setInt(1, i);
-                        rs = st.executeQuery();
-
-                        while(rs.next())
-                            userfeedlist.add("\""+ rs.getString("CONCAT(Name, ' ', Surname)") + "\"");
-
-                    }
-
-
-                }
-
-            }
+            while (rs.next())
+                userfeedlist.add(rs.getString("fullname") + "," + rs.getInt("L.TeacherID"));
 
 
         }
@@ -149,36 +115,11 @@ public final class FeedbacksServlet extends DatabaseServlet {
 
         }
 
-        //release resources in the end anyway
-        finally {
-
-            if (rs != null) {
-
-                try {
-                    rs.close();
-                }
-
-                catch (SQLException ignored) { }
-
-            }
-
-            if (st != null) {
-
-                try {
-                    st.close();
-                }
-
-                catch (SQLException ignored) { }
-
-            }
-
-        }
-
         //place everything on jsp page
         request.setAttribute("feedbacks", feedbacks);
+        request.setAttribute("userfeedlist", userfeedlist);
         request.setAttribute("counters", countersString);
         request.setAttribute("avg", avg);
-        request.setAttribute("userfeedlist", userfeedlist);
 
         request.getRequestDispatcher("feedbacks.jsp").forward(request, response);
 
@@ -188,82 +129,37 @@ public final class FeedbacksServlet extends DatabaseServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         Connection con = getConnection(); //use DatabaseServlet method to get connection
-        PreparedStatement st = null;
-        ResultSet rs = null;
 
         //get userid from session
         int studentID = Integer.parseInt(String.valueOf(request.getSession().getAttribute("userid")));
 
         //get form parameters
-        String teacherUsername = request.getParameter("teacher");
+        int teacherID = Integer.parseInt(request.getParameter("teacher"));
         int score = Integer.parseInt(request.getParameter("score"));
         String comment = request.getParameter("comment");
 
-
-        try {
-
-            //take the teacherid knowing the username given by the form
-            st = con.prepareStatement("SELECT IDUser FROM feedback F INNER JOIN person P ON P.IDUser = F.TeacherID " +
-                    "WHERE CONCAT(P.Name, ' ', P.Surname) = ? LIMIT 1");
-            st.setString(1, teacherUsername);
-            rs = st.executeQuery();
-
-            int teacherID = 0;
-            while(rs.next())
-                teacherID = rs.getInt("IDUser");
-
-            //get current date in yyyy-MM-dd format
-            String pattern = "yyyy-MM-dd";
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-            java.sql.Date date = java.sql.Date.valueOf(simpleDateFormat.format(new Date()));
+        //try-with-resources syntax, does not need a finally block to close the statement resource
+        try (PreparedStatement st = con.prepareStatement("INSERT INTO feedback VALUES (?,?,?,?, CURDATE())")) {
 
             //insert the feedback into the db
-            st = con.prepareStatement("INSERT INTO feedback VALUES (?,?,?,?,?)");
             st.setInt(1, teacherID);
             st.setInt(2, studentID);
             st.setInt(3, score);
             st.setString(4, comment);
-            st.setDate(5, date);
             st.executeUpdate();
 
         }
 
-        //catch exceptions
         catch (SQLException e) {
 
             request.setAttribute("error_message", e.getMessage());
             request.setAttribute("appname", request.getContextPath());
 
-            try{
+            try {
                 request.getRequestDispatcher("errorpage.jsp").forward(request, response);
             }
 
-            catch(Exception ignored){}
-
-        }
-
-        //release resources in the end anyway
-        finally {
-
-            if (rs != null) {
-
-                try {
-                    rs.close();
-                }
-
-                catch (SQLException ignored) { }
-
-            }
-
-            if (st != null) {
-
-                try {
-                    st.close();
-                }
-
-                catch (SQLException ignored) { }
-
-            }
+            catch (Exception ignored) {}
 
         }
 

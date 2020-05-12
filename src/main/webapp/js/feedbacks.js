@@ -36,52 +36,16 @@ for (let i = 0; i < counters.length; i++) {
 
 }
 
-let feeddiv = document.getElementById("give-feed");
-
-if(userfeedlist.length !== 0) {
-
-    let feeddata = "<h2>" + "Evaluate your teachers!" + "</h2>";
-
-    //we can list them and have an option to give a feedback to each of them
-    for (let i = 0; i < userfeedlist.length; i++) {
-
-        feeddata += "<div>" +
-            "<table>" +
-            "<tr>" +
-            "<td>" +
-            userfeedlist[i] +
-            "</td>" +
-            "<td></td>" +
-            "<td>" +
-            "<a class= \"feedreq\">Give feedback</a>\n" +
-            "</td>" +
-            "</tr>" +
-            "</table>" +
-            "</div>";
-
-    }
-
-    //insert the data into DOM
-    feeddiv.innerHTML = feeddata;
-
-}
-
 //get buttons used for giving feedbacks
-let buttons = document.getElementsByClassName("feedreq");
+let buttons = document.querySelectorAll("a.feedreq");
 for(let i = 0; i < buttons.length; i++){
 
-    //exclude the button inside the modal
-    //i want only the ones outside, that are basically an "a" html element, while the one inside is an "input" element
-    if(buttons[i].nodeName === "A") {
+    //attach toggle event to selected buttons
+    buttons[i].addEventListener("click", function () {
 
-        //attach toggle event to selected buttons
-        buttons[i].addEventListener("click", function () {
+        toggle_modalfeed(event);
 
-            toggle_modalfeed(event);
-
-        });
-
-    }
+    });
 
 }
 
@@ -95,36 +59,13 @@ function toggle_modalfeed(event){
     //execute only if we are showing the modal, not when hiding it
     if (!modal_ctrl){
 
-        //using linear search to find the name of the user related to the button we pressed
-        //there are other ways to do it, like binary search or using indexOf()
-        //i decided to keep it simple
-
-        let user = "";
-        //take the closest div ancestor of the pressed button
-        let closest = event.target.closest("div");
-
-        //find its relative position wrt all the divs in #give-feed
-        for(let i = 0; i < userfeedlist.length; i++){
-
-            let possibleclosest = feeddiv.querySelectorAll("div")[i];
-            if(possibleclosest === closest){
-
-                //the relative position is used to retrieve the user related to the button
-                //that is the user we want to give the feedback to
-                user = userfeedlist[i];
-                break;
-
-            }
-
-        }
-
-        //set the heading text using the retrieved info
+        //set the heading text using the username field in the table with the give-feed buttons
         let heading = document.getElementById("feedform").querySelectorAll("div")[0];
-        heading.innerHTML = "Give a feedback to " + user + "!";
+        heading.innerHTML = "Give a feedback to " + event.target.parentElement.previousElementSibling.previousElementSibling.innerHTML + "!";
 
         //also update the input to be sent to the back-end
         let teacherinput = document.getElementsByName("teacher")[0];
-        teacherinput.value = user;
+        teacherinput.value = event.target.getAttribute("teacherid");
 
     }
 
