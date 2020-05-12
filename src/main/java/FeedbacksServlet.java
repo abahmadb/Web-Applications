@@ -114,6 +114,31 @@ public final class FeedbacksServlet extends DatabaseServlet {
             catch(Exception ignored){}
 
         }
+		
+		//release resources in the end anyway
+        finally {
+
+            if (rs != null) {
+
+                try {
+                    rs.close();
+                }
+
+                catch (SQLException ignored) { }
+
+            }
+
+            if (st != null) {
+
+                try {
+                    st.close();
+                }
+
+                catch (SQLException ignored) { }
+
+            }
+
+        }
 
         //place everything on jsp page
         request.setAttribute("feedbacks", feedbacks);
