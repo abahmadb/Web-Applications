@@ -37,10 +37,23 @@ public final class ProfileServlet extends DatabaseServlet{
 			//if we are, we can go on and retrieve the userid attribute from the session
 			int idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("userid")));		
 	
-			// send back new field values of person
+			// set the field values of person
 			Person person = new SearchPersonByIdDAO(getConnection(), idUser).searchPersonById();
 			req.setAttribute("person", person);
+			
+			// check if there exist the certificate and identity file for this userid
+			String identityFilePath = System.getProperty("user.dir") + "\\..\\webapps\\imageset\\identity\\" + idUser + ".jpg";
+            String certificateFilePath = System.getProperty("user.dir") + "\\..\\webapps\\imageset\\cerificate\\" + idUser + ".jpg";
+			if (new File(identityFilePath).isFile())
+				req.setAttribute("identitytExists", true);
+			else 
+				req.setAttribute("identityExists", false);
 		
+			if (new File(certificateFilePath).isFile())
+				req.setAttribute("certificateExists", true);
+			else 
+				req.setAttribute("certificateExists", false);
+			
 			req.getRequestDispatcher("profile.jsp").forward(req, res);	
 			
 		} catch (SQLException ex){
@@ -57,14 +70,18 @@ public final class ProfileServlet extends DatabaseServlet{
 		
 		// Check the type of request
 
-        if(req.getParameter("personForm") != null)
+        if (req.getParameter("personForm") != null)
             doUpdatePerson(req, res);
-        else if(req.getParameter("passForm") != null)
+        else if (req.getParameter("passForm") != null)
             doUpdatePass(req, res);
-		else if(req.getParameter("topicForm") != null)
+		else if (req.getParameter("topicForm") != null)
             doUpdateTopic(req, res);
-		else if(req.getParameter("descriptionForm") != null)
+		else if (req.getParameter("descriptionForm") != null)
             doUpdateDescription(req, res);
+		else 
+			doUploadFile(req, res);
+		
+		doGet(req,res);
 	}
 
 	public void doUpdatePerson(HttpServletRequest req, HttpServletResponse res)
@@ -99,10 +116,8 @@ public final class ProfileServlet extends DatabaseServlet{
 			String passwd = null, description = null;
 			// create person from the request parameters
 			Person person = new Person(idUser, name, surname, gender, dob, email, passwd, phone, city, description);
-		
+			// update the information about person
 			new UpdatePersonDAO(getConnection(), person).updatePerson();
-			req.setAttribute("person", person);
-			req.getRequestDispatcher("profile.jsp").forward(req, res);
 			
 			
 		} catch (SQLException ex){
@@ -136,7 +151,7 @@ public final class ProfileServlet extends DatabaseServlet{
 			} else {
 				req.setAttribute("passMessage", "Update Failed.");	
 			}
-			req.getRequestDispatcher("profile.jsp").forward(req, res);
+			doGet(req, res);
 			
 		} catch (SQLException ex){
 			
@@ -150,30 +165,54 @@ public final class ProfileServlet extends DatabaseServlet{
 	
 	public void doUpdateTopic(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException{
-				
-		// write the HTML page
-		PrintWriter out = res.getWriter();
-		out.printf("<!DOCTYPE html>%n");
 		
-		out.printf("<html lang=\"en\">%n");
-		out.printf("<head>%n");
-		out.printf("<meta charset=\"utf-8\">%n");
-		out.printf("<title>HelloWorld Form Get Servlet Response</title>%n");
-		out.printf("</head>%n");
+		final String STATEMENT_INSERT_TOPIC = "INSERT INTO Topic(Label) " + 
+													"SELECT ? " +
+													"FROM Dual " +
+													"WHERE NOT EXISTS (SELECT * FROM Topic WHERE Label=?)";
+		final String STATEMENT_INSERT_TEACHER_TOPIC = "INSERT INTO teacher_topic VALUES (?, (SELECT IDTopic FROM Topic WHERE Label=?), ?) " +
+													"ON DUPLICATE KEY UPDATE tariff=?";		
+		int idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("userid")));
+		Connection con = getConnection();
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		
+		try{
 
-		out.printf("<body>%n");
-		out.printf("<h1>Topic Form</h1>%n");
-		out.printf("<hr/>%n");
-		out.printf("<p>%n");
-		out.printf("Hello");
-		out.printf("</p>%n");
-		out.printf("</body>%n");
-		
-		out.printf("</html>%n");		
+			String subject = req.getParameter("topic");
+			// set the format of subject name
+			subject = subject.substring(0, 1).toUpperCase() + subject.substring(1).toLowerCase();
+			int tariff = Integer.parseInt(req.getParameter("tariff"));
+			// try to insert the topic into DB, it will be ignored if the label exists already
+			st = con.prepareStatement(STATEMENT_INSERT_TOPIC);
+            st.setString(1, subject);
+			st.setString(2, subject);
+            st.execute();
+			
+			// insert the taught subjet into table teacher_topic
+			st = con.prepareStatement(STATEMENT_INSERT_TEACHER_TOPIC);
+			st.setInt(1, idUser);
+			st.setString(2, subject);
+			st.setInt(3, tariff);	
+			st.setInt(4, tariff);
+			
+			st.execute();
+			
+			req.setAttribute("topicMessage", "Updated");	
+			
+			doGet(req, res);
+			
+		} catch (SQLException ex){
+			
+			req.setAttribute("topicMessage", "Failed");			
+			req.setAttribute("error_message", ex.getMessage());
+            req.setAttribute("appname", req.getContextPath());
+            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}	catch(Exception e){}
+			
+		}		
 				
 				
 	}
-	
 	
 	public void doUpdateDescription(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException{
@@ -197,4 +236,84 @@ public final class ProfileServlet extends DatabaseServlet{
 		
 		out.printf("</html>%n");
 	}
+	
+	public void doUploadFile(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException{
+				
+		// upload settings
+		final int MEMORY_THRESHOLD   = 1024 * 1024 * 3;  // 3MB
+		final int MAX_FILE_SIZE      = 1024 * 1024 * 40; // 40MB
+		final int MAX_REQUEST_SIZE   = 1024 * 1024 * 50; // 50MB
+       
+		int idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("userid")));
+	
+		// check if is a multipart content
+        if (!ServletFileUpload.isMultipartContent(req)) {
+			req.setAttribute("error_message", "Not multipart content");
+            req.setAttribute("appname", req.getContextPath());
+            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}	catch(Exception e){}
+        }
+ 
+        // Initialize settings for upload
+        DiskFileItemFactory factory = new DiskFileItemFactory();
+        factory.setSizeThreshold(MEMORY_THRESHOLD);
+        factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
+        ServletFileUpload upload = new ServletFileUpload(factory);
+        upload.setFileSizeMax(MAX_FILE_SIZE);
+        upload.setSizeMax(MAX_REQUEST_SIZE);
+
+        // relative path
+        //String uploadPath = request.getServletContext().getRealPath("./") + File.separator + UPLOAD_DIRECTORY;
+		String upload_dir = null;
+		String uploadPath = null;
+        String filePath = null;
+		String fieldName = null;
+        try {
+            // retrieve the file
+            @SuppressWarnings("unchecked")
+            List<FileItem> formItems = upload.parseRequest(req);
+ 
+            if (formItems != null && formItems.size() > 0) {
+               
+                for (FileItem item : formItems) {
+                    
+                    if (!item.isFormField()) {
+                        // the file name depends on idUser
+						String fileName = idUser + ".jpg";
+						// get the info about from which form is sent the request
+						fieldName = item.getFieldName();
+						if (fieldName.equals("photo")){
+							upload_dir = "profile";
+						}
+						else if (fieldName.equals("document_card")){
+							upload_dir = "identity";
+						}
+						else if (fieldName.equals("qualification")){
+							upload_dir = "certificate";
+						}
+						// set the upload path 
+						uploadPath = System.getProperty("user.dir") + "\\..\\webapps\\imageset\\" + upload_dir;
+                        filePath = uploadPath + File.separator + fileName;
+                        File storeFile = new File(filePath);
+                  
+                        item.write(storeFile);
+						
+                        req.setAttribute("fileMessage", "uploaded");
+						// reload to profile page
+						/*Person person = new SearchPersonByIdDAO(getConnection(), idUser).searchPersonById();
+						req.setAttribute("person", person);
+		
+						req.getRequestDispatcher("profile.jsp").forward(req, res);*/
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            req.setAttribute("fileMessage", "upload failed");
+			req.setAttribute("error_message", ex.getMessage());
+            req.setAttribute("appname", req.getContextPath());
+            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}	catch(Exception e){}
+        }
+        		
+	}
+	
 }

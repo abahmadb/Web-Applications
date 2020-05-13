@@ -59,7 +59,7 @@ CREATE TABLE chat (
 CREATE TABLE topic (
 
     IDTopic INT AUTO_INCREMENT PRIMARY KEY,
-    Label VARCHAR(50)   NOT NULL
+    Label VARCHAR(50)   NOT NULL UNIQUE
 
 )engine=InnoDB;
 

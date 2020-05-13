@@ -98,16 +98,6 @@
         <url-pattern>/profile</url-pattern>
     </servlet-mapping>
     
-    <servlet>
-        <servlet-name>uploadServlet</servlet-name>
-        <servlet-class>UploadServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>uploadServlet</servlet-name>
-        <url-pattern>/uploadServlet</url-pattern>
-    </servlet-mapping>
-    
     <!-- Servlet for chat page-->
 
     <servlet>

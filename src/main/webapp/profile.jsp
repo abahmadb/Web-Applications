@@ -83,7 +83,7 @@
                             <select class="select-css" name="gender">
                                 <option selected hidden>
                                     <c:choose>
-                                        <c:when test="${person.gender == null || person.gender.equals(\"\")}">
+                                        <c:when test="${person.gender == null || person.gender == ''}">
                                             Choose Gender
                                         </c:when>
                                         <c:otherwise>
@@ -127,8 +127,8 @@
                         <h4>
                             Profile photo 
                         </h4>
-
-                         <form action="uploadServlet" method="post" enctype="multipart/form-data">
+                        
+                        <form action="profileServlet" method="post" enctype="multipart/form-data">
                             <p>
                                 <label for="photo"> 
                                     <img src="/imageset/profile/${sessionScope.userid}.jpg" class="profile_img" alt="profile image" id="profile_img">
@@ -184,16 +184,14 @@
                             Identity card 
                         </h4>
              
-                        <form action="uploadServlet" method="post" enctype="multipart/form-data">
+                        <p>
+                            <img src="images/id.svg" class="id_img" alt="id image">
+                        </p>
+                        <form action="profileServlet" method="post" enctype="multipart/form-data">
                             <p>
-                                <label for="document_card"> 
-                                    <img src="/imageset/identity/${sessionScope.userid}.jpg" class="id_img" alt="id image" id="id_img">
-                                </label>
+                                <label class="file_label" for="document_card">Upload ID</label>
                             </p>
-                            <input type="file" name="document_card" id="document_card" accept=".jpg, .png" onchange="readFile2(this);">
-                            <p>
-                                <input type="submit" value="Upload ID">
-                            </p>
+                            <input type="file" name="document_card" id="document_card" onchange="this.form.submit()">
                         </form>
                         
                     </div>
@@ -206,18 +204,16 @@
                             Qualification
                         </h4>
             
-                        <form action="uploadServlet" method="post" enctype="multipart/form-data">
+                        <p>
+                            <img src="images/diplome.svg" class="qualification_img" alt="qualification image">
+                        </p>
+                        <form action="profileServlet" method="post" enctype="multipart/form-data">
                             <p>
-                                <label for="qualification"> 
-                                    <img src="/imageset/certificate/${sessionScope.userid}.jpg" class="qualification_img" id="qualification_img" alt="qualification image">
-                                </label>
+                                <label class="file_label" for="qualification">Upload qualification</label>
                             </p>
-                            <input type="file" name="qualification" id="qualification" accept=".jpg, .png" onchange="readFile3(this);">
-                            <p>
-                                <input type="submit" value="Upload Qualification">
-                            </p>
+                            <input type="file" name="qualification" id="qualification" onchange="this.form.submit()">
                         </form>
-
+                        
                     </div>
 
                 </div>
@@ -279,10 +275,6 @@
         <!-- CONTROL PANEL PROFILE CSS JS -->
 
         <script src="js/profile.js"></script>
-        
-        <!-- person object from response -->
-        
-        <script>var person = ${person}</script>
         
     </body>
 
