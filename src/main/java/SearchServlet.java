@@ -64,8 +64,36 @@ public final class SearchServlet extends DatabaseServlet {
                                                  "WHERE TC.TopicID = " + req.getParameter("topic_id") +
                                                  " GROUP BY T.IDUser" + order);
 
-            while(teachers.next())
-                ts.add(new SearchBean(teachers.getInt("IDUser"), teachers.getInt("Tariff"), teachers.getInt("num_score"), teachers.getString("Name"), teachers.getFloat("avg_score")));
+            // CHECK IF THE IDENTITY AND THE CERTIFICATE ARE VERIFIED
+            
+            String home = System.getProperty("user.dir");
+            File images;
+            boolean identity_flag, certificate_flag;
+            
+            while(teachers.next()){
+                
+                // IDENTITY VERIFICATION
+                images = new File(home + "./webapps/imageset/identity/" + teachers.getInt("IDUser") + ".jpg");
+                
+                identity_flag = false;
+                if(images.isFile())
+                    identity_flag = true;
+                
+                // CERTIFICATE VERIFICATION
+                images = new File(home + "./webapps/imageset/identity/" + teachers.getInt("IDUser") + ".jpg");
+                
+                certificate_flag = false;
+                if(images.isFile())
+                    certificate_flag = true;
+                
+                ts.add(new SearchBean(teachers.getInt("IDUser"), 
+                                      teachers.getInt("Tariff"), 
+                                      teachers.getInt("num_score"), 
+                                      teachers.getString("Name"), 
+                                      teachers.getFloat("avg_score"), 
+                                      identity_flag, certificate_flag));
+            }//while
+                
 
 
             req.setAttribute("search_items", ts);

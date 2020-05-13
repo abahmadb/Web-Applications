@@ -90,10 +90,10 @@
                     
                     <div class="result">
                     
-                        <a href="${pageContext.request.contextPath}/teacher?teacher_id=${t.userid}">
+                        <a href="${pageContext.request.contextPath}/teacher?teacher_id=${t.userid}&topic_id=${param.topic_id}">
                             <div class="photobox" style="background-image: url('/imageset/profile/${t.userid}.jpg')">                        
                                 <p>
-                                    ${t.name}
+                                    ${t.name} <c:if test="${t.identity}"><i class="fas fa-user-shield"></i></c:if><c:if test="${t.certificate}"><i class="fas fa-graduation-cap"></i></c:if>
                                 </p>
                             </div>
                         </a>

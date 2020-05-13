@@ -136,6 +136,17 @@ main .result .photobox p{
     background-color: rgba(0,0,0,0.7);
     padding: 10px;
     border-radius: 8px;
+    vertical-align: middle;
+}
+
+main .result .photobox p i{
+    font-size: 25px;
+    color: #FFF;
+    background-color: rgb(64,165,245);
+    display: inline-block;
+    padding: 8px;
+    border-radius: 50%;
+    margin: 0 5px;
 }
 
 main .result .cost_feedback{
