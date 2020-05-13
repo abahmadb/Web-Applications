@@ -116,12 +116,15 @@
                         </div>
 
                         <div class="header_price_box">
-                            <p id="teacher_price_style">Price: 20€/h</p>
+                            <p id="teacher_price_style">Price: ${teacher_price}&euro;/h</p>
                         </div>
 
+                        <!-- Response Time removed  
                         <div class="header_responseTime_box">
                             <p id="teacher_responseTime_style">Average response Time: 1 day</p>
-                        </div>                    
+                        </div>
+                        -->
+                        
                     </div>
 
                 </div>

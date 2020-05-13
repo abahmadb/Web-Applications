@@ -18,6 +18,7 @@ public final class TeacherServlet extends DatabaseServlet {
         StringBuilder teacher_name = new StringBuilder("");
         StringBuilder teacher_score = new StringBuilder("");
         StringBuilder teacher_city = new StringBuilder("");
+        StringBuilder teacher_tariff = new StringBuilder("");
         
         try {
            
@@ -50,6 +51,18 @@ public final class TeacherServlet extends DatabaseServlet {
             while (rs.next()) {
                 teacher_city.append(rs.getString("City"));
             }
+            
+            //Retrieve the teacher price per hour
+            //need to retrieve topic_id for that from search.jsp
+            int topicid = Integer.parseInt(req.getParameter("topic_id"));
+            
+            st = con.createStatement();
+            rs = st.executeQuery("SELECT Tariff FROM teacher_topic WHERE TeacherID = " + userid + " AND TopicID = " + topicid);
+            
+            while (rs.next()) {
+                teacher_tariff.append(rs.getInt("Tariff"));
+            }
+            
         }
         
         catch (SQLException e) {
@@ -58,9 +71,6 @@ public final class TeacherServlet extends DatabaseServlet {
         
         //release resources in the end anyway
         finally {
-
-            //connection destroy method from DatabaseServlet
-            //destroy();
 
             if (rs != null) {
 
@@ -87,6 +97,7 @@ public final class TeacherServlet extends DatabaseServlet {
         req.setAttribute("teacher_name", teacher_name);        
         req.setAttribute("teacher_avgscore", teacher_score);
         req.setAttribute("teacher_city", teacher_city);
+        req.setAttribute("teacher_price", teacher_tariff);
         
         req.getRequestDispatcher("teacher.jsp").forward(req, res);
 

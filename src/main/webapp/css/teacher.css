@@ -95,9 +95,13 @@ main .flex_item .header_left_box .header_rating_box{
 #teacher_fullstar_style {
     display: inline-block;
     position: relative;
-    z-index: 10;
     overflow: hidden;
     white-space: nowrap;
+    z-index: 1;
+}
+/* make sure the sign in modal has a z-index higher than the rating stars */
+.modal {
+    z-index: 999;
 }
 
 #teacher_emptystar_style {
