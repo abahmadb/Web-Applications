@@ -61,7 +61,7 @@
 
 
                 <!-- EACH OF THE FOLLOWING DIVS REPRESENT A COLUMN IN THE LAYOUT -->
-                <script>quill.setContents(${person.description})</script>
+                
                 <!-- COLUMN ONE -->
                 <div>
 
@@ -275,7 +275,7 @@
         <!-- CONTROL PANEL PROFILE CSS JS -->
 
         <script src="js/profile.js"></script>
-        
+        <script>quill.root.innerHTML = ${person.description};</script>
     </body>
 
 </html>
