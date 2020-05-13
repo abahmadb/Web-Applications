@@ -61,7 +61,7 @@
 
 
                 <!-- EACH OF THE FOLLOWING DIVS REPRESENT A COLUMN IN THE LAYOUT -->
-
+                <script>quill.setContents(${person.description})</script>
                 <!-- COLUMN ONE -->
                 <div>
 
@@ -251,10 +251,10 @@
                             Tell about yourself 
                         </h4>
                         <br>
-                        <form action="profileServlet" method="post">
+                        <form id="description" action="profileServlet" method="post">
 
                             <label for="text-area"></label>
-
+                            <input name="text" type="hidden" id=text>
                             <div style="background-color: #FFF">
                                 <div id="personal_presentation"></div>
                             </div>

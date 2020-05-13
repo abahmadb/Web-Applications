@@ -81,7 +81,7 @@ public final class ProfileServlet extends DatabaseServlet{
 		else 
 			doUploadFile(req, res);
 		
-		doGet(req,res);
+		doGet(req, res);
 	}
 
 	public void doUpdatePerson(HttpServletRequest req, HttpServletResponse res)
@@ -126,8 +126,7 @@ public final class ProfileServlet extends DatabaseServlet{
             req.setAttribute("appname", req.getContextPath());
             try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}	catch(Exception e){}
 			
-		}
-
+		} 
 	}
 	
 	public void doUpdatePass(HttpServletRequest req, HttpServletResponse res)
@@ -151,7 +150,6 @@ public final class ProfileServlet extends DatabaseServlet{
 			} else {
 				req.setAttribute("passMessage", "Update Failed.");	
 			}
-			doGet(req, res);
 			
 		} catch (SQLException ex){
 			
@@ -160,7 +158,7 @@ public final class ProfileServlet extends DatabaseServlet{
             req.setAttribute("appname", req.getContextPath());
             try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}	catch(Exception e){}
 			
-		}
+		} 
 	}
 	
 	public void doUpdateTopic(HttpServletRequest req, HttpServletResponse res)
@@ -200,7 +198,46 @@ public final class ProfileServlet extends DatabaseServlet{
 			
 			req.setAttribute("topicMessage", "Updated");	
 			
-			doGet(req, res);
+		} catch (SQLException ex){
+			
+			req.setAttribute("topicMessage", "Failed");			
+			req.setAttribute("error_message", ex.getMessage());
+            req.setAttribute("appname", req.getContextPath());
+            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}	catch(Exception e){}
+			
+		} finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                }
+                catch (SQLException ignored) { }
+            }
+            if (st != null) {
+                try {
+                    st.close();
+                } catch (SQLException ignored) { }
+            }
+        }				
+	}
+	
+	public void doUpdateDescription(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException{
+				
+		final String STATEMENT = "UPDATE Remytutor.Person SET Description=? WHERE IDUser=?";		
+		Connection con = getConnection();
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		
+		try{
+			
+			int idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("userid")));
+			String text = req.getParameter("text");
+			// update the description
+			st = con.prepareStatement(STATEMENT);
+            st.setString(1, text);
+			st.setInt(2, idUser);
+			
+			st.execute();	
 			
 		} catch (SQLException ex){
 			
@@ -209,32 +246,19 @@ public final class ProfileServlet extends DatabaseServlet{
             req.setAttribute("appname", req.getContextPath());
             try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}	catch(Exception e){}
 			
-		}		
-				
-				
-	}
-	
-	public void doUpdateDescription(HttpServletRequest req, HttpServletResponse res)
-			throws ServletException, IOException{
-		// write the HTML page
-		PrintWriter out = res.getWriter();
-		out.printf("<!DOCTYPE html>%n");
-		
-		out.printf("<html lang=\"en\">%n");
-		out.printf("<head>%n");
-		out.printf("<meta charset=\"utf-8\">%n");
-		out.printf("<title>HelloWorld Form Get Servlet Response</title>%n");
-		out.printf("</head>%n");
-
-		out.printf("<body>%n");
-		out.printf("<h1>Description Form</h1>%n");
-		out.printf("<hr/>%n");
-		out.printf("<p>%n");
-		out.printf("Hello");
-		out.printf("</p>%n");
-		out.printf("</body>%n");
-		
-		out.printf("</html>%n");
+		} finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                }
+                catch (SQLException ignored) { }
+            }
+            if (st != null) {
+                try {
+                    st.close();
+                } catch (SQLException ignored) { }
+            }
+        }
 	}
 	
 	public void doUploadFile(HttpServletRequest req, HttpServletResponse res)

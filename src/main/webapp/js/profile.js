@@ -53,7 +53,18 @@ var quill = new Quill('#personal_presentation', {
                 } 
             });
 
-// prevent from re-submission on reflash
+/* submit quill context using hidden input*/
+
+var form = document.getElementById('description');
+form.onsubmit = function() {
+  // Populate hidden input on submit
+  var text = document.querySelector('input[name=text]');
+  text.value = JSON.stringify(quill.root.innerHTML);
+  return true;
+};
+
+
+/* prevent from re-submission on reflash */
 
 if ( window.history.replaceState ) {
   window.history.replaceState( null, null, window.location.href );

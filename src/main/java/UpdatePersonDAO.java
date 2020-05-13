@@ -12,8 +12,9 @@ import java.util.Date;
 */
 
 public final class UpdatePersonDAO {
-	private static final String STATEMENT = "UPDATE Remytutor.Person SET Name=?, Surname=?, Gender=?, DoB=?, Email=?, Phone=?, City=? WHERE IDUser=?";
-	private static final String STATEMENT1 = "UPDATE Remytutor.Person SET Passwd=SHA2(?,256) WHERE IDUser=? AND Passwd = SHA2(?, 256)";
+	private static final String STATEMENT_UPDATE_PERSON = "UPDATE Remytutor.Person SET Name=?, Surname=?, Gender=?, DoB=?, Email=?, Phone=?, City=? WHERE IDUser=?";
+	private static final String STATEMENT_UPDATE_PASS = "UPDATE Remytutor.Person SET Passwd=SHA2(?,256) WHERE IDUser=? AND Passwd = SHA2(?, 256)";
+	private static final String STATEMENT_UPDATE_DESCRIPTION = "UPDATE Remytutor.Person SET Description=? WHERE IDUser=?";
 	
 	private final Connection con;
 	private final Person person;
@@ -27,7 +28,7 @@ public final class UpdatePersonDAO {
 		
 		PreparedStatement pstmt = null;
 		try {
-			pstmt = con.prepareStatement(STATEMENT);
+			pstmt = con.prepareStatement(STATEMENT_UPDATE_PERSON);
 			pstmt.setString(1, person.getName());
 			pstmt.setString(2, person.getSurname());
 			pstmt.setString(3, person.getGender());
@@ -50,7 +51,7 @@ public final class UpdatePersonDAO {
 		PreparedStatement pstmt = null;
 		
 		try {
-			pstmt = con.prepareStatement(STATEMENT1);
+			pstmt = con.prepareStatement(STATEMENT_UPDATE_PASS);
 			pstmt.setString(1, newPassword);
 			pstmt.setInt(2, person.getID());
 			pstmt.setString(3, oldPassword);
@@ -62,4 +63,22 @@ public final class UpdatePersonDAO {
 			
 		}
 	}
+	
+	/*public void updateDescription(String text) throws SQLException{
+		
+		PreparedStatement pstmt = null;
+		
+		try {
+			pstmt = con.prepareStatement(STATEMENT1);
+			pstmt.setString(1, tex);
+			pstmt.setInt(2, person.getID());
+			
+			pstmt.execute();
+		} finally {
+			if (pstmt != null)
+				pstmt.close();
+			
+		}	
+		
+	}*/
 }
