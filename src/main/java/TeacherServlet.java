@@ -19,22 +19,25 @@ public final class TeacherServlet extends DatabaseServlet {
         StringBuilder teacher_score = new StringBuilder("");
         StringBuilder teacher_city = new StringBuilder("");
         StringBuilder teacher_tariff = new StringBuilder("");
+        StringBuilder teacher_description = new StringBuilder("");
+        
+        int userid = Integer.parseInt(req.getParameter("teacher_id"));
+        String teacher_profile = null;
         
         try {
-           
-            //req.getSession().setAttribute("userid", 2);
-
-            //int userid = (int) req.getSession().getAttribute("userid");
             
-            //Retrive the name of the teacher
-            int userid = Integer.parseInt(req.getParameter("teacher_id"));
-            
+            //Retrive the name, city and description of the teacher            
             st = con.createStatement();
-            rs = st.executeQuery("SELECT Name FROM person WHERE IDUser = " + userid);
+            rs = st.executeQuery("SELECT Name, City, Description FROM person WHERE IDUser = " + userid);
             
             while (rs.next()) {
                 teacher_name.append(rs.getString("Name"));
+                teacher_city.append(rs.getString("City"));
+                teacher_description.append(rs.getString("Description"));
             }
+            
+            //need to skip first and last characters since I don't need them in the description
+            teacher_profile = teacher_description.substring(1, teacher_description.length() - 1);
             
             //Retrieve the average teacher score
             st = con.createStatement();
@@ -42,14 +45,6 @@ public final class TeacherServlet extends DatabaseServlet {
             
             while (rs.next()) {
                 teacher_score.append(rs.getFloat("AVG(Score)"));
-            }
-            
-            //Retrieve the teacher city
-            st = con.createStatement();
-            rs = st.executeQuery("SELECT City FROM person WHERE IDUser = " + userid);
-            
-            while (rs.next()) {
-                teacher_city.append(rs.getString("City"));
             }
             
             //Retrieve the teacher price per hour
@@ -61,7 +56,7 @@ public final class TeacherServlet extends DatabaseServlet {
             
             while (rs.next()) {
                 teacher_tariff.append(rs.getInt("Tariff"));
-            }
+            }         
             
         }
         
@@ -94,10 +89,12 @@ public final class TeacherServlet extends DatabaseServlet {
 
         }
         
+        req.setAttribute("teacher_id", userid);
         req.setAttribute("teacher_name", teacher_name);        
         req.setAttribute("teacher_avgscore", teacher_score);
         req.setAttribute("teacher_city", teacher_city);
         req.setAttribute("teacher_price", teacher_tariff);
+        req.setAttribute("teacher_description", teacher_profile);
         
         req.getRequestDispatcher("teacher.jsp").forward(req, res);
 

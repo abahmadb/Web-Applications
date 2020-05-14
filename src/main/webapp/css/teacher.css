@@ -152,6 +152,7 @@ main .flex_item .header_right_box .header_price_box{
 main #teacher_price_style {
     font-family: 'Montserrat Light', Helvetica, sans-serif;
     font-size: 18px;
+    text-align: center;
 }
 
 main .flex_item .header_right_box .header_responseTime_box{
