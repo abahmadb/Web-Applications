@@ -12,6 +12,7 @@ import java.util.Date;
 */
 
 public final class UpdatePersonDAO {
+	
 	private static final String STATEMENT_UPDATE_PERSON = "UPDATE Remytutor.Person SET Name=?, Surname=?, Gender=?, DoB=?, Email=?, Phone=?, City=? WHERE IDUser=?";
 	private static final String STATEMENT_UPDATE_PASS = "UPDATE Remytutor.Person SET Passwd=SHA2(?,256) WHERE IDUser=? AND Passwd = SHA2(?, 256)";
 	private static final String STATEMENT_UPDATE_DESCRIPTION = "UPDATE Remytutor.Person SET Description=? WHERE IDUser=?";

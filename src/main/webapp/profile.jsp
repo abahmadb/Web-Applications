@@ -35,24 +35,9 @@
     <body>
 
         <input type="checkbox" id="toggle_menu">
+        
+        <!-- SIDEBAR FOR THE DASHBOARD -->
         <%@ include file="include/menu.jsp" %>
-        <!-- SIDEBAR FOR THE DASHBOARD
-        <aside>
-            <center>
-                <a href="index.html">
-                    <img src="images/logo_transparent.png" alt="">
-                </a>
-            </center>
-
-            <p><label for="toggle_menu"><i class="fas fa-bars"></i></label></p>
-            <a href="control.jsp"><i class="fas fa-desktop"></i><span>Control Panel</span></a>
-            <a href="chat.jsp"><i class="fas fa-comment-dots"></i><span>Chat</span></a>
-            <a href="feedbacks.jsp"><i class="far fa-thumbs-up"></i><span>Feedbacks</span></a>
-            <a href="payments.jsp"><i class="fas fa-money-check-alt"></i><span>Payments</span></a>
-            <a href="profile.jsp"  class="current_section"><i class="fas fa-user-alt"></i><span>Profile</span></a>
-            <a href="index.jsp"><i class="fas fa-info-circle"></i><span>Sign out</span></a>
-
-        </aside -->
 
 
         <!-- CONTENT OF THE PAGE -->
@@ -221,21 +206,30 @@
                 <!-- COLUMN FOUR -->
                 <div>
                     <!-- TOPIC OFFER -->
-                    <div class="box">
+                    <div class="box" style="width: 400px">
 
                         <h4>
                             Topic offer  
                         </h4>
                         <br>
-                        <form action="profileServlet" method="POST">
-                            <label for="topic">Topic</label><br>
-                            <input type="text" id="topic" name="topic" placeholder="Subject.." required autocomplete="off"><br>
-
-                            <label for="tariff">Tariff &euro;/h</label><br>
-                            <input type="text" id="tariff" name="tariff" placeholder="Tariff.." required autocomplete="off"><br>
-
+                        <form action="" method="POST" id="topicForm">
+                            <table id="topicTable">
+                                <tr>
+                                    <th><img src="images/add.png" onclick="addfieldFunction(this)"></th>
+                                    <th><label> Topic </label></th>
+                                    <th id ="tariffLabel"><label> Tariff &euro;/h </label></th>
+                                </tr>
+                                
+                                <tr>
+                                    <td></td>
+                                    <td><input type="text"></td>
+                                    <td><input type="number"></td>
+                                </tr>
+                            
+                            </table>
+                       
                             <p>
-                                <input type="submit" value="Submit" name="topicForm">
+                                <input type="submit" value="Submit">
                             </p>
                         </form>
                     </div>
@@ -275,7 +269,22 @@
         <!-- CONTROL PANEL PROFILE CSS JS -->
 
         <script src="js/profile.js"></script>
+        // set quill contents
         <script>quill.root.innerHTML = ${person.description};</script>
+            
+        <!-- jQuery/jQuery UI -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        
+        <script>
+            var topics = [    
+                <c:forEach var="t" items="${topics_list}" varStatus="status">   
+                    {id: '${t.topicid}', value: '${t.label}'}${!status.last ? ',' : ''}
+                </c:forEach>
+	       ];    
+            
+        </script>
     </body>
 
 </html>
