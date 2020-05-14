@@ -1,3 +1,4 @@
+/* box */
 main .box{
     position: relative;
     width: 237px;
@@ -12,7 +13,7 @@ main .box h4, main .box p{
 
 
 main .box input[type="text"], main .box input[type="date"], main .box select,
-    main .box input[type="tel"], main .box input[type="email"]{
+    main .box input[type="tel"], main .box input[type="email"], main .box input[type="number"]{
         width: 100%;
         font-size: 15px;
         font-weight: 600;
@@ -39,14 +40,58 @@ main .box input[type="password"]{
 }
 
 main .box input[type="text"]:focus, main .box input[type="date"]:focus, main .box input[type="password"]:focus,
-    main .box select:focus, main .box input[type="tel"]:focus, main .box input[type="email"]:focus{
+    main .box select:focus, main .box input[type="tel"]:focus, main .box input[type="email"]:focus, 
+    
+main .box input[type="text"]:hover, main .box input[type="date"]:hover, main .box input[type="password"]:hover,
+    main .box select:hover, main .box input[type="tel"]:hover, main .box input[type="email"]:hover
+    main .box input[type="number"]:hover{
+        
         border: 2px solid rgb(69, 215, 255);
 }
 
-main .box input[type="text"]:hover, main .box input[type="date"]:hover, main .box input[type="password"]:hover,
-    main .box select:hover, main .box input[type="tel"]:hover, main .box input[type="email"]:hover{
-        border: 2px solid rgb(69, 215, 255);
+/*table,th,td{
+    
+    border: 1px solid black;
+}*/
+
+main .box #topicForm table th td {  
+    text-align: center;    
 }
+
+
+main .box #topicForm input[type="number"]{
+    width: 80px;
+     -moz-appearance: textfield;
+}
+
+main .box #topicForm input[type="number"]:hover{
+    border: 2px solid rgb(69, 215, 255);
+
+}
+main .box #topicForm input[type="number"]:focus{
+        
+    border: 2px solid rgb(69, 215, 255);
+}
+
+main .box #topicForm tr th img, main .box #topicForm tr td img {
+    width: 21px;
+    height: 21px;
+    cursor: pointer;
+}
+
+
+main .box #topicForm tr td, main .box #topicForm tr th {            
+    text-align: center;
+    padding: 0px 10px;
+}
+
+
+
+main .box #topicForm input::-webkit-outer-spin-button, main .box #topicForm input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 
 main .box input[type="submit"]{
     padding: 14px 20px;

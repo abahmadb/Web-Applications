@@ -63,9 +63,75 @@ form.onsubmit = function() {
   return true;
 };
 
+// add inputs field on click
+
+function addfieldFunction(icon) {
+    
+    /*var tableRef = document.getElementById("topicTable");
+    var newRow = tableRef.insertRow(-1);
+    var newCellDel = newRow.insertCell(0);
+    var newCellSubject = newRow.insertCell(1);
+    var newCellTariff = newRow.insertCell(2);
+    // create input element
+    var del = document.createElement("img");
+    del.setAttribute("src", "images/del.png"); 
+    del.setAttribute("onclick", "remove_topic(this);")
+    var inputSubject = document.createElement("input");
+    inputSubject.setAttribute("type", "text");
+    var hiddenInput = document.createElement("input");
+    hiddenInput.setAttribute("name", "topic_list");
+    hiddenInput.setAttribute("type", "hidden");
+    var inputTariff = document.createElement("input");
+    inputTariff.setAttribute("type", "number");
+    
+    newCellDel.appendChild(del);
+    <input type="hidden" name="topics_list" value="">
+    newCellSubject.appendChild(inputSubject);
+    newCellSubject.appendChild(hiddenInput);
+    newCellTariff.appendChild(inputTariff);*/
+    
+    // take the table element
+    var tbody = icon.parentElement.parentElement.parentElement;
+
+    // insert new row
+    tbody.innerHTML += `<tr>
+                            <td>
+                                <img src="images/del.png" onclick="remove_topic(this);">
+                            </td>
+                            <td>
+                                <input type="text">
+                                <input type="hidden" name="topics_list" value="">
+                            </td>
+                            <td>
+                                <input type="number">
+                            </td>
+                            </tr>`;
+
+}
+
+function remove_topic(icon) {
+     icon.parentElement.parentElement.parentElement.removeChild(icon.parentElement.parentElement);   
+}
+
+
+
+// SET THE AUTOCOMPLETION FOR TOPICS
+/*$( function() {
+    
+    $("#search_box input[type='text']").autocomplete({
+        source: topics,
+        select: function(e, ui,){
+            e.preventDefault() // <--- Prevent the value from being inserted.
+            $("#topic_id").val(ui.item.id);
+
+            $(this).val(ui.item.value);
+        }
+    });
+}*/
+
 
 /* prevent from re-submission on reflash */
 
 if ( window.history.replaceState ) {
-  window.history.replaceState( null, null, window.location.href );
+    window.history.replaceState( null, null, window.location.href );
 }

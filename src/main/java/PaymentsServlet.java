@@ -39,7 +39,7 @@ public final class PaymentsServlet extends DatabaseServlet {
 
 	}//try
 
-        catch(Exception ex)
+        /*catch(Exception ex)
 
 	{
 		req.setAttribute("error_message", ex.getMessage());
@@ -48,5 +48,5 @@ public final class PaymentsServlet extends DatabaseServlet {
 			req.getRequestDispatcher("errorpage.jsp").forward(req, res);
 		} catch (Exception e) {
 		}
-	}//catch
+	}//catch*/
 }

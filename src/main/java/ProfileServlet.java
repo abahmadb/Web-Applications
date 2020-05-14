@@ -54,6 +54,19 @@ public final class ProfileServlet extends DatabaseServlet{
 			else 
 				req.setAttribute("certificateExists", false);
 			
+			List<Topic> lista = new ArrayList<Topic>();
+
+            Connection c = getConnection();
+
+            Statement st = c.createStatement();
+
+            ResultSet topics = st.executeQuery("SELECT * FROM topic");
+
+            while(topics.next())
+                lista.add(new Topic(topics.getInt("IDTopic"), topics.getString("Label")));
+
+            req.setAttribute("topics_list", lista);
+			
 			req.getRequestDispatcher("profile.jsp").forward(req, res);	
 			
 		} catch (SQLException ex){
@@ -80,8 +93,8 @@ public final class ProfileServlet extends DatabaseServlet{
             doUpdateDescription(req, res);
 		else 
 			doUploadFile(req, res);
-		
-		doGet(req, res);
+			
+		res.sendRedirect("profile");	
 	}
 
 	public void doUpdatePerson(HttpServletRequest req, HttpServletResponse res)
@@ -323,11 +336,7 @@ public final class ProfileServlet extends DatabaseServlet{
                         item.write(storeFile);
 						
                         req.setAttribute("fileMessage", "uploaded");
-						// reload to profile page
-						/*Person person = new SearchPersonByIdDAO(getConnection(), idUser).searchPersonById();
-						req.setAttribute("person", person);
-		
-						req.getRequestDispatcher("profile.jsp").forward(req, res);*/
+						
                     }
                 }
             }
