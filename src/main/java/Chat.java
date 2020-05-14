@@ -1,6 +1,6 @@
 public class Chat {
    
-    public Chat(String tname, String sname, Boolean confirmed, String messages, Date lastMessage){
+    public  Chat (String tname, String sname, Boolean confirmed, String messages, Date lastMessage){
 
         this.tname = tname;
         this.sname = sname;
@@ -15,6 +15,10 @@ public class Chat {
     public final Boolean getConfirmed() {return Confirmed;}
     public final String getMessages() {return Messages;}
     public final Date getLastMessage() {return LastMessage;}
+
+    private final String tname, sname, message;
+    private final Boolean confirmed;
+    private final Date LastMessage;
 
     public class Chat extends ArrayList<Chat.messages> {
     
@@ -34,6 +38,7 @@ public class Chat {
     public final Date getTs() {return Ts;}
 
     }
-
-
+     
+    private final String sename, rename, message;
+    private final Date ts;
 }
