@@ -37,9 +37,9 @@
     <body>
 
         <input type="checkbox" id="toggle_menu">
+        <jsp:include page="include/menu.jsp"/>
 
-
-        <!-- SIDEBAR FOR THE DASHBOARD -->
+        <!-- SIDEBAR FOR THE DASHBOARD 
         <aside>
             <center>
                 <a href="index.html"><img src="images/logo_transparent.png" alt=""></a>
@@ -53,7 +53,7 @@
             <a href="profile.html"><i class="fas fa-user-alt"></i><span>Profile</span></a>
             <a href="index.html"><i class="fas fa-info-circle"></i><span>Sign out</span></a>
 
-        </aside>
+        </aside>-->
 
         <div class="lesson_proposal">
 
