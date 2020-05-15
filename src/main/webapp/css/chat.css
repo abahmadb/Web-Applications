@@ -118,10 +118,12 @@ form {
     font-size: 16px;
     border-radius: 10px;
     outline: none;
+    border: 1px solid #333;
+    background-color: #deebf7;
 }
 
 .search:focus {
-    background: wheat;
+    background-color: #FFF;
 }
 
 /*****END OF HEADER OF THE CONTACTS BODY********/
@@ -132,6 +134,8 @@ form {
     height: calc(100% - 50px);
     overflow-x: hidden;
     overflow-y: auto;
+    border-radius: 8px;
+    border: 1px solid #AAA;
 }
 
 .tab{
@@ -140,30 +144,32 @@ form {
 
 .tab li {
     width: 100%;
-    display: inline-block;
-}
-
-.tab li button  {
-    width: 99%;
+    display: block;
     padding: 10px;
-    margin-bottom: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
-    outline: none;
-    border-radius: 7px;
     text-align: left;
     font-size: 16px;
-}  
-
-.tab li button.active, .tab li button:hover {
-    background-color: #19B3D3;
-    color: #FFF;
 }
 
-.user_img{
-    height: 100%;
-    width: 100%; 
-    object-fit: cover;
+.tab li strong{
+    font-size: 20px;
+}
+
+.tab li:nth-child(even){
+    background-color: #deebf7;
+}
+
+.tab li div  {
+    display: inline-block;
+    vertical-align: middle;
+    white-space: nowrap;
+    overflow: hidden;
+}  
+
+.tab li.active, .tab li:hover {
+    background-color: #19B3D3;
+    color: #FFF;
 }
 
 .img_cont{
@@ -176,14 +182,16 @@ form {
     overflow: hidden;
 }    
 
+.img_cont img{
+    height: 100%;
+    width: 100%; 
+    object-fit: cover;
+}
+
 .user_info{
     margin-left: 20px;
-    display: inline-block;
+}
 
-}
-.user_info span{
-    font-size: 100%;
-}
 
 .lesson_proposal{
     position: fixed;

@@ -88,7 +88,7 @@ public final class ControlServlet extends DatabaseServlet {
                                  "DATE_FORMAT(LastMessage, '%d/%m/%Y %H:%i') as last_message " +
                                  "FROM (chat as C JOIN person as T ON C.TeacherID=T.IDUser) JOIN person as S ON C.StudentID=S.IDUser "+
                                  "WHERE TeacherID = " + session.getAttribute("userid") + " OR StudentID = " + session.getAttribute("userid") +
-                                 " ORDER BY LastMessage LIMIT 4");
+                                 " ORDER BY LastMessage DESC LIMIT 4");
 
             while(rs.next()){
                 recent_chats.add(new ArrayList<String>());

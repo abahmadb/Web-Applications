@@ -1,28 +1,25 @@
 
 //This function to link the tab with the tab content
 function openChat(evt, chatName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
     // Get all elements with class="tabcontent" and hide them
-    tabcontent= document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent [i].style.display = "none";
-    }
+    let tabcontent = document.querySelectorAll(".tabcontent");
+    for (let i = 0; i < tabcontent.length; i++)
+        tabcontent[i].style.display = "none";
+    
     // Get all elements with class="tablinks" and remove the class "active"
-    tablinks= document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks [i].className = tablinks[i].className.replace(" active", "");
-    }
+    let tablinks= document.querySelectorAll(".tablinks");
+    for (let i = 0; i < tablinks.length; i++)
+        tablinks[i].classList.remove("active");
+    
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(chatName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
+    evt.currentTarget.classList.add("active");
+}//openChat
 
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
 
-var chatlist = document.querySelectorAll(".user_info");
+var chatlist = document.querySelectorAll(".user_info p strong");
 
 function filter_chatlist(ev, elem){
     
@@ -35,10 +32,10 @@ function filter_chatlist(ev, elem){
     
     for(let i = 0; i < chatlist.length; i++){
         
-        li_element = chatlist.item(i).parentElement.parentElement.parentElement;
+        li_element = chatlist.item(i).parentElement.parentElement.parentElement.parentElement;
         
         // IF THE ELEMENT DOESN'T MATCH THE SEARCH VALUE
-        if(chatlist.item(i).firstElementChild.innerHTML.toLowerCase().indexOf(val) < 0)
+        if(chatlist.item(i).innerHTML.toLowerCase().indexOf(val) < 0)
             // HIDE IT
             li_element.style.display = "none";
         else

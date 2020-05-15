@@ -30,7 +30,7 @@
         
         <!-- SIDEBAR FOR THE DASHBOARD -->
         <input type="checkbox" id="toggle_menu">
-        <%@ include file="include/menu.jsp" %>
+        <jsp:include page="include/menu.jsp"/>
 
         <!-- CONTENT OF THE PAGE -->
         <main>

@@ -39,21 +39,6 @@
         <input type="checkbox" id="toggle_menu">
         <jsp:include page="include/menu.jsp"/>
 
-        <!-- SIDEBAR FOR THE DASHBOARD 
-        <aside>
-            <center>
-                <a href="index.html"><img src="images/logo_transparent.png" alt=""></a>
-            </center>
-
-            <p><label for="toggle_menu"><i class="fas fa-bars"></i></label></p>
-            <a href="control.html"><i class="fas fa-desktop"></i><span>Control Panel</span></a>
-            <a href="chat.html" class="current_section"><i class="fas fa-comment-dots"></i><span>Chat</span></a>
-            <a href="feedbacks.html"><i class="far fa-thumbs-up"></i><span>Feedbacks</span></a>
-            <a href="payments.html"><i class="fas fa-money-check-alt"></i><span>Payments</span></a>
-            <a href="profile.html"><i class="fas fa-user-alt"></i><span>Profile</span></a>
-            <a href="index.html"><i class="fas fa-info-circle"></i><span>Sign out</span></a>
-
-        </aside>-->
 
         <div class="lesson_proposal">
 
@@ -136,97 +121,25 @@
                     <div class="chatlogs2">
 
                         <ul class="tab">
-                            <li>
-                                <button class="tablinks" onclick="openChat(event, 'Memen')" id="defaultOpen">
-                                    <div class="Memen">
-                                        <div class="img_cont">
-                                            <img src="images/Memen-photo.jpeg" class="rounded-circle user_img">
-
+                            
+                            <c:forEach var="contact" items="${contactlist}" varStatus="loop">   
+                                    
+                                <li onclick="openChat(event, ${contact.userID})"${loop.first ? ' id="defaultOpen"' : ''} class="tablinks">
+                                        <div>
+                                            <div class="img_cont">
+                                                <img src="/imageset/profile/${contact.userID}.jpg">
+                                            </div>
+                                            
+                                            <div class="user_info">
+                                                <p><strong>${contact.name} ${contact.surname}</strong></p>
+                                                <p>
+                                                    ${contact.lastMessage}
+                                                </p>
+                                            </div>
                                         </div>
-                                        <div class="user_info">
-                                            <span>Memen</span>
+                                </li>
 
-                                        </div>
-                                    </div>
-                                </button>
-                            </li>
-
-                            <li>
-                                <button class="tablinks" onclick="openChat(event, 'Marco Dell Anna')" >
-                                    <div class="Marco Dell Anna">
-                                        <div class="img_cont">
-                                            <img src="images/MarcoG.jpg" class="rounded-circle user_img">
-
-                                        </div>
-                                        <div class="user_info">
-                                            <span>Marco Dell Anna</span>
-
-                                        </div>
-                                    </div>
-                                </button>
-                            </li>
-
-                            <li>
-                                <button class="tablinks" onclick="openChat(event, 'Xianwen Jin')" >
-                                    <div class="Xianwen Jin">
-                                        <div class="img_cont">
-                                            <img src="images/Jin.jpg" class="rounded-circle user_img">
-
-                                        </div>
-                                        <div class="user_info">
-                                            <span>Xianwen Jin</span>
-
-                                        </div>
-                                    </div>
-                                </button> 
-                            </li>
-
-                            <li>
-                                <button class="tablinks" onclick="openChat(event, 'Marco Dalla Mutta')" >
-                                    <div class="Marco Dalla Mutta">
-                                        <div class="img_cont">
-                                            <img src="images/MarcoDM.jpg" class="rounded-circle user_img">
-
-                                        </div>
-                                        <div class="user_info">
-                                            <span>Marco Dalla Mutta</span>
-
-                                        </div>
-                                    </div>
-                                </button> 
-                            </li>
-
-                            <li>
-                                <button class="tablinks" onclick="openChat(event, 'Victor Semencenco')" >
-                                    <div class="Victor Semencenco">
-                                        <div class="img_cont">
-                                            <img src="images/Victor-photo.jpeg" class="rounded-circle user_img">
-
-                                        </div>
-                                        <div class="user_info">
-                                            <span>Victor Semencenco</span>
-
-                                        </div>
-                                    </div>
-                                </button> 
-                            </li>        
-
-                            <li>
-                                <button class="tablinks" onclick="openChat(event, 'Ahmad Bashir')" >
-                                    <div class="Ahmad Bashir">
-                                        <div class="img_cont">
-                                            <img src="images/ahmad-photo.jpeg" class="rounded-circle user_img">
-
-                                        </div>
-                                        <div class="user_info">
-                                            <span>Ahmad Bashir</span>
-
-                                        </div>
-                                    </div>
-                                </button> 
-                            </li>
-
-
+                            </c:forEach>
                         </ul>
 
                     </div>
@@ -234,9 +147,9 @@
 
                 </div> 
 
-                <div  class= "chatbox">
+                <div  class="chatbox">
 
-                    <div id = "Memen" class ="tabcontent">
+                    <div id="1" class="tabcontent">
 
                         <!-- this stucture of the chat logs-->
                         <div class= "chatlogs">
@@ -551,7 +464,7 @@
 
                     </div>
 
-                    <div id = "Marco Dell Anna" class ="tabcontent">
+                    <div id="3" class ="tabcontent">
 
                         <!-- this stucture of the chat logs-->
                         <div class= "chatlogs">
@@ -587,7 +500,7 @@
 
                     </div>
 
-                    <div id = "Xianwen Jin" class ="tabcontent">
+                    <div id="4" class="tabcontent">
 
                         <!-- this stucture of the chat logs-->
                         <div class= "chatlogs">
