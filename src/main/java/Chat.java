@@ -4,20 +4,20 @@ public class Chat {
 
         this.tname = tname;
         this.sname = sname;
-	    this.confirmed = confirmed;
+	    this.isconfirmed = confirmed;
         this.messages = messages;
 	    this.lastMessage = lastMessage;
         
     }
 
-    public final String getTname() {return Tname;}
-    public final String getSname() {return Sname;}
-    public final Boolean getConfirmed() {return Confirmed;}
-    public final String getMessages() {return Messages;}
-    public final Date getLastMessage() {return LastMessage;}
+    public final String getTname() {return tname;}
+    public final String getSname() {return sname;}
+    public final Boolean isConfirmed() {return isConfirmed;}
+    public final String getMessages() {return messages;}
+    public final Date getLastMessage() {return lastMessage;}
 
     private final String tname, sname, message;
-    private final Boolean confirmed;
+    private final Boolean isconfirmed;
     private final Date LastMessage;
 
     public class Chat extends ArrayList<Chat.messages> {
@@ -32,10 +32,10 @@ public class Chat {
             
         }
 
-    public final String getSename() {return Sename;}
-    public final String getRename() {return Rename;}
-    public final String getMessage() {return Message;}
-    public final Date getTs() {return Ts;}
+    public final String getSename() {return sename;}
+    public final String getRename() {return rename;}
+    public final String getMessage() {return message;}
+    public final Date getTs() {return ts;}
 
     }
      
