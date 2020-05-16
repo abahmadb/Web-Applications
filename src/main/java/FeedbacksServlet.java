@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 public final class FeedbacksServlet extends DatabaseServlet {
 
     //retrieve data from db
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
         try {
 
             //check if we are logged in
-            if (!IndexServlet.check_login(request))
+            if (!IndexServlet.check_login(req))
                 throw new IOException("You need to be signed in to access this page");
 
         }
@@ -25,11 +25,11 @@ public final class FeedbacksServlet extends DatabaseServlet {
         //catch exception if we are not logged in
         catch (IOException e) {
 
-            request.setAttribute("error_message", e.getMessage());
-            request.setAttribute("appname", request.getContextPath());
+            req.setAttribute("error_message", e.getMessage());
+            req.setAttribute("appname", req.getContextPath());
 
             try{
-                request.getRequestDispatcher("errorpage.jsp").forward(request, response);
+                req.getRequestDispatcher("errorpage.jsp").forward(req, res);
             }
 
             catch(Exception ignored){}
@@ -37,7 +37,7 @@ public final class FeedbacksServlet extends DatabaseServlet {
         }
 
         //if we are logged in, we can go on and retrieve the userid attribute from the session
-        int userid = Integer.parseInt(String.valueOf(request.getSession().getAttribute("userid")));
+        int userid = Integer.parseInt(String.valueOf(req.getSession().getAttribute("userid")));
 
         Connection con = getConnection(); //use DatabaseServlet method to get connection
         PreparedStatement st = null;
@@ -51,8 +51,9 @@ public final class FeedbacksServlet extends DatabaseServlet {
 
         try {
 
-            st = con.prepareStatement("SELECT * FROM feedback F INNER JOIN person P ON P.IDUser = " +
-                    "F.StudentID WHERE F.TeacherID = ? ORDER BY F.ReviewDate DESC");
+            st = con.prepareStatement("SELECT Name, Surname, Score, ReviewDate, F.Description AS Description " +
+                    "FROM feedback F INNER JOIN person P ON P.IDUser = F.StudentID WHERE F.TeacherID = ? " +
+                    "ORDER BY ReviewDate DESC");
             st.setInt(1, userid);
             rs = st.executeQuery();
 
@@ -62,12 +63,12 @@ public final class FeedbacksServlet extends DatabaseServlet {
                         rs.getString("Surname"),
                         rs.getInt("Score"),
                         rs.getDate("ReviewDate"),
-                        rs.getString("F.Description")));
+                        rs.getString("Description")));
 
             }
 
             //fill counters array and compute the average score
-            st = con.prepareStatement("SELECT Score, COUNT(*) FROM feedback WHERE TeacherID = ? GROUP BY Score");
+            st = con.prepareStatement("SELECT Score, COUNT(*) AS Count FROM feedback WHERE TeacherID = ? GROUP BY Score");
             st.setInt(1, userid);
             rs = st.executeQuery();
 
@@ -75,10 +76,10 @@ public final class FeedbacksServlet extends DatabaseServlet {
             while(rs.next()){
 
                 int score = rs.getInt("Score");
-                int times = rs.getInt("COUNT(*)");
+                int count = rs.getInt("Count");
 
-                sum += score * times;
-                counters[score - 1] = times;
+                sum += score * count;
+                counters[score - 1] = count;
 
             }
 
@@ -87,16 +88,17 @@ public final class FeedbacksServlet extends DatabaseServlet {
 
             //find all teachers associated that have at least a lesson with the current user
             //and retrieve only the ones that didn't receive a feedback from him
-            st = con.prepareStatement("SELECT L.TeacherID, CONCAT(P.Name, ' ', P.Surname) AS fullname " +
+            st = con.prepareStatement("SELECT L.TeacherID, CONCAT(P.Name, ' ', P.Surname) AS Fullname " +
                     "FROM lesson AS L INNER JOIN person AS P ON L.TeacherID = P.IDUser " +
-                    "WHERE L.StudentID = ? AND L.LessonDate < CURDATE() AND L.TeacherID NOT IN (SELECT TeacherID " +
-                    "FROM feedback WHERE StudentID = ?)");
+                    "WHERE L.StudentID = ? " +
+                    "AND DATE(L.LessonDate) < CURDATE() " +
+                    "AND L.TeacherID NOT IN (SELECT TeacherID FROM feedback WHERE StudentID = ?)");
             st.setInt(1, userid);
             st.setInt(2, userid);
             rs = st.executeQuery();
 
             while (rs.next())
-                userfeedlist.add(rs.getString("fullname") + "," + rs.getInt("L.TeacherID"));
+                userfeedlist.add(rs.getString("Fullname") + "," + rs.getInt("L.TeacherID"));
 
 
         }
@@ -104,11 +106,11 @@ public final class FeedbacksServlet extends DatabaseServlet {
         //catch exceptions
         catch (SQLException e) {
 
-            request.setAttribute("error_message", e.getMessage());
-            request.setAttribute("appname", request.getContextPath());
+            req.setAttribute("error_message", e.getMessage());
+            req.setAttribute("appname", req.getContextPath());
 
             try{
-                request.getRequestDispatcher("errorpage.jsp").forward(request, response);
+                req.getRequestDispatcher("errorpage.jsp").forward(req, res);
             }
 
             catch(Exception ignored){}
@@ -141,27 +143,28 @@ public final class FeedbacksServlet extends DatabaseServlet {
         }
 
         //place everything on jsp page
-        request.setAttribute("feedbacks", feedbacks);
-        request.setAttribute("userfeedlist", userfeedlist);
-        request.setAttribute("counters", countersString);
-        request.setAttribute("avg", avg);
+        req.setAttribute("feedbacks", feedbacks);
+        req.setAttribute("userfeedlist", userfeedlist);
+        req.setAttribute("counters", countersString);
+        req.setAttribute("avg", avg);
 
-        request.getRequestDispatcher("feedbacks.jsp").forward(request, response);
+        req.setAttribute("currentpage", req.getServletPath());
+        req.getRequestDispatcher("feedbacks.jsp").forward(req, res);
 
     }
 
     //write feedbacks in the db
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
         Connection con = getConnection(); //use DatabaseServlet method to get connection
 
         //get userid from session
-        int studentID = Integer.parseInt(String.valueOf(request.getSession().getAttribute("userid")));
+        int studentID = Integer.parseInt(String.valueOf(req.getSession().getAttribute("userid")));
 
         //get form parameters
-        int teacherID = Integer.parseInt(request.getParameter("teacher"));
-        int score = Integer.parseInt(request.getParameter("score"));
-        String comment = request.getParameter("comment");
+        int teacherID = Integer.parseInt(req.getParameter("teacher"));
+        int score = Integer.parseInt(req.getParameter("score"));
+        String comment = req.getParameter("comment");
 
         //try-with-resources syntax, does not need a finally block to close the statement resource
         try (PreparedStatement st = con.prepareStatement("INSERT INTO feedback VALUES (?,?,?,?, CURDATE())")) {
@@ -177,11 +180,11 @@ public final class FeedbacksServlet extends DatabaseServlet {
 
         catch (SQLException e) {
 
-            request.setAttribute("error_message", e.getMessage());
-            request.setAttribute("appname", request.getContextPath());
+            req.setAttribute("error_message", e.getMessage());
+            req.setAttribute("appname", req.getContextPath());
 
             try {
-                request.getRequestDispatcher("errorpage.jsp").forward(request, response);
+                req.getRequestDispatcher("errorpage.jsp").forward(req, res);
             }
 
             catch (Exception ignored) {}
@@ -189,7 +192,7 @@ public final class FeedbacksServlet extends DatabaseServlet {
         }
 
         //reload page in order to include db updates
-        doGet(request,response);
+        res.sendRedirect("feedbacks");
 
 
     }
