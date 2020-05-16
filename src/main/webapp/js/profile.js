@@ -116,9 +116,9 @@ function remove_topic(icon) {
 
 
 // SET THE AUTOCOMPLETION FOR TOPICS
-/*$( function() {
+$( function() {
     
-    $("#search_box input[type='text']").autocomplete({
+    $("#topicForm input[type='text']").autocomplete({
         source: topics,
         select: function(e, ui,){
             e.preventDefault() // <--- Prevent the value from being inserted.
@@ -127,7 +127,7 @@ function remove_topic(icon) {
             $(this).val(ui.item.value);
         }
     });
-}*/
+});
 
 
 /* prevent from re-submission on reflash */
