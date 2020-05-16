@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,8 +35,6 @@
     </head>
 
     <body>
-
-        <!-- CALL THE SERVLET -->
         
         <!-- WEBSITE HEADER -->
 
@@ -185,8 +184,6 @@
                     
                 </div>
 
-                <!-- fifth child: comment -->
-
                 <div class="flex_item">
 
                     <h2>
@@ -194,70 +191,74 @@
                     </h2>
 
                     <div>
+                        
+                        <script>
+                            var student_score_array = [];
+                            let student_score = 0;
+                            int count = 0;
+                        </script>
 
-                        <table>
-                            <tr>
-                                <td>
-                                    <p>
-                                        <img class="profile_img" src="images/photo-member.jpg" alt="marco_dell'anna_photo">
-                                        Matteo
-                                    </p>
-                                </td>
-                                <td>
-                                    aliquet sit amet mauris quis, vestibulum ullamcorper mi. Vestibulum in nunc quis neque mollis pellentesque ac id orci. Maecenas bibendum rhoncus mauris,
-                                    aliquet sit amet mauris quis, vestibulum ullamcorper mi. Vestibulum in nunc quis neque mollis pellentesque ac id orci. Maecenas bibendum rhoncus mauris,
-                                    aliquet sit amet mauris quis, vestibulum ullamcorper mi. Vestibulum in nunc quis neque mollis pellentesque ac id orci. Maecenas bibendum rhoncus mauris,
-                                    aliquet sit amet mauris quis, vestibulum ullamcorper mi. Vestibulum in nunc quis neque mollis pellentesque ac id orci. Maecenas bibendum rhoncus mauris,
-                                </td>
-                                <td>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                </td>
-                            </tr>
+                        <table class="fixed">
+                            <c:forEach var="t" items="${student_feedbacks}" varStatus="loop">
+                                <tr>
+                                    <td class="td1_feedbacks">
+                                        <div>
+                                            <img class="profile_img" src="images/photo-member.jpg" alt="marco_dell'anna_photo">
+                                        </div>
+                                        <div>
+                                            ${t.name}
+                                        </div>
+                                    </td>
+                                    <td class="td2_feedbacks">
+                                        ${t.description} 
+                                    </td>
+                                    
 
-                            <tr>
-                                <td>
-                                    <p>
-                                        <img class="profile_img" src="images/photo-member.jpg" alt="marco_dell'anna_photo"><br/>
-                                        Francesco
-                                    </p>
-                                </td>
-                                <td>
-                                    non viverra est egestas id. Ut imperdiet rutrum urna, ac accumsan nibh cursus non. Ut elementum magna nec leo volutpat dapibus. Fusce sagittis dui sit amet lacus accumsan consectetur. Maecenas laoreet vestibulum lacinia. Cras ultricies turpis velit, eu imperdiet nibh bibendum vitae.
-                                </td>
-                                <td>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <p>
-                                        <img class="profile_img" src="images/photo-member.jpg" alt="marco_dell'anna_photo"><br/>
-                                        Lucia
-                                    </p>
-                                </td>
-                                <td>
-                                    Nulla nec massa diam. Aenean tempor metus in enim ultrices tempor. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                </td>
-                                <td>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                </td>
-                            </tr>
-                        </table>
-
+                                    
+                                    <td class="td3_feedbacks">
+                                        <div class="score-wrap">                                  
+                                            <div class="student_fullstar_style">                                 
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span> 
+                                            </div>
+                                    
+                                            <div class="student_emptystar_style">
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>  
+                                            </div>
+                                        </div>
+                                    </td>
+                                    
+                                    
+                                    <script>
+                                        student_score = ${t.score}
+                                        student_score = student_score * 20;
+                                        student_score_array.push(student_score);
+                                        count = count + 1;
+                                    </script>
+                                    
+                                    
+                                </tr>
+                            </c:forEach>
+                         </table>
+                        
+                        <script>
+                            let stars = document.getElementsByClassName("student_fullstar_style");
+                            
+                            var i;
+                            for (i = 0; i < count; i++) {
+                                stars[i].style.width = student_score_array[i] + "%";
+                            }      
+                        </script>
+                        
                     </div>
+                    
                 </div>
             </div>
 
@@ -353,8 +354,11 @@
         </div>
 
         <script>
+            //avg is the average teacher score
             let avg = ${teacher_avgscore};
-        </script>>
+            //student_score is the score given by the student to the teacher in feedback section
+            //let student_score = ${student_score}; 
+        </script>
         
         <!-- MAIN JS -->
 

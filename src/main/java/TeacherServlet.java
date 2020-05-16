@@ -20,9 +20,17 @@ public final class TeacherServlet extends DatabaseServlet {
         StringBuilder teacher_city = new StringBuilder("");
         StringBuilder teacher_tariff = new StringBuilder("");
         StringBuilder teacher_description = new StringBuilder("");
+
+        StringBuilder student_name = new StringBuilder("");
+        StringBuilder student_description = new StringBuilder("");
+        StringBuilder student_score = new StringBuilder("");
+
         
         int userid = Integer.parseInt(req.getParameter("teacher_id"));
         String teacher_profile = null;
+        
+        //feedback from student
+        List<TeacherFeedback> student_feedbacks = new ArrayList<>();
         
         try {
             
@@ -56,8 +64,20 @@ public final class TeacherServlet extends DatabaseServlet {
             
             while (rs.next()) {
                 teacher_tariff.append(rs.getInt("Tariff"));
-            }         
+            }  
             
+            //Retrieve the student name, description and score for the feedback
+            st = con.createStatement();
+            rs = st.executeQuery("SELECT Name, F.Description, Score FROM person P INNER JOIN feedback F ON F.StudentID = P.IDUser WHERE TeacherID = " + userid);
+            
+            while (rs.next()) {
+                
+                student_feedbacks.add(new TeacherFeedback(rs.getString("Name"), rs.getString("F.Description"), rs.getInt("Score")));
+                
+/*              student_name.append(rs.getString("Name"));
+                student_description.append(rs.getString("Description"));                
+                student_score.append(rs.getInt("Score"));*/
+            }
         }
         
         catch (SQLException e) {
@@ -95,6 +115,13 @@ public final class TeacherServlet extends DatabaseServlet {
         req.setAttribute("teacher_city", teacher_city);
         req.setAttribute("teacher_price", teacher_tariff);
         req.setAttribute("teacher_description", teacher_profile);
+        
+        req.setAttribute("student_feedbacks", student_feedbacks);
+                                      
+/*        req.setAttribute("student_name", student_name);
+        req.setAttribute("student_description", student_description);
+        req.setAttribute("student_score", student_score);*/
+
         
         req.getRequestDispatcher("teacher.jsp").forward(req, res);
 

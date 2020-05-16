@@ -90,6 +90,7 @@ main .flex_item .header_left_box .header_rating_box{
     display: inline-block;
     position: relative;
     height: 0px;
+    text-align: left;
 }
 
 #teacher_fullstar_style {
@@ -99,16 +100,32 @@ main .flex_item .header_left_box .header_rating_box{
     white-space: nowrap;
     z-index: 1;
 }
-/* make sure the sign in modal has a z-index higher than the rating stars */
-.modal {
-    z-index: 999;
-}
 
 #teacher_emptystar_style {
     position: absolute;
     top: 0;
     left: 0;
     -webkit-text-stroke: initial;
+}
+
+.student_fullstar_style {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    z-index: 1;
+}
+
+.student_emptystar_style {
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-text-stroke: initial;
+}
+
+/* make sure the sign in modal has a z-index higher than the rating stars */
+.modal {
+    z-index: 999;
 }
 
 main .flex_item .header_left_box .header_city_box{
@@ -242,6 +259,27 @@ main .flex_item:nth-child(4) h2, main .flex_item:nth-child(5) h2{
     font-family: Helvetica, sans-serif;
     font-size: 35px;
     margin-bottom: 20px;
+}
+
+table.fixed { 
+    table-layout:fixed;
+    width: 100%;
+}
+
+table.fixed td { overflow: hidden; }
+
+.td1_feedbacks {
+    width: 15%; 
+    text-align: center;
+}
+
+.td2_feedbacks {
+    width: 65%; 
+}
+
+.td3_feedbacks {
+    width: 25%; 
+    text-align: center;
 }
 
 main table .profile_img{
