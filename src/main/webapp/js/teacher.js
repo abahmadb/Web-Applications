@@ -5,5 +5,6 @@ avg = parseFloat(parseFloat(avg).toFixed(1));
 avg = avg * 20;
 //set stars width according to the teacher score
 document.getElementById("teacher_fullstar_style").setAttribute("style", "width: " + avg + "%");
-//let stars = document.getElementById("teacher_star_style");
-//stars.style.width = avg + "%";
+//trasform student_score to percentage
+//student_score = student_score * 20;
+//document.getElementById("student_fullstar_style").setAttribute("style", "width: " + student_score + "%");
