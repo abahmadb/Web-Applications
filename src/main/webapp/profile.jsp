@@ -28,6 +28,11 @@
         <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
         <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
         
+        <!-- jQuery/jQuery UI -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        
     </head>
 
 
@@ -212,7 +217,7 @@
                             Topic offer  
                         </h4>
                         <br>
-                        <form action="" method="POST" id="topicForm">
+                        <form action="profileServlet" method="POST" id="topicForm">
                             <table id="topicTable">
                                 <tr>
                                     <th><img src="images/add.png" onclick="addfieldFunction(this)"></th>
@@ -220,12 +225,16 @@
                                     <th id ="tariffLabel"><label> Tariff &euro;/h </label></th>
                                 </tr>
                                 
-                                <tr>
-                                    <td></td>
-                                    <td><input type="text"></td>
-                                    <td><input type="number"></td>
-                                </tr>
-                            
+                                    <tr>
+                                        <td></td>
+                                        <td><input type="text"></td>
+                                        <input type="hidden" name="subject" value="">
+                                        <td><input type="number"></td>
+                                        <input type="hidden" name="tariff" value="">
+                                    </tr>
+                                <c:forEach var="t" items="${subject_list}">
+                                </c:forEach>
+                                    
                             </table>
                        
                             <p>
@@ -269,13 +278,8 @@
         <!-- CONTROL PANEL PROFILE CSS JS -->
 
         <script src="js/profile.js"></script>
-        // set quill contents
+        <!-- set quill contents -->
         <script>quill.root.innerHTML = ${person.description};</script>
-            
-        <!-- jQuery/jQuery UI -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
         
         <script>
             var topics = [    

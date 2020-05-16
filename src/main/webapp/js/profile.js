@@ -54,14 +54,26 @@ var quill = new Quill('#personal_presentation', {
             });
 
 /* submit quill context using hidden input*/
-
-var form = document.getElementById('description');
+form = document.getElementById("description");
 form.onsubmit = function() {
   // Populate hidden input on submit
   var text = document.querySelector('input[name=text]');
   text.value = JSON.stringify(quill.root.innerHTML);
   return true;
 };
+
+// SET THE AUTOCOMPLETION FOR TOPICS
+$( function () {
+    
+    $("#topicForm input[type='text']").autocomplete({
+        source: topics,
+        select: function(e, ui){
+            e.preventDefault(); // <--- Prevent the value from being inserted.
+            $("#topic_id").val(ui.item.id);
+            $(this).val(ui.item.value);
+        }
+    });
+});
 
 // add inputs field on click
 
@@ -92,20 +104,30 @@ function addfieldFunction(icon) {
     
     // take the table element
     var tbody = icon.parentElement.parentElement.parentElement;
-
     // insert new row
     tbody.innerHTML += `<tr>
                             <td>
                                 <img src="images/del.png" onclick="remove_topic(this);">
                             </td>
                             <td>
-                                <input type="text">
-                                <input type="hidden" name="topics_list" value="">
+                                <input type='text'>
+                                <input type="hidden" name="subject" value="">
                             </td>
                             <td>
+                                <input type="hidden" name="tariff" value="">
                                 <input type="number">
                             </td>
                             </tr>`;
+    
+    $("#topicForm input[type='text']").autocomplete({
+        source: topics,
+        select: function(e, ui){
+            e.preventDefault(); // <--- Prevent the value from being inserted.
+            $("#topic_id").val(ui.item.id);
+            //topics.push(ui.item.id);
+            $(this).val(ui.item.value);
+        }
+    });
 
 }
 
@@ -113,22 +135,30 @@ function remove_topic(icon) {
      icon.parentElement.parentElement.parentElement.removeChild(icon.parentElement.parentElement);   
 }
 
-
-
-// SET THE AUTOCOMPLETION FOR TOPICS
-$( function() {
-    
-    $("#topicForm input[type='text']").autocomplete({
-        source: topics,
-        select: function(e, ui,){
-            e.preventDefault() // <--- Prevent the value from being inserted.
-            $("#topic_id").val(ui.item.id);
-
-            $(this).val(ui.item.value);
-        }
+/* populate hidden input of topic */
+topicForm = document.getElementById("topicForm");
+topicForm.onsubmit = function() {
+    var topics = [];
+    var tariffs = [];
+    $("#topicForm input[type='text']").each(function() {
+        topics.push($(this).val());
     });
-});
-
+    $("#topicForm input[type='number']").each(function() {
+        tariffs.push($(this).val());
+    });
+    var i = 0;
+    $("#topicForm input[name='subject']").each(function() {
+        $(this).val(topics[i++]);
+    });
+    i = 0;
+    $("#topicForm input[name='tariff']").each(function() {
+        $(this).val(tariffs[i++]);
+    });
+    
+    alert(topics);
+    alert(tariffs);
+    return true;
+};
 
 /* prevent from re-submission on reflash */
 
