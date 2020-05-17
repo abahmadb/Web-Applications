@@ -107,7 +107,7 @@
 
     <servlet-mapping>
         <servlet-name>ChatServlet</servlet-name>
-        <url-pattern>/ChatServlet</url-pattern>
+        <url-pattern>/chatpost</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>

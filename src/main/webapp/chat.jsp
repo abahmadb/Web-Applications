@@ -106,25 +106,30 @@
         </div>
         <main>
 
-            <div>  <!---------------THE CHAT LIST---------------------------------->
+            <div>
 
 
+                <!-- LEFT BOX -->
                 
                 <div class="contacts_body">
-                    <!--this is the search form-->
-
+                    
+                    <!-- SEARCH BAR FOR CONTACTS -->
                     <form>
-                        <input type="text" name="text" class="search"  placeholder="Search contact..." autocomplete="off" onkeypress="if(event.keyCode == 13) filter_chatlist(ev, this.nextElementSibling);">
-                        <button class="button" onclick="filter_chatlist(event, this)">Search</button>
+                        <input type="text" name="text" class="search"  placeholder="Search contact..." autocomplete="off" oninput="filter_chatlist(event, this);">
                     </form>
 
+                    <!-- CONTACTS LIST CONTAINER -->
                     <div class="chatlogs2">
 
                         <ul class="tab">
                             
+                            <!-- EVENT OBJECT -->
+                            <!-- ID OF OPPOSITE PERSON (TEACHER OR STUDENT) -->
+                            <!-- INCREMENTING ID FOR REFENCING THE TABS WITH THE CHATS -->
+                            <!-- FLAG FOR TELLING IS THE CURRENT USER IS A TEACHER IN THIS CHAT -->
                             <c:forEach var="contact" items="${contactlist}" varStatus="loop">   
-                                    
-                                <li onclick="openChat(event, ${contact.userID})"${loop.first ? ' id="defaultOpen"' : ''} class="tablinks">
+                                
+                                <li onclick="openChat(event, ${contact.userID}, ${loop.index}, ${contact.teacher ? 'true' : 'false'})"${loop.first ? ' id="defaultOpen"' : ''} class="tablinks">
                                         <div>
                                             <div class="img_cont">
                                                 <img src="/imageset/profile/${contact.userID}.jpg">
@@ -140,6 +145,7 @@
                                 </li>
 
                             </c:forEach>
+                        
                         </ul>
 
                     </div>
@@ -147,131 +153,69 @@
 
                 </div> 
 
-                <div  class="chatbox">
+                <!-- RIGHT BOX -->
+                
+                <div class="chatbox">
 
-                    <div id="1" class="tabcontent">
+                    <!-- FOR EACH CONTACT IN THE CONTACT LIST WE GET THE MESSAGES CONTAINER READY, IN CASE THE USER CLICKS IT -->
+                    <c:forEach var="contact" items="${contactlist}" varStatus="loop">   
+                                    
+                        <div id="${loop.index}" class="tabcontent">
 
-                        <!-- this stucture of the chat logs-->
-                        <div class= "chatlogs">
+                            <!-- THIS WILL GET FILLED BY JS ONLY ON REQUEST/CLICK BY THE USER -->
+                            <div class="chatlogs"></div>
 
-
-                            <!-- STUCTURE OF EACH CHAT-->
-                            <c:forEach var="content" items="${content}" varStatus="loop">   
+                            <!-- WE GET THE TEXTAREA+BUTTON READY TO GO, SO WE ONLY NEED TO DOWNLOAD THE MESSAGES -->
+                            <div class="chat-form">
                                 
-                                <!-- STUCTURE OF EACH CHAT-->
-                                <div class= "chat friend">
-                                    <div class= "user-photo"> <img src="/imageset/profile/${content.userID}.jpg"> </div>
-                                    <p class= "chat-message">${content.Message</p>
-                                    <p>${content.TS}</p>  <!-- here i need to to add ts to the css -->
-                                </div>
-                                <div class= "chat self">
-                                    <div class= "user-photo"> <img src="/imageset/profile/${content.userID}.jpg"> </div>
-                                    <p class= "chat-message">${content.Message</p>
-                                    <p>${content.TS}</p>   <!-- here i need to to add ts to the css -->
-                                </div>
-
-                            </c:forEach>
-
-                        </div>
-
-                        <!--this is the chat form-->
-                        <div class= "chat-form" method= "POST" action= "<c:url value= " ">"> <!--here goes the link to the servlet-->
-                            <textarea></textarea>
-                            <button class="send_proposal" onclick="toggle_modal(event)"><i class="far fa-paper-plane"></i></button>
-                            <button class="button">Send</button>
-                        </div>
-
-                    </div>
-
-                    <div id="3" class ="tabcontent">
-
-                        <!-- this stucture of the chat logs-->
-                        <div class= "chatlogs">
-
-
-                            <!-- STUCTURE OF EACH CHAT-->
-                            <c:forEach var="content" items="${content}" varStatus="loop">   
-                                
-                                <!-- STUCTURE OF EACH CHAT-->
-                                <div class= "chat friend">
-                                    <div class= "user-photo"> <img src="/imageset/profile/${content.userID}.jpg"> </div>
-                                    <p class= "chat-message">${content.Message</p>
-                                    <p>${content.TS}</p>  <!-- here i need to to add ts to the css -->
-                                </div>
-                                <div class= "chat self">
-                                    <div class= "user-photo"> <img src="/imageset/profile/${content.userID}.jpg"> </div>
-                                    <p class= "chat-message">${content.Message</p>
-                                    <p>${content.TS}</p>   <!-- here i need to to add ts to the css -->
-                                </div>
-
-                            </c:forEach>
-                            
+                                <!-- HERE WE CHECK IF THE TEACHER CONFIRMED THE STUDENT REQUEST -->
+                                <c:choose>
+                                    
+                                    <c:when test="${contact.requestConfirmed}">
+                                        <!-- IF HE DID, WE CAN JUST SHOW THE FORM FOR SENDING MESSAGES -->
+                                        <textarea></textarea>
+                                        <button class="button" onclick="sendMessage(event, this, ${contact.userID}, ${loop.index}, ${contact.teacher ? 'true' : 'false'});">Send</button>
+                                        <c:if test="${contact.teacher}"><button class="send_proposal" onclick="toggle_modal(event)"><i class="far fa-paper-plane"></i></button></c:if>
+                                    </c:when>
+                                    
+                                    <c:otherwise>
+                                        <!-- IF HE DID NOT -->
+                                        <p class="wait_confirm">
+                                            <c:choose>
+                                                
+                                                <c:when test="${contact.teacher}">
+                                                    <!-- AND HE IS THE TEACHER, HE NEEDS TO SEE 2 BUTTONS TO EITHER ACCEPT OR REJECT THE REQUEST -->
+                                                        You received a lesson request from ${contact.name}! What do you choose? <button class="button">Accept</button><button class="button">Reject</button>
+                                                </c:when>
+                                                
+                                                <c:otherwise>
+                                                    <!-- AND HE IS THE STUDENT, HE JUST NEEDS TO SEE A MESSAGE TELLING HIM TO WAIT FOR TEACHER'S CONFIRMATION -->
+                                                        Your request has been sent to ${contact.name} for confirmation. In case ${contact.name} confirmes, you will be able to communicate with him/her and book lessons through this chat.
+                                                </c:otherwise>
+                                            
+                                            </c:choose>
+                                        </p>
+                                    </c:otherwise>
+                                    
+                                </c:choose>
+                            </div>
 
                         </div>
 
-                        <!--this is the chat form-->
-                        <div class= "chat-form" method= "POST" action= "<c:url value= " ">"> <!--here goes the link to the servlet-->
-                            <textarea></textarea>
-                            <button class="send_proposal" onclick="toggle_modal(event)"><i class="far fa-paper-plane"></i></button>
-                            <button class="button">Send</button>
-                        </div>
+                    </c:forEach>
 
-                    </div>
-
-                    <div id="4" class="tabcontent">
-
-                        <!-- this stucture of the chat logs-->
-                        <div class= "chatlogs">
+                </div>
 
 
-                            <!-- STUCTURE OF EACH CHAT-->
-
-                            <c:forEach var="content" items="${content}" varStatus="loop">   
-                                
-                                <!-- STUCTURE OF EACH CHAT-->
-                                <div class= "chat friend">
-                                    <div class= "user-photo"> <img src="/imageset/profile/${content.userID}.jpg"> </div>
-                                    <p class= "chat-message">${content.Message</p>
-                                    <p>${content.TS}</p>  <!-- here i need to to add ts to the css -->
-                                </div>
-                                <div class= "chat self">
-                                    <div class= "user-photo"> <img src="/imageset/profile/${content.userID}.jpg"> </div>
-                                    <p class= "chat-message">${content.Message</p>
-                                    <p>${content.TS}</p>   <!-- here i need to to add ts to the css -->
-                                </div>
-
-                            </c:forEach>
-                            
-
-                        </div>
-
-                        <!--this is the chat form-->
-                        <div class= "chat-form" method= "POST" action= "<c:url value= " ">"> <!--here goes the link to the servlet-->
-                            <textarea></textarea>
-                            <button class="send_proposal" onclick="toggle_modal(event)"><i class="far fa-paper-plane"></i></button>
-                            <button class="button">Send</button>
-                        </div>
-
-                    </div>
-
-
-                </div> <!--chatbox-->
-
-
-            </div>  <!--THE CHAT LIST-->
-
-
+            </div>
 
         </main>
 
-        <!-- MAIN JQUERY, POPPER.JS AND BOOTSTRAP LIBRARIES-->
-
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-
         <!-- CHAT JS -->
 
+        <script>
+            var current_user = ${sessionScope.userid};
+        </script>
         <script src="js/chat.js"></script>
 
     </body>

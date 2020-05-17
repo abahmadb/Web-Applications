@@ -48,6 +48,7 @@ main .box > p span{
 main .box .profile_img{
     width: 150px;
     height: 150px;
+    object-fit: cover;
     border-radius: 100px;
     margin-bottom: 5px;
     margin-top: 10px;

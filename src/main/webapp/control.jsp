@@ -114,7 +114,7 @@
 
                 <div>
 
-                    <div class="box hoverable_rows">
+                    <div class="box">
 
                         <h2>Chats</h2>
 
@@ -148,7 +148,7 @@
 
                     <br>
 
-                    <div class="box hoverable_rows">
+                    <div class="box">
 
                         <h2>Feedbacks</h2>
 
