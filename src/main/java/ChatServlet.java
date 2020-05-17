@@ -79,6 +79,43 @@ public  final class ChatServlet extends DatabaseServlet {
         // YOU CAN USE THIS TO LISTEN TO AN AJAX POST REQUEST AND RESPOND WITH THE WHOLE CHAT CONTENT
         // THIS GOES TO REPLACE THE "DOWNLOAD EVERYTHING AT THE BEGINNING" WHICH COULD SLOW DOWN THE PAGE
         
+        Connection con = getConnection(); //use DatabaseServlet method to get connection
+
+        //get userid from session
+        int SenderID = Integer.parseInt(String.valueOf(req.getSession().getAttribute("userid")));
+        int ReceiverID = Integer.parseInt(String.valueOf(req.getSession().getAttribute("userid")));
+        
+        //get form parameters
+        
+        String Message = req.getParameter("Message");
+        String TS = req.getParameter("TS");
+
+        //try-with-resources syntax, does not need a finally block to close the statement resource
+        try (PreparedStatement st = con.prepareStatement("")) {
+                                                        // plz insert the statment for query
+            //insert the Chat into the db
+            st.setInt(1,SenderID );
+            st.setInt(2, ReceiverID);
+            st.setString(3, Message);
+            st.setString(4, TS);
+            st.executeUpdate();
+
+        }
+
+        catch (SQLException e) {
+
+            req.setAttribute("error_message", e.getMessage());
+            req.setAttribute("appname", req.getContextPath());
+
+            try {
+                req.getRequestDispatcher("errorpage.jsp").forward(req, res);
+            }
+
+            catch (Exception ignored) {}
+
+        }
+
+
     }//doPost
 
 

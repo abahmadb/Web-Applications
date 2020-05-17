@@ -106,10 +106,10 @@
         </div>
         <main>
 
-            <div>
+            <div>  <!---------------THE CHAT LIST---------------------------------->
 
 
-                <!---------------THE CHAT LIST---------------------------------->
+                
                 <div class="contacts_body">
                     <!--this is the search form-->
 
@@ -156,307 +156,26 @@
 
 
                             <!-- STUCTURE OF EACH CHAT-->
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
+                            <c:forEach var="content" items="${content}" varStatus="loop">   
+                                
+                                <!-- STUCTURE OF EACH CHAT-->
+                                <div class= "chat friend">
+                                    <div class= "user-photo"> <img src="/imageset/profile/${content.userID}.jpg"> </div>
+                                    <p class= "chat-message">${content.Message</p>
+                                    <p>${content.TS}</p>  <!-- here i need to to add ts to the css -->
+                                </div>
+                                <div class= "chat self">
+                                    <div class= "user-photo"> <img src="/imageset/profile/${content.userID}.jpg"> </div>
+                                    <p class= "chat-message">${content.Message</p>
+                                    <p>${content.TS}</p>   <!-- here i need to to add ts to the css -->
+                                </div>
 
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/Memen-photo.jpeg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/MarcoG.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
+                            </c:forEach>
 
                         </div>
 
                         <!--this is the chat form-->
-                        <div class= "chat-form">
+                        <div class= "chat-form" method= "POST" action= "<c:url value= " ">"> <!--here goes the link to the servlet-->
                             <textarea></textarea>
                             <button class="send_proposal" onclick="toggle_modal(event)"><i class="far fa-paper-plane"></i></button>
                             <button class="button">Send</button>
@@ -471,28 +190,27 @@
 
 
                             <!-- STUCTURE OF EACH CHAT-->
+                            <c:forEach var="content" items="${content}" varStatus="loop">   
+                                
+                                <!-- STUCTURE OF EACH CHAT-->
+                                <div class= "chat friend">
+                                    <div class= "user-photo"> <img src="/imageset/profile/${content.userID}.jpg"> </div>
+                                    <p class= "chat-message">${content.Message</p>
+                                    <p>${content.TS}</p>  <!-- here i need to to add ts to the css -->
+                                </div>
+                                <div class= "chat self">
+                                    <div class= "user-photo"> <img src="/imageset/profile/${content.userID}.jpg"> </div>
+                                    <p class= "chat-message">${content.Message</p>
+                                    <p>${content.TS}</p>   <!-- here i need to to add ts to the css -->
+                                </div>
 
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
-                                <p class= "chat-message"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet !!!</p>
-                            </div>
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
+                            </c:forEach>
+                            
 
                         </div>
 
                         <!--this is the chat form-->
-                        <div class= "chat-form">
+                        <div class= "chat-form" method= "POST" action= "<c:url value= " ">"> <!--here goes the link to the servlet-->
                             <textarea></textarea>
                             <button class="send_proposal" onclick="toggle_modal(event)"><i class="far fa-paper-plane"></i></button>
                             <button class="button">Send</button>
@@ -508,27 +226,27 @@
 
                             <!-- STUCTURE OF EACH CHAT-->
 
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
-                                <p class= "chat-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristirci in velit. Praesent scelerisque tortor sed accumsan convallis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristique. Quisque vehicula, risus eget aliquam placerat, purus leo tincidunt eros, eget luct</p>
-                            </div>
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
-                            <div class= "chat self">
-                                <div class= "user-photo"> <img src="images/users_profile/2.jpg"> </div>
-                                <p class= "chat-message">hello !!!</p>
-                            </div>
-                            <div class= "chat friend">
-                                <div class= "user-photo"> <img src="images/users_profile/1.jpg"> </div>
-                                <p class= "chat-message">hi, whats up there!</p>
-                            </div>
+                            <c:forEach var="content" items="${content}" varStatus="loop">   
+                                
+                                <!-- STUCTURE OF EACH CHAT-->
+                                <div class= "chat friend">
+                                    <div class= "user-photo"> <img src="/imageset/profile/${content.userID}.jpg"> </div>
+                                    <p class= "chat-message">${content.Message</p>
+                                    <p>${content.TS}</p>  <!-- here i need to to add ts to the css -->
+                                </div>
+                                <div class= "chat self">
+                                    <div class= "user-photo"> <img src="/imageset/profile/${content.userID}.jpg"> </div>
+                                    <p class= "chat-message">${content.Message</p>
+                                    <p>${content.TS}</p>   <!-- here i need to to add ts to the css -->
+                                </div>
+
+                            </c:forEach>
+                            
 
                         </div>
 
                         <!--this is the chat form-->
-                        <div class= "chat-form">
+                        <div class= "chat-form" method= "POST" action= "<c:url value= " ">"> <!--here goes the link to the servlet-->
                             <textarea></textarea>
                             <button class="send_proposal" onclick="toggle_modal(event)"><i class="far fa-paper-plane"></i></button>
                             <button class="button">Send</button>
@@ -537,10 +255,12 @@
                     </div>
 
 
-                </div>
+                </div> <!--chatbox-->
 
 
-            </div>
+            </div>  <!--THE CHAT LIST-->
+
+
 
         </main>
 
