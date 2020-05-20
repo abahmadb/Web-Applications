@@ -222,29 +222,24 @@ function confirmLesson(elem, action, lessonid, teacherid){
     let u_sure = confirm("Are you sure you want to proceed?");
     if(!u_sure) return;
 
-    if(action)
-        location.href = "/remytutor/checkout.js";
 
-    else{
-
-        let lesson = {
-            confirm_lesson: action,
-            lesson_id: lessonid,
-            teacher_id: teacherid,
-            student_id: current_user
-        }
-
-        $.post("chatpost", lesson, function(data){
-
-            // CHANGE THE TITLE
-            let h2 = elem.parentElement.parentElement.firstElementChild;
-            h2.outerHTML = data;
-
-            // REMOVE BOTH BUTTONS
-            elem.parentElement.parentElement.removeChild(elem.parentElement);
-
-        });
+    let lesson = {
+        confirm_lesson: action,
+        lesson_id: lessonid,
+        teacher_id: teacherid,
+        student_id: current_user
     }
+
+    $.post("chatpost", lesson, function(data){
+
+        // CHANGE THE TITLE
+        let h2 = elem.parentElement.parentElement.firstElementChild;
+        h2.outerHTML = data;
+
+        // REMOVE BOTH BUTTONS
+        elem.parentElement.parentElement.removeChild(elem.parentElement);
+
+    });
 
 }
 
