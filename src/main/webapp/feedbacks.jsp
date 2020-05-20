@@ -139,7 +139,7 @@
 
                     <c:forEach var="t" items="${feedbacks}">
                     <div class="rev">
-                        <img src="images/user-photo2.png" alt="">
+                        <img src="/imageset/profile/${t.studentID}.jpg" alt="/imageset/profile/profile.jpg">
                         <div>
                             ${t.name} ${t.surname}
                         </div>
@@ -249,7 +249,7 @@
 
             </div>
 
-            <div onclick="toggle_modalteacher(event)" class="close_modal">X</div>
+            <div onclick="toggle_modalfeed(event)" class="close_modal">X</div>
 
         </div>
 

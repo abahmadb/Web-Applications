@@ -49,9 +49,6 @@ for(let i = 0; i < buttons.length; i++){
 
 }
 
-//reuse variables from home.js to toggle the modal
-modal = document.querySelectorAll("div")[0];
-modal_ctrl = false;
 
 //toggle modal function
 function toggle_modalfeed(event){
@@ -60,7 +57,7 @@ function toggle_modalfeed(event){
     if (!modal_ctrl){
 
         //set the heading text using the username field in the table with the give-feed buttons
-        let heading = document.getElementById("feedform").querySelectorAll("div")[0];
+        let heading = document.getElementById("feedform").querySelector("div");
         heading.innerHTML = "Give a feedback to " + event.target.parentElement.previousElementSibling.previousElementSibling.innerHTML + "!";
 
         //also update the input to be sent to the back-end

@@ -112,7 +112,7 @@ public final class ControlServlet extends DatabaseServlet {
                                  "LIMIT 4");
 
             while(rs.next())
-                recent_feed.add(new Feedback(rs.getString("Name"), null, rs.getInt("Score"), null , rs.getString("cropped_desc")));
+                recent_feed.add(new Feedback(0, rs.getString("Name"), null, rs.getInt("Score"), null , rs.getString("cropped_desc")));
 
             req.setAttribute("recent_feed", recent_feed);
 

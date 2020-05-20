@@ -51,7 +51,7 @@ public final class FeedbacksServlet extends DatabaseServlet {
 
         try {
 
-            st = con.prepareStatement("SELECT Name, Surname, Score, ReviewDate, F.Description AS Description " +
+            st = con.prepareStatement("SELECT StudentID, Name, Surname, Score, ReviewDate, F.Description AS Description " +
                     "FROM feedback F INNER JOIN person P ON P.IDUser = F.StudentID WHERE F.TeacherID = ? " +
                     "ORDER BY ReviewDate DESC");
             st.setInt(1, userid);
@@ -59,7 +59,8 @@ public final class FeedbacksServlet extends DatabaseServlet {
 
             while(rs.next()) {
 
-                feedbacks.add(new Feedback(rs.getString("Name"),
+                feedbacks.add(new Feedback(rs.getInt("StudentID"),
+                        rs.getString("Name"),
                         rs.getString("Surname"),
                         rs.getInt("Score"),
                         rs.getDate("ReviewDate"),
