@@ -190,6 +190,7 @@ html, body{
     text-shadow: 0 1px 0 #3c61ab;
     outline: none;
     cursor: pointer;
+    user-select: none;
 }
 
 .button:hover {
@@ -208,5 +209,4 @@ html, body{
     background: linear-gradient(#638ec8, #99b6df);
     border: solid 1px #6d94ce;
     box-shadow: inset 0 10px 15px 0 #4176c4;
-    margin-bottom: 2px;
 }

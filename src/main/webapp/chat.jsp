@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -9,7 +10,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="icon" href="images/logo.ico" type="image/x-icon" /> 
         <link rel="shortcut icon" href="images/logo.ico" type="image/x-icon" />
-        <title>Chat</title> 
+        <title>Chat - Remytutor</title> 
 
 
         <!------------------------ THE MAIN CSS --------->
@@ -22,7 +23,7 @@
 
         <!-- THE CHAT CSS -->
 
-        <link rel="stylesheet"   href="css/chat.css" />
+        <link rel="stylesheet" href="css/chat.css" />
 
         <!-- FONTAWESOME CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
@@ -45,6 +46,8 @@
             <div>
                 <h1>Propose a lesson to MEMEN</h1>
 
+                <input type="hidden" value="">
+                
                 <table>
 
                     <tr>
@@ -98,7 +101,7 @@
                 </table>
 
                 <p style="text-align: center">
-                    <button class="button">Send</button>
+                    <button class="button" onclick="offer_lesson()">Send</button>
                 </p>
             </div>
 
@@ -122,35 +125,39 @@
                     <div class="chatlogs2">
 
                         <ul class="tab">
-                            
-                            <!-- EVENT OBJECT -->
-                            <!-- ID OF OPPOSITE PERSON (TEACHER OR STUDENT) -->
-                            <!-- INCREMENTING ID FOR REFENCING THE TABS WITH THE CHATS -->
-                            <!-- FLAG FOR TELLING IS THE CURRENT USER IS A TEACHER IN THIS CHAT -->
+                                                                                    
                             <c:forEach var="contact" items="${contactlist}" varStatus="loop">   
+                                                                
                                 
-                                <li onclick="openChat(event, ${contact.userID}, ${loop.index}, ${contact.teacher ? 'true' : 'false'})"${loop.first ? ' id="defaultOpen"' : ''} class="tablinks">
+                                <li onclick="openChat(event, ${contact.userID}, ${contact.teacher})" class="tablinks ${contact.teacher ? 'teacher' : 'student'}" tabid="${loop.index}">
                                         <div>
                                             <div class="img_cont">
                                                 <img src="/imageset/profile/${contact.userID}.jpg">
+                                                <c:if test="${!contact.requestConfirmed}">
+                                                    <div></div>
+                                                </c:if>
                                             </div>
                                             
                                             <div class="user_info">
                                                 <p><strong>${contact.name} ${contact.surname}</strong></p>
                                                 <p>
-                                                    ${contact.lastMessage}
+                                                    <c:if test="${!fn:startsWith(contact.lastMessage, '<h2')}">
+                                                        ${contact.lastMessage}
+                                                    </c:if>
+                                                    
                                                 </p>
                                             </div>
                                         </div>
                                 </li>
-
+                                
                             </c:forEach>
                         
                         </ul>
-
+                        
+                        
                     </div>
 
-
+                    <p><span style="background-color: #9ecae1">Student</span><span style="background-color: #deebf7">Teacher</span></p>
                 </div> 
 
                 <!-- RIGHT BOX -->
@@ -162,7 +169,7 @@
                                     
                         <div id="${loop.index}" class="tabcontent">
 
-                            <!-- THIS WILL GET FILLED BY JS ONLY ON REQUEST/CLICK BY THE USER -->
+                            <!-- THIS WILL GET FILLED BY JS, ONLY UPON REQUEST/CLICK BY THE USER -->
                             <div class="chatlogs"></div>
 
                             <!-- WE GET THE TEXTAREA+BUTTON READY TO GO, SO WE ONLY NEED TO DOWNLOAD THE MESSAGES -->
@@ -174,8 +181,8 @@
                                     <c:when test="${contact.requestConfirmed}">
                                         <!-- IF HE DID, WE CAN JUST SHOW THE FORM FOR SENDING MESSAGES -->
                                         <textarea></textarea>
-                                        <button class="button" onclick="sendMessage(event, this, ${contact.userID}, ${loop.index}, ${contact.teacher ? 'true' : 'false'});">Send</button>
-                                        <c:if test="${contact.teacher}"><button class="send_proposal" onclick="toggle_modal(event)"><i class="far fa-paper-plane"></i></button></c:if>
+                                        <button class="button" onclick="sendMessage(event, ${contact.userID}, ${loop.index}, ${contact.teacher});">Send</button>
+                                        <c:if test="${contact.teacher}"><button class="send_proposal" onclick="toggle_modal(event, ${contact.userID}, ${loop.index})"><i class="far fa-paper-plane"></i></button></c:if>
                                     </c:when>
                                     
                                     <c:otherwise>
@@ -185,12 +192,15 @@
                                                 
                                                 <c:when test="${contact.teacher}">
                                                     <!-- AND HE IS THE TEACHER, HE NEEDS TO SEE 2 BUTTONS TO EITHER ACCEPT OR REJECT THE REQUEST -->
-                                                        You received a lesson request from ${contact.name}! What do you choose? <button class="button">Accept</button><button class="button">Reject</button>
+                                                        You received a lesson request from ${contact.name}! What do you choose? &nbsp;
+                                                        <button class="button" onclick="confirmRequest(true, ${contact.userID},${loop.index})">Accept</button>
+                                                        &nbsp;&nbsp;
+                                                        <button class="button" onclick="confirmRequest(false, ${contact.userID},${loop.index})">Reject</button>
                                                 </c:when>
                                                 
                                                 <c:otherwise>
                                                     <!-- AND HE IS THE STUDENT, HE JUST NEEDS TO SEE A MESSAGE TELLING HIM TO WAIT FOR TEACHER'S CONFIRMATION -->
-                                                        Your request has been sent to ${contact.name} for confirmation. In case ${contact.name} confirmes, you will be able to communicate with him/her and book lessons through this chat.
+                                                        Your request has been sent to <strong>${contact.name}</strong> for confirmation. In case <strong>${contact.name}</strong> confirmes, you will be able to communicate with him/her and book lessons through this chat.
                                                 </c:otherwise>
                                             
                                             </c:choose>
