@@ -1,5 +1,49 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html;charset=utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
+<%!
+    public static boolean check_login(HttpServletRequest req){
+        
+        // GET THE SESSION OBJECT
+        HttpSession session = req.getSession();
+        
+        // GET THE COOKIES ARRAY
+        Cookie[] cs = req.getCookies();
+
+        // IF THE SESSION LOGIN IS NOT SET
+        if(session.getAttribute("userid") == null){
+
+            if(cs == null) return false;
+            
+            // LOOP THROUGH THE COOKIES TO SEARCH FOR THE LOGIN COOKIE
+            for(int i = 0; i < cs.length; i++){
+
+                // IF YOU CAN FIND IT
+                if(cs[i].getName().equals("userid")){
+
+                    // SET THE SESSION LOGIN
+                    session.setAttribute("userid", cs[i].getValue());
+                    
+                    // AND SIGNAL TO THE CALLER THAT EVERYTHING IS OK
+                    return true;
+
+                }//if
+
+            }//for
+            
+            // YOU GOT HERE, SESSION LOGIN WAS NOT SET AND YOU DID NOT FIND THE COOKIE
+            // SIGNAL TO THE CALLER THIS MIGHT BE AN UNAUTHORIZED REQUEST
+            return false;
+
+        }//if
+        
+        
+        // THE SESSION WAS SET, EVERYTHING IS OK
+        return true;
+    }//check_login
+%>
+<% check_login(request); %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,20 +85,26 @@
         <header>
 
             <div id="logo_wrap">
-                <a href="index.jsp"><img src="images/logo.png"></a>
+                <a href="/remytutor"><img src="images/logo.png"></a>
             </div>
 
             <div id="menu_wrap">
                 <nav>
                     <a href="" class="current_page" style="visibility: hidden">&nbsp;</a>
-                    <a href="index.jsp">Home</a>
+                    <a href="/remytutor">Home</a>
                     <a href="about.jsp">About us</a>
-                    <a href="" onclick="toggle_modal(event);">Sign in</a>
+                    <c:choose>
+                      <c:when test="${sessionScope.userid != null}">
+                        <a href="/remytutor/dashboard"><img src="/imageset/profile/${sessionScope.userid}.jpg">&nbsp;</a>
+                      </c:when>
+                      <c:otherwise>
+                        <a href="" onclick="toggle_modal(event);">Sign in</a>
+                      </c:otherwise>
+                    </c:choose>
                 </nav>
             </div>
 
         </header>
-
 
         <!-- TEACHER MAIN -->
 
@@ -70,7 +120,7 @@
 
                     <div class="header_left_box">
                         <div>
-                            <img class="photo_container" src="/imageset/profile/${teacher_id}.jpg" alt="marco_dell'anna_photo">
+                            <img class="photo_container" src="/imageset/profile/${teacher_id}.jpg" alt="teacher_photo">
                         </div>
 
                         <div>
@@ -111,7 +161,7 @@
                     <!-- header's right box-->
                     <div class="header_right_box">
                         <div class="header_bookLesson_box">
-                            <button id="teacher_bookLesson_style" class="button" href="chat.html">Book a lesson</button>               
+                            <button id="teacher_bookLesson_style" class="button">Book a lesson</button>               
                         </div>
 
                         <div class="header_price_box">
@@ -139,37 +189,53 @@
 
                     <div class="box">
                         <h3>
-                            Subjects offered
+                            Offered Subject
                         </h3>
                         <p>
-                            <span>javascript</span>
-                            <span>physic</span>
-                            <span>java</span>
+                            <span id="subject_level_style">${teacher_subject}</span>
                         </p> 
                     </div>
 
+                    <!-- check if teacher has other subjects besides the one it is offering-->
+                    <c:if test="${other_subjects}">
+                        <div class="box">
+                            <h3>
+                                Other Subjects Taught
+                            </h3>
+                            <p>
+                                <c:forEach var="t" items="${teacher_other_subjects}">
+                                    <span>${t}</span>                              
+                                </c:forEach>
+                            </p>
+                        </div>
+                    </c:if>
 
                     <div class="box">
                         <h3>
-                            Preferable tools
+                            Identity 
+                                    <c:choose>
+                                        <c:when test="${teacher_identity}">
+                                            <i class="fa fa-check" id="id_certification_check_symbol"></i>
+                                        </c:when>    
+                                        <c:otherwise>
+                                            <i class="fa fa-times" id="id_certification_cross_symbol"></i> 
+                                        </c:otherwise>
+                                     </c:choose>       
                         </h3>
-                        <p>
-                            <span>zoom</span>
-                            <span>messenger</span>
-                            <span>hangouts</span>
-                            <span>skype</span>
-                        </p> 
                     </div>
-
+                    
                     <div class="box">
                         <h3>
-                            Level
+                            Certification 
+                                        <c:choose>
+                                            <c:when test="${teacher_certificate}">
+                                                <i class="fa fa-check" id="id_certification_check_symbol"></i>
+                                            </c:when>    
+                                            <c:otherwise>
+                                                <i class="fa fa-times" id="id_certification_cross_symbol"></i> 
+                                            </c:otherwise>
+                                        </c:choose>  
                         </h3>
-                        <p>
-                            <span>university</span>
-                            <span>high school</span>
-                            <span>beginner</span>
-                        </p> 
                     </div>
                 </div>
 
@@ -184,6 +250,7 @@
                     
                 </div>
 
+                <!-- STUDENT FEEDBACKS -->
                 <div class="flex_item">
 
                     <h2>
@@ -195,15 +262,15 @@
                         <script>
                             var student_score_array = [];
                             let student_score = 0;
-                            int count = 0;
+                            let count = 0;
                         </script>
 
                         <table class="fixed">
-                            <c:forEach var="t" items="${student_feedbacks}" varStatus="loop">
+                            <c:forEach var="t" items="${student_feedbacks}">
                                 <tr>
                                     <td class="td1_feedbacks">
                                         <div>
-                                            <img class="profile_img" src="images/photo-member.jpg" alt="marco_dell'anna_photo">
+                                            <img class="profile_img" src="/imageset/profile/${t.studentid}.jpg" alt="student_photo">
                                         </div>
                                         <div>
                                             ${t.name}
@@ -212,8 +279,6 @@
                                     <td class="td2_feedbacks">
                                         ${t.description} 
                                     </td>
-                                    
-
                                     
                                     <td class="td3_feedbacks">
                                         <div class="score-wrap">                                  
@@ -235,15 +300,13 @@
                                         </div>
                                     </td>
                                     
-                                    
                                     <script>
                                         student_score = ${t.score}
                                         student_score = student_score * 20;
                                         student_score_array.push(student_score);
                                         count = count + 1;
                                     </script>
-                                    
-                                    
+                                                                       
                                 </tr>
                             </c:forEach>
                          </table>
@@ -261,10 +324,8 @@
                     
                 </div>
             </div>
-
-
         </main>
-
+        
         <!-- WEBSITE FOOTER -->
 
         <footer>
@@ -279,8 +340,7 @@
 
         </footer>
 
-
-        <!-- SIGN-UP/SIGN-IN POP-UP -->
+<!-- SIGN-UP/SIGN-IN POP-UP -->
 
         <div class="modal">
 
@@ -299,21 +359,28 @@
 
                         <h2>Sign up</h2>
 
-                        <span><img src="images/account.png"><input type="text" placeholder="Full name"></span>
+                        <form action="indexpost" method="POST" autocomplete="off">
+                            
+                        <span><i class="fas fa-user"></i><input type="text" placeholder="First name" name="firstname" autocomplete="off" required></span>
+                            
+                        <span><i class="fas fa-user"></i><input type="text" placeholder="Last name" name="lastname" autocomplete="off" required></span>
 
-                        <span><img src="images/email.png"><input type="text" placeholder="E-mail address"></span>
+                        <span><i class="fas fa-envelope"></i><input type="email" placeholder="E-mail address" name="email" autocomplete="off"></span>
 
-                        <span><img src="images/password.png"><input type="password" placeholder="Password"></span>
+                        <span><i class="fas fa-lock"></i><input type="password" placeholder="Password" name="passwd" autocomplete="off" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" required  oninvalid="this.setCustomValidity('The password must contain both upper and lower case characters plus a number')"
+                        oninput="this.setCustomValidity('')"></span>
 
-                        <span><img src="images/password.png"><input type="password" placeholder="Repeat password"></span>
+                        <span><i class="fas fa-unlock"></i><input type="password" placeholder="Repeat password" name="passwd_confirm" autocomplete="off" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" required></span>
 
                         <span><label class="custom_checkbox">
-                            <input type="checkbox">
+                            <input type="checkbox" required>
                             <span class="checkmark"></span>
                             </label> I agree to terms and conditions and the privacy policy</span>
 
-                        <br><input type="submit" value="Register" class="button">
+                        <br><input type="submit" value="Register" class="button" name="register">
 
+                            <span id="register_error"></span>
+                        </form>
                     </div>
 
                 </div>
@@ -330,9 +397,9 @@
 
                         <h2>Sign in</h2>
 
-                        <span><img src="images/account.png"><input type="email" placeholder="E-mail address"></span>
+                        <span><i class="fas fa-envelope"></i><input type="email" placeholder="E-mail address"></span>
 
-                        <span><img src="images/password.png"><input type="password" placeholder="Password"></span>
+                        <span><i class="fas fa-unlock"></i><input type="password" placeholder="Password"></span>
 
                         <span><label class="custom_checkbox">
                             <input type="checkbox" checked>
@@ -340,7 +407,7 @@
                             </label> Remember me</span>
 
                         <br><input type="submit" value="Log in" class="button">
-
+                        
                         <span id="login_error"></span>
 
                     </div>
@@ -352,12 +419,42 @@
             <div onclick="toggle_modal(event)" class="close_modal">X</div>
 
         </div>
+        
+        <script>
+            
+	var topics = [    
+        <c:forEach var="t" items="${topics_list}" varStatus="status">   
+            {id: '${t.topicid}', value: '${t.label}'}${!status.last ? ',' : ''}
+        </c:forEach>
+	];
+    
+        </script>
+        
+                
+        <!-- BOOK A LESSON MODAL -->
+
+        <div class="modal">
+
+            <div class="sign_up_in" id="teacherform">
+
+                    <center>
+                        <label for="chat" class="chat_label">Send a message to your teacher:</label>
+                        <br>
+                        <br>
+                        <textarea name="chat" rows="12" cols="60"></textarea>
+                        <br>
+                        <br>
+                        <button class="button" id="teacher_bookLesson_modal_style" onclick="call_teacherServlet()" context=${pageContext.request.contextPath}>Book the lesson !</button>
+                    </center>
+
+            </div>
+            
+            <div onclick="toggle_modalteacher(event)" class="close_modal">X</div>
+        </div>
 
         <script>
             //avg is the average teacher score
             let avg = ${teacher_avgscore};
-            //student_score is the score given by the student to the teacher in feedback section
-            //let student_score = ${student_score}; 
         </script>
         
         <!-- MAIN JS -->

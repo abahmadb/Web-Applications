@@ -19,18 +19,42 @@ public final class TeacherServlet extends DatabaseServlet {
         StringBuilder teacher_score = new StringBuilder("");
         StringBuilder teacher_city = new StringBuilder("");
         StringBuilder teacher_tariff = new StringBuilder("");
+        String teacher_subject = "";
         StringBuilder teacher_description = new StringBuilder("");
-
-        StringBuilder student_name = new StringBuilder("");
-        StringBuilder student_description = new StringBuilder("");
-        StringBuilder student_score = new StringBuilder("");
-
         
         int userid = Integer.parseInt(req.getParameter("teacher_id"));
         String teacher_profile = null;
         
         //feedback from student
         List<TeacherFeedback> student_feedbacks = new ArrayList<>();
+        
+        //array of strings for other subjects taught by teacher
+        List<String> teacher_other_subjects = new ArrayList<String>();
+        
+        //check if teacher has other subjects that he teaches
+        boolean other_subjects = true;
+        
+        // CHECK IF THE TEACHER IDENTITY AND CERTIFICATE ARE VERIFIED
+        
+        String home = System.getProperty("user.dir");
+        File images;
+        boolean identity_flag, certificate_flag;
+                            
+        // IDENTITY VERIFICATION
+        images = new File(home + "./webapps/imageset/identity/" + userid + ".jpg");
+            
+        identity_flag = false;
+        if(images.isFile()) {
+            identity_flag = true;
+        }
+                
+        // CERTIFICATE VERIFICATION
+        images = new File(home + "./webapps/imageset/certificate/" + userid + ".jpg");
+                
+        certificate_flag = false;
+        if(images.isFile()) {
+            certificate_flag = true;
+        }
         
         try {
             
@@ -44,7 +68,7 @@ public final class TeacherServlet extends DatabaseServlet {
                 teacher_description.append(rs.getString("Description"));
             }
             
-            //need to skip first and last characters since I don't need them in the description
+            //need to skip first " character and last " character since I don't need them in the description
             teacher_profile = teacher_description.substring(1, teacher_description.length() - 1);
             
             //Retrieve the average teacher score
@@ -66,17 +90,38 @@ public final class TeacherServlet extends DatabaseServlet {
                 teacher_tariff.append(rs.getInt("Tariff"));
             }  
             
-            //Retrieve the student name, description and score for the feedback
+            //Retrieve the teacher topic name to put in the subject section
             st = con.createStatement();
-            rs = st.executeQuery("SELECT Name, F.Description, Score FROM person P INNER JOIN feedback F ON F.StudentID = P.IDUser WHERE TeacherID = " + userid);
+            rs = st.executeQuery("SELECT Label FROM topic WHERE IDTopic = " + topicid);
             
             while (rs.next()) {
-                
-                student_feedbacks.add(new TeacherFeedback(rs.getString("Name"), rs.getString("F.Description"), rs.getInt("Score")));
-                
-/*              student_name.append(rs.getString("Name"));
-                student_description.append(rs.getString("Description"));                
-                student_score.append(rs.getInt("Score"));*/
+                teacher_subject = teacher_subject + (rs.getString("Label"));
+            }
+            
+            //Retrieve the other subjects the teacher offers
+            st = con.createStatement();
+            rs = st.executeQuery("SELECT O.Label FROM teacher_topic T INNER JOIN topic O ON T.TopicID = O.IDTopic WHERE T.TeacherID = " + userid);
+            
+            while (rs.next()) {
+                teacher_other_subjects.add(new String(rs.getString("O.Label")));
+            }
+            
+            //make sure you delete the current teacher subject from the other subjects
+            if (teacher_other_subjects.contains(teacher_subject)) {
+                teacher_other_subjects.remove(teacher_subject);
+            }
+            
+            //check if teacher has other subjects
+            if (teacher_other_subjects.isEmpty()) {
+                other_subjects = false;
+            }
+            
+            //Retrieve the student id, name, description and score for the feedback
+            st = con.createStatement();
+            rs = st.executeQuery("SELECT IDUser, Name, F.Description, Score FROM person P INNER JOIN feedback F ON F.StudentID = P.IDUser WHERE TeacherID = " + userid);
+            
+            while (rs.next()) {
+                student_feedbacks.add(new TeacherFeedback(rs.getInt("IDUser"), rs.getString("Name"), rs.getString("F.Description"), rs.getInt("Score")));
             }
         }
         
@@ -115,15 +160,68 @@ public final class TeacherServlet extends DatabaseServlet {
         req.setAttribute("teacher_city", teacher_city);
         req.setAttribute("teacher_price", teacher_tariff);
         req.setAttribute("teacher_description", teacher_profile);
+        req.setAttribute("teacher_identity", identity_flag);
+        req.setAttribute("teacher_certificate", certificate_flag);
+        req.setAttribute("teacher_subject", teacher_subject);
+        req.setAttribute("other_subjects", other_subjects);
         
-        req.setAttribute("student_feedbacks", student_feedbacks);
-                                      
-/*        req.setAttribute("student_name", student_name);
-        req.setAttribute("student_description", student_description);
-        req.setAttribute("student_score", student_score);*/
-
+        req.setAttribute("teacher_other_subjects", teacher_other_subjects);
+        
+        req.setAttribute("student_feedbacks", student_feedbacks);                                   
         
         req.getRequestDispatcher("teacher.jsp").forward(req, res);
+
+    }
+    
+    public void doPost (HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        
+/*        try {
+
+            //check if we are logged in
+            if (!IndexServlet.check_login(req))
+                throw new IOException("You need to be signed in to book a lesson");
+
+        }
+
+        //catch exception if we are not logged in
+        catch (IOException e) {
+
+            req.setAttribute("error_message", e.getMessage());
+            req.setAttribute("appname", req.getContextPath());
+
+            try{
+                req.getRequestDispatcher("errorpage.jsp").forward(req, res);
+            }
+
+            catch(Exception ignored){}
+
+        }*/
+        
+        Connection con = getConnection(); //use DatabaseServlet method to get connection
+        //get form parameters
+        int teacherID = Integer.parseInt(req.getParameter("teacherID"));
+        int studentID = Integer.parseInt(req.getParameter("studentID"));
+        String comment = req.getParameter("comment");
+
+        //try-with-resources syntax, does not need a finally block to close the statement resource
+        try (PreparedStatement st = con.prepareStatement("INSERT INTO chat VALUES (?, ?, FALSE, JSON_ARRAY(JSON_OBJECT('SenderID', ?, 'Message', ?, 'TS', DATE_FORMAT(NOW(), '%d-%m-%Y %H:%i'))), NOW())")) {
+
+            //insert the feedback into the db
+            st.setInt(1, teacherID);
+            st.setInt(2, studentID);
+            st.setInt(3, studentID);
+            st.setString(4, comment);
+            st.executeUpdate();
+
+        }
+
+        catch (SQLException e) {
+
+        }
+        
+        res.setContentType("text/plain");
+        res.setCharacterEncoding("UTF-8");
+        res.getWriter().write("Request has been sent!");
 
     }
 }

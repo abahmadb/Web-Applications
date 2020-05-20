@@ -2,8 +2,9 @@ import java.util.Date;
 
 public class TeacherFeedback {
 
-    public TeacherFeedback(String name, String description, int score){
+    public TeacherFeedback(int studentid, String name, String description, int score){
 
+        this.studentid = studentid;
         this.name = name;
         this.description = description;
         this.score = score;
@@ -11,8 +12,9 @@ public class TeacherFeedback {
     }
 
     private final String name, description;
-    private final int score;
+    private final int studentid, score;
     
+    public final int getStudentid() {return studentid;}
     public final String getName() {return name;}
     public final int getScore() {return score;}
     public final String getDescription() {return description;}

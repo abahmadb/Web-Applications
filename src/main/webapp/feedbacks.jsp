@@ -249,7 +249,7 @@
 
             </div>
 
-            <div onclick="toggle_modalfeed(event)" class="close_modal">X</div>
+            <div onclick="toggle_modalteacher(event)" class="close_modal">X</div>
 
         </div>
 

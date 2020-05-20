@@ -166,6 +166,25 @@ main .flex_item .header_right_box .header_price_box{
     margin: 5px 0px;
 }
 
+.chat_label {
+    font-family: 'Montserrat Light', Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+#teacher_bookLesson_modal_style {
+    font-family: 'Montserrat Light', Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+#teacherform{
+    width: 600px;
+    height: 400px;
+    margin: -200px 0 0 -300px;
+    padding: 30px;
+}
+
 main #teacher_price_style {
     font-family: 'Montserrat Light', Helvetica, sans-serif;
     font-size: 18px;
@@ -226,10 +245,21 @@ main .flex_item:nth-child(5) {
     text-align: left;
 }
 
+
+#id_certification_check_symbol {
+    color: green;
+    margin: 0 10px;
+}
+
+#id_certification_cross_symbol {
+    color: red;
+    margin: 0 10px;
+}
+
 main .flex_item .box{
     display: inline-block;
     width: 100%;
-    margin: 10px 0px;
+    margin: 5px 0px;
     text-align: left;
 }
 
@@ -255,6 +285,15 @@ main .flex_item:nth-child(3) span{
     text-transform: capitalize;
 }
 
+#subject_level_style {
+    border: 0;
+    background-color: transparent;
+    border-radius: 0;
+    margin: 0;
+    padding-bottom: 0px;
+    font: normal 19px 'Montserrat Light', serif;
+}
+
 main .flex_item:nth-child(4) h2, main .flex_item:nth-child(5) h2{   
     font-family: Helvetica, sans-serif;
     font-size: 35px;
@@ -278,7 +317,7 @@ table.fixed td { overflow: hidden; }
 }
 
 .td3_feedbacks {
-    width: 25%; 
+    width: 20%; 
     text-align: center;
 }
 
@@ -286,7 +325,8 @@ main table .profile_img{
     display: inline-block;
     width: 30px;
     height: 30px;
-    border-radius: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 main table p{

@@ -18,7 +18,7 @@ INSERT INTO topic VALUES (NULL, "JSP"), (NULL, "Ruby"), (NULL, "Perl"), (NULL, "
 
 -- TEACHER_TOPIC
 -- ALL OF US AS MYSQL TEACHERS
-INSERT INTO teacher_topic VALUES (1, 29, 13),(2, 29, 14),(3, 29, 12),(4, 29, 10),(5, 29, 16),(6, 29, 12);
+INSERT INTO teacher_topic VALUES (1, 29, 13),(2, 29, 14),(3, 29, 12),(4, 29, 10),(5, 29, 16),(6, 29, 12), (4, 25, 10), (4, 24, 10), (4, 21, 10);
 
 
 
@@ -54,6 +54,5 @@ VALUES
     (2, 1, TRUE, '[{"SenderID": 2, "ReceiverID": 1, "Message": "hello there!", "TS": "2020-01-01 10:10:10"}]',  '2020-01-01 10:10:10'),
     (2, 3, TRUE, '[{"SenderID": 2, "ReceiverID": 3, "Message": "whats up!!", "TS": "2020-01-01 10:10:10"},{"SenderID": 3, "ReceiverID": 2, "Message": "Lorem ipsum dolor sit amet", "TS": "2020-01-01 10:10:10"}]',  '2020-01-01 10:10:10'),
     (3, 1, TRUE, '[{"SenderID": 3, "ReceiverID": 1, "Message": "Lorem ipsum dolor sit amet", "TS": "2020-01-01 10:10:10"}, {"SenderID": 1, "ReceiverID": 3, "Message": "consectetur adipiscing elit", "TS": "2020-01-01 10:10:10"}]',  '2020-01-01 10:10:10'),
-    (1, 4, TRUE, '[{"SenderID": 1, "ReceiverID": 4, "Message": "consectetur adipiscing elit", "TS": "2020-01-01 10:10:10"},{"SenderID": 4, "ReceiverID": 1, "Message": "Lorem ipsum dolor sit amet", "TS": "2020-01-01 10:10:10"}]',  '2020-01-01 10:10:10'),
     (2, 4, TRUE, '[{"SenderID": 2, "ReceiverID": 4, "Message": "Maecenas sit amet pretium urna", "TS": "2020-01-01 10:10:10"}, {"SenderID": 4, "ReceiverID": 2, "Message": "Lorem ipsum dolor sit amet", "TS": "2020-01-01 10:10:10"} ]',  '2020-01-01 10:10:10');
 	
