@@ -1,4 +1,4 @@
-import javax.servlet.http.*;
+/*import javax.servlet.http.*;
 import javax.servlet.*;
 import java.sql.*;
 import java.io.IOException;
@@ -59,3 +59,4 @@ public final class PaymentsServlet extends DatabaseServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		}//doPost
 }//PaymentsServlet
+*/

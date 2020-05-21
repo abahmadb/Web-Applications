@@ -28,8 +28,14 @@ public final class ProfileServlet extends DatabaseServlet{
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 		
+		Connection con = getConnection();
+		
+		PreparedStatement st1 = null;
+		PreparedStatement st2 = null;
+		ResultSet rs1 = null;
+		ResultSet rs2 = null;
+		
 		try{
-			
 			//check if we are logged in
 			if(!IndexServlet.check_login(req))
             throw new IOException("You did not sign in before opening the dashboard, sign in and retry");
@@ -38,7 +44,7 @@ public final class ProfileServlet extends DatabaseServlet{
 			int idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("userid")));		
 	
 			// set the field values of person
-			Person person = new SearchPersonByIdDAO(getConnection(), idUser).searchPersonById();
+			Person person = new SearchPersonByIdDAO(con, idUser).searchPersonById();
 			req.setAttribute("person", person);
 			
 			// check if there exist the certificate and identity file for this userid
@@ -54,19 +60,38 @@ public final class ProfileServlet extends DatabaseServlet{
 			else 
 				req.setAttribute("certificateExists", false);
 			
+			
+			// topic info
 			List<Topic> lista = new ArrayList<Topic>();
+            st1 = con.prepareStatement("SELECT * FROM topic");
+            rs1 = st1.executeQuery();
 
-            Connection c = getConnection();
-
-            Statement st = c.createStatement();
-
-            ResultSet topics = st.executeQuery("SELECT * FROM topic");
-
-            while(topics.next())
-                lista.add(new Topic(topics.getInt("IDTopic"), topics.getString("Label")));
+            while(rs1.next())
+                lista.add(new Topic(rs1.getInt("IDTopic"), rs1.getString("Label")));
 
             req.setAttribute("topics_list", lista);
 			
+			// topic form info
+			ArrayList<TeacherTopic> subjects = new ArrayList<TeacherTopic>();		
+			
+			final String STATEMENT_SELECT_TEACHER_TOPIC = "SELECT * FROM teacher_topic WHERE TeacherID=?";
+			final String STATEMENT_SELECT_TOPIC_NAME = "SELECT Label FROM Topic WHERE IDTopic=?";
+            st1 = con.prepareStatement(STATEMENT_SELECT_TEACHER_TOPIC);
+			st1.setInt(1, idUser);
+            rs1 = st1.executeQuery();
+			
+			st2 = con.prepareStatement(STATEMENT_SELECT_TOPIC_NAME);
+            while(rs1.next()){				
+				st2.setInt(1, rs1.getInt("TopicID"));
+				rs2 = st2.executeQuery();
+				rs2.next();
+                subjects.add(new TeacherTopic(rs1.getInt("TeacherID"), rs1.getInt("TopicID"), rs1.getInt("Tariff"), rs2.getString("Label")));
+			}
+			req.setAttribute("first_subject", subjects.get(0));
+			//subjects.remove(0);
+            req.setAttribute("subject_list", subjects);			
+			
+			req.setAttribute("currentpage", req.getServletPath());
 			req.getRequestDispatcher("profile.jsp").forward(req, res);	
 			
 		} catch (SQLException ex){
@@ -75,7 +100,33 @@ public final class ProfileServlet extends DatabaseServlet{
             req.setAttribute("appname", req.getContextPath());
             try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}	catch(Exception e){}
 			
-		}
+		} finally {
+         		
+			if (st1 != null) {
+                try {
+                    st1.close();
+                } catch (SQLException ignored) { }
+            }
+			
+			if (st2 != null) {
+                try {
+                    st2.close();
+                } catch (SQLException ignored) { }
+            }
+			
+			if (rs1 != null) {
+                try {
+                    rs1.close();
+                } catch (SQLException ignored) { }
+            }
+			
+			if (rs2 != null) {
+                try {
+                    rs2.close();
+                } catch (SQLException ignored) { }
+            }
+
+        }	
 	}
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
@@ -87,14 +138,16 @@ public final class ProfileServlet extends DatabaseServlet{
             doUpdatePerson(req, res);
         else if (req.getParameter("passForm") != null)
             doUpdatePass(req, res);
-		else if (req.getParameter("topicForm") != null)
+		else if (req.getParameter("formTopic") != null)
             doUpdateTopic(req, res);
 		else if (req.getParameter("descriptionForm") != null)
             doUpdateDescription(req, res);
 		else 
 			doUploadFile(req, res);
-			
-		res.sendRedirect("profile");	
+		
+		res.sendRedirect("profile");
+
+		
 	}
 
 	public void doUpdatePerson(HttpServletRequest req, HttpServletResponse res)
@@ -145,9 +198,7 @@ public final class ProfileServlet extends DatabaseServlet{
 	public void doUpdatePass(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException{
 		
-		//req.getSession().setAttribute("idUser", 1);
-		int idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("userid")));
-		//int idUser = 1;			
+		int idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("userid")));		
 		try{
 			
 			String newPassword = req.getParameter("new_pw");
@@ -177,39 +228,39 @@ public final class ProfileServlet extends DatabaseServlet{
 	public void doUpdateTopic(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException{
 		
-		final String STATEMENT_INSERT_TOPIC = "INSERT INTO Topic(Label) " + 
+		/*final String STATEMENT_INSERT_TOPIC = "INSERT INTO Topic(Label) " + 
 													"SELECT ? " +
 													"FROM Dual " +
-													"WHERE NOT EXISTS (SELECT * FROM Topic WHERE Label=?)";
+													"WHERE NOT EXISTS (SELECT * FROM Topic WHERE Label=?)";*/
+		final String STATEMENT_DELETE_TEACHER_TOPIC = "DELETE FROM teacher_topic WHERE teacherID=?";
 		final String STATEMENT_INSERT_TEACHER_TOPIC = "INSERT INTO teacher_topic VALUES (?, (SELECT IDTopic FROM Topic WHERE Label=?), ?) " +
-													"ON DUPLICATE KEY UPDATE tariff=?";		
+													"ON DUPLICATE KEY UPDATE tariff=?";	
+													
 		int idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("userid")));
+		String[] topics = req.getParameterValues("subject");
+		String[] tariffs = req.getParameterValues("tariff");
 		Connection con = getConnection();
 		PreparedStatement st = null;
-		ResultSet rs = null;
 		
 		try{
-
-			String subject = req.getParameter("topic");
-			// set the format of subject name
-			subject = subject.substring(0, 1).toUpperCase() + subject.substring(1).toLowerCase();
-			int tariff = Integer.parseInt(req.getParameter("tariff"));
-			// try to insert the topic into DB, it will be ignored if the label exists already
-			st = con.prepareStatement(STATEMENT_INSERT_TOPIC);
-            st.setString(1, subject);
-			st.setString(2, subject);
-            st.execute();
-			
-			// insert the taught subjet into table teacher_topic
-			st = con.prepareStatement(STATEMENT_INSERT_TEACHER_TOPIC);
+			st = con.prepareStatement(STATEMENT_DELETE_TEACHER_TOPIC);
 			st.setInt(1, idUser);
-			st.setString(2, subject);
-			st.setInt(3, tariff);	
-			st.setInt(4, tariff);
-			
 			st.execute();
 			
-			req.setAttribute("topicMessage", "Updated");	
+			st = con.prepareStatement(STATEMENT_INSERT_TEACHER_TOPIC);
+			for (int i = 0; i < topics.length; i++){
+				st.setInt(1, idUser);
+				st.setString(2, topics[i]);
+				int tariff = Integer.parseInt(tariffs[i]);
+				st.setInt(3, tariff);	
+				st.setInt(4, tariff);
+			
+				st.execute();	
+			}
+			
+			
+
+			req.setAttribute("topicMessage", "Updated");
 			
 		} catch (SQLException ex){
 			
@@ -219,18 +270,14 @@ public final class ProfileServlet extends DatabaseServlet{
             try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}	catch(Exception e){}
 			
 		} finally {
-            if (rs != null) {
-                try {
-                    rs.close();
-                }
-                catch (SQLException ignored) { }
-            }
+         
             if (st != null) {
                 try {
                     st.close();
                 } catch (SQLException ignored) { }
             }
-        }				
+
+        }			
 	}
 	
 	public void doUpdateDescription(HttpServletRequest req, HttpServletResponse res)

@@ -102,7 +102,7 @@ function addfieldFunction(icon) {
     newCellSubject.appendChild(hiddenInput);
     newCellTariff.appendChild(inputTariff);*/
     
-    // take the table element
+     // take the table element
     var tbody = icon.parentElement.parentElement.parentElement;
     // insert new row
     tbody.innerHTML += `<tr>
@@ -155,8 +155,6 @@ topicForm.onsubmit = function() {
         $(this).val(tariffs[i++]);
     });
     
-    alert(topics);
-    alert(tariffs);
     return true;
 };
 

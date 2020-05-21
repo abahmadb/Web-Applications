@@ -217,30 +217,46 @@
                             Topic offer  
                         </h4>
                         <br>
+                        
                         <form action="profileServlet" method="POST" id="topicForm">
                             <table id="topicTable">
+                        
                                 <tr>
                                     <th><img src="images/add.png" onclick="addfieldFunction(this)"></th>
                                     <th><label> Topic </label></th>
                                     <th id ="tariffLabel"><label> Tariff &euro;/h </label></th>
                                 </tr>
                                 
-                                    <tr>
+                                    <!--<tr>
                                         <td></td>
                                         <td><input type="text"></td>
-                                        <input type="hidden" name="subject" value="">
+                                        <input type="hidden" name="subject" value="${first_subject.topicName}">
                                         <td><input type="number"></td>
-                                        <input type="hidden" name="tariff" value="">
-                                    </tr>
+                                        <input type="hidden" name="tariff" value="${first_subject.tariff}">
+                                    </tr-->
+                                
                                 <c:forEach var="t" items="${subject_list}">
+                                    <tr>
+                                    <td>
+                                        <img src="images/del.png" onclick="remove_topic(this);">
+                                    </td>
+                                    <td>
+                                        <input type="text" required  value="${t.topicName}">
+                                        <input type="hidden" name="subject">
+                                    </td>
+                                    <td>
+                                        <input type="hidden" name="tariff">
+                                        <input type="number" required  value="${t.tariff}">
+                                    </td>
+                                    </tr>
                                 </c:forEach>
-                                    
-                            </table>
-                       
-                            <p>
-                                <input type="submit" value="Submit">
-                            </p>
+                                
+                            </table>     
+                                <p>
+                                    <input type="submit" value="Submit" name="formTopic">
+                                </p>
                         </form>
+                            
                     </div>
                 </div>
                 
@@ -278,6 +294,7 @@
         <!-- CONTROL PANEL PROFILE CSS JS -->
 
         <script src="js/profile.js"></script>
+            
         <!-- set quill contents -->
         <script>quill.root.innerHTML = ${person.description};</script>
         
