@@ -186,7 +186,7 @@ main >div >div:nth-child(3){
 }
 
 /*box containing the feedback form*/
-#feedform{
+#formbox{
     width: 600px;
     height: 400px;
     margin: -200px 0 0 -300px;
@@ -194,13 +194,13 @@ main >div >div:nth-child(3){
 }
 
 /*stars inside the feedback form*/
-#feedform .rating{
+#formbox .rating{
     margin-bottom: 25px;
     cursor: pointer;
 }
 
 /*form heading*/
-#feedform center > div:first-child{
+#formbox center > div:first-child{
     font-size: 26px;
     font-weight: bold;
 }

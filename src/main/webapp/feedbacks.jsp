@@ -207,17 +207,17 @@
 
         <div class="modal">
 
-            <div class="sign_up_in" id="feedform">
+            <div class="sign_up_in" id="formbox">
 
-                <form method="post" action="${pageContext.request.contextPath}/feedbacks">
+                <form id="form" method="post" action="${pageContext.request.contextPath}/feedbacks">
 
                     <center>
 
                         <div></div>
-                        <input type="hidden" name="teacher" value="">
+                        <input type="hidden" name="teacher" value=""/>
                         <br>
                         <div id="scoretag">Score: 0</div>
-                        <input type="hidden" name="score" value="0">
+                        <input type="hidden" name="score" id="score" value="0"/>
 
                         <div class="rating">
                             <div class="rating-upper">
@@ -239,7 +239,7 @@
                         <br>
                         <label for="comment">Comment:</label>
                         <br>
-                        <textarea id="comment" name="comment" rows="5" cols="33"></textarea>
+                        <textarea id="comment" name="comment" rows="5" cols="33" placeholder=""></textarea>
                         <br>
                         <input class="feedreq" type="submit" value="Submit feedback">
 

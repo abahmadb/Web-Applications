@@ -1,4 +1,4 @@
-//variables data, counters and avg come directly from jsp + servlet
+//variables data, counters and avg come directly from jsp + servlet doGet
 
 //fixing avg
 avg = parseFloat(parseFloat(avg).toFixed(1));
@@ -6,10 +6,10 @@ avg = parseFloat(parseFloat(avg).toFixed(1));
 //count the total number of feedbacks
 let numFeed = counters.reduce((a, b) => a + b, 0);
 
+//graphical fix, applied only if there are reviews to load
 if (numFeed > 0) {
 
     let rev = document.getElementById("rev-container");
-    //graphical fix, applied only if there are reviews to load
     rev.style.paddingRight = "1px";
     rev.style.height = "auto";
 
@@ -49,7 +49,6 @@ for(let i = 0; i < buttons.length; i++){
 
 }
 
-
 //toggle modal function
 function toggle_modalfeed(event){
 
@@ -57,8 +56,9 @@ function toggle_modalfeed(event){
     if (!modal_ctrl){
 
         //set the heading text using the username field in the table with the give-feed buttons
-        let heading = document.getElementById("feedform").querySelector("div");
-        heading.innerHTML = "Give a feedback to " + event.target.parentElement.previousElementSibling.previousElementSibling.innerHTML + "!";
+        let heading = document.getElementById("formbox").querySelector("div");
+        heading.innerHTML = "Give a feedback to " +
+            event.target.parentElement.previousElementSibling.previousElementSibling.innerHTML + "!";
 
         //also update the input to be sent to the back-end
         let teacherinput = document.getElementsByName("teacher")[0];
@@ -74,6 +74,7 @@ function toggle_modalfeed(event){
 
 //get the stars container in the modal
 let modalstars = document.getElementsByClassName("modal")[0].getElementsByClassName("rating")[0];
+
 //we need to modify the star filling in the modal every time we click on them
 //so starting from the container we visit every grandchildren
 for(let i = 0; i < modalstars.children.length; i++){
@@ -104,9 +105,35 @@ function update_local_stars(num){
     //update the score description text
     let scoretag = document.getElementById("scoretag");
     scoretag.innerText = "Score: "+ num;
+    scoretag.style.color = "black"; //resets default color in case the form validation set it to red
 
     //also update the value that will be sent to the back-end
-    let scoreinput = document.getElementsByName("score")[0];
+    let scoreinput = document.getElementById("score");
     scoreinput.value = num;
 
 }
+
+//set default values of modal
+let form = document.getElementById('form');
+form.reset();
+update_local_stars(0);
+
+//form validation on client side
+//(we validate only one value, that is the score)
+form.addEventListener('submit', function(event){
+
+    if(document.getElementById("score").value < 1) {
+
+        //inform the user if the score is not set correctly
+        let scoretag = document.getElementById("scoretag");
+        scoretag.innerText = "Set a score between 1 and 5";
+        scoretag.style.color = "red";
+
+        //and prevent form sending in this case
+        event.preventDefault();
+
+    }
+
+    //otherwise the default event is not prevented and the form is sent
+
+});
