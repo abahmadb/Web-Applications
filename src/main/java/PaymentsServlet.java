@@ -1,4 +1,4 @@
-/*import javax.servlet.http.*;
+import javax.servlet.http.*;
 import javax.servlet.*;
 import java.sql.*;
 import java.io.IOException;
@@ -19,7 +19,9 @@ public final class PaymentsServlet extends DatabaseServlet {
 
 			HttpSession session = request.getSession();
 			Connection c = getConnection();
+
 			Statement st = c.createStatement();
+
 			DecimalFormat df = new DecimalFormat( "#.##" );
 			ResultSet rs = st.executeQuery("SELECT DATE_FORMAT(L.Payment, '%d/%m/%Y %H:%i') as payment_date, " +
 					"IF(L.TeacherID = " + session.getAttribute("userid") + ", CONCAT('Incoming deposit from ' , S.Name), CONCAT('Outgoing payment to ', T.Name)) as payment_desc, " +
@@ -32,18 +34,17 @@ public final class PaymentsServlet extends DatabaseServlet {
 
 			ArrayList<String> recent_payment = new ArrayList<String>();
 			while(rs.next())
-				recent_payment.add(new String(rs.getString("payment_date"),
-											rs.getString("payment_desc"),
+				recent_payment.add(new String(rs.getString("payment_date")+ "," +
+											rs.getString("payment_desc")+ "," +
 											rs.getString("payment_direction") + df.format(rs.getDouble("money_amount")) + " &euro;"));
 
-			request.setAttribute("recent_payment", String);
 			request.setAttribute("currentpage", request.getServletPath());
 			request.getRequestDispatcher("payments.jsp").forward(request, response);
 
 		}//try
 
 		//catch exception if we are not logged in
-		catch (IOException e) {
+		catch (Exception e) {
 
 			request.setAttribute("error_message", e.getMessage());
 			request.setAttribute("appname", request.getContextPath());
@@ -59,4 +60,3 @@ public final class PaymentsServlet extends DatabaseServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		}//doPost
 }//PaymentsServlet
-*/
