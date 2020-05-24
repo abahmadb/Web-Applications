@@ -128,7 +128,7 @@
                                     <c:forEach var="c" items="${chat}">   
                                     
                                         <td>
-                                            ${c}
+                                            ${fn:startsWith(c, "<h2") ? 'You have a new lesson proposal!' : c}
                                         </td>
                                     
                                     </c:forEach>

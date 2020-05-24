@@ -44,7 +44,7 @@
         <div class="lesson_proposal">
 
             <div>
-                <h1>Propose a lesson to MEMEN</h1>
+                <h1>Propose a lesson</h1>
 
                 <input type="hidden" value="">
                 
