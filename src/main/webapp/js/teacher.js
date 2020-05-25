@@ -6,9 +6,10 @@ avg = avg * 20;
 //set stars width according to the teacher score
 document.getElementById("teacher_fullstar_style").setAttribute("style", "width: " + avg + "%");
 
-//need these for the 2 modals, send a message modal and request sent modal
+//need these for the 3 modals, "send a message" modal, "request has been sent" modal and "log in first" modal
 var modal_bookLessonCenter = document.querySelectorAll("center")[0];
 var modal_quitBookLessonCenter = document.querySelectorAll("center")[1];
+var modal_logInBookLessonCenter = document.querySelectorAll("center")[2];
 
 //MODAL FOR BOOK A LESSON BUTTON start
 
@@ -17,16 +18,20 @@ var button = document.querySelector(".button");
 //attach toggle event to selected button
 button.addEventListener("click", function () {
 
-    if (modal_bookLessonCenter.style.display=='none') {
-        //set visibility on for "send a message to the teacher" modal and resize the modal accordingly
-        modal_bookLessonCenter.style.display='block';
-        modal_bookLessonCenter.parentElement.style.cssText = "width: 600px; height: 400px; margin: -200px 0 0 -300px; padding: 30px";  
+    if (modal_bookLessonCenter.style.display=='none' && modal_logInBookLessonCenter.style.display=="none") {
         //set visibility off for "request has been sent" modal
         modal_quitBookLessonCenter.style.display='none';
-    }
-    else {
+        //set visibility on for "send a message to the teacher" modal and resize the modal accordingly
         modal_bookLessonCenter.parentElement.style.cssText = "width: 600px; height: 400px; margin: -200px 0 0 -300px; padding: 30px";  
-        modal_quitBookLessonCenter.style.display='none';
+        modal_bookLessonCenter.style.display='block';
+    }
+    
+    else if (modal_bookLessonCenter.style.display=='none' && modal_quitBookLessonCenter.style.display=="none"){
+        //set visibility off for "log in first" modal
+        modal_logInBookLessonCenter.style.display='none';
+        //set visibility on for "send a message to the teacher" modal and resize the modal accordingly
+        modal_bookLessonCenter.parentElement.style.cssText = "width: 600px; height: 400px; margin: -200px 0 0 -300px; padding: 30px";
+        modal_bookLessonCenter.style.display='block';
     }
         
     toggle_modalteacher(event);
@@ -87,15 +92,24 @@ function toggle_modalteacher(event) {
 function call_teacherServlet() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
+      
     if (this.readyState == 4 && this.status == 200) {
-      //var data = xhttp.responseText;
-        //alert(data);
         
-        //set visibility off for "send a message to the teacher" modal 
+        //set visibility off for "send a message to the teacher" modal and "log in first" modal
         modal_bookLessonCenter.style.display='none';
+        modal_logInBookLessonCenter.style.display='none';
         //set visibility on for "request has been sent" modal and resize the modal accordingly
-        modal_quitBookLessonCenter.style.display='block';
         modal_quitBookLessonCenter.parentElement.style.cssText = "width: 460px; height: 150px; margin: -75px 0 0 -230px; padding: 10px";     
+        modal_quitBookLessonCenter.style.display='block';
+    }
+      
+    //there was an error when sending the request because user was not logged in (I set status to 500 in servlet) 
+    else if (this.status == 500) {
+        modal_bookLessonCenter.style.display='none';
+        modal_quitBookLessonCenter.style.display='none';
+        //set visibility on for "log in first" modal and resize the modal accordingly
+        modal_logInBookLessonCenter.parentElement.style.cssText = "width: 550px; height: 150px; margin: -75px 0 0 -275px; padding: 10px"; 
+        modal_logInBookLessonCenter.style.display='block';
     }
   };
   xhttp.open("POST", document.getElementById("teacher_bookLesson_modal_style").getAttribute("context")+"/teacher", true);

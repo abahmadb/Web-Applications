@@ -450,9 +450,17 @@
                     </center>
                 
                     <!-- Section for displaying that the message has been correctly sent to the teacher -->
-                    <center id="modal_center_hidden">
+                    <center id="modal_confirmation_hidden">
                         <br />
                         <div class="quit_chat_label">Lesson has been booked.</div>
+                        <br />
+                        <button class="button" onclick="toggle_modalteacher(event)" class="close_modal">Exit</button>
+                    </center>
+                
+                    <!-- Section for displaying that the message has not been sent because you need to be logged in first -->
+                    <center id="modal_login_hidden">
+                        <br />
+                        <div class="quit_chat_label">You need to log in before booking the lesson.</div>
                         <br />
                         <button class="button" onclick="toggle_modalteacher(event)" class="close_modal">Exit</button>
                     </center>

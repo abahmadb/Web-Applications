@@ -368,7 +368,10 @@ main .checked{
     color: orange;
 }
 
-#modal_center_hidden {
+#modal_confirmation_hidden {
     display: none;
 }
 
+#modal_login_hidden {
+    display: none;
+}

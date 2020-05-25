@@ -173,9 +173,10 @@ public final class TeacherServlet extends DatabaseServlet {
 
     }
     
+    
     public void doPost (HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         
-        try {
+/*        try {
 
             //check if we are logged in
             if (!IndexServlet.check_login(req))
@@ -196,6 +197,12 @@ public final class TeacherServlet extends DatabaseServlet {
 
             catch(Exception ignored){return;}
 
+        }*/
+        
+        //if user is not logged in set status to 500
+        if (!IndexServlet.check_login(req)){
+               res.setStatus(500);
+               return;
         }
         
         Connection con = getConnection(); //use DatabaseServlet method to get connection
@@ -208,13 +215,16 @@ public final class TeacherServlet extends DatabaseServlet {
         String comment = req.getParameter("comment");
 
         //try-with-resources syntax, does not need a finally block to close the statement resource
-        try (PreparedStatement st = con.prepareStatement("INSERT INTO chat VALUES (?, ?, FALSE, JSON_ARRAY(JSON_OBJECT('SenderID', ?, 'Message', ?, 'TS', DATE_FORMAT(NOW(), '%d-%m-%Y %H:%i'))), NOW())")) {
+        //on duplicate key is needed if the student books more than a lesson
+        try (PreparedStatement st = con.prepareStatement("INSERT INTO chat VALUES (?, ?, FALSE, JSON_ARRAY(JSON_OBJECT('SenderID', ?, 'Message', ?, 'TS', DATE_FORMAT(NOW(), '%d-%m-%Y %H:%i'))), NOW()) ON DUPLICATE KEY UPDATE Messages = JSON_ARRAY_APPEND(Messages, '$', JSON_OBJECT('SenderID', ?, 'Message', ?, 'TS', DATE_FORMAT(NOW(), '%d-%m-%Y %H:%i'))), LastMessage = NOW()")) {
 
             //insert the feedback into the db
             st.setInt(1, teacherID);
             st.setInt(2, studentID);
             st.setInt(3, studentID);
             st.setString(4, comment);
+            st.setInt(5, studentID);
+            st.setString(6, comment);
             st.executeUpdate();
 
         }
@@ -222,10 +232,6 @@ public final class TeacherServlet extends DatabaseServlet {
         catch (SQLException e) {
 
         }
-        
-        res.setContentType("text/plain");
-        res.setCharacterEncoding("UTF-8");
-        res.getWriter().write("Request has been sent!");
 
     }
 }
