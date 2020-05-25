@@ -302,6 +302,7 @@
                                     
                                     <script>
                                         student_score = ${t.score}
+                                        //trasform from 5 ratings to percentage
                                         student_score = student_score * 20;
                                         student_score_array.push(student_score);
                                         count = count + 1;
@@ -437,14 +438,23 @@
 
             <div class="sign_up_in" id="teacherform">
 
+                    <!-- Section for sending a message to the teacher -->
                     <center>
                         <label for="chat" class="chat_label">Send a message to your teacher:</label>
-                        <br>
-                        <br>
+                        <br />
+                        <br />
                         <textarea name="chat" rows="12" cols="60"></textarea>
-                        <br>
-                        <br>
+                        <br />
+                        <br />
                         <button class="button" id="teacher_bookLesson_modal_style" onclick="call_teacherServlet()" context=${pageContext.request.contextPath}>Book the lesson !</button>
+                    </center>
+                
+                    <!-- Section for displaying that the message has been correctly sent to the teacher -->
+                    <center id="modal_center_hidden">
+                        <br />
+                        <div class="quit_chat_label">Lesson has been booked.</div>
+                        <br />
+                        <button class="button" onclick="toggle_modalteacher(event)" class="close_modal">Exit</button>
                     </center>
 
             </div>
@@ -455,6 +465,8 @@
         <script>
             //avg is the average teacher score
             let avg = ${teacher_avgscore};
+            //I need it when doing the ajax call to send it (POST) to the teacherServlet
+            let teacher_ID = ${teacher_id};
         </script>
         
         <!-- MAIN JS -->

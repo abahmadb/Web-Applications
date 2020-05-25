@@ -175,7 +175,7 @@ public final class TeacherServlet extends DatabaseServlet {
     
     public void doPost (HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         
-/*        try {
+        try {
 
             //check if we are logged in
             if (!IndexServlet.check_login(req))
@@ -191,16 +191,20 @@ public final class TeacherServlet extends DatabaseServlet {
 
             try{
                 req.getRequestDispatcher("errorpage.jsp").forward(req, res);
+                return;
             }
 
-            catch(Exception ignored){}
+            catch(Exception ignored){return;}
 
-        }*/
+        }
         
         Connection con = getConnection(); //use DatabaseServlet method to get connection
-        //get form parameters
+        
+        //get userid from session
+        int studentID = Integer.parseInt(String.valueOf(req.getSession().getAttribute("userid")));
+        
+        //get parameters sent by ajax function
         int teacherID = Integer.parseInt(req.getParameter("teacherID"));
-        int studentID = Integer.parseInt(req.getParameter("studentID"));
         String comment = req.getParameter("comment");
 
         //try-with-resources syntax, does not need a finally block to close the statement resource

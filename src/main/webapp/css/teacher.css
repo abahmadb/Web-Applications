@@ -172,6 +172,12 @@ main .flex_item .header_right_box .header_price_box{
     font-weight: 700;
 }
 
+.quit_chat_label {
+    font-family: 'Montserrat Light', Helvetica, sans-serif;
+    font-size: 21px;
+    font-weight: 700;
+}
+
 #teacher_bookLesson_modal_style {
     font-family: 'Montserrat Light', Helvetica, sans-serif;
     font-size: 16px;
@@ -360,5 +366,9 @@ main tr:nth-child(odd) {
 
 main .checked{
     color: orange;
+}
+
+#modal_center_hidden {
+    display: none;
 }
 

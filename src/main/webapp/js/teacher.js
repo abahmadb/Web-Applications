@@ -6,12 +6,29 @@ avg = avg * 20;
 //set stars width according to the teacher score
 document.getElementById("teacher_fullstar_style").setAttribute("style", "width: " + avg + "%");
 
+//need these for the 2 modals, send a message modal and request sent modal
+var modal_bookLessonCenter = document.querySelectorAll("center")[0];
+var modal_quitBookLessonCenter = document.querySelectorAll("center")[1];
+
 //MODAL FOR BOOK A LESSON BUTTON start
+
 //select book a lesson button
 var button = document.querySelector(".button");
 //attach toggle event to selected button
 button.addEventListener("click", function () {
 
+    if (modal_bookLessonCenter.style.display=='none') {
+        //set visibility on for "send a message to the teacher" modal and resize the modal accordingly
+        modal_bookLessonCenter.style.display='block';
+        modal_bookLessonCenter.parentElement.style.cssText = "width: 600px; height: 400px; margin: -200px 0 0 -300px; padding: 30px";  
+        //set visibility off for "request has been sent" modal
+        modal_quitBookLessonCenter.style.display='none';
+    }
+    else {
+        modal_bookLessonCenter.parentElement.style.cssText = "width: 600px; height: 400px; margin: -200px 0 0 -300px; padding: 30px";  
+        modal_quitBookLessonCenter.style.display='none';
+    }
+        
     toggle_modalteacher(event);
 
 });
@@ -71,11 +88,19 @@ function call_teacherServlet() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      var data = xhttp.responseText;
-        alert(data);
+      //var data = xhttp.responseText;
+        //alert(data);
+        
+        //set visibility off for "send a message to the teacher" modal 
+        modal_bookLessonCenter.style.display='none';
+        //set visibility on for "request has been sent" modal and resize the modal accordingly
+        modal_quitBookLessonCenter.style.display='block';
+        modal_quitBookLessonCenter.parentElement.style.cssText = "width: 460px; height: 150px; margin: -75px 0 0 -230px; padding: 10px";     
     }
   };
   xhttp.open("POST", document.getElementById("teacher_bookLesson_modal_style").getAttribute("context")+"/teacher", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.send("teacherID=1&studentID=4&comment=" + document.getElementsByTagName("textarea")[0].value);
+  xhttp.send("teacherID=" + teacher_ID + "&comment=" + document.getElementsByTagName("textarea")[0].value);
 }
+
+//CALL TEACHERSERVLET USING AJAX CALL (POST) end
