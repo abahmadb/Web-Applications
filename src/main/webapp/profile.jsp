@@ -76,13 +76,16 @@
                                         <c:when test="${person.gender == null || person.gender == ''}">
                                             Choose Gender
                                         </c:when>
+                                        <c:when test="${person.gender == 'M'}">
+                                            Male
+                                        </c:when>
                                         <c:otherwise>
-                                            ${person.gender}
+                                            Female
                                         </c:otherwise>
                                     </c:choose>
                                 </option>
-                                <option value="M">M</option>
-                                <option value="F">F</option>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
                             </select>
 
                             <label for="birthday">Birthday</label><br>
@@ -154,10 +157,24 @@
                             <p>
                                 <input type="submit" value="Change password" name="passForm">
                             </p>
-                            <p id="message">
-                                <br>
-                                ${passMessage}
-                            </p>
+                            
+                            <br>
+                            <c:choose>
+                                <c:when test="${sessionScope.passMessage == null}">          
+                                </c:when>
+                                <c:when test="${sessionScope.passMessage}">
+                                    <p id="message" style="color: green;">
+                                        Updated Successfully
+                                    </p>
+                                </c:when>
+                                 <c:otherwise>
+                                    <p id="message" style="color: red;">
+                                        Update Failed
+                                    </p>
+                                </c:otherwise>
+                            </c:choose>
+                            <c:remove var="passMessage" scope="session" />
+                            
                         </form>
                     </div>
 

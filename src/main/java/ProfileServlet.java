@@ -113,6 +113,10 @@ public final class ProfileServlet extends DatabaseServlet{
             }
 	
         }	
+		// Set standard HTTP/1.1 no-cache headers.
+		res.setHeader("Cache-Control", "private, no-store, no-cache, must-revalidate");
+		// Set standard HTTP/1.0 no-cache header.
+		res.setHeader("Pragma", "no-cache");
 		
 		// set attributes and forward the request
 		req.setAttribute("currentpage", req.getServletPath());
@@ -135,7 +139,7 @@ public final class ProfileServlet extends DatabaseServlet{
 		else 
 			doUploadFile(req, res);
 		
-		// go back profile.jsp 
+		// go back profile.jsp	
 		res.sendRedirect("profile");
 	
 	}
@@ -202,12 +206,15 @@ public final class ProfileServlet extends DatabaseServlet{
 			new UpdatePersonDAO(getConnection(), person).updatePassword(newPassword, oldPassword);
 			// get the new password (SHA256) of the user
 			Person personUpdated = new SearchPersonByIdDAO(getConnection(), idUser).searchPersonById();
-		
+			
+			// setAttribute doesn't work for sendRedirect
+			HttpSession session = req.getSession(false);
+			//save message in session
 			// check if the password is updated
 			if (!oldPassSHA.equals(personUpdated.getPassword())){
-				req.setAttribute("passMessage", "Updated Successfully");	
+				session.setAttribute("passMessage", true);	
 			} else {
-				req.setAttribute("passMessage", "Update Failed");	
+				session.setAttribute("passMessage", false);	
 			}
 			
 		} catch (SQLException ex){

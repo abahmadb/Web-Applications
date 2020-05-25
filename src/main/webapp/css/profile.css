@@ -7,7 +7,7 @@ main .box{
     margin: 10px;
 }
 
-main .box h4, main .box p{
+main .box h4, main .box > p, main .box form > p{
     text-align: center;
 }
 
@@ -129,6 +129,7 @@ main > div .box .profile_img{
     border-radius: 100px;
     margin-bottom: 10px;
     margin-top: 20px;
+	object-fit: cover;
 }
 
 main > div .box .id_img{
@@ -173,5 +174,4 @@ main .box #personal_presentation{
 main .box #message{
     text-align: center;
     font-weight: bold;
-	color: red;
 }
