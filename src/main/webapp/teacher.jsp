@@ -192,7 +192,7 @@
                             Offered Subject
                         </h3>
                         <p>
-                            <span id="subject_level_style">${teacher_subject}</span>
+                            <span>${teacher_subject}</span>
                         </p> 
                     </div>
 

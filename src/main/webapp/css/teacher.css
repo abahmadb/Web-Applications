@@ -254,18 +254,18 @@ main .flex_item:nth-child(5) {
 
 #id_certification_check_symbol {
     color: green;
-    margin: 0 10px;
+    margin-left: 10px;
 }
 
 #id_certification_cross_symbol {
     color: red;
-    margin: 0 10px;
+    margin-left: 10px;
 }
 
 main .flex_item .box{
     display: inline-block;
     width: 100%;
-    margin: 5px 0px;
+    margin: 2px 0px;
     text-align: left;
 }
 
@@ -291,6 +291,8 @@ main .flex_item:nth-child(3) span{
     text-transform: capitalize;
 }
 
+/*
+style for the offered subject by teacher
 #subject_level_style {
     border: 0;
     background-color: transparent;
@@ -299,6 +301,7 @@ main .flex_item:nth-child(3) span{
     padding-bottom: 0px;
     font: normal 19px 'Montserrat Light', serif;
 }
+*/
 
 main .flex_item:nth-child(4) h2, main .flex_item:nth-child(5) h2{   
     font-family: Helvetica, sans-serif;

@@ -8,21 +8,24 @@ import java.nio.file.*;
 
 public final class TeacherServlet extends DatabaseServlet {
     
-    //retrieve data from database
+    //doGet is used to retrieve data from database in order to "populate" a specific teacher page with the current teacher info
     public void doGet (HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         
         Connection con = getConnection();
         Statement st = null;
         ResultSet rs = null;
         
-        StringBuilder teacher_name = new StringBuilder("");
-        StringBuilder teacher_score = new StringBuilder("");
-        StringBuilder teacher_city = new StringBuilder("");
-        StringBuilder teacher_tariff = new StringBuilder("");
+        String teacher_name = "";
+        String teacher_score = "";
+        String teacher_city = "";
+        String teacher_tariff = "";
         String teacher_subject = "";
-        StringBuilder teacher_description = new StringBuilder("");
+        String teacher_description = "";
         
-        int userid = Integer.parseInt(req.getParameter("teacher_id"));
+        //need to retrieve teacher_id from search_jsp in order to know what teacher to visualize on the teacher page
+        String userid = req.getParameter("teacher_id");
+        //need to retrieve topic_id from search.jsp in order to retrieve the teacher price per hour
+        String topicid = req.getParameter("topic_id");
         String teacher_profile = null;
         
         //feedback from student
@@ -62,11 +65,10 @@ public final class TeacherServlet extends DatabaseServlet {
             st = con.createStatement();
             rs = st.executeQuery("SELECT Name, City, Description FROM person WHERE IDUser = " + userid);
             
-            while (rs.next()) {
-                teacher_name.append(rs.getString("Name"));
-                teacher_city.append(rs.getString("City"));
-                teacher_description.append(rs.getString("Description"));
-            }
+            if (!rs.next()) throw new IOException("Name, City or Description in table person could not be found.");
+            teacher_name = rs.getString("Name");
+            teacher_city = rs.getString("City");
+            teacher_description = rs.getString("Description");
             
             //need to skip first " character and last " character since I don't need them in the description
             teacher_profile = teacher_description.substring(1, teacher_description.length() - 1);
@@ -75,20 +77,16 @@ public final class TeacherServlet extends DatabaseServlet {
             st = con.createStatement();
             rs = st.executeQuery("SELECT AVG(Score) FROM feedback WHERE TeacherID = " + userid);
             
-            while (rs.next()) {
-                teacher_score.append(rs.getFloat("AVG(Score)"));
-            }
+            if (!rs.next()) throw new IOException("Score in feedback table could not be found.");
+            teacher_score = String.valueOf(rs.getFloat("AVG(Score)"));
             
             //Retrieve the teacher price per hour
-            //need to retrieve topic_id for that from search.jsp
-            int topicid = Integer.parseInt(req.getParameter("topic_id"));
             
             st = con.createStatement();
             rs = st.executeQuery("SELECT Tariff FROM teacher_topic WHERE TeacherID = " + userid + " AND TopicID = " + topicid);
             
-            while (rs.next()) {
-                teacher_tariff.append(rs.getInt("Tariff"));
-            }  
+            if (!rs.next()) throw new IOException("Tariff in teacher_topic table could not be found.");
+            teacher_tariff = String.valueOf(rs.getInt("Tariff"));
             
             //Retrieve the teacher topic name to put in the subject section
             st = con.createStatement();
@@ -123,10 +121,14 @@ public final class TeacherServlet extends DatabaseServlet {
             while (rs.next()) {
                 student_feedbacks.add(new TeacherFeedback(rs.getInt("IDUser"), rs.getString("Name"), rs.getString("F.Description"), rs.getInt("Score")));
             }
+            
         }
         
-        catch (SQLException e) {
-            e.printStackTrace();
+        catch (Exception ex) {
+            req.setAttribute("error_message", ex.getMessage());
+            req.setAttribute("appname", req.getContextPath());
+            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);} 
+            catch(Exception e){}
         }
         
         //release resources in the end anyway
@@ -174,30 +176,8 @@ public final class TeacherServlet extends DatabaseServlet {
     }
     
     
+    //doPost is used when a student clicks on the "book a lesson" button in order to book the lesson of the teacher he is viewing
     public void doPost (HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        
-/*        try {
-
-            //check if we are logged in
-            if (!IndexServlet.check_login(req))
-                throw new IOException("You need to be signed in to book a lesson");
-
-        }
-
-        //catch exception if we are not logged in
-        catch (IOException e) {
-
-            req.setAttribute("error_message", e.getMessage());
-            req.setAttribute("appname", req.getContextPath());
-
-            try{
-                req.getRequestDispatcher("errorpage.jsp").forward(req, res);
-                return;
-            }
-
-            catch(Exception ignored){return;}
-
-        }*/
         
         //if user is not logged in set status to 500
         if (!IndexServlet.check_login(req)){
