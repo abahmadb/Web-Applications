@@ -125,32 +125,47 @@
                     <div class="chatlogs2">
 
                         <ul class="tab">
-                                                                                    
-                            <c:forEach var="contact" items="${contactlist}" varStatus="loop">   
-                                                                
+                            
+                            <c:choose>
                                 
-                                <li onclick="openChat(event, ${contact.userID}, ${contact.teacher})" class="tablinks ${contact.teacher ? 'teacher' : 'student'}" tabid="${loop.index}">
-                                        <div>
-                                            <div class="img_cont">
-                                                <img src="/imageset/profile/${contact.userID}.jpg">
-                                                <c:if test="${!contact.requestConfirmed}">
-                                                    <div></div>
-                                                </c:if>
-                                            </div>
-                                            
-                                            <div class="user_info">
-                                                <p><strong>${contact.name} ${contact.surname}</strong></p>
-                                                <p>
-                                                    <c:if test="${!fn:startsWith(contact.lastMessage, '<h2')}">
-                                                        ${contact.lastMessage}
-                                                    </c:if>
-                                                    
-                                                </p>
-                                            </div>
-                                        </div>
-                                </li>
+                                <c:when test="${not empty contactlist}">
+                                    
+                                    <c:forEach var="contact" items="${contactlist}" varStatus="loop">
+
+                                        <li onclick="openChat(event, ${contact.userID}, ${contact.teacher})" class="tablinks ${contact.teacher ? 'teacher' : 'student'}" tabid="${loop.index}">
+                                                <div>
+                                                    <div class="img_cont">
+                                                        <img src="/imageset/profile/${contact.userID}.jpg">
+                                                        <c:if test="${!contact.requestConfirmed}">
+                                                            <div></div>
+                                                        </c:if>
+                                                    </div>
+
+                                                    <div class="user_info">
+                                                        <p><strong>${contact.name} ${contact.surname}</strong></p>
+                                                        <p>
+                                                            <c:if test="${!fn:startsWith(contact.lastMessage, '<h2')}">
+                                                                ${contact.lastMessage}
+                                                            </c:if>
+
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                        </li>
+
+                                    </c:forEach>
+                                    
+                                </c:when>
                                 
-                            </c:forEach>
+                                <c:otherwise>
+                                
+                                    <p style="padding: 20px;">
+                                        Browse among our teachers and book lessons to start chatting! Your students and teachers will appear right here
+                                    </p>
+                                
+                                </c:otherwise>
+                                
+                            </c:choose>
                         
                         </ul>
                         

@@ -11,32 +11,33 @@ public final class TeacherServlet extends DatabaseServlet {
     //doGet is used to retrieve data from database in order to "populate" a specific teacher page with the current teacher info
     public void doGet (HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         
+        IndexServlet.check_login(req);
+        
         Connection con = getConnection();
         Statement st = null;
         ResultSet rs = null;
         
         String teacher_name = "";
         String teacher_score = "";
+        String teacher_numfeed = "";
         String teacher_city = "";
         String teacher_tariff = "";
         String teacher_subject = "";
-        String teacher_description = "";
+        String teacher_profile = "";
         
-        //need to retrieve teacher_id from search_jsp in order to know what teacher to visualize on the teacher page
+        // GET THE TEACHER ID
         String userid = req.getParameter("teacher_id");
-        //need to retrieve topic_id from search.jsp in order to retrieve the teacher price per hour
+        
+        // GET THE TOPIC ID THE USER REQUESTED FROM THE SEARCH PAGE
         String topicid = req.getParameter("topic_id");
-        String teacher_profile = null;
         
-        //feedback from student
-        List<TeacherFeedback> student_feedbacks = new ArrayList<>();
         
-        //array of strings for other subjects taught by teacher
+        // LIST OF FEEDBACKS FOR THE REQUESTED TEACHER
+        List<Feedback> student_feedbacks = new ArrayList<>();
+        
+        // LIST OF OTHER TOPICS THIS TEACHER OFFERS
         List<String> teacher_other_subjects = new ArrayList<String>();
-        
-        //check if teacher has other subjects that he teaches
-        boolean other_subjects = true;
-        
+                
         // CHECK IF THE TEACHER IDENTITY AND CERTIFICATE ARE VERIFIED
         
         String home = System.getProperty("user.dir");
@@ -47,80 +48,58 @@ public final class TeacherServlet extends DatabaseServlet {
         images = new File(home + "./webapps/imageset/identity/" + userid + ".jpg");
             
         identity_flag = false;
-        if(images.isFile()) {
+        if(images.isFile())
             identity_flag = true;
-        }
                 
         // CERTIFICATE VERIFICATION
         images = new File(home + "./webapps/imageset/certificate/" + userid + ".jpg");
                 
         certificate_flag = false;
-        if(images.isFile()) {
+        if(images.isFile())
             certificate_flag = true;
-        }
+
         
         try {
             
-            //Retrive the name, city and description of the teacher            
+            // RETRIEVE THE NAME, CITY AND DESCRIPTION OF THE TEACHER         
             st = con.createStatement();
-            rs = st.executeQuery("SELECT Name, City, Description FROM person WHERE IDUser = " + userid);
+            rs = st.executeQuery("SELECT Name, City, JSON_UNQUOTE(Description) as teacher_desc FROM person WHERE IDUser = " + userid);
             
-            if (!rs.next()) throw new IOException("Name, City or Description in table person could not be found.");
+            if (!rs.next()) throw new IOException("The requested teacher could not be found");
             teacher_name = rs.getString("Name");
             teacher_city = rs.getString("City");
-            teacher_description = rs.getString("Description");
+            teacher_profile = rs.getString("teacher_desc");
             
-            //need to skip first " character and last " character since I don't need them in the description
-            teacher_profile = teacher_description.substring(1, teacher_description.length() - 1);
             
-            //Retrieve the average teacher score
-            st = con.createStatement();
-            rs = st.executeQuery("SELECT AVG(Score) FROM feedback WHERE TeacherID = " + userid);
+            // RETRIEVE THE AVERAGE TEACHER SCORE
+            rs = st.executeQuery("SELECT ROUND(IFNULL(AVG(Score), '0'), 1) as avg_score, COUNT(TeacherID) as num_feed FROM feedback WHERE TeacherID = " + userid);
             
             if (!rs.next()) throw new IOException("Score in feedback table could not be found.");
-            teacher_score = String.valueOf(rs.getFloat("AVG(Score)"));
+            teacher_score = rs.getString("avg_score");
+            teacher_numfeed = rs.getString("num_feed");
             
-            //Retrieve the teacher price per hour
             
-            st = con.createStatement();
-            rs = st.executeQuery("SELECT Tariff FROM teacher_topic WHERE TeacherID = " + userid + " AND TopicID = " + topicid);
+            // RETRIEVE THE TEACHER TARIFF FOR THIS TOPIC AND THE TOPIC LABEL
+            rs = st.executeQuery("SELECT Tariff, T.Label FROM teacher_topic as TT JOIN topic as T ON TT.TopicID=T.IDTopic WHERE TeacherID = " + userid + " AND TopicID = " + topicid);
             
             if (!rs.next()) throw new IOException("Tariff in teacher_topic table could not be found.");
-            teacher_tariff = String.valueOf(rs.getInt("Tariff"));
+            teacher_tariff = rs.getString("Tariff");
+            teacher_subject = rs.getString("Label");
             
-            //Retrieve the teacher topic name to put in the subject section
-            st = con.createStatement();
-            rs = st.executeQuery("SELECT Label FROM topic WHERE IDTopic = " + topicid);
             
-            while (rs.next()) {
-                teacher_subject = teacher_subject + (rs.getString("Label"));
-            }
+            // RETRIEVE THE OTHER TOPICS THIS TEACHER OFFERS
+            rs = st.executeQuery("SELECT O.Label FROM teacher_topic T INNER JOIN topic O ON T.TopicID = O.IDTopic WHERE T.TeacherID = " + userid + " AND T.TopicID <> " + topicid);
             
-            //Retrieve the other subjects the teacher offers
-            st = con.createStatement();
-            rs = st.executeQuery("SELECT O.Label FROM teacher_topic T INNER JOIN topic O ON T.TopicID = O.IDTopic WHERE T.TeacherID = " + userid);
+            while (rs.next()) 
+                teacher_other_subjects.add(rs.getString("O.Label"));
+                        
             
-            while (rs.next()) {
-                teacher_other_subjects.add(new String(rs.getString("O.Label")));
-            }
-            
-            //make sure you delete the current teacher subject from the other subjects
-            if (teacher_other_subjects.contains(teacher_subject)) {
-                teacher_other_subjects.remove(teacher_subject);
-            }
-            
-            //check if teacher has other subjects
-            if (teacher_other_subjects.isEmpty()) {
-                other_subjects = false;
-            }
-            
-            //Retrieve the student id, name, description and score for the feedback
-            st = con.createStatement();
+            // RETRIEVE THE DETAILED FEEDBACK VIEW WITH STUDENT ID, NAME, DESCRIPTION AND SCORE
             rs = st.executeQuery("SELECT IDUser, Name, F.Description, Score FROM person P INNER JOIN feedback F ON F.StudentID = P.IDUser WHERE TeacherID = " + userid);
             
-            while (rs.next()) {
-                student_feedbacks.add(new TeacherFeedback(rs.getInt("IDUser"), rs.getString("Name"), rs.getString("F.Description"), rs.getInt("Score")));
-            }
+            while (rs.next())
+                student_feedbacks.add(new Feedback(rs.getInt("IDUser"), rs.getString("Name"), null, rs.getInt("Score"), null, rs.getString("F.Description")));
+        
             
         }
         
@@ -131,41 +110,17 @@ public final class TeacherServlet extends DatabaseServlet {
             catch(Exception e){}
         }
         
-        //release resources in the end anyway
-        finally {
-
-            if (rs != null) {
-
-                try {
-                    rs.close();
-                }
-
-                catch (SQLException ignored) { }
-
-            }
-
-            if (st != null) {
-
-                try {
-                    st.close();
-                }
-
-                catch (SQLException ignored) { }
-
-            }
-
-        }
-        
+        // SEND THE VALUES TO THE JSP PAGE
         req.setAttribute("teacher_id", userid);
         req.setAttribute("teacher_name", teacher_name);        
         req.setAttribute("teacher_avgscore", teacher_score);
+        req.setAttribute("teacher_numfeed", teacher_numfeed);
         req.setAttribute("teacher_city", teacher_city);
         req.setAttribute("teacher_price", teacher_tariff);
         req.setAttribute("teacher_description", teacher_profile);
         req.setAttribute("teacher_identity", identity_flag);
         req.setAttribute("teacher_certificate", certificate_flag);
         req.setAttribute("teacher_subject", teacher_subject);
-        req.setAttribute("other_subjects", other_subjects);
         
         req.setAttribute("teacher_other_subjects", teacher_other_subjects);
         
@@ -173,25 +128,27 @@ public final class TeacherServlet extends DatabaseServlet {
         
         req.getRequestDispatcher("teacher.jsp").forward(req, res);
 
-    }
+    }//doGet
     
     
     //doPost is used when a student clicks on the "book a lesson" button in order to book the lesson of the teacher he is viewing
     public void doPost (HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         
-        //if user is not logged in set status to 500
+        PrintWriter out = res.getWriter();
+        
+        // IF THE USER IS NOT LOGGED IN STOP THE REQUEST AND WRITE BACK TO BROWSER
         if (!IndexServlet.check_login(req)){
-               res.setStatus(500);
+               out.printf("0");
                return;
         }
         
-        Connection con = getConnection(); //use DatabaseServlet method to get connection
+        Connection con = getConnection();
         
-        //get userid from session
-        int studentID = Integer.parseInt(String.valueOf(req.getSession().getAttribute("userid")));
+        // GET USERID FROM SESSION
+        String studentID = req.getSession().getAttribute("userid")+"";
         
-        //get parameters sent by ajax function
-        int teacherID = Integer.parseInt(req.getParameter("teacherID"));
+        // GET VALUES FROM AJAX REQUEST
+        String teacherID = req.getParameter("teacherID");
         String comment = req.getParameter("comment");
 
         //try-with-resources syntax, does not need a finally block to close the statement resource
@@ -199,19 +156,20 @@ public final class TeacherServlet extends DatabaseServlet {
         try (PreparedStatement st = con.prepareStatement("INSERT INTO chat VALUES (?, ?, FALSE, JSON_ARRAY(JSON_OBJECT('SenderID', ?, 'Message', ?, 'TS', DATE_FORMAT(NOW(), '%d-%m-%Y %H:%i'))), NOW()) ON DUPLICATE KEY UPDATE Messages = JSON_ARRAY_APPEND(Messages, '$', JSON_OBJECT('SenderID', ?, 'Message', ?, 'TS', DATE_FORMAT(NOW(), '%d-%m-%Y %H:%i'))), LastMessage = NOW()")) {
 
             //insert the feedback into the db
-            st.setInt(1, teacherID);
-            st.setInt(2, studentID);
-            st.setInt(3, studentID);
+            st.setString(1, teacherID);
+            st.setString(2, studentID);
+            st.setString(3, studentID);
             st.setString(4, comment);
-            st.setInt(5, studentID);
+            st.setString(5, studentID);
             st.setString(6, comment);
             st.executeUpdate();
+            out.printf("1");
 
-        }
+        }//try
 
         catch (SQLException e) {
+            out.printf("0");
+        }//catch
 
-        }
-
-    }
+    }//dopost
 }

@@ -49,6 +49,7 @@ header #menu_wrap a img{
     height: 50px;
     border-radius: 50%;
     margin: -25px 0 0 -25px;
+    object-fit: cover;
 }
 /* ============ MAIN ============ */
 

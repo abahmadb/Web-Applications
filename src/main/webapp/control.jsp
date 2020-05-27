@@ -121,21 +121,58 @@
                         <div>
 
                             <table>
-                                <c:forEach var="chat" items="${recent_chats}">   
+                                
+                                <c:choose>
+                                
+                                    <c:when test="${not empty recent_chats}">
                                     
-                                    <tr>
+                                        <c:forEach var="chat" items="${recent_chats}">   
                                     
-                                    <c:forEach var="c" items="${chat}">   
-                                    
-                                        <td>
-                                            ${fn:startsWith(c, "<h2") ? 'You have a new lesson proposal!' : c}
-                                        </td>
-                                    
-                                    </c:forEach>
-                                    
-                                    </tr>
+                                            <tr>
+
+                                                <c:forEach var="c" items="${chat}">   
+
+                                                    <td>
+                                                        
+                                                        <c:choose>
+                                                            
+                                                            <c:when test="${fn:startsWith(c, '<h2')}">
+                                                            
+                                                                You have a new lesson proposal!
+                                                            
+                                                            </c:when>
+                                                            
+                                                            <c:otherwise>
+                                                            
+                                                                ${c}
+                                                            
+                                                            </c:otherwise>
+                                                            
+                                                        </c:choose>
+
+                                                    </td>
+
+                                                </c:forEach>
+
+                                            </tr>
                                         
-                                </c:forEach>
+                                        </c:forEach>
+                                    
+                                    </c:when>
+                                    
+                                    <c:otherwise>
+                                    
+                                        <tr>
+                                            <td style="text-align: center;white-space: normal">
+                                                Here you will see the most recent messages either sent to or received from other users on RemyTutor. Start interacting now!
+                                            </td>
+                                        </tr>
+                                    
+                                    </c:otherwise>
+                                
+                                </c:choose>
+                                
+                                
  
                             </table>
 
@@ -156,31 +193,55 @@
                         <div>
 
                             <table>
-                                <c:forEach var="feed" items="${recent_feed}">   
+                                
+                                
+                                <c:choose>
+                                
+                                    <c:when test="${not empty recent_feed}">
                                     
-                                    <tr>
+                                        <c:forEach var="feed" items="${recent_feed}">   
                                     
-                                        <td>
-                                            ${feed.name}
-                                        </td>
-                                        
-                                        <td>
-                                            ${feed.description}
-                                        </td>
-                                        
-                                        <td>
-                                            <c:forEach var="i" begin="1" end="${feed.score}">
-                                                <span class="fa fa-star checked"></span>
-                                            </c:forEach>
-                                            <c:forEach var="i" begin="1" end="${5 - feed.score}">
-                                                <span class="fa fa-star"></span>
-                                            </c:forEach>
-                                        </td>
+                                            <tr>
+
+                                                <td>
+                                                    ${feed.name}
+                                                </td>
+
+                                                <td>
+                                                    ${feed.description}
+                                                </td>
+
+                                                <td>
+                                                    <c:forEach var="i" begin="1" end="${feed.score}">
+                                                        <span class="fa fa-star checked"></span>
+                                                    </c:forEach>
+                                                    <c:forEach var="i" begin="1" end="${5 - feed.score}">
+                                                        <span class="fa fa-star"></span>
+                                                    </c:forEach>
+                                                </td>
+
+
+                                            </tr>
+
+                                        </c:forEach>
                                     
                                     
-                                    </tr>
-                                        
-                                </c:forEach>
+                                    </c:when>
+                                    
+                                    <c:otherwise>
+                                    
+                                        <tr>
+                                            <td style="text-align: center;white-space: normal">
+                                                If you decided to share the knowledge on RemyTutor, here you will see the most recent feedbacks your students left about you! 
+                                            </td>
+                                        </tr>
+                                    
+                                    </c:otherwise>
+                                
+                                
+                                </c:choose>
+                                
+                                
 
                                 
                             </table>
@@ -208,22 +269,42 @@
                         <div>
                             
                             <table>
-                                <c:forEach var="payment" items="${recent_payment}">   
+                                
+                                <c:choose>
+                                
+                                    <c:when test="${not empty recent_payment}">
                                     
-                                    <tr>
+                                        <c:forEach var="payment" items="${recent_payment}">   
                                     
-                                    <c:forEach var="p" items="${payment}">   
+                                            <tr>
+
+                                            <c:forEach var="p" items="${payment}">   
+
+                                                <td>
+                                                    ${p}
+                                                </td>
+
+                                            </c:forEach>
+
+                                            </tr>
+
+                                        </c:forEach>
                                     
-                                        <td>
-                                            ${p}
-                                        </td>
+                                    </c:when>
                                     
-                                    </c:forEach>
+                                    <c:otherwise>
                                     
-                                    </tr>
-                                        
-                                </c:forEach>
- 
+                                        <tr>
+                                            <td style="text-align: center;white-space: normal">
+                                                Wanna check how much you've been earning or spending? Here you will see the most recent money transfers, both incoming and outgoing.
+                                            </td>
+                                        </tr>
+                                    
+                                    </c:otherwise>
+                                
+                                
+                                </c:choose>
+                                
                             </table>
 
                         </div>

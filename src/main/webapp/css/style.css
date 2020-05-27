@@ -207,6 +207,5 @@ html, body{
     background: -webkit-gradient(linear, 0 0, 0 bottom, from(#638ec8), to(#99b6df));
     background: -moz-linear-gradient(#638ec8, #99b6df);
     background: linear-gradient(#638ec8, #99b6df);
-    border: solid 1px #6d94ce;
     box-shadow: inset 0 10px 15px 0 #4176c4;
 }
