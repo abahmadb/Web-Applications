@@ -342,6 +342,8 @@ function updateScroll(element){
 
 setInterval(function(){
     let chatbox = document.getElementById(current_chat);
-    chatbox.firstElementChild.innerHTML = "";
-    document.querySelector('li[tabid="' + current_chat + '"]').click();
+    if(chatbox != null){
+        chatbox.firstElementChild.innerHTML = "";
+        document.querySelector('li[tabid="' + current_chat + '"]').click();
+    }
 }, 20000);

@@ -63,7 +63,6 @@ main .flex_item .header_left_box .header_name_box{
     flex: 0, 1, 100%;
     margin: 5px 0px;
     text-align: left;
-    font-family: 'Montserrat Light', Helvetica, sans-serif;
     font-size: 60px;
     color: black;
     opacity: 0.9;
@@ -81,9 +80,12 @@ main .flex_item .header_left_box .header_rating_box{
     padding-left: 16px;
 }
 
-#teacher_rating_style {
-    font-family: Helvetica, sans-serif;
+.header_rating_box > span {
     font-size: 18px;
+}
+
+.header_rating_box > p {
+    text-align: center;
 }
 
 .score-wrap {
@@ -135,7 +137,7 @@ main .flex_item .header_left_box .header_city_box{
     margin: 5px 0px;
     text-align: left;
     padding-left: 16px;
-    font-family: Helvetica, sans-serif;
+    
     font-size: 18px;
 }
 
@@ -153,7 +155,6 @@ main .flex_item .header_right_box .header_bookLesson_box{
 }
 
 main #teacher_bookLesson_style {
-    font-family: 'Montserrat Light', Helvetica, sans-serif;
     font-size: 20px;
     font-weight: 700;
 }
@@ -167,21 +168,33 @@ main .flex_item .header_right_box .header_price_box{
 }
 
 .chat_label {
-    font-family: 'Montserrat Light', Helvetica, sans-serif;
     font-size: 20px;
     font-weight: 700;
 }
 
 .quit_chat_label {
-    font-family: 'Montserrat Light', Helvetica, sans-serif;
     font-size: 21px;
     font-weight: 700;
 }
 
+#teacherform{
+    transition: initial;
+}
+
+#teacherform label{
+    display: inline-block;
+    margin: 15px;
+}
+
+#teacherform textarea{
+    width: 100%;
+    height: 220px;
+}
+
 #teacher_bookLesson_modal_style {
-    font-family: 'Montserrat Light', Helvetica, sans-serif;
     font-size: 16px;
     font-weight: 700;
+    margin: 15px;
 }
 
 #teacherform{
@@ -192,7 +205,6 @@ main .flex_item .header_right_box .header_price_box{
 }
 
 main #teacher_price_style {
-    font-family: 'Montserrat Light', Helvetica, sans-serif;
     font-size: 18px;
     text-align: center;
 }
@@ -203,7 +215,6 @@ main .flex_item .header_right_box .header_responseTime_box{
 }
 
 main #teacher_responseTime_style {
-    font-family: 'Montserrat Light', Helvetica, sans-serif;
     font-size: 18px;
     text-align: center;
 }
@@ -219,7 +230,7 @@ main .break_flexbox:nth-child(2) {
 
 main .flex_item:nth-child(3) {
     flex: 0 1 25%;
-    border: 1px solid purple;
+    border: 1px solid #444;
     margin: 20px 15px 20px 40px;
     padding: 30px;
     background-color: whitesmoke;
@@ -242,7 +253,7 @@ main .flex_item:nth-child(4) {
 
 main .flex_item:nth-child(5) {
     flex: 0 1 100%;
-    border: 1px solid black;
+    border: 1px solid #444;
     padding: 40px;
     margin: 20px 50px 40px 50px;
     background-color: whitesmoke;
@@ -252,15 +263,21 @@ main .flex_item:nth-child(5) {
 }
 
 
-#id_certification_check_symbol {
-    color: green;
+.verification i {
     margin-left: 10px;
+    font-size: 28px;
 }
 
-#id_certification_cross_symbol {
-    color: red;
-    margin-left: 10px;
+.verification{
+    margin: 10px;
 }
+
+.verification td{
+    padding: 10px;
+    border:none !important;
+}
+
+
 
 main .flex_item .box{
     display: inline-block;
@@ -270,7 +287,6 @@ main .flex_item .box{
 }
 
 main .flex_item:nth-child(3) h3, main .flex_item:nth-child(4) h3{
-    font-family: Helvetica, sans-serif;
     font-size: 20px;
     text-align: left;
 }
@@ -282,13 +298,14 @@ main .flex_item:nth-child(3) p, main .flex_item:nth-child(4) p{
 
 main .flex_item:nth-child(3) span{ 
     display: inline-block;
-    border: 1px solid black;
+    border: 1px solid #444;
     padding: 10px;
     margin: 5px 2px;
     background-color: azure;
     border-radius: 10px;
     font: italic 12px Georgia, serif;
     text-transform: capitalize;
+    user-select: none;
 }
 
 /*
@@ -304,7 +321,6 @@ style for the offered subject by teacher
 */
 
 main .flex_item:nth-child(4) h2, main .flex_item:nth-child(5) h2{   
-    font-family: Helvetica, sans-serif;
     font-size: 35px;
     margin-bottom: 20px;
 }

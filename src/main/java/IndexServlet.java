@@ -96,7 +96,7 @@ public final class IndexServlet extends DatabaseServlet {
 
             Connection c = getConnection();
 
-            PreparedStatement pst = c.prepareStatement("INSERT INTO person VALUES (NULL, ?, ?, NULL, NULL, ?, SHA2(?,256), NULL, NULL)");
+            PreparedStatement pst = c.prepareStatement("INSERT INTO person VALUES (NULL, ?, ?, NULL, NULL, ?, SHA2(?,256), NULL, NULL, NULL)");
 
             pst.setString(1, req.getParameter("firstname"));
             pst.setString(2, req.getParameter("lastname"));

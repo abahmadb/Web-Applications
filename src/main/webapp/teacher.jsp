@@ -129,10 +129,9 @@
                             </div>
                             <br>
                             <div class="header_rating_box">
-                                <span id="teacher_rating_style">Rating: </span>
                                 
                                 <div class="score-wrap">                                  
-                                    <div id="teacher_fullstar_style">                                 
+                                    <div id="teacher_fullstar_style" style="width: ${teacher_avgscore * 20}%">                                 
                                         <span class="fa fa-star checked"></span>
                                         <span class="fa fa-star checked"></span>
                                         <span class="fa fa-star checked"></span>
@@ -149,10 +148,15 @@
                                     </div>
                                 </div>
                                 
+                                <span>${teacher_avgscore}</span>
+                                
+                                <br>
+                                
+                                <p>${teacher_numfeed} feedbacks</p>
                             </div>
                             <br>
                             <div class="header_city_box">
-                                City: ${teacher_city}
+                                <strong>City:</strong> ${teacher_city}
                             </div>
                         </div>
 
@@ -165,14 +169,8 @@
                         </div>
 
                         <div class="header_price_box">
-                            <p id="teacher_price_style">Price: ${teacher_price}&euro;/h</p>
+                            <p id="teacher_price_style"><strong>Price:</strong> ${teacher_price}&euro;/h</p>
                         </div>
-
-                        <!-- Response Time removed  
-                        <div class="header_responseTime_box">
-                            <p id="teacher_responseTime_style">Average response Time: 1 day</p>
-                        </div>
-                        -->
                         
                     </div>
 
@@ -197,7 +195,7 @@
                     </div>
 
                     <!-- check if teacher has other subjects besides the one it is offering-->
-                    <c:if test="${other_subjects}">
+                    <c:if test="${not empty teacher_other_subjects}">
                         <div class="box">
                             <h3>
                                 Other Subjects Taught
@@ -211,32 +209,51 @@
                     </c:if>
 
                     <div class="box">
+                        
                         <h3>
-                            Identity 
+                            Verification status
+                        </h3>
+                        
+                        <table class="verification">
+                            
+                            <tr>
+                                <td>
+                                    Identity 
+                                </td>
+                                <td>
                                     <c:choose>
                                         <c:when test="${teacher_identity}">
-                                            <i class="fa fa-check" id="id_certification_check_symbol"></i>
+                                            <i class="fas fa-check-square" style="color: #33cc33"></i>
                                         </c:when>    
                                         <c:otherwise>
-                                            <i class="fa fa-times" id="id_certification_cross_symbol"></i> 
+                                            <i class="fas fa-minus-square" style="color: #FFF100"></i> 
                                         </c:otherwise>
-                                     </c:choose>       
-                        </h3>
+                                     </c:choose>     
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                
+                                <td>
+                                    Certification
+                                </td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${teacher_certificate}">
+                                            <i class="fas fa-check-square" style="color: #33cc33"></i>
+                                        </c:when>    
+                                        <c:otherwise>
+                                            <i class="fas fa-minus-square" style="color: #FFF100"></i> 
+                                        </c:otherwise>
+                                    </c:choose>  
+                                </td>
+                                
+                            </tr>
+                            
+                        </table>
+
                     </div>
                     
-                    <div class="box">
-                        <h3>
-                            Certification 
-                                        <c:choose>
-                                            <c:when test="${teacher_certificate}">
-                                                <i class="fa fa-check" id="id_certification_check_symbol"></i>
-                                            </c:when>    
-                                            <c:otherwise>
-                                                <i class="fa fa-times" id="id_certification_cross_symbol"></i> 
-                                            </c:otherwise>
-                                        </c:choose>  
-                        </h3>
-                    </div>
                 </div>
 
                 <!-- fourth child: tell about yourself -->
@@ -259,18 +276,12 @@
 
                     <div>
                         
-                        <script>
-                            var student_score_array = [];
-                            let student_score = 0;
-                            let count = 0;
-                        </script>
-
                         <table class="fixed">
                             <c:forEach var="t" items="${student_feedbacks}">
                                 <tr>
                                     <td class="td1_feedbacks">
                                         <div>
-                                            <img class="profile_img" src="/imageset/profile/${t.studentid}.jpg" alt="student_photo">
+                                            <img class="profile_img" src="/imageset/profile/${t.studentID}.jpg" alt="student_photo">
                                         </div>
                                         <div>
                                             ${t.name}
@@ -282,7 +293,7 @@
                                     
                                     <td class="td3_feedbacks">
                                         <div class="score-wrap">                                  
-                                            <div class="student_fullstar_style">                                 
+                                            <div class="student_fullstar_style" style="width: ${t.score * 20}%">                                 
                                                 <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
@@ -299,27 +310,10 @@
                                             </div>
                                         </div>
                                     </td>
-                                    
-                                    <script>
-                                        student_score = ${t.score}
-                                        //trasform from 5 ratings to percentage
-                                        student_score = student_score * 20;
-                                        student_score_array.push(student_score);
-                                        count = count + 1;
-                                    </script>
-                                                                       
+                                   
                                 </tr>
                             </c:forEach>
                          </table>
-                        
-                        <script>
-                            let stars = document.getElementsByClassName("student_fullstar_style");
-                            
-                            var i;
-                            for (i = 0; i < count; i++) {
-                                stars[i].style.width = student_score_array[i] + "%";
-                            }      
-                        </script>
                         
                     </div>
                     
@@ -423,11 +417,7 @@
         
         <script>
             
-	var topics = [    
-        <c:forEach var="t" items="${topics_list}" varStatus="status">   
-            {id: '${t.topicid}', value: '${t.label}'}${!status.last ? ',' : ''}
-        </c:forEach>
-	];
+	var topics = [];
     
         </script>
         
@@ -441,40 +431,22 @@
                     <!-- Section for sending a message to the teacher -->
                     <center>
                         <label for="chat" class="chat_label">Send a message to your teacher:</label>
-                        <br />
-                        <br />
-                        <textarea name="chat" rows="12" cols="60"></textarea>
-                        <br />
-                        <br />
-                        <button class="button" id="teacher_bookLesson_modal_style" onclick="call_teacherServlet()" context=${pageContext.request.contextPath}>Book the lesson !</button>
-                    </center>
-                
-                    <!-- Section for displaying that the message has been correctly sent to the teacher -->
-                    <center id="modal_confirmation_hidden">
-                        <br />
-                        <div class="quit_chat_label">Lesson has been booked.</div>
-                        <br />
-                        <button class="button" onclick="toggle_modalteacher(event)" class="close_modal">Exit</button>
-                    </center>
-                
-                    <!-- Section for displaying that the message has not been sent because you need to be logged in first -->
-                    <center id="modal_login_hidden">
-                        <br />
-                        <div class="quit_chat_label">You need to log in before booking the lesson.</div>
-                        <br />
-                        <button class="button" onclick="toggle_modalteacher(event)" class="close_modal">Exit</button>
-                    </center>
-
+                        
+                        <textarea name="chat"></textarea>
+                        
+                        <button class="button" id="teacher_bookLesson_modal_style" onclick="call_teacherServlet(event, this)">Send the request!</button>
+                    </center>            
             </div>
             
             <div onclick="toggle_modalteacher(event)" class="close_modal">X</div>
         </div>
 
-        <script>
-            //avg is the average teacher score
-            let avg = ${teacher_avgscore};
+        <script>            
             //I need it when doing the ajax call to send it (POST) to the teacherServlet
             let teacher_ID = ${teacher_id};
+            
+            // IS THE USER LOGGED IN?
+            let logged_in = ${sessionScope.userid != null};
         </script>
         
         <!-- MAIN JS -->

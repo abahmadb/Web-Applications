@@ -76,7 +76,7 @@ public final class ControlServlet extends DatabaseServlet {
 
 
             // QUERY FOR TOTAL LECTURING TIME
-            rs = st.executeQuery("SELECT IFNULL(TIME_FORMAT(SUM(LessonDuration),'%Hh %im'), '0h 0m') as tot_time FROM lesson WHERE TeacherID = " + session.getAttribute("userid"));
+            rs = st.executeQuery("SELECT IFNULL(TIME_FORMAT(SUM(LessonDuration),'%Hh %im'), '0h 0m') as tot_time FROM lesson WHERE Payment IS NOT NULL AND TeacherID = " + session.getAttribute("userid"));
             if(rs.next())
                 req.setAttribute("total_time", rs.getString("tot_time"));
 
