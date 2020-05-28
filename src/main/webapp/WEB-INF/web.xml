@@ -114,5 +114,16 @@
         <servlet-name>ChatServlet</servlet-name>
         <url-pattern>/chat</url-pattern>
     </servlet-mapping>
+    
+    <!-- Servlet for rest-->
+    <servlet>
+     <servlet-name>RestServlet</servlet-name>
+     <servlet-class>RestServlet</servlet-class>
+    </servlet>
 
+    <servlet-mapping>
+        <servlet-name>RestServlet</servlet-name>
+        <url-pattern>/rest/*</url-pattern>
+    </servlet-mapping>
+    
 </web-app>
