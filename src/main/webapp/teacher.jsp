@@ -1,48 +1,6 @@
 <%@ page contentType="text/html;charset=utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
-<%!
-    public static boolean check_login(HttpServletRequest req){
-        
-        // GET THE SESSION OBJECT
-        HttpSession session = req.getSession();
-        
-        // GET THE COOKIES ARRAY
-        Cookie[] cs = req.getCookies();
-
-        // IF THE SESSION LOGIN IS NOT SET
-        if(session.getAttribute("userid") == null){
-
-            if(cs == null) return false;
-            
-            // LOOP THROUGH THE COOKIES TO SEARCH FOR THE LOGIN COOKIE
-            for(int i = 0; i < cs.length; i++){
-
-                // IF YOU CAN FIND IT
-                if(cs[i].getName().equals("userid")){
-
-                    // SET THE SESSION LOGIN
-                    session.setAttribute("userid", cs[i].getValue());
-                    
-                    // AND SIGNAL TO THE CALLER THAT EVERYTHING IS OK
-                    return true;
-
-                }//if
-
-            }//for
-            
-            // YOU GOT HERE, SESSION LOGIN WAS NOT SET AND YOU DID NOT FIND THE COOKIE
-            // SIGNAL TO THE CALLER THIS MIGHT BE AN UNAUTHORIZED REQUEST
-            return false;
-
-        }//if
-        
-        
-        // THE SESSION WAS SET, EVERYTHING IS OK
-        return true;
-    }//check_login
-%>
-<% check_login(request); %>
 
 <!DOCTYPE html>
 <html lang="en">
