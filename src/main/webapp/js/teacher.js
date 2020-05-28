@@ -1,50 +1,24 @@
-//fixing avg to 1 decimal 
-avg = parseFloat(parseFloat(avg).toFixed(1));
+let modal_book = document.querySelector("#teacherform center");
 
-//trasform avg to percentage
-avg = avg * 20;
-//set stars width according to the teacher score
-document.getElementById("teacher_fullstar_style").setAttribute("style", "width: " + avg + "%");
 
-//need these for the 3 modals, "send a message" modal, "request has been sent" modal and "log in first" modal
-var modal_bookLessonCenter = document.querySelectorAll("center")[0];
-var modal_quitBookLessonCenter = document.querySelectorAll("center")[1];
-var modal_logInBookLessonCenter = document.querySelectorAll("center")[2];
+var button = document.querySelector(".header_bookLesson_box .button");
 
-//MODAL FOR BOOK A LESSON BUTTON start
 
-//select book a lesson button
-var button = document.querySelector(".button");
-//attach toggle event to selected button
 button.addEventListener("click", function () {
 
-    if (modal_bookLessonCenter.style.display=='none' && modal_logInBookLessonCenter.style.display=="none") {
-        //set visibility off for "request has been sent" modal
-        modal_quitBookLessonCenter.style.display='none';
-        //set visibility on for "send a message to the teacher" modal and resize the modal accordingly
-        modal_bookLessonCenter.parentElement.style.cssText = "width: 600px; height: 400px; margin: -200px 0 0 -300px; padding: 30px";  
-        modal_bookLessonCenter.style.display='block';
-    }
-    
-    else if (modal_bookLessonCenter.style.display=='none' && modal_quitBookLessonCenter.style.display=="none"){
-        //set visibility off for "log in first" modal
-        modal_logInBookLessonCenter.style.display='none';
-        //set visibility on for "send a message to the teacher" modal and resize the modal accordingly
-        modal_bookLessonCenter.parentElement.style.cssText = "width: 600px; height: 400px; margin: -200px 0 0 -300px; padding: 30px";
-        modal_bookLessonCenter.style.display='block';
-    }
-        
-    toggle_modalteacher(event);
+    if(logged_in)
+        toggle_modalteacher(event);
+    else
+        document.querySelector("nav a:last-child").click();
+
+    event.preventDefault();
 
 });
 
-// RETRIEVE THE POP-UP FOR BOOK A LESSON BUTTON
-var modal_bookLesson = document.querySelectorAll(".modal")[1];
-
-// CONTROL VARIABLE TO TOGGLE THE BOOK A LESSON BUTTON
+var modal_bookLesson = modal_book.parentElement.parentElement;
 var modal_ctrl_bookLesson = false;
 
-function toggle_modalteacher(event) {
+function toggle_modalteacher(ev) {
 
     // IF THE POP-UP IS VISIBLE
     if(modal_ctrl_bookLesson){
@@ -81,40 +55,38 @@ function toggle_modalteacher(event) {
     /* 
     SINCE THE EVENT IS ATTACHED TO A LINK YOU MUST PREVENT THE
     AUTOMATIC BEHAVIOUR, WHICH IS THE CHANGE OF THE LOCATION */
-    if(event != null) event.preventDefault();
+    if(ev != null) event.preventDefault();
 
 }//toggle_modal
 
-//MODAL FOR BOOK A LESSON BUTTON end
 
-//CALL TEACHERSERVLET USING AJAX CALL (POST) start
+function call_teacherServlet(ev, elem) {
 
-function call_teacherServlet() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-      
-    if (this.readyState == 4 && this.status == 200) {
+    modal_book.parentElement.style.width = "auto";
+    modal_book.parentElement.style.height = "auto";
+    modal_book.parentElement.style.margin = "auto";
+    modal_book.parentElement.style.transform = "translate(-50%,-50%)";
+    
+    let values = {
+        teacherID: teacher_ID,
+        comment: elem.previousElementSibling.value
+    };
+
+    $.post("teacher", values, function(data){
+
+        if(data == 1)
+            modal_book.innerHTML = `<br>
+                        <div class="quit_chat_label">The request has been sent! The teacher will soon evaluate it, thank you</div>
+                        <br>
+                        <button class="button" onclick="toggle_modalteacher(event)" class="close_modal">Exit</button>`;
         
-        //set visibility off for "send a message to the teacher" modal and "log in first" modal
-        modal_bookLessonCenter.style.display='none';
-        modal_logInBookLessonCenter.style.display='none';
-        //set visibility on for "request has been sent" modal and resize the modal accordingly
-        modal_quitBookLessonCenter.parentElement.style.cssText = "width: 460px; height: 150px; margin: -75px 0 0 -230px; padding: 10px";     
-        modal_quitBookLessonCenter.style.display='block';
-    }
-      
-    //there was an error when sending the request because user was not logged in (I set status to 500 in servlet) 
-    else if (this.status == 500) {
-        modal_bookLessonCenter.style.display='none';
-        modal_quitBookLessonCenter.style.display='none';
-        //set visibility on for "log in first" modal and resize the modal accordingly
-        modal_logInBookLessonCenter.parentElement.style.cssText = "width: 550px; height: 150px; margin: -75px 0 0 -275px; padding: 10px"; 
-        modal_logInBookLessonCenter.style.display='block';
-    }
-  };
-  xhttp.open("POST", document.getElementById("teacher_bookLesson_modal_style").getAttribute("context")+"/teacher", true);
-  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.send("teacherID=" + teacher_ID + "&comment=" + document.getElementsByTagName("textarea")[0].value);
-}
+        else
+            modal_book.innerHTML = `<br>
+                        <div class="quit_chat_label">An errore occurred trying to send the request. Make sure you are logged in in before booking the lesson.</div>
+                        <br>
+                        <button class="button" onclick="location.reload()" class="close_modal">Exit</button>`;
+        
+    });
 
-//CALL TEACHERSERVLET USING AJAX CALL (POST) end
+
+}
