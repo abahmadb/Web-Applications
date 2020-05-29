@@ -39,6 +39,18 @@
         <servlet-name>teacherServlet</servlet-name>
         <url-pattern>/teacher</url-pattern>
     </servlet-mapping>
+    
+    <!-- PAYMENT -->
+    
+    <servlet>
+        <servlet-name>paymentServlet</servlet-name>
+        <servlet-class>PaymentServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>paymentServlet</servlet-name>
+        <url-pattern>/payment</url-pattern>
+    </servlet-mapping>
 
     <!-- INDEX -->
     
