@@ -1,4 +1,3 @@
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,7 +26,7 @@ public final class RestServlet extends DatabaseServlet {
 				return;
 			}
 
-			// if the requested resource was an Employee, delegate its processing and return
+			// if the requested resource was an Person, delegate its processing and return
 			if (processPerson(req, res)) {
 				return;
 			}
@@ -107,11 +106,11 @@ public final class RestServlet extends DatabaseServlet {
 
 
 	/**
-	 * Checks whether the request if for an {@link Employee} resource and, in case, processes it.
+	 * Checks whether the request if for an {@link Person} resource and, in case, processes it.
 	 *
 	 * @param req the HTTP request.
 	 * @param res the HTTP response.
-	 * @return {@code true} if the request was for an {@code Employee}; {@code false} otherwise.
+	 * @return {@code true} if the request was for an {@code Person}; {@code false} otherwise.
 	 *
 	 * @throws IOException if any error occurs in the client/server communication.
 	 */

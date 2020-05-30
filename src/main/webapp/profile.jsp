@@ -127,7 +127,7 @@
                                     <img src="/imageset/profile/${sessionScope.userid}.jpg" class="profile_img" alt="profile image" id="profile_img">
                                 </label>
                             </p>
-                            <input type="file" name="photo" id="photo" accept=".jpg, .png" onchange="readFile(this);">
+                            <input type="file" name="photo" id="photo" accept=".jpg .png" onchange="readFile(this);">
                             <p>
                                 <input type="submit" value="Upload photo">
                             </p>
@@ -198,7 +198,7 @@
                             <p>
                                 <label class="file_label" for="document_card">Upload ID</label>
                             </p>
-                            <input type="file" name="document_card" id="document_card" onchange="this.form.submit()">
+                            <input type="file" name="document_card" id="document_card" accept=".jpg .png" onchange="this.form.submit()">
                         </form>
                         
                     </div>
@@ -218,7 +218,7 @@
                             <p>
                                 <label class="file_label" for="qualification">Upload qualification</label>
                             </p>
-                            <input type="file" name="qualification" id="qualification" onchange="this.form.submit()">
+                            <input type="file" name="qualification" id="qualification" accept=".jpg .png" onchange="this.form.submit()">
                         </form>
                         
                     </div>

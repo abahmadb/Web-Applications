@@ -39,4 +39,9 @@ public class PersonRestResource extends RestResource{
 			RestServlet.JSONMessage(res.getOutputStream(), "Cannot read Person: unexpected error.", "E5A1", t.getMessage());
 		}
 	}
+	
+	public void updatePerson() throws IOException {
+		
+		// could be implemented easily by using UpdatePersonDAO
+	}
 }
