@@ -168,21 +168,21 @@
                             </c:when>
                             <c:otherwise>
                                 <h2>Evaluate your teachers!</h2>
-                                <c:forEach var="t" items="${userfeedlist}">
-                                    <c:forTokens items="${t}" delims="," var="item" varStatus ="loop">
+                                <c:forEach var="item" items="${userfeedlist}">
+                                    <c:forTokens var="token" items="${item}" delims="," varStatus ="loop">
                                         <c:choose>
                                             <c:when test="${loop.first}">
                                                 <div>
                                                     <table>
                                                         <tr>
                                                             <td>
-                                                                ${item}
+                                                                ${token}
                                                             </td>
                                                             <td></td>
                                             </c:when>
                                             <c:otherwise>
                                                             <td>
-                                                                <a class= "feedreq" teacherid = ${item}>Give feedback</a>
+                                                                <a class= "feedreq" teacherid = ${token}>Give feedback</a>
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -193,7 +193,6 @@
                                 </c:forEach>
                             </c:otherwise>
                         </c:choose>
-
 
                     </div>
 
