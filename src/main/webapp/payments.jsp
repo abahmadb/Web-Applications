@@ -1,3 +1,6 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,313 +28,50 @@
 <body>
 
 <input type="checkbox" id="toggle_menu">
-
-<!-- SIDEBAR FOR THE DASHBOARD -->
-<aside>
-    <center>
-        <a href="index.html">
-            <img src="images/logo_transparent.png" alt="">
-        </a>
-    </center>
-
-    <p><label for="toggle_menu"><i class="fas fa-bars"></i></label></p>
-    <a href="control.html"><i class="fas fa-desktop"></i><span>Control Panel</span></a>
-    <a href="chat.html"><i class="fas fa-comment-dots"></i><span>Chat</span></a>
-    <a href="feedbacks.html"><i class="far fa-thumbs-up"></i><span>Feedbacks</span></a>
-    <a href="payments.html" class="current_section"><i class="fas fa-money-check-alt"></i><span>Payments</span></a>
-    <a href="profile.html"><i class="fas fa-user-alt"></i><span>Profile</span></a>
-    <a href="index.html"><i class="fas fa-info-circle"></i><span>Sign out</span></a>
-
-</aside>
+<jsp:include page="include/menu.jsp"/>
 
 
 <!-- CONTENT OF THE PAGE -->
 <main>
+
     <div>
 
         <div class="box">
 
-            <p>Payments history<span><i class="fas fa-arrow-circle-up outgoing"></i>Outgoing&nbsp;&nbsp;<i class="fas fa-arrow-circle-down incoming"></i> Incoming</span></p>
-
-            <table>
-
-                <tr>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Description</th>
-                    <th>Amount</th>
-                    <th></th>
-                </tr>
-
-                <tr>
-                    <td>23/04/2020</td>
-                    <td>19:23</td>
-                    <td>Incoming deposit to Luca</td>
-                    <td>24.00€</td>
-                    <td><i class="fas fa-arrow-circle-down incoming fa-2x"></i></td>
-                </tr>
-
-                <tr>
-
-                    <td>
-                        11/12/2020
-                    </td>
-
-                    <td>
-                        23:20
-                    </td>
-
-                    <td>
-                        Outgoing deposit to Karen 
-                    </td>
-
-                    <td>
-                        24.00€
-                    </td>
-
-                    <td>
-                         <i class="fas fa-arrow-circle-up outgoing fa-2x"></i>
-                    </td>
-
-                </tr>
-
-                <tr>
-
-                    <td>
-                        10/11/2020
-                    </td>
-
-                    <td>
-                        22:45
-                    </td>
-
-                    <td>
-                        Incoming deposit to Noah 
-                    </td>
-
-                    <td>
-                        27.00€
-                    </td>
-
-                    <td>
-                         <i class="fas fa-arrow-circle-down incoming fa-2x"></i>
-                    </td>
-
-                </tr>
-
-                <tr>
-
-                    <td>
-                        09/10/2020
-                    </td>
-
-                    <td>
-                        21:37
-                    </td>
-
-                    <td>
-                        Outgoing deposit to Evelyn 
-                    </td>
-
-                    <td>
-                        28.00€
-                    </td>
-
-                    <td>
-                          <i class="fas fa-arrow-circle-up outgoing fa-2x"></i>
-                    </td>
-
-                </tr>
-
-                <tr>
-
-                    <td>
-                        08/09/2020
-                    </td>
-
-                    <td>
-                        20:18
-                    </td>
-
-                    <td>
-                        Incoming deposit to Albert 
-                    </td>
-
-                    <td>
-                        18.00€
-                    </td>
-
-                    <td>
-                           <i class="fas fa-arrow-circle-down incoming fa-2x"></i>
-                    </td>
-
-                </tr>
-
-                <tr>
-
-                    <td>
-                        14/08/2020
-                    </td>
-
-                    <td>
-                        19:23
-                    </td>
-
-                    <td>
-                        Outgoing deposit to Mary 
-                    </td>
-
-                    <td>
-                        22.00€
-                    </td>
-
-                    <td>
-                         <i class="fas fa-arrow-circle-up outgoing fa-2x"></i>
-                    </td>
-
-                </tr>
-
-                <tr>
-
-                    <td>
-                        07/07/2020
-                    </td>
-
-                    <td>
-                        18:11
-                    </td>
-
-                    <td>
-                        Incoming deposit to Jeffrey 
-                    </td>
-
-                    <td>
-                        11.00€
-                    </td>
-
-                    <td>
-                         <i class="fas fa-arrow-circle-down incoming fa-2x"></i>
-                    </td>
-
-                </tr>
-
-                <tr>
-
-                    <td>
-                        19/06/2020
-                    </td>
-
-                    <td>
-                        17:58
-                    </td>
-
-                    <td>
-                        Outgoing deposit to Frances 
-                    </td>
-
-                    <td>
-                        20.00€
-                    </td>
-
-                    <td>
-                          <i class="fas fa-arrow-circle-up outgoing fa-2x"></i>
-                    </td>
-
-                </tr>
-
-                <tr>
-
-                    <td>
-                        22/05/2020
-                    </td>
-
-                    <td>
-                        16:55
-                    </td>
-
-                    <td>
-                        Incoming deposit to Tim 
-                    </td>
-
-                    <td>
-                        24.00€
-                    </td>
-
-                    <td>
-                         <i class="fas fa-arrow-circle-down incoming fa-2x"></i>
-                    </td>
-
-                </tr>
-
-                <tr>
-
-                    <td>
-                        04/04/2020
-                    </td>
-
-                    <td>
-                        15:19
-                    </td>
-
-                    <td>
-                        Outgoing deposit to Lisa 
-                    </td>
-
-                    <td>
-                        19.00€
-                    </td>
-
-                    <td>
-                         <i class="fas fa-arrow-circle-up outgoing fa-2x"></i>
-                    </td>
-
-                </tr>
-                <tr>
-
-                    <td>
-                        05/03/2020
-                    </td>
-
-                    <td>
-                        14:41
-                    </td>
-
-                    <td>
-                        Incoming deposit to Roger 
-                    </td>
-
-                    <td>
-                        12.00€
-                    </td>
-
-                    <td>
-                        <i class="fas fa-arrow-circle-down incoming fa-2x"></i>
-                    </td>
-                <tr>
-
-                    <td>
-                        10/02/2020
-                    </td>
-
-                    <td>
-                        13:23
-                    </td>
-
-                    <td>
-                        Outgoing deposit to Janice 
-                    </td>
-
-                    <td>
-                        29.00€
-                    </td>
-
-                    <td>
-                         <i class="fas fa-arrow-circle-up outgoing fa-2x"></i>
-                    </td>
-
-                </tr>
-
-            </table>
+                <c:choose>
+                    <c:when test="${empty payments}">
+                        <p>No payments to display</p>
+                    </c:when>
+                    <c:otherwise>
+                        <p>Payments history<span><i class="fas fa-arrow-circle-up outgoing"></i> Outgoing &nbsp; <i class="fas fa-arrow-circle-down incoming"></i> Incoming</span></p>
+                        <table>
+                            <tr>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Amount</th>
+                            </tr>
+                        <c:forEach var="item" items="${payments}">
+                            <tr>
+                            <c:forTokens var="token" items="${item}" delims="," varStatus="loop">
+                                <td>
+                                    ${token}
+                                    <c:if test="${loop.last}">
+                                        <c:choose>
+                                            <c:when test="${fn:contains(token, '-')}">
+                                                <i class="fas fa-arrow-circle-up outgoing"></i>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <i class="fas fa-arrow-circle-down incoming"></i>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:if>
+                                </td>
+                            </c:forTokens>
+                            </tr>
+                        </c:forEach>
+                        </table>
+                    </c:otherwise>
+                </c:choose>
 
         </div>
 
@@ -339,15 +79,17 @@
 
             <div>
                 Total earned
+                <br>
                 <p>
-                    46353€
+                    ${earned} &euro;
                 </p>
             </div>
 
             <div>
                 Total spent
+                <br>
                 <p>
-                    1464€
+                    ${spent} &euro;
                 </p>
             </div>
 

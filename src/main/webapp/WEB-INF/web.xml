@@ -43,13 +43,13 @@
     <!-- PAYMENT -->
     
     <servlet>
-        <servlet-name>paymentServlet</servlet-name>
-        <servlet-class>PaymentServlet</servlet-class>
+        <servlet-name>paymentsServlet</servlet-name>
+        <servlet-class>PaymentsServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>paymentServlet</servlet-name>
-        <url-pattern>/payment</url-pattern>
+        <servlet-name>paymentsServlet</servlet-name>
+        <url-pattern>/payments</url-pattern>
     </servlet-mapping>
 
     <!-- INDEX -->
