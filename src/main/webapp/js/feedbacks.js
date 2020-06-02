@@ -2,6 +2,8 @@
 
 //fixing avg
 avg = parseFloat(parseFloat(avg).toFixed(1));
+if(isNaN(avg))
+    avg = 0;
 
 //count the total number of feedbacks
 let numFeed = counters.reduce((a, b) => a + b, 0);

@@ -7,14 +7,15 @@
                                       2019/2020
 
 
-
 This directory contains the source code of the project developed for **RemyTutor**, a remote teaching website.
 
 ## Prerequisites:
 
 - [Git](https://git-scm.com/) -  Version Control System
+- [JDK 8](https://www.oracle.com/java/technologies/javase-jdk8-downloads.html) - Java Development Kit
 - [Maven](https://maven.apache.org/) -  Software project management and comprehension tool
-- [Apache Tomcat](http://tomcat.apache.org/)  -  Java Servlet, JavaServer Pages, Java Expression Language and Java WebSocket technologies
+- [MySQL](https://www.mysql.com/) - Relational Database Management System
+- [Apache Tomcat](http://tomcat.apache.org/) - Java Servlet, JavaServer Pages, Java Expression Language and Java WebSocket technologies
 
 ## Usage
 
@@ -24,7 +25,25 @@ Simply clone this repo with Git and compile with Maven:
 	
 This will generate a 'target' folder with a WAR package named education.X.X.X.war, where X.X.X is the version of the project.
 
-The archive can then be deployed in Tomcat. To sign in on the the website, any combination email-password can be used, as long as the email is syntactically an email (like something​@smthng.com)
+To create and populate the MySQL database simply take the sql scripts in src/main/database and *source* them in a MySQL console:
+
+    mysql>source path/to/sql/db_creation.sql
+    ..
+    mysql>source path/to/sql/db_population.sql
+
+We also require to place the 'imageset' folder present in this repo to be placed inside the $CATALINA_HOME$\webapps folder
+(e.g. in Windows C:\Program Files\Apache Software Foundation\Tomcat 9.0\webapps).
+
+This is required because images are not stored in the database, but in this case when a redeploy occurs all images changes will be lost;
+storing them in a path relative to the Tomcat folder solves both path and redeploy problems. 
+
+The WAR package can then be deployed in Tomcat and the website should be now accessible and usable from the Tomcat Manager.
+Testing the website is fairly easy, you can create an account or use credentials from the already default populated 
+database (credentials in clear text are of course outside of the database, in db_population.sql)
+
+## Features
+
+See HW1-RemyTutor-2019-2020.pdf and HW1-RemyTutor-2019-2020.ppt for a detailed description of this project
 
 ## Contributors:
 Students who made this Project possible
@@ -44,7 +63,7 @@ Students who made this Project possible
 
 ## Acknowledgments:
 
-We extend our appreciation to Professor Nicola Ferro for his invaluable insight throughout our project.
+We extend our appreciation to Professor Nicola Ferro for his invaluable insights throughout our project.
 
 
 
