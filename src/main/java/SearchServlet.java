@@ -80,7 +80,7 @@ public final class SearchServlet extends DatabaseServlet {
                     identity_flag = true;
                 
                 // CERTIFICATE VERIFICATION
-                images = new File(home + "./webapps/imageset/identity/" + teachers.getInt("IDUser") + ".jpg");
+                images = new File(home + "./webapps/imageset/certificate/" + teachers.getInt("IDUser") + ".jpg");
                 
                 certificate_flag = false;
                 if(images.isFile())

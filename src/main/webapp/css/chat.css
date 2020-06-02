@@ -367,6 +367,13 @@ form {
 .lesson_proposal div table td input[type="number"]{
     width: 50px;
     text-align: center;
+    -moz-appearance: textfield;
+}
+
+.lesson_proposal div table td input[type="number"]::-webkit-outer-spin-button,
+.lesson_proposal div table td input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .lesson_proposal .close_modal{
