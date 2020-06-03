@@ -47,8 +47,8 @@ public final class ProfileServlet extends DatabaseServlet{
 			req.setAttribute("person", person);
 			
 			// check if there exist the certificate and identity file for this userid
-			String identityFilePath = System.getProperty("user.dir") + "./webapps/imageset/identity/" + idUser + ".jpg";
-            String certificateFilePath = System.getProperty("user.dir") + "./webapps/imageset/cerificate/" + idUser + ".jpg";
+			String identityFilePath = System.getProperty("catalina.home") + "\\webapps\\imageset\\identity\\" + idUser + ".jpg";
+            String certificateFilePath = System.getProperty("catalina.home") + "\\webapps\\imageset\\cerificate\\" + idUser + ".jpg";
 			if (new File(identityFilePath).isFile())
 				req.setAttribute("identitytExists", true);
 			else 
@@ -386,7 +386,7 @@ public final class ProfileServlet extends DatabaseServlet{
 							upload_dir = "certificate";
 						}
 						// set the upload path 
-						uploadPath = System.getProperty("user.dir") + "./webapps/imageset/" + upload_dir;
+						uploadPath = System.getProperty("catalina.home") + "\\webapps\\imageset\\" + upload_dir;
                         filePath = uploadPath + File.separator + fileName;
                         File storeFile = new File(filePath);
                   

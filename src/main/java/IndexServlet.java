@@ -149,16 +149,16 @@ public final class IndexServlet extends DatabaseServlet {
 
     private void createPlaceholderImages(int uid) throws IOException{
 
-        String home = System.getProperty("user.dir");
+        String home = System.getProperty("catalina.home");
 
-        File p_dir = new File(home + "./webapps/imageset/profile/profile.jpg");
-        File p_dir_new = new File(home + "./webapps/imageset/profile/" + uid + ".jpg");
+        File p_dir = new File(home + "\\webapps\\imageset\\profile\\profile.jpg");
+        File p_dir_new = new File(home + "\\webapps\\imageset\\profile\\" + uid + ".jpg");
 
-        File i_dir = new File(home + "./webapps/imageset/identity/identity.jpg");
-        File i_dir_new = new File(home + "./webapps/imageset/identity/" + uid + ".jpg");
+        File i_dir = new File(home + "\\webapps\\imageset\\identity\\identity.jpg");
+        File i_dir_new = new File(home + "\\webapps\\imageset\\identity\\" + uid + ".jpg");
 
-        File c_dir = new File(home + "./webapps/imageset/certificate/certificate.jpg");
-        File c_dir_new = new File(home + "./webapps/imageset/certificate/" + uid + ".jpg");
+        File c_dir = new File(home + "\\webapps\\imageset\\certificate\\certificate.jpg");
+        File c_dir_new = new File(home + "\\webapps\\imageset\\certificate\\" + uid + ".jpg");
 
         Files.copy(p_dir.toPath(), p_dir_new.toPath(), StandardCopyOption.REPLACE_EXISTING);
         Files.copy(i_dir.toPath(), i_dir_new.toPath(), StandardCopyOption.REPLACE_EXISTING);

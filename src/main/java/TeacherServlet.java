@@ -40,19 +40,19 @@ public final class TeacherServlet extends DatabaseServlet {
                 
         // CHECK IF THE TEACHER IDENTITY AND CERTIFICATE ARE VERIFIED
         
-        String home = System.getProperty("user.dir");
+        String home = System.getProperty("catalina.home");
         File images;
         boolean identity_flag, certificate_flag;
                             
         // IDENTITY VERIFICATION
-        images = new File(home + "./webapps/imageset/identity/" + userid + ".jpg");
+        images = new File(home + "\\webapps\\imageset\\identity\\" + userid + ".jpg");
             
         identity_flag = false;
         if(images.isFile())
             identity_flag = true;
                 
         // CERTIFICATE VERIFICATION
-        images = new File(home + "./webapps/imageset/certificate/" + userid + ".jpg");
+        images = new File(home + "\\webapps\\imageset\\certificate\\" + userid + ".jpg");
                 
         certificate_flag = false;
         if(images.isFile())

@@ -66,21 +66,21 @@ public final class SearchServlet extends DatabaseServlet {
 
             // CHECK IF THE IDENTITY AND THE CERTIFICATE ARE VERIFIED
             
-            String home = System.getProperty("user.dir");
+            String home = System.getProperty("catalina.home");
             File images;
             boolean identity_flag, certificate_flag;
             
             while(teachers.next()){
                 
                 // IDENTITY VERIFICATION
-                images = new File(home + "./webapps/imageset/identity/" + teachers.getInt("IDUser") + ".jpg");
+                images = new File(home + "\\webapps\\imageset\\identity\\" + teachers.getInt("IDUser") + ".jpg");
                 
                 identity_flag = false;
                 if(images.isFile())
                     identity_flag = true;
                 
                 // CERTIFICATE VERIFICATION
-                images = new File(home + "./webapps/imageset/certificate/" + teachers.getInt("IDUser") + ".jpg");
+                images = new File(home + "\\webapps\\imageset\\certificate\\" + teachers.getInt("IDUser") + ".jpg");
                 
                 certificate_flag = false;
                 if(images.isFile())
