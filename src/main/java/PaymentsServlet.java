@@ -1,8 +1,6 @@
 import javax.servlet.http.*;
-import javax.servlet.*;
 import java.sql.*;
 import java.io.IOException;
-import java.io.*;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.*;
@@ -10,7 +8,7 @@ import java.util.*;
 public final class PaymentsServlet extends DatabaseServlet {
 
 	//retrieve data from db
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response){
 
 		try {
 
@@ -36,11 +34,11 @@ public final class PaymentsServlet extends DatabaseServlet {
 
 			double earned = 0;
 			double spent = 0;
-			ArrayList<String> payments = new ArrayList<String>();
+			ArrayList<String> payments = new ArrayList<>();
 			while(rs.next()){
-				payments.add(new String(rs.getString("payment_date")+ "," +
-											rs.getString("payment_desc")+ "," +
-											rs.getString("payment_direction") + df.format(rs.getDouble("money_amount")) + " &euro;"));
+				payments.add(rs.getString("payment_date") + "," +
+						rs.getString("payment_desc") + "," +
+						rs.getString("payment_direction") + df.format(rs.getDouble("money_amount")) + " &euro;");
 				
 				if (rs.getString("payment_direction").equals("+"))
 					earned += rs.getDouble("money_amount");
@@ -69,6 +67,4 @@ public final class PaymentsServlet extends DatabaseServlet {
 		}//catch
 	}//doGet
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		}//doPost
 }//PaymentsServlet

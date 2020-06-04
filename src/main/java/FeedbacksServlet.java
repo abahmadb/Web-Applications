@@ -155,7 +155,7 @@ public final class FeedbacksServlet extends DatabaseServlet {
     }
 
     //write feedbacks in the db
-    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
         Connection con = getConnection(); //use DatabaseServlet method to get connection
 

@@ -1,25 +1,25 @@
 import javax.servlet.http.HttpServlet;
 import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
 import java.sql.*;
+
 
 public abstract class DatabaseServlet extends HttpServlet {
 
     private Connection con;
 
-    public void init(ServletConfig config) throws ServletException {
+    public void init(ServletConfig config) {
 
         con = null;
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
         }//try
-        catch (ClassNotFoundException e) {}
+        catch (ClassNotFoundException ignored) {}
         
         try{
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/remytutor", "root", "root");
         }//try
-        catch(SQLException e){}
+        catch(SQLException ignored){}
         
     }//init
     

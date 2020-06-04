@@ -1,4 +1,3 @@
-
 import java.sql.Date;
 import com.fasterxml.jackson.core.*;
 import java.io.*;
@@ -123,7 +122,7 @@ public class Person extends Resource{
 		String jCity = null;
 		
 		final JsonParser jp = JSON_FACTORY.createParser(in);
-		while (jp.getCurrentToken() != JsonToken.FIELD_NAME || "employee".equals(jp.getCurrentName()) == false) {
+		while (jp.getCurrentToken() != JsonToken.FIELD_NAME || !"employee".equals(jp.getCurrentName())) {
 			if (jp.nextToken() == null)
 				throw new IOException("Unable to parse JSON: no person object found.");
 		}

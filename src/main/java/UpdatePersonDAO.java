@@ -1,12 +1,9 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /*
- * Upadate person database access object
+ * Update person database access object
  * 
  * @author Xianwen Jin
 */
@@ -16,7 +13,7 @@ public final class UpdatePersonDAO {
 	private static final String STATEMENT_UPDATE_PERSON = "UPDATE Remytutor.Person SET Name=?, Surname=?, Gender=?, DoB=?, Email=?, Phone=?, City=? WHERE IDUser=?";
 	private static final String STATEMENT_UPDATE_PASS = "UPDATE Remytutor.Person SET Passwd=SHA2(?,256) WHERE IDUser=? AND Passwd = SHA2(?, 256)";
 	private static final String STATEMENT_UPDATE_DESCRIPTION = "UPDATE Remytutor.Person SET Description=? WHERE IDUser=?";
-	
+
 	private final Connection con;
 	private final Person person;
 	
@@ -26,10 +23,8 @@ public final class UpdatePersonDAO {
 	}
 	
 	public void updatePerson() throws SQLException {
-		
-		PreparedStatement pstmt = null;
-		try {
-			pstmt = con.prepareStatement(STATEMENT_UPDATE_PERSON);
+
+		try (PreparedStatement pstmt = con.prepareStatement(STATEMENT_UPDATE_PERSON)) {
 			pstmt.setString(1, person.getName());
 			pstmt.setString(2, person.getSurname());
 			pstmt.setString(3, person.getGender());
@@ -38,30 +33,19 @@ public final class UpdatePersonDAO {
 			pstmt.setString(6, person.getPhone());
 			pstmt.setString(7, person.getCity());
 			pstmt.setInt(8, person.getID());
-			
+
 			pstmt.execute();
-		} finally {
-			if (pstmt != null)
-				pstmt.close();
-			
 		}
 	}
 	
 	public void updatePassword(String newPassword, String oldPassword) throws SQLException{
-		
-		PreparedStatement pstmt = null;
-		
-		try {
-			pstmt = con.prepareStatement(STATEMENT_UPDATE_PASS);
+
+		try (PreparedStatement pstmt = con.prepareStatement(STATEMENT_UPDATE_PASS)) {
 			pstmt.setString(1, newPassword);
 			pstmt.setInt(2, person.getID());
 			pstmt.setString(3, oldPassword);
-			
+
 			pstmt.execute();
-		} finally {
-			if (pstmt != null)
-				pstmt.close();
-			
 		}
 	}
 	

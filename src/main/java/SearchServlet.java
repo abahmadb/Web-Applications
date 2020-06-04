@@ -2,9 +2,7 @@ import javax.servlet.http.*;
 import javax.servlet.*;
 import java.sql.*;
 import java.util.*;
-import java.util.regex.*;
 import java.io.*;
-import java.nio.file.*;
 
 public final class SearchServlet extends DatabaseServlet {
 
@@ -15,7 +13,7 @@ public final class SearchServlet extends DatabaseServlet {
             IndexServlet.check_login(req);
 
             // ASSEMBLING THE TOPICS LIST FOR FURTHER SEARCHES
-            List<Topic> lista = new ArrayList<Topic>();
+            List<Topic> lista = new ArrayList<>();
             String current_topic = "";
 
             Connection c = getConnection();
@@ -35,7 +33,7 @@ public final class SearchServlet extends DatabaseServlet {
 
 
             // GETTING THE TEACHERS RESULTS
-            List<SearchBean> ts = new ArrayList<SearchBean>();
+            List<SearchBean> ts = new ArrayList<>();
 
             st = c.createStatement();
 
@@ -74,17 +72,13 @@ public final class SearchServlet extends DatabaseServlet {
                 
                 // IDENTITY VERIFICATION
                 images = new File(home + "\\webapps\\imageset\\identity\\" + teachers.getInt("IDUser") + ".jpg");
-                
-                identity_flag = false;
-                if(images.isFile())
-                    identity_flag = true;
+
+                identity_flag = images.isFile();
                 
                 // CERTIFICATE VERIFICATION
                 images = new File(home + "\\webapps\\imageset\\certificate\\" + teachers.getInt("IDUser") + ".jpg");
-                
-                certificate_flag = false;
-                if(images.isFile())
-                    certificate_flag = true;
+
+                certificate_flag = images.isFile();
                 
                 ts.add(new SearchBean(teachers.getInt("IDUser"), 
                                       teachers.getInt("Tariff"), 
@@ -106,7 +100,7 @@ public final class SearchServlet extends DatabaseServlet {
         catch (SQLException ex) {
             req.setAttribute("error_message", ex.getMessage());
             req.setAttribute("appname", req.getContextPath());
-            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}catch(Exception e){}
+            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);} catch(Exception ignored){}
         }//catch
 
     }//doGet

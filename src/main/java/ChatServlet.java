@@ -1,6 +1,4 @@
-import java.util.List;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import java.sql.Connection;
 import java.sql.Statement;
@@ -11,15 +9,14 @@ import java.sql.SQLException;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 public  final class ChatServlet extends DatabaseServlet {
 
-    public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    public void doGet(HttpServletRequest req, HttpServletResponse res){
 
         try {
 
@@ -50,7 +47,7 @@ public  final class ChatServlet extends DatabaseServlet {
                                            " ORDER BY Confirmed ASC, LastMessage DESC");
 
             // GET READY WITH A LIST OF OBJECT TO PUSH TO THE JSP PAGE
-            ArrayList<ChatContact> contactlist = new ArrayList<ChatContact>();
+            ArrayList<ChatContact> contactlist = new ArrayList<>();
 
             while(rs.next())
                 contactlist.add(new ChatContact(rs.getInt("userid"),
@@ -85,7 +82,7 @@ public  final class ChatServlet extends DatabaseServlet {
 
     }//doGet
 
-    public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse res){
 
         try{
 
@@ -109,7 +106,7 @@ public  final class ChatServlet extends DatabaseServlet {
         catch (Exception ex) {
             req.setAttribute("error_message", ex.getMessage());
             req.setAttribute("appname", req.getContextPath());
-            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}catch(Exception e){}
+            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}catch(Exception ignored){}
         }//catch
     }//doPost
 
@@ -155,7 +152,7 @@ public  final class ChatServlet extends DatabaseServlet {
     private void confirm_request(Connection c, HttpServletRequest req, HttpServletResponse res) throws IOException, SQLException{
         
         // SEE WHAT THE TEACHER DECIDED
-        boolean decision = Boolean.valueOf(req.getParameter("confirm_request"));
+        boolean decision = Boolean.parseBoolean(req.getParameter("confirm_request"));
         
         // BASED ON WHAT HE DECIDED, WE PERFORM A DIFFERENT OPERATION
         String query;
@@ -193,12 +190,12 @@ public  final class ChatServlet extends DatabaseServlet {
         pst.setString(6, req.getParameter("lesson_tariff"));
 
         // GET THE ID OF THE LESSON WE JUST INSERTED
-        int lesson_id = pst.executeUpdate();
+        pst.executeUpdate();
         ResultSet k = pst.getGeneratedKeys();
         
         if(!k.next()) throw new IOException("An error occurred in the lesson ID retrieval");
         
-        lesson_id = k.getInt(1);
+        int lesson_id = k.getInt(1);
         
         // THIS QUERY JUST DOES 3 BASIC CONVERSIONS, RE-FORMATS THE DATE AND COMPUTES THE LESSON TOTAL COST
         pst = c.prepareStatement("SELECT DATE_FORMAT(?, '%d/%m/%Y') as lesson_date_ok, ROUND(TIME_TO_SEC(?)*?/3600, 2) as lesson_cost, TIME_FORMAT(?, '%Hh%im') as lesson_duration_ok");
@@ -244,7 +241,7 @@ public  final class ChatServlet extends DatabaseServlet {
     
     private void confirm_lesson(Connection c, HttpServletRequest req, HttpServletResponse res) throws IOException, SQLException{
         
-        boolean action = Boolean.valueOf(req.getParameter("confirm_lesson"));
+        boolean action = Boolean.parseBoolean(req.getParameter("confirm_lesson"));
         
         String title, query;
         

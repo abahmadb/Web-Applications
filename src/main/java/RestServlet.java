@@ -117,7 +117,6 @@ public final class RestServlet extends DatabaseServlet {
 	private boolean processPerson(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
 		final String method = req.getMethod();
-		final OutputStream out = res.getOutputStream();
 
 		String path = req.getRequestURI();
 

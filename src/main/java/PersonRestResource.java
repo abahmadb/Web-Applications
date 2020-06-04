@@ -1,9 +1,6 @@
 import java.io.*;
 import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.List;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,7 +12,7 @@ public class PersonRestResource extends RestResource{
 
 	public void readPerson() throws IOException {
 
-		Person person  = null;
+		Person person;
 
 		try{
 			// parse the URI path to extract the idUser

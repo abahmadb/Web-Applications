@@ -11,11 +11,11 @@ This directory contains the source code of the project developed for **RemyTutor
 
 ## Prerequisites:
 
+- [Apache Tomcat](http://tomcat.apache.org/) - Java Servlet, JavaServer Pages, Java Expression Language and Java WebSocket technologies
 - [Git](https://git-scm.com/) -  Version Control System
 - [JDK 8](https://www.oracle.com/java/technologies/javase-jdk8-downloads.html) - Java Development Kit
 - [Maven](https://maven.apache.org/) -  Software project management and comprehension tool
 - [MySQL](https://www.mysql.com/) - Relational Database Management System
-- [Apache Tomcat](http://tomcat.apache.org/) - Java Servlet, JavaServer Pages, Java Expression Language and Java WebSocket technologies
 
 ## Usage
 
@@ -31,9 +31,10 @@ To create and populate the MySQL database simply take the sql scripts in src/mai
     ..
     mysql>source path/to/sql/db_population.sql
 
+The MySQL db needs to be accessible on port 3306 by user 'root' with password 'root' (both without the single quotes).
 We also require to place the 'imageset' folder present in this repo to be placed inside the $CATALINA_HOME$\webapps folder
-(e.g. in Windows C:\Program Files\Apache Software Foundation\Tomcat 9.0\webapps).
-This is required because images are not stored in the database, but in this case when a redeploy occurs all images changes will be lost;
+(e.g. in Windows C:\Program Files\Apache Software Foundation\Tomcat 9.0\webapps); this is required because images are 
+not stored in the database, but in this case when a redeploy occurs (e.g. we want to update the website) all images changes will be lost; 
 storing them in a path relative to the Tomcat folder solves redeploy problems. 
 
 If you are experiencing problems on image loading, be sure to set the right Tomcat CATALINA_HOME environment variable before starting the server, 
@@ -43,11 +44,15 @@ especially if you use MacOS/Unix systems; using the terminal you would do:
 
 The WAR package can then be deployed in Tomcat and the website should be now accessible and usable from the Tomcat Manager.
 Testing the website is fairly easy, you can create an account or use credentials from the already default populated 
-database (credentials in clear text are of course outside of the database, in db_population.sql)
+database (credentials in clear text are of course outside of the database, in db_population.sql).
+
+On client side we used some HTML5-CSS3 experimental features for the sign-up/in phase, that are not (currently) supported by all browsers.
+We tested this project on Google Chrome, Microsoft Edge, Mozilla Firefox with good results, the use of Safari is instead 
+(as of now) highly discouraged due to these features that seem unsupported.
 
 ## Features
 
-See HW1-RemyTutor-2019-2020.pdf and HW1-RemyTutor-2019-2020.ppt for a detailed description of this project
+See HW1-RemyTutor-2019-2020.pdf and HW2-RemyTutor-2019-2020.ppt for a detailed description of this project
 
 ## Contributors:
 Students who made this Project possible

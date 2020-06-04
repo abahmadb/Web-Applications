@@ -1,22 +1,20 @@
 import javax.servlet.http.*;
-import javax.servlet.*;
 import java.sql.*;
 import java.util.*;
-import java.util.regex.*;
 import java.io.*;
-import java.nio.file.*;
 import java.text.*;
+
 
 public final class ControlServlet extends DatabaseServlet {
 
-    public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    public void doGet(HttpServletRequest req, HttpServletResponse res) {
 
         try{
 
             HttpSession session = req.getSession();
 
             //  A SIGN-OUT REQUEST HAS BEEN ISSUED
-            if(Boolean.valueOf(req.getParameter("signout"))){
+            if(Boolean.parseBoolean(req.getParameter("signout"))){
 
                 // UNSET THE SESSION LOGIN VALUE
                 session.setAttribute("userid", null);
@@ -81,7 +79,7 @@ public final class ControlServlet extends DatabaseServlet {
                 req.setAttribute("total_time", rs.getString("tot_time"));
 
             // ============== CHAT BOX ==============
-            ArrayList<ArrayList<String>> recent_chats = new ArrayList<ArrayList<String>>();
+            ArrayList<ArrayList<String>> recent_chats = new ArrayList<>();
             rs = st.executeQuery("SELECT IF(C.TeacherID = " + session.getAttribute("userid") + ", S.Name, T.Name) as name, " + 
                                  "@full_length := (JSON_UNQUOTE(JSON_EXTRACT(JSON_EXTRACT(Messages, '$[last]'), '$.Message'))) as full_message, " + 
                                  "CONCAT(LEFT(@full_length, 100), IF(LENGTH(@full_length)>100, '...', '')) as cropped_message, " + 
@@ -91,7 +89,7 @@ public final class ControlServlet extends DatabaseServlet {
                                  " ORDER BY LastMessage DESC LIMIT 4");
 
             while(rs.next()){
-                recent_chats.add(new ArrayList<String>());
+                recent_chats.add(new ArrayList<>());
 
                 recent_chats.get(recent_chats.size() - 1).add(rs.getString("name"));
                 recent_chats.get(recent_chats.size() - 1).add(rs.getString("cropped_message"));
@@ -101,7 +99,7 @@ public final class ControlServlet extends DatabaseServlet {
             req.setAttribute("recent_chats", recent_chats);
 
             // ============== FEEBACK BOX ==============
-            ArrayList<Feedback> recent_feed = new ArrayList<Feedback>();
+            ArrayList<Feedback> recent_feed = new ArrayList<>();
             rs = st.executeQuery("SELECT S.Name, " + 
                                  "@full_length := (F.Description) as full_desc, " + 
                                  "CONCAT(LEFT(@full_length, 100), IF(CHAR_LENGTH(@full_length)>100, '...', '')) as cropped_desc, " + 
@@ -117,7 +115,7 @@ public final class ControlServlet extends DatabaseServlet {
             req.setAttribute("recent_feed", recent_feed);
 
             // ============== PAYMENT BOX ==============
-            ArrayList<ArrayList<String>> recent_payment = new ArrayList<ArrayList<String>>();
+            ArrayList<ArrayList<String>> recent_payment = new ArrayList<>();
 
             DecimalFormat df = new DecimalFormat( "#.##" );
 
@@ -130,7 +128,7 @@ public final class ControlServlet extends DatabaseServlet {
                                  "ORDER BY L.Payment DESC LIMIT 4");
 
             while(rs.next()){
-                recent_payment.add(new ArrayList<String>());
+                recent_payment.add(new ArrayList<>());
                 recent_payment.get(recent_payment.size() - 1).add(rs.getString("payment_date"));
                 recent_payment.get(recent_payment.size() - 1).add(rs.getString("payment_desc"));
                 recent_payment.get(recent_payment.size() - 1).add(rs.getString("payment_direction") + df.format(rs.getDouble("money_amount")) + " &euro;");
@@ -148,7 +146,7 @@ public final class ControlServlet extends DatabaseServlet {
         catch (Exception ex) {
             req.setAttribute("error_message", ex.getMessage());
             req.setAttribute("appname", req.getContextPath());
-            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}catch(Exception e){}
+            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}catch(Exception ignored){}
         }//catch
 
     }//doGet

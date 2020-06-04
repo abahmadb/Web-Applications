@@ -14,7 +14,7 @@ public final class IndexServlet extends DatabaseServlet {
 
             check_login(req);
             
-            List<Topic> lista = new ArrayList<Topic>();
+            List<Topic> lista = new ArrayList<>();
 
             Connection c = getConnection();
 
@@ -35,12 +35,12 @@ public final class IndexServlet extends DatabaseServlet {
         catch (SQLException ex) {
             req.setAttribute("error_message", ex.getMessage());
             req.setAttribute("appname", req.getContextPath());
-            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}catch(Exception e){}
+            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}catch(Exception ignored){}
         }//catch
 
     }//doGet
 
-    public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse res){
 
         // CHECK IF THE REQUEST IF OF SIGN IN OR SIGN UP TYPE AND DISPATCH TO CORRECT HANDLER
 
@@ -81,12 +81,12 @@ public final class IndexServlet extends DatabaseServlet {
         catch (Exception ex) {
             req.setAttribute("error_message", ex.getMessage());
             req.setAttribute("appname", req.getContextPath());
-            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}catch(Exception e){}
+            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}catch(Exception ignored){}
         }//catch
 
     }//doSignIN
 
-    private void doSignUP(HttpServletRequest req, HttpServletResponse res) throws ServletException{
+    private void doSignUP(HttpServletRequest req, HttpServletResponse res){
         try{
 
             if(!isValid(req.getParameter("email"))) throw new IOException("The e-mail is invalid");
@@ -129,7 +129,7 @@ public final class IndexServlet extends DatabaseServlet {
         catch (Exception ex) {
             req.setAttribute("error_message", ex.getMessage());
             req.setAttribute("appname", req.getContextPath());
-            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}catch(Exception e){}
+            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}catch(Exception ignored){}
         }//catch
 
     }//doSignUP
@@ -180,14 +180,14 @@ public final class IndexServlet extends DatabaseServlet {
             if(cs == null) return false;
             
             // LOOP THROUGH THE COOKIES TO SEARCH FOR THE LOGIN COOKIE
-            for(int i = 0; i < cs.length; i++){
+            for (Cookie c : cs) {
 
                 // IF YOU CAN FIND IT
-                if(cs[i].getName().equals("userid")){
+                if (c.getName().equals("userid")) {
 
                     // SET THE SESSION LOGIN
-                    session.setAttribute("userid", cs[i].getValue());
-                    
+                    session.setAttribute("userid", c.getValue());
+
                     // AND SIGNAL TO THE CALLER THAT EVERYTHING IS OK
                     return true;
 

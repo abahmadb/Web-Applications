@@ -2,9 +2,7 @@ import javax.servlet.http.*;
 import javax.servlet.*;
 import java.sql.*;
 import java.util.*;
-import java.util.regex.*;
 import java.io.*;
-import java.nio.file.*;
 
 public final class TeacherServlet extends DatabaseServlet {
     
@@ -14,8 +12,8 @@ public final class TeacherServlet extends DatabaseServlet {
         IndexServlet.check_login(req);
         
         Connection con = getConnection();
-        Statement st = null;
-        ResultSet rs = null;
+        Statement st;
+        ResultSet rs;
         
         String teacher_name = "";
         String teacher_score = "";
@@ -36,7 +34,7 @@ public final class TeacherServlet extends DatabaseServlet {
         List<Feedback> student_feedbacks = new ArrayList<>();
         
         // LIST OF OTHER TOPICS THIS TEACHER OFFERS
-        List<String> teacher_other_subjects = new ArrayList<String>();
+        List<String> teacher_other_subjects = new ArrayList<>();
                 
         // CHECK IF THE TEACHER IDENTITY AND CERTIFICATE ARE VERIFIED
         
@@ -46,17 +44,13 @@ public final class TeacherServlet extends DatabaseServlet {
                             
         // IDENTITY VERIFICATION
         images = new File(home + "\\webapps\\imageset\\identity\\" + userid + ".jpg");
-            
-        identity_flag = false;
-        if(images.isFile())
-            identity_flag = true;
+
+        identity_flag = images.isFile();
                 
         // CERTIFICATE VERIFICATION
         images = new File(home + "\\webapps\\imageset\\certificate\\" + userid + ".jpg");
-                
-        certificate_flag = false;
-        if(images.isFile())
-            certificate_flag = true;
+
+        certificate_flag = images.isFile();
 
         
         try {
@@ -107,7 +101,7 @@ public final class TeacherServlet extends DatabaseServlet {
             req.setAttribute("error_message", ex.getMessage());
             req.setAttribute("appname", req.getContextPath());
             try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);} 
-            catch(Exception e){}
+            catch(Exception ignored){}
         }
         
         // SEND THE VALUES TO THE JSP PAGE
@@ -132,7 +126,7 @@ public final class TeacherServlet extends DatabaseServlet {
     
     
     //doPost is used when a student clicks on the "book a lesson" button in order to book the lesson of the teacher he is viewing
-    public void doPost (HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    public void doPost (HttpServletRequest req, HttpServletResponse res) throws IOException {
         
         PrintWriter out = res.getWriter();
         

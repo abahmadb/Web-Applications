@@ -3,20 +3,13 @@ import javax.servlet.*;
 import java.sql.*;
 import java.io.IOException;
 import java.io.*;
-import java.nio.file.*;
-import java.util.regex.*;
 import java.util.*;
 
 // package needed for upload file
  
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.commons.io.output.*;
-
-import java.io.IOException;
-import java.io.PrintWriter;
 
 /* submit data into database
  *
@@ -32,8 +25,7 @@ public final class ProfileServlet extends DatabaseServlet{
 		// initialize variables for queries
 		PreparedStatement st = null;
 		ResultSet rs = null;
-		
-		
+
 		try{
 			//check if we are logged in
 			if(!IndexServlet.check_login(req))
@@ -61,7 +53,7 @@ public final class ProfileServlet extends DatabaseServlet{
 			
 			
 			// topic info for autocomplete
-			List<Topic> lista = new ArrayList<Topic>();
+			List<Topic> lista = new ArrayList<>();
             st = con.prepareStatement("SELECT * FROM topic");
             rs = st.executeQuery();
 
@@ -72,7 +64,7 @@ public final class ProfileServlet extends DatabaseServlet{
             req.setAttribute("topics_list", lista);
 			
 			// topic form info
-			ArrayList<TeacherTopic> subjects = new ArrayList<TeacherTopic>();		
+			ArrayList<TeacherTopic> subjects = new ArrayList<>();
 			
 			// queries
 			final String STATEMENT_SELECT_TEACHER_TOPIC = "SELECT TeacherID, TopicID, Tariff, Label FROM teacher_topic A INNER JOIN Topic T " +
@@ -95,7 +87,7 @@ public final class ProfileServlet extends DatabaseServlet{
 				
 			req.setAttribute("error_message", ex.getMessage());
             req.setAttribute("appname", req.getContextPath());
-            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}	catch(Exception e){}
+            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}	catch(Exception ignored){}
 			
 		// close statements and result sets	
 		} finally {
@@ -123,8 +115,7 @@ public final class ProfileServlet extends DatabaseServlet{
 		req.getRequestDispatcher("profile.jsp").forward(req, res);	
 	}
 	
-	public void doPost(HttpServletRequest req, HttpServletResponse res)
-			throws ServletException, IOException {
+	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException{
 		
 		// Check the type of request
 
@@ -145,8 +136,7 @@ public final class ProfileServlet extends DatabaseServlet{
 	}
 
 	// handle personal information form
-	public void doUpdatePerson(HttpServletRequest req, HttpServletResponse res)
-			throws ServletException, IOException{
+	public void doUpdatePerson(HttpServletRequest req, HttpServletResponse res){
 				
         // get the user id
 		int idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("userid")));	
@@ -163,18 +153,16 @@ public final class ProfileServlet extends DatabaseServlet{
 			} else {
 				gender = "";
 			}
-			String temp = req.getParameter("birth").toString();
 			java.sql.Date dob = null;
 			try{
-				dob = java.sql.Date.valueOf(req.getParameter("birth").toString());
-			} catch (Exception e){}
+				dob = java.sql.Date.valueOf(req.getParameter("birth"));
+			} catch (Exception ignored){}
 			String email = req.getParameter("email");
 			String phone = req.getParameter("phone_nr");
 			String city = req.getParameter("city");
 			// password and description info are handled by other forms
-			String passwd = null, description = null;
 			// create person from the request parameters
-			Person person = new Person(idUser, name, surname, gender, dob, email, passwd, phone, city, description);
+			Person person = new Person(idUser, name, surname, gender, dob, email, null, phone, city, null);
 			// update the information about person using DAO
 			new UpdatePersonDAO(getConnection(), person).updatePerson();
 			
@@ -182,14 +170,13 @@ public final class ProfileServlet extends DatabaseServlet{
 				
 			req.setAttribute("error_message", ex.getMessage());
             req.setAttribute("appname", req.getContextPath());
-            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}	catch(Exception e){}
+            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}	catch(Exception ignored){}
 			
 		} 
 	}
 	
 	// manage password form
-	public void doUpdatePass(HttpServletRequest req, HttpServletResponse res)
-			throws ServletException, IOException{
+	public void doUpdatePass(HttpServletRequest req, HttpServletResponse res){
 		
 		// get user id
 		int idUser = Integer.parseInt(String.valueOf(req.getSession().getAttribute("userid")));		
@@ -222,13 +209,12 @@ public final class ProfileServlet extends DatabaseServlet{
 			req.setAttribute("passMessage", "Failed");			
 			req.setAttribute("error_message", ex.getMessage());
             req.setAttribute("appname", req.getContextPath());
-            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}	catch(Exception e){}
+            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}	catch(Exception ignored){}
 			
 		} 
 	}
 	
-	public void doUpdateTopic(HttpServletRequest req, HttpServletResponse res)
-			throws ServletException, IOException{
+	public void doUpdateTopic(HttpServletRequest req, HttpServletResponse res){
 		
 		/*final String STATEMENT_INSERT_TOPIC = "INSERT INTO Topic(Label) " + 
 													"SELECT ? " +
@@ -273,7 +259,7 @@ public final class ProfileServlet extends DatabaseServlet{
 			req.setAttribute("topicMessage", "Failed");			
 			req.setAttribute("error_message", ex.getMessage());
             req.setAttribute("appname", req.getContextPath());
-            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}	catch(Exception e){}
+            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}	catch(Exception ignored){}
 			
 		} finally {
          
@@ -287,13 +273,11 @@ public final class ProfileServlet extends DatabaseServlet{
 	}
 	
 	// handle description form
-	public void doUpdateDescription(HttpServletRequest req, HttpServletResponse res)
-			throws ServletException, IOException{
+	public void doUpdateDescription(HttpServletRequest req, HttpServletResponse res){
 				
 		final String STATEMENT = "UPDATE Remytutor.Person SET Description=? WHERE IDUser=?";		
 		Connection con = getConnection();
 		PreparedStatement st = null;
-		ResultSet rs = null;
 		
 		try{
 			
@@ -312,16 +296,10 @@ public final class ProfileServlet extends DatabaseServlet{
 			req.setAttribute("topicMessage", "Failed");			
 			req.setAttribute("error_message", ex.getMessage());
             req.setAttribute("appname", req.getContextPath());
-            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}	catch(Exception e){}
+            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}	catch(Exception ignored){}
 			
 		} finally {
-            if (rs != null) {
-                try {
-                    rs.close();
-                }
-                catch (SQLException ignored) { }
-            }
-            if (st != null) {
+			if (st != null) {
                 try {
                     st.close();
                 } catch (SQLException ignored) { }
@@ -333,8 +311,7 @@ public final class ProfileServlet extends DatabaseServlet{
 		in particular they will be renamed according to user id and uploaded into a specific directory
 		for simplicity we just handle jpg file
 	*/
-	public void doUploadFile(HttpServletRequest req, HttpServletResponse res)
-			throws ServletException, IOException{
+	public void doUploadFile(HttpServletRequest req, HttpServletResponse res){
 				
 		// upload settings
 		final int MEMORY_THRESHOLD   = 1024 * 1024 * 3;  // 3MB
@@ -347,7 +324,7 @@ public final class ProfileServlet extends DatabaseServlet{
         if (!ServletFileUpload.isMultipartContent(req)) {
 			req.setAttribute("error_message", "Not multipart content");
             req.setAttribute("appname", req.getContextPath());
-            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}	catch(Exception e){}
+            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}	catch(Exception ignored){}
         }
  
         // Initialize settings for upload
@@ -359,9 +336,9 @@ public final class ProfileServlet extends DatabaseServlet{
         upload.setSizeMax(MAX_REQUEST_SIZE);
 
 		String upload_dir = null;
-		String uploadPath = null;
-        String filePath = null;
-		String fieldName = null;
+		String uploadPath;
+        String filePath;
+		String fieldName;
         try {
             // retrieve the file
             @SuppressWarnings("unchecked")
@@ -376,14 +353,16 @@ public final class ProfileServlet extends DatabaseServlet{
 						String fileName = idUser + ".jpg";
 						// get the info about from which form is sent the request
 						fieldName = item.getFieldName();
-						if (fieldName.equals("photo")){
-							upload_dir = "profile";
-						}
-						else if (fieldName.equals("document_card")){
-							upload_dir = "identity";
-						}
-						else if (fieldName.equals("qualification")){
-							upload_dir = "certificate";
+						switch (fieldName) {
+							case "photo":
+								upload_dir = "profile";
+								break;
+							case "document_card":
+								upload_dir = "identity";
+								break;
+							case "qualification":
+								upload_dir = "certificate";
+								break;
 						}
 						// set the upload path 
 						uploadPath = System.getProperty("catalina.home") + "\\webapps\\imageset\\" + upload_dir;
@@ -402,7 +381,7 @@ public final class ProfileServlet extends DatabaseServlet{
             req.setAttribute("fileMessage", "upload failed");
 			req.setAttribute("error_message", ex.getMessage());
             req.setAttribute("appname", req.getContextPath());
-            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}	catch(Exception e){}
+            try{req.getRequestDispatcher("errorpage.jsp").forward(req, res);}	catch(Exception ignored){}
         }
         		
 	}
