@@ -27,11 +27,11 @@ This will generate a 'target' folder with a WAR package named education.X.X.X.wa
 
 To create and populate the MySQL database simply take the sql scripts in src/main/database and *source* them in a MySQL console:
 
-    mysql>source path/to/sql/db_creation.sql
+    mysql> source path/to/sql/db_creation.sql
     ..
-    mysql>source path/to/sql/db_population.sql
+    mysql> source path/to/sql/db_population.sql
 
-The MySQL db needs to be accessible on port 3306 by user 'root' with password 'root' (both without the single quotes).
+The MySQL db will also need to be accessible on port 3306 by user 'root' with password 'root' (both without the single quotes).
 We also require to place the 'imageset' folder present in this repo to be placed inside the $CATALINA_HOME$\webapps folder
 (e.g. in Windows C:\Program Files\Apache Software Foundation\Tomcat 9.0\webapps); this is required because images are 
 not stored in the database, but in this case when a redeploy occurs (e.g. we want to update the website) all images changes will be lost; 
